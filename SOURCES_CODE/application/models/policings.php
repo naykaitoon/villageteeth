@@ -5,6 +5,6 @@ class Policings extends CI_Model {
 	   parent::__construct();
     }
 	
-
+	
 }
 ?>

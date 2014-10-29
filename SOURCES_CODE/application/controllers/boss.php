@@ -174,14 +174,14 @@ class Boss extends CI_Controller {
 			$resultId = $this->Distance->addDistanceData();
 			if($resultId!=FALSE&&$resultId!=""){
 				echo "<center>การเพิ่มข้อมูลสำเร็จ<br>
-						<a href='".base_url()."index.php/Boss/distanceDataList'  style='font-size:12px' onClick='parent.jQuery.fancybox.close();'>
+						<a href='".base_url()."index.php/boss/distanceDataList'  style='font-size:12px' onClick='parent.jQuery.fancybox.close();'>
 						<button>คลิกที่นี้เพื่อปิด</button></a>
 					  </center>";
 			}
 			
 		}else{
 			echo "<center>กรุณาใส่จำนวนให้ถูกต้อง<br>
-			<a href='".base_url()."index.php/Boss/addDistance' style='font-size:12px'>คลิกที่นี้เพิ่อกลับ</a>
+			<a href='".base_url()."index.php/boss/addDistance' style='font-size:12px'>คลิกที่นี้เพิ่อกลับ</a>
 			</center>";
 		}
 		

@@ -17,7 +17,7 @@ function confirmDel(){
 <div id="headTitleContentbg">
  <h2 id="headTitleContent">รายการช่วงอายุการตรวจ</h2>
  </div>
- <p style="margin-top:16px;"><a class="fancyboxMini" href="<?php echo base_url();?>index.php/boss/addDistance">เพิ่มช่วงอายุ</a></p>
+ <p style="margin-top:16px;"><a class="fancyboxMini" style="font-size:12px" href="<?php echo base_url();?>index.php/boss/addDistance"><img src="<?php echo base_url()?>img/icon/distanceIconAdd.png" width="40px"/>เพิ่มช่วงอายุ</a></p>
 <div class="table"align="center"><br>
 <table width="50%" border="0" align="center" cellpadding="7" cellspacing="3">
 

@@ -94,13 +94,13 @@ class Login extends CI_Controller { /// คราสชื่อ Login
 
 				$config['newline'] = '\n';
 				$message = "สวัดดีคุณ ".$data[0]['memberName']." ".$data[0]['memberLastName']."\n\n";
-				$message .= "ชื่อเข้าใช้งานของคุณคือ ".$data[0]['memberUsername'];
-				$message .= "ลิ้งยืนยัน ";
+				$message .= "ชื่อเข้าใช้งานของคุณคือ ".$data[0]['memberUsername']."\n\n";
+				$message .= "ลิ้งยืนยัน \n";
 				$message .= "http://villageteeth.com/index.php/ConfirmCodeForget/index/".$data[0]['memberForgetCode'];
 				$this->email->initialize($config);
 
 
-				$this->email->from('villaget@villageteeth.com', 'ยืนยันการลืมรหัสผ่าน villageteeth.com'.$data[0]['memberName']);
+				$this->email->from('villaget@villageteeth.com', 'ยืนยันการลืมรหัสผ่าน villageteeth.com '.$data[0]['memberName']);
 
 				$this->email->to($data[0]['memberEmail']);
 

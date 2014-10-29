@@ -4,20 +4,18 @@
 <meta charset="utf-8">
 <title>ระบบทันตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย Dental Health System</title>
 <meta name="keywords" content="สมเด็จพระยุพราชเด่นชัย,โรงพยาบาลสมเด็จพระยุพราชเด่นชัย,ทันตสุขภาพเด็ก,villageteeth,ระบบทันตสุขภาพเด็ก" />
-<meta name="description" content="ระบบจัดการ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ จัดการข้อมูลสถิติ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ Dental Health System villageteeth" />
+<meta name="description" content="ระบบจัดการ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ จัดการข้อมูลสถิติ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ Dental Health System villageteeth"/>
       <link rel="stylesheet" href="<?php echo base_url();?>css/loginForm.css">
       <link rel="stylesheet" href="<?php echo base_url();?>css/menu.css">
   	<link rel="stylesheet" href="<?php echo base_url();?>css/main.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/header.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
-  
+
      <script src="<?php echo base_url();?>js/jquery-1.11.1.min.js"></script>
      <script>
 	 $(document).ready(function(){
 
-                $('.load').load( '<?php echo base_url();?>index.php/home/loginForm' );
-
-         
+                $('.load').load( '<?php echo base_url();?>index.php/home/loginForm' );         
  });
  
 	 </script>
@@ -47,6 +45,6 @@
 <br>
 <br>
 <div id="footerLoagin" title="ที่อยู่ที่ติดต่อ" align="center"><p id="footerText">โครงการลูกรักฟันดีเริ่มที่ซี้แรก ร่วมกับ โรงพยาบาลสมเด็จพระยุพราชเด่นชัย<br>
-545 หมู่ 9 ตำบลเด่นชัย อำเภอเด่นชัย จังหวัดแพร่54110 โทรศัพท์ 054-613134 Fax. 054-613195 WebSite : <a href="http://www.denchaihosp.com/">http://www.denchaihosp.com/</a><br>Copyright © 2014 All rights Reserved. </p></div>
+545 หมู่ 9 ตำบลเด่นชัย อำเภอเด่นชัย จังหวัดแพร่54110 โทรศัพท์ 054-613134 Fax. 054-613195 WebSite : http://www.denchaihosp.com/<br>Copyright © 2014 All rights Reserved. </p></div>
 </body>
 </html>
