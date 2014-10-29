@@ -1,12 +1,3 @@
-<!-- 
-	type : view
-	file_name : homeLogin.php
-    file_type : php
-    author : Jedsadakorn Sirikunpan
-    details : loginpage
-	start_date : 18/10/2557
-    end_Date : -
--->
 <!doctype html>
 <html>
 <head>

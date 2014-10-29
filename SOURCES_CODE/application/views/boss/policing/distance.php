@@ -17,7 +17,7 @@ function confirmDel(){
 <div id="headTitleContentbg">
  <h2 id="headTitleContent">รายการช่วงอายุการตรวจ</h2>
  </div>
- <p style="margin-top:16px;"><a class="fancyboxMini" href="<?php echo base_url();?>index.php/Boss/addDistance">เพิ่มช่วงอายุ</a></p>
+ <p style="margin-top:16px;"><a class="fancyboxMini" href="<?php echo base_url();?>index.php/boss/addDistance">เพิ่มช่วงอายุ</a></p>
 <div class="table"align="center"><br>
 <table width="50%" border="0" align="center" cellpadding="7" cellspacing="3">
 
@@ -34,8 +34,8 @@ function confirmDel(){
            <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['distanceId'];?></p></td>  
        <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['distanceMonth'];?></p></td>
 
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxMini" href="<?php echo base_url();?>index.php/Boss/editDistance/<?php echo $c['distanceId'];?>">แก้ไข</a></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxDelete" href="<?php echo base_url();?>index.php/Boss/deleteDistanceData/<?php echo $c['distanceId'];?>" >ลบ</a></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxMini" href="<?php echo base_url();?>index.php/boss/editDistance/<?php echo $c['distanceId'];?>">แก้ไข</a></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxDelete" href="<?php echo base_url();?>index.php/boss/deleteDistanceData/<?php echo $c['distanceId'];?>" >ลบ</a></td>
     </tr>
     <?php $i++; }?>
 </table>

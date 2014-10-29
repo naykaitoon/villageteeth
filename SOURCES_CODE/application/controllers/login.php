@@ -1,9 +1,4 @@
-﻿<?php 
-/*  
-
-*/
-?>
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Login extends CI_Controller { /// คราสชื่อ Login
 
 	function __construct(){ /// เป็นฟังชั่นที่จะทำงานก่อน index จะทำงานเมื่อมีการเรียกใช้คราส Login นี้
@@ -101,7 +96,7 @@ class Login extends CI_Controller { /// คราสชื่อ Login
 				$message = "สวัดดีคุณ ".$data[0]['memberName']." ".$data[0]['memberLastName']."\n\n";
 				$message .= "ชื่อเข้าใช้งานของคุณคือ ".$data[0]['memberUsername'];
 				$message .= "ลิ้งยืนยัน ";
-				$message .= "http://villageteeth.com/index.php/ConfirmCodeForget/index/".$data[0]['memberEmail']."/".$data[0]['memberForgetCode'];
+				$message .= "http://villageteeth.com/index.php/ConfirmCodeForget/index/".$data[0]['memberForgetCode'];
 				$this->email->initialize($config);
 
 
@@ -130,54 +125,26 @@ class Login extends CI_Controller { /// คราสชื่อ Login
 
 	}
 	
-/*	
-	function test1()
-	{
-		$id = $this->input->post('provinceId');
-		$data = $this->Member->getDistrict($id);
-		if($id!=0){
-		for($i=0;$i<count($data);$i++){
-			echo '<option value="'.$data[$i]['districtId'].'">'.$data[$i]['districtName'].'</option>';
-		}
+	function changePassword(){
+		$memberId = $this->input->post('memberId');
+		$password1 = $this->input->post('password1');
+		$password2 = $this->input->post('password2');
+		
+		if($password1 == $password2){
+			$this->Member->setMemberId($memberId);
+			$this->Member->setMemberPassword($password1);
+			$this->Member->updatePasswordMemberPk();
+			$this->session->unset_userdata('loginData');
+			echo"<script langquage='javascript'>
+			window.location='".base_url()."index.php/home';</script>"; /// เป็นหน้าเว็บโดยใช้ javascript		  
 		}else{
-			 echo '<option value="0">------</option>';
+			echo"<script langquage='javascript'>alert('รหัสผ่านไม่ตรงกัน กรุณายืนยันใหม่');
+			window.location='".base_url()."index.php/home';</script>"; /// เป็นหน้าเว็บโดยใช้ javascript		  
 		}
-		
-		
+
 	}
 	
-	function test2()
-	{
-		$id = $this->input->post('districtId');
-		$data = $this->Member->getCanton($id);
-		if($data){
-		for($i=0;$i<count($data);$i++){
-			echo '<option value="'.$data[$i]['cantonId'].'">'.$data[$i]['cantonName'].'</option>';
-			echo '<script>$("#canton").removeAttr("disabled");</script>';
-		}
-		}else{
-			 echo '<option value="0">------</option>';
-		}
-		
-	}
-	
-	function test3()
-	{
-		$id = $this->input->post('cantonId');
-		$data = $this->Member->getZipcode($id);
-		if($id!=0){
-			echo $data[0]['zipcode'];
-		}else{
-			 echo '-';
-		}
-		
-	}
-	
-	function ss()
-	{
-		var_dump($_POST);
-	}
-*/	
+
 }
 
 ?>

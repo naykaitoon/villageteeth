@@ -223,7 +223,6 @@ function forgetPasswordMemberByCode()
    $this -> db -> select('memberId,memberUsername');  						###########
    $this -> db -> from('members'); 						 ########### เช็คข้อมูลใน DB 
    $this -> db -> where('memberForgetCode', $this->getMemberForgetCode()); ###########
-   $this -> db -> where('memberEmail', $this->getMemberEmail()); ###########
    $this -> db -> limit(1); ############## ตำกัดให้คืนค่าแค่ record เดียว
 
    $query = $this -> db -> get(); ##############  สั่งดึงข้อมูลตามเงื่อนไข
@@ -247,6 +246,19 @@ function forgetPasswordMemberByCode()
 		return $data; ///  สั่งส่งค่า ตัวแปร Array $data กลับ
 	}
 ######################## end function getAllDataMember #############################
+
+######################## function getMemberPk #############################
+	function updatePasswordMemberPk(){
+	
+		$data = array(
+			'memberPassword' => MD5($this->getMemberPassword()),
+			'memberForgetCode' => MD5($this->getMemberId().date('Y-m-d H:m:s'))
+		);
+		$this->db->where('memberId',$this->getMemberId());
+		$this->db->update('members',$data); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ 
+
+	}
+######################## end function getMemberPk #############################
 
 
 

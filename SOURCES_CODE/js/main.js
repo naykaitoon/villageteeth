@@ -23,9 +23,9 @@ $(document).ready(function(){
 	
 });
   $('.fancyboxMini').fancybox({
-	  			height :	'450',
+	  			height :	'300',
 				width :	'400',
-				autoSize : true,
+				autoSize : false,
 				scrolling : 'auto',
 				arrows : false,
 				type				: 'iframe',

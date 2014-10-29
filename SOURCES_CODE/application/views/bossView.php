@@ -24,12 +24,12 @@
     <script type="text/javascript" src="<?php echo base_url()?>js/main.js"></script>
     <script>
 	$(document).ready(function() {
-  $('.dropdown a').click(function(event) {
+  		$('.dropdown a').click(function(event) {
 				 event.preventDefault();
 
 				 var href = $(this).attr('href');
-
 				 $('#linkPopupclick').val(href);
+	
                
 	});
 	});
@@ -72,7 +72,7 @@
                  </a>
         	</li>
       		<li>
-        		 <a class="mainMenu" href="" onClick="return false">
+        		 <a class="mainMenu" href="#" onClick="return false">
                  <img src="<?php echo base_url();?>img/icon/magChilldent.png" height="30px" > จัดการข้อมูลเด้ก</a>
         <ul>
           	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/chillentInArea">- เด็กในเขตความรับผิดชอบ</a></li>
@@ -80,7 +80,7 @@
            	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/chillentAllProfile">- ข้อมูลประวัติเด็ก</a></li>
         </ul>
       </li>  
-      <li><a class="mainMenu" href="" onClick="return false"><img src="<?php echo base_url();?>img/icon/grap.png" height="30px" > รายงานข้อมูลสถิติ</a>
+      <li><a class="mainMenu" href="#" onClick="return false"><img src="<?php echo base_url();?>img/icon/grap.png" height="30px" > รายงานข้อมูลสถิติ</a>
         <ul>
           <li><a class="submenu" href="">- สถิติโดยรวมทั้งหมด</a></li>
            <li><a class="submenu" href="">- สถิติโดยแบ่งตามพื้นที่</a></li>
@@ -101,7 +101,7 @@
         </ul>
       </li>
       <li>
-        <a class="mainMenu" href="" onClick="return false"><img src="<?php echo base_url();?>img/icon/policy.png" height="30px" > จัดการข้อมูลการตรวจ</a>
+        <a class="mainMenu" href="#" onClick="return false"><img src="<?php echo base_url();?>img/icon/policy.png" height="30px" > จัดการข้อมูลการตรวจ</a>
         <ul>
           <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/distanceDataList">- ระยะเวลาการตรวจ</a></li>
           		
