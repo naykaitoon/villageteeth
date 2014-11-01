@@ -1,12 +1,3 @@
-<!-- 
-	type : view
-	file_name : home.php
-    file_type : php
-    author : Jedsadakorn Sirikunpan
-    details : homepage
-	start_date : 16/9/2557
-    end_Date : -
--->
 <html>
 <head>
 <meta charset="utf-8">
@@ -17,7 +8,7 @@
   	<link rel="stylesheet" href="<?php echo base_url();?>css/main.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/header.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
-<script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url()?>js/fancy/lib/jquery.mousewheel-3.0.6.pack.js"></script>
 	<script type="text/javascript" src="<?php echo base_url()?>js/fancy/source/jquery.fancybox.js?v=2.1.5"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/source/jquery.fancybox.css?v=2.1.5" media="screen" />
@@ -67,8 +58,8 @@
 	<div id="menu">
 		<ul class="dropdown">
  			<li>
-       			 <a class="mainMenu"  id="headMenu" onClick="return false">
-                 <img src="<?php echo base_url();?>img/icon/menu.png" height="40px">&nbsp;&nbsp;เมนู
+       			 <a class="mainMenu"  id="headMenu" onClick="return false" style="font-size:25px;">
+                 <img src="<?php echo base_url();?>img/icon/menu.png" height="30px">&nbsp;&nbsp;เมนู
                  </a>
         	</li>
       		<li>
@@ -82,20 +73,20 @@
       </li>  
       <li><a class="mainMenu" href="#" onClick="return false"><img src="<?php echo base_url();?>img/icon/grap.png" height="30px" > รายงานข้อมูลสถิติ</a>
         <ul>
-          <li><a class="submenu" href="">- สถิติโดยรวมทั้งหมด</a></li>
-           <li><a class="submenu" href="">- สถิติโดยแบ่งตามพื้นที่</a></li>
-           <li><a class="submenu" href="">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
-           <li><a class="submenu" href="" onClick="return false">- สถิติเด็กในเขตของฉัน</a>
+          <li><a class="submenu" href="#">- สถิติโดยรวมทั้งหมด</a></li>
+           <li><a class="submenu" href="#">- สถิติโดยแบ่งตามพื้นที่</a></li>
+           <li><a class="submenu" href="#">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
+           <li><a class="submenu" href="#" onClick="return false">- สถิติเด็กในเขตของฉัน</a>
            		  <ul>
-        		           <li><a class="submenu" href="">- สถิติโดยรวมในเขตของฉัน</a></li>
-                           <li><a class="submenu" href="">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
+        		           <li><a class="submenu" href="#">- สถิติโดยรวมในเขตของฉัน</a></li>
+                           <li><a class="submenu" href="#">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
        			 </ul>
             <li>
-           <li><a class="submenu" href="" onClick="return false">- สถิติเด็กการตรวจของฉัน</a>
+           <li><a class="submenu" href="#" onClick="return false">- สถิติเด็กการตรวจของฉัน</a>
           	  <ul>
-        		        <li><a class="submenu" href="">- แบ่งตามพฤษติกรรม</a></li>
-                        <li><a class="submenu" href="">- แบ่งตามช่วงอายุ</a>                
-                        <li><a class="submenu" href="">- ข้อมูลการตรวจรายบุคคล</a>
+        		        <li><a class="submenu" href="#" >- แบ่งตามพฤษติกรรม</a></li>
+                        <li><a class="submenu" href="#">- แบ่งตามช่วงอายุ</a>                
+                        <li><a class="submenu" href="#">- ข้อมูลการตรวจรายบุคคล</a>
        			 </ul>
             <li>
         </ul>
@@ -105,15 +96,17 @@
         <ul>
           <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/distanceDataList">- ระยะเวลาการตรวจ</a></li>
           		
-          <li><a class="submenu" href="">- พฤติกรรมทัตสุขภาพ</a></li>
-          <li><a class="submenu" href="">- ตารางการนัดเด็กของฉัน</a>    </li>      
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/behaviorMag">- พฤติกรรมทัตสุขภาพ</a></li>
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/behaviorMagType">- หมวดหมู่พฤติกรรมทัตสุขภาพ</a></li>
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/content">- ตารางการนัดเด็กของฉัน</a></li>      
 
         </ul>
       </li>
       <li>
         <a class="mainMenu" href="" onClick="return false"><img src="<?php echo base_url();?>img/icon/magMember.png" height="30px" > จัดการมูลผู้ใช้งาน</a>
         <ul>
-          <li><a class="submenu"  href="">- ตามเขตรับผิดชอบ</a></li>
+          <li><a class="submenu"  href="<?php echo base_url();?>index.php/boss/memberByArea">- ตามเขตรับผิดชอบ</a></li>
+          <li><a class="submenu"  href="<?php echo base_url();?>index.php/boss/memberAll">- ผู้ใช้งานทั้งหมด</a></li>
         </ul>
       </li>
    

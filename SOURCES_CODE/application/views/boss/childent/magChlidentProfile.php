@@ -12,7 +12,7 @@ jQuery(function($){
 <div class="table"align="center">
 <br>
   <p>
-    <label for="textfield">ค้นหา:</label>
+    <label for="title">ค้นหา:</label>
     <input type="text" name="searchBox" id="searchBox" class="searchBox">
     <a href="#" class="searchBt">ค้นหา</a>
   <a href="<?php echo base_url();?>index.php/boss/addChillent" class="fancybox" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px"/>

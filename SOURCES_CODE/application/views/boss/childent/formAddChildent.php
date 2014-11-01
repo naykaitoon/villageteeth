@@ -58,7 +58,7 @@
 </head>
 
 <body>
-<form id="form1" name="form1" method="post">
+<form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/boss/addActionChillent">
   <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0">
     <tbody>
       <tr>
@@ -83,7 +83,7 @@
       <tr>
         <td align="right" valign="middle">จังหวัด</td>
         <td align="left" valign="middle"><select name="province" id="province">
-  <option value="0">------</option>
+  <option value="0">กรุณาเลือก</option>
   <?php foreach($province as $p){?>
   <option value="<?php echo $p['provinceId']?>"><?php echo $p['provinceName']?></option>
   <?php }?>
@@ -93,7 +93,7 @@
         <td align="right" valign="middle">อำเภอ</td>
         <td align="left" valign="middle">
   <select name="district"  id="district" disabled>
-    <option value="0">กรุณาเลือก</option>
+    <option value="0">กรุณาเลือกจังหวัด</option>
 
   </select></td>
       </tr>

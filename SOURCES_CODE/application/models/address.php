@@ -126,6 +126,8 @@ class Address extends CI_Model {
         return $this->street; 
      }
 ###### End GET : $street ###### 
+
+////////////////////////    /////////////////////////////
 function getProvinceAll(){
 	return $this->db->get('province')->result_array();
 }
@@ -144,6 +146,81 @@ function getZipcodeFk(){
 	$this->db->where('cantonId',$this->getCantonId());
 	return $this->db->get('zipcodes')->result_array();
 }
+
+function getmemberAear(){
+	
+	$this->db->join('district','district.districtId = canton.districtId');
+	$this->db->join('province','province.provinceId = canton.provinceId');
+	if($this->getCantonId()){
+		$this->db->where('canton.cantonId',$this->getCantonId());
+	}else if($this->getDistrictId()){
+		$this->db->where('canton.districtId',$this->getDistrictId());
+	}else if($this->getProvinceId()){
+		$this->db->where('canton.provinceId',$this->getProvinceId());
+	}
+	$data = $this->db->get('canton')->result_array();
+	
+	return $data;
+	
+}
+
+function getMemberByAddress($page,$url){
+	$pageValue = 15;///จำนวนข้อมูลต่อ1หน้า
+	$this->db->join('address','address.ownerId = members.memberId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+	$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
+		
+	if($this->getCantonId()){
+		$this->db->where('address.cantonId',$this->getCantonId());
+	}else if($this->getDistrictId()){
+		$this->db->where('address.districtId',$this->getDistrictId());
+	}else if($this->getProvinceId()){
+		$this->db->where('address.provinceId',$this->getProvinceId());
+	}
+		$data = $this->db->get('members')->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
+	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
+	$this->db->select('*');
+	$this->db->from('members');
+	$this->db->join('address','address.ownerId = members.memberId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+		
+		if($this->getCantonId()){
+		$this->db->where('address.cantonId',$this->getCantonId());
+	}else if($this->getDistrictId()){
+		$this->db->where('address.districtId',$this->getDistrictId());
+	}else if($this->getProvinceId()){
+		$this->db->where('address.provinceId',$this->getProvinceId());
+	}
+		
+		
+		$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
+		$config['total_rows'] = $this->db->count_all_results();// ส่วนนี้ จะนับว่า ฟิว ทั้งหมดที่อยู่ใน tb_user มีเท่าไหร่
+		$config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
+		 
+		 $this->pagination->create_links();
+  		 $this->pagination->initialize($config);   // จากกนั้น เอาค่า ไป config ใน object pagination ที่เรา load มา 
+		return $data; ///  สั่งส่งค่า ตัวแปร Array $data กลับ
+}
+
+function addAddress(){
+	$data = array(
+		'ownerId' => $this->getOwnerId(),
+		'ownerType' => $this->getOwnerType(),
+		'addressDetial' => $this->getAddressDetial(),
+		'provinceId' => $this->getProvinceId(),
+		'districtId' => $this->getDistrictId(),
+		'cantonId' => $this->getCantonId(),
+		'street' => $this->getStreet()
+	);
+
+	$this->db->insert('address',$data);
+	
+}
+
 }
 ?>
 

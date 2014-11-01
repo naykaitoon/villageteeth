@@ -136,7 +136,8 @@ function getChillentInArea($page,$url){
 
 
 	}
-	
+
+######################  end getChillentAll ############################
 	function getChillentAll($page,$url){
 	 $pageValue = 15;///จำนวนข้อมูลต่อ1หน้า
 	$this->db->where('address.ownerType ','childents'); 
@@ -168,7 +169,18 @@ function getChillentInArea($page,$url){
 
 
 	}
-######################  end getchillentInArea ############################
+######################  end getChillentAll ############################
+
+function addChildent(){
+	$data = array(
+	'childrenName' => $this->getChildrenName(),
+	'childrenLastName' => $this->getChildrenLastName(),
+	'childrenBirthday' => $this->getChildrenBirthday(),
+	'childrenIDCard' => $this->getChildrenIDCard()
+	);
+	$this->db->insert('childrens',$data);
+	return $this->db->insert_id();
+}
 
 function test(){
 	$data = $this->session->userdata('loginData');

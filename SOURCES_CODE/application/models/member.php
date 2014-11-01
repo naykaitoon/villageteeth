@@ -217,6 +217,7 @@ function forgetPasswordMember()
    }
  }
  ######################## end function forgetPasswordMember #############################
+ 
   ######################## function forgetPasswordMember #############################
 function forgetPasswordMemberByCode()
  {
@@ -241,8 +242,27 @@ function forgetPasswordMemberByCode()
 
 
 ######################## function getAllDataMember #############################
-	function getAllDataMember(){
-		$data['members'] = $this->db->get('members')->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
+	function getAllDataMember($page,$url){
+	 $pageValue = 15;///จำนวนข้อมูลต่อ1หน้า
+	$this->db->join('address','address.ownerId = members.memberId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+		$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
+		$data = $this->db->get('members')->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
+	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
+	$this->db->select('*');
+	$this->db->from('members');
+	$this->db->join('address','address.ownerId = members.memberId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+		$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
+		$config['total_rows'] = $this->db->count_all_results();// ส่วนนี้ จะนับว่า ฟิว ทั้งหมดที่อยู่ใน tb_user มีเท่าไหร่
+		$config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
+		 
+		 $this->pagination->create_links();
+  		 $this->pagination->initialize($config);   // จากกนั้น เอาค่า ไป config ใน object pagination ที่เรา load มา 
 		return $data; ///  สั่งส่งค่า ตัวแปร Array $data กลับ
 	}
 ######################## end function getAllDataMember #############################

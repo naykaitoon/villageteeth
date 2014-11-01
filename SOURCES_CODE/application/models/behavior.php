@@ -6,6 +6,7 @@ class Behavior extends CI_Model {
     }
 	
 	function getAlldataBehavior(){
+		$this->db->join('behaviortype','behaviortype.behaviortypeId = behavior.behaviortypeId');
 		$data = $this->db->get('behavior')->result_array();		
 		return $data;
 	}

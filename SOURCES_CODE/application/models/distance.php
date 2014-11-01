@@ -37,7 +37,7 @@ class Distance extends CI_Model {
      }
 ###### End GET : $distanceMonth ###### 
 
-####################### start addDistanceData ดึงข้อมูลทั้งหมด ###########################
+####################### start addDistanceData เพิ่มข้อมูล ###########################
 	function addDistanceData(){
 		$data = array(
 		'distanceMonth' => $this->getDistanceMonth()
@@ -45,7 +45,17 @@ class Distance extends CI_Model {
 		$this->db->insert('distance',$data);
 		return $this->db->insert_id();
 	}
-####################### end addDistanceData ดึงข้อมูลทั้งหมด ###########################
+####################### end addDistanceData เพิ่มข้อมูล ###########################
+
+####################### start addDistanceData แก้ไขข้อมูล ###########################
+	function updateDistanceData(){
+		$data = array(
+		'distanceMonth' => $this->getDistanceMonth()
+		);
+		$this->db->where('distanceId',$this->getDistanceId());
+		$this->db->update('distance',$data);
+	}
+####################### end addDistanceData แก้ไขข้อมูล ###########################
 
 ####################### start addDistanceData ดึงข้อมูลทั้งหมด ###########################
 	function deleteDistanceDataPk(){

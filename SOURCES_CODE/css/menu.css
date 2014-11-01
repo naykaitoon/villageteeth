@@ -12,11 +12,11 @@
 	 #menu{
 		 position:fixed;
 		 z-index:1000;
-		 margin-top:40px;
+		 margin-top:30px;
 		 }
 
 	 .dropdown{
-		 margin-top:35px;
+		 margin-top:30px;
 	 }
 	 .mainMenu{
 		 font-size:20px;
@@ -80,7 +80,7 @@ table {
   top: 0;
   height: 100%;
   width: 280px;
-  padding-top: 10px;
+  padding-top: 5px;
  }
   .dropdown li {
     	padding: 0px; 
@@ -92,7 +92,7 @@ table {
     .dropdown li a {
       display: block;
       width: 100%;
-      padding: 10px;
+      padding: 5px;
       text-decoration: none;
       text-transform: uppercase;
      }

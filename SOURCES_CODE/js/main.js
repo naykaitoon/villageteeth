@@ -22,6 +22,20 @@ $(document).ready(function(){
 				type				: 'iframe'
 	
 });
+$('.fancyboxMagChildent').fancybox({
+			height :	'500',
+				width :	'80%',
+				autoSize : false,
+				scrolling : 'auto',
+				arrows : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load('/index.php/boss/chillentInArea');
+
+    }
+	
+});
   $('.fancyboxMini').fancybox({
 	  			height :	'300',
 				width :	'400',

@@ -1,12 +1,3 @@
-<?php /* 
-	type : controller
-	file_name : home.php
-    file_type : php
-    author : Jedsadakorn Sirikunpan
-    details : Controller homepage
-	start_date : 16/9/2557
-    end_Date : -
-*/ ?>
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Boss extends CI_Controller {
 	
@@ -65,31 +56,25 @@ class Boss extends CI_Controller {
 	if ( ! is_numeric($seconds)){
 		$seconds = 1;
 	}
- 
 	if ( ! is_numeric($time)){
 		$time = time();
 	}
- 
 	if ($time <= $seconds){
 		$seconds = 1;
 	}
 	else{
 		$seconds = $time - $seconds;
 	}
- 
 	$str = '';
 	$years = floor($seconds / 31536000);
- 
 	if ($years > 0){	
 		$str .= $years.' ปี ';
 	}	
- 
 	$seconds -= $years * 31536000;
 	$months = floor($seconds / 2628000);
  
 	if ($years > 0 OR $months > 0){
-		if ($months > 0)
-		{	
+		if ($months > 0){	
 			$str .= $months.' เดือน, ';
 		}	
 		$seconds -= $months * 2628000;
@@ -99,13 +84,66 @@ class Boss extends CI_Controller {
 
 ##########################END function  timespan คำนวนวันเกิด ############################	
 
+ ##########################Start function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็กในพื้นที่ ############################	
+	function addChillentInArea(){
+		$data['loginData'] = $this->session->userdata('loginData');
+		if($data['loginData']['areaType']==='canton'){
+			$this->Address->setCantonId($data['loginData']['areaId']);
+		}else if($data['loginData']['areaType']==='district'){
+			$this->Address->setDistrictId($data['loginData']['areaId']);
+		}else if($data['loginData']['areaType']==='province'){
+			$this->Address->setProvinceId($data['loginData']['areaId']);
+		}
+		$data['area']=$this->Address->getmemberAear();
+
+		$this->load->view('boss/childent/formAddChildentMyArea',$data);
+	}
+##########################END function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็ก############################	
 
  ##########################Start function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็ก ############################	
 	function addChillent(){
 		$data['province']=$this->Address->getProvinceAll();
-		$this->load->view('form/formAddChildent',$data);
+		$this->load->view('boss/childent/formAddChildent',$data);
 	}
 ##########################END function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็ก############################	
+ ##########################Start function  addActionChillent เพิ่มข้อมูลเด็ก ############################	
+	function addActionChildent(){
+
+			$childrenName = $this->input->post('childrenName');
+			$childrenLastName = $this->input->post('childrenLastName');
+			$childrenIDCard = $this->input->post('childrenIDCard');
+			$childrenBirthday = $this->input->post('childrenBirthday');
+			
+			$addressDetial = $this->input->post('addressDetial');
+			$provinceId = $this->input->post('province');
+			$districtId = $this->input->post('district');
+			$cantonId = $this->input->post('canton');
+			$street = $this->input->post('street');
+			
+			$this->Childents->setChildrenName($childrenName);
+			$this->Childents->setChildrenLastName($childrenLastName);
+			$this->Childents->setChildrenBirthday($childrenBirthday);
+			$this->Childents->setChildrenIDCard($childrenIDCard);
+			
+			$childrenId = $this->Childents->addChildent();
+			
+			$this->Address->setOwnerId($childrenId);
+			$this->Address->setOwnerType('childents');
+			$this->Address->setAddressDetial($addressDetial);
+			$this->Address->setProvinceId($provinceId);
+			$this->Address->setDistrictId($districtId);
+			$this->Address->setCantonId($cantonId);
+			$this->Address->setStreet($street);
+			
+			$this->Address->addAddress();
+			
+				echo "<center>การเพิ่มข้อมูลสำเร็จ<br>
+						<a href='".base_url()."index.php/boss/distanceDataList'  style='font-size:12px' onClick='parent.jQuery.fancybox.close();'>
+						<button>คลิกที่นี้เพื่อปิด</button></a>
+					  </center>";
+			
+	}
+##########################END function  addActionChillent เพิ่มข้อมูลเด็ก ############################	
 
 	function getDistrict()
 	{
@@ -117,7 +155,7 @@ class Boss extends CI_Controller {
 			 echo '<option value="'.$data[$i]['districtId'].'">'.$data[$i]['districtName'].'</option>';
 		}
 		}else{
-			 echo '<option value="0">------</option>';
+			 echo '<option value="0">กรุณาเลือกจังหวัด</option>';
 		}
 		
 		
@@ -130,12 +168,13 @@ class Boss extends CI_Controller {
 		$this->Address->setDistrictId($districtId);
 		$data = $this->Address->getCantonFk();
 		if($data){
+			echo '<option value="0">กรุณาเลือก</option>';
 		for($i=0;$i<count($data);$i++){
 			echo '<option value="'.$data[$i]['cantonId'].'">'.$data[$i]['cantonName'].'</option>';
 			echo '<script>$("#canton").removeAttr("disabled");</script>';
 		}
 		}else{
-			 echo '<option value="0">------</option>';
+			 echo '<option value="0">กรุณาเลือกอำเภอ</option>';
 		}
 		
 	}
@@ -149,7 +188,7 @@ class Boss extends CI_Controller {
 		if($cantonId!=0){
 			echo $data[0]['zipcode'];
 		}else{
-			 echo '-';
+			 echo '00000';
 		}
 		
 	}
@@ -195,7 +234,32 @@ class Boss extends CI_Controller {
 		$this->load->view('boss/policing/editDistance',$data);
 	}
 	#################### End function editDistance จัดการข้อมูลระยะเวลาการตรวจ ##################
+#################### strat function editDistanceAction แก้ไข##################
+	function editDistanceAction(){
+		$distanceId = $this->input->post('distanceId');
+		$distanceMonth = $this->input->post('distanceMonth');
+
+		if($distanceMonth!=FALSE&&$distanceMonth!=""){
+			$this->Distance->setDistanceId($distanceId);
+			$this->Distance->setDistanceMonth($distanceMonth);
+			$this->Distance->updateDistanceData();
+			if($distanceMonth!=FALSE&&$distanceMonth!=""){
+				echo "<center>การแก้ไขข้อมูลสำเร็จ<br>
+						<a href='".base_url()."index.php/boss/distanceDataList'  style='font-size:12px' onClick='parent.jQuery.fancybox.close();'>
+						<button>คลิกที่นี้เพื่อปิด</button></a>
+					  </center>";
+			}
+			
+		}else{
+			echo "<center>กรุณาใส่จำนวนให้ถูกต้อง<br>
+			<a href='".base_url()."index.php/boss/editDistance/".$distanceId."' style='font-size:12px'>คลิกที่นี้เพิ่อกลับ</a>
+			</center>";
+		}
+		
+	}
 	
+	
+#################### end function editDistanceAction แก้ไข##################
 	function deleteDistanceData($id){
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
@@ -203,12 +267,50 @@ class Boss extends CI_Controller {
 				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
 				</p>";
 	}
-	
+####################end	function editDistance ยืนยันการลบ Distance##################
+
+#################### strat function editDistance การลบ Distance##################
 	function deleteDistanceAction($distanceId){
 		$this->Distance->setDistanceId($distanceId);
 		$this->Distance->deleteDistanceDataPk();
 		echo "<script>parent.jQuery.fancybox.close();</script>";
 	}
+####################end	function editDistance การลบ Distance##################
+	
+	
+	function behaviorMag(){
+		$data['behavior'] = $this->Behavior->getAlldataBehavior();
+		$this->load->view('boss/behavior/behavior',$data);
+	}
+	
+	function behaviorMagType(){
+		$data['behaviorMagType'] = $this->Behavior->getAlldataBehaviortype();
+		$this->load->view('boss/behavior/behaviorType',$data);
+	}
+	
+	function memberByArea(){
+		$data['province']=$this->Address->getProvinceAll();
+		$this->load->view('boss/member/magMemberSearchArea',$data);
+	}
+	
+	function memberByAreaSearch($page=0){
+		$provinceId = $this->input->post('provinceId');
+		$districtId = $this->input->post('districtId');
+		$cantonId = $this->input->post('cantonId');
+
+		$this->Address->setProvinceId($provinceId);
+		$this->Address->setDistrictId($districtId);
+		$this->Address->setCantonId($cantonId);
+		$data['province']=$this->Address->getProvinceAll();
+		$data['member'] = $this->Address->getMemberByAddress($page,'memberByAreaSearch');
+		$this->load->view('boss/member/magMemberListByArea',$data);
+	}
+#################### strat function memberAll แสดง ผุ็ใช้งานทั้งหมด ##################
+	function memberAll($page=0){
+		$data['member'] = $this->Member->getAllDataMember($page,'chillentAll');
+		$this->load->view('boss/member/magMemberList',$data);
+	}
+####################end	function memberAll กแสดง ผุ็ใช้งานทั้งหมด ##################
 }
 
 ?>

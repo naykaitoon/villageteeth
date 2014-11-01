@@ -15,8 +15,8 @@ jQuery(function($){
     <label for="textfield">ค้นหา:</label>
     <input type="text" name="searchBox" id="searchBox" class="searchBox">
     <a href="#" class="searchBt">ค้นหา</a>
-  <a href="<?php echo base_url();?>index.php/boss/addChillent" class="fancybox" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px"/>
-  เพิ่มข้อมูลเด็ก</a>
+  <a href="<?php echo base_url();?>index.php/boss/addChillentInArea" class="fancyboxMagChildent" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px"/>
+  เพิ่มข้อมูลเด็กในพื้นที่</a>
 </p>
   <br>
 <table width="100%" border="0" align="center" cellpadding="7" cellspacing="3">
