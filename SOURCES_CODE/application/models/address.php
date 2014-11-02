@@ -216,13 +216,15 @@ function getMemberByAddress($page,$url){
 	$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
 		
 	if($this->getCantonId()){
-		$this->db->where('address.cantonId',$this->getCantonId());
+		$this->db->where('liablearea.areaId',$this->getCantonId());
 	}else if($this->getDistrictId()){
-		$this->db->where('address.districtId',$this->getDistrictId());
+		$this->db->where('liablearea.areaId',$this->getDistrictId());
 	}else if($this->getProvinceId()){
-		$this->db->where('address.provinceId',$this->getProvinceId());
+		$this->db->where('liablearea.areaId',$this->getProvinceId());
 	}
-		$data = $this->db->get('members')->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
+		$this->db->where('address.ownerType','members');
+		
+		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
 	$this->db->select('*');
 	$this->db->from('members');

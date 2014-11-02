@@ -430,10 +430,14 @@ function deleteChildentAction($childrenId){
 		$provinceId = $this->input->post('provinceId');
 		$districtId = $this->input->post('districtId');
 		$cantonId = $this->input->post('cantonId');
-
-		$this->Address->setProvinceId($provinceId);
-		$this->Address->setDistrictId($districtId);
-		$this->Address->setCantonId($cantonId);
+		if($provinceId){
+			$this->Address->setProvinceId($provinceId);
+		}else if($districtId){
+			$this->Address->setDistrictId($districtId);
+		}else{
+			$this->Address->setCantonId($cantonId);
+		}
+		
 		$data['province']=$this->Address->getProvinceAll();
 		$data['member'] = $this->Address->getMemberByAddress($page,'memberByAreaSearch');
 		$this->load->view('boss/member/magMemberListByArea',$data);
@@ -441,6 +445,7 @@ function deleteChildentAction($childrenId){
 #################### strat function memberAll แสดง ผุ็ใช้งานทั้งหมด ##################
 	function memberAll($page=0){
 		$data['member'] = $this->Member->getAllDataMember($page,'chillentAll');
+
 		$this->load->view('boss/member/magMemberList',$data);
 	}
 ####################end	function memberAll กแสดง ผุ็ใช้งานทั้งหมด ##################
@@ -512,6 +517,10 @@ function deleteChildentAction($childrenId){
 		$this->Behavior->setBehaviorId($behaviorId);
 		$this->Behavior->deleteBehaviorDataPk();
 		echo "<script>parent.jQuery.fancybox.close();</script>";
+	}
+	
+	function addMember(){
+		
 	}
 	
 
