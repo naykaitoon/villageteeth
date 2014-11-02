@@ -35,6 +35,52 @@ $('.fancyboxMagChildent').fancybox({
 
     }
 	
+	
+});
+
+$('.addBehavior').fancybox({
+			height :	'500',
+				width :	'80%',
+				autoSize : false,
+				scrolling : 'auto',
+				arrows : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load('/index.php/boss/behaviorMag');
+
+    }
+	
+	
+});
+$('.editBehavior').fancybox({
+			height :	'500',
+				width :	'80%',
+				autoSize : false,
+				scrolling : 'auto',
+				arrows : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load('/index.php/boss/behaviorMag');
+
+    }
+	
+	
+});
+$('.fancyboxMagChildentAll').fancybox({
+			height :	'500',
+				width :	'80%',
+				autoSize : false,
+				scrolling : 'auto',
+				arrows : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load('/index.php/boss/chillentAll');
+
+    }
+	
 });
   $('.fancyboxMini').fancybox({
 	  			height :	'300',

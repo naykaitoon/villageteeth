@@ -375,6 +375,52 @@ function deleteChildentAction($childrenId){
 		$this->load->view('boss/behavior/behaviorType',$data);
 	}
 	
+	function addBehaviorMagType(){
+		
+		$this->load->view('boss/behavior/addBehaviorType');
+
+	}
+	
+	function addBehaviorMagTypeAction(){
+		
+		$behaviorTypeName = $this->input->post('behaviorTypeName');
+		$this->Behavior->setBehaviorTypeName($behaviorTypeName);
+		$this->Behavior->addBehaviorType();
+		echo "<center><br><br><br>การเพิ่มข้อมูลสำเร็จ</center>";
+	}
+	
+	function editBehaviorMagTypeAction(){
+		
+		$behaviorTypeId = $this->input->post('behaviorTypeId');
+		$behaviorTypeName = $this->input->post('behaviorTypeName');
+		
+		$this->Behavior->setBehaviorTypeId($behaviorTypeId);
+		$this->Behavior->setBehaviorTypeName($behaviorTypeName);
+		$this->Behavior->updateBehaviorType();
+		echo "<center><br><br><br>การแก้ไขข้อมูลสำเร็จ</center>";
+	}
+	function editBehaviorMagType($behaviorTypeId){
+
+		$this->Behavior->setBehaviorTypeId($behaviorTypeId);
+		$data['behaviorMagType'] = $this->Behavior->getBehaviorTypePk();
+		$this->load->view('boss/behavior/editBehaviorType',$data);
+		
+	}
+	function deleteBehaviorMagType($behaviorTypeId){
+		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
+				<p>
+				  <a href='".base_url()."index.php/boss/deleteBehaviorMagTypeAction/".$behaviorTypeId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
+				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
+				</p>";
+	}
+	
+	function deleteBehaviorMagTypeAction($behaviorTypeId){
+		
+		$this->Behavior->setBehaviorTypeId($behaviorTypeId);
+		$this->Behavior->deleteBehaviorTypeDataPk();
+		echo "<script>parent.jQuery.fancybox.close();</script>";
+		
+	}
 	function memberByArea(){
 		$data['province']=$this->Address->getProvinceAll();
 		$this->load->view('boss/member/magMemberSearchArea',$data);
@@ -404,6 +450,70 @@ function deleteChildentAction($childrenId){
 		$data['childent'] = $this->Address->getAddressFK();
 		$this->load->view('boss/childent/detialChildent',$data);
 	}
+	
+	function addBehavior(){
+		$data['behaviortype'] = $this->Behavior->getAlldataBehaviortype();
+		$this->load->view('boss/behavior/addBehavior',$data);
+	}
+	
+	function addBehaviorAction(){
+
+		$behaviorName = $this->input->post('behaviorName');
+		$behaviorType = $this->input->post('behaviorType');
+		$behaviorTypeId = $this->input->post('behaviorTypeId');
+		$colorCode = $this->input->post('colorCode');
+		
+		$this->Behavior->setBehaviorName($behaviorName);
+		$this->Behavior->setBehaviorType($behaviorType);
+		$this->Behavior->setBehaviorTypeId($behaviorTypeId);
+		$this->Behavior->setColorCode($colorCode);
+		
+		$this->Behavior->addBehavior();
+		
+		echo "<center><br><br><br>การเพิ่มข้อมูลสำเร็จ</center>";
+	}
+	
+	function editBehavior($behaviorId){
+		$this->Behavior->setBehaviorId($behaviorId);
+		$data['behaviortype'] = $this->Behavior->getAlldataBehaviortype();
+		$data['behavior'] = $this->Behavior->getBehaviorPk();
+		$this->load->view('boss/behavior/editBehavior',$data);
+	}
+	
+	function editBehaviorAction(){
+
+		$behaviorId = $this->input->post('behaviorId');
+		$behaviorName = $this->input->post('behaviorName');
+		$behaviorType = $this->input->post('behaviorType');
+		$behaviorTypeId = $this->input->post('behaviorTypeId');
+		$colorCode = $this->input->post('colorCode');
+		
+		$this->Behavior->setBehaviorId($behaviorId);
+		$this->Behavior->setBehaviorName($behaviorName);
+		$this->Behavior->setBehaviorType($behaviorType);
+		$this->Behavior->setBehaviorTypeId($behaviorTypeId);
+		$this->Behavior->setColorCode($colorCode);
+		
+		$this->Behavior->updateBehavior();
+		
+		echo "<center><br><br><br>การแก้ไขข้อมูลสำเร็จ</center>";
+	}
+	
+	function deleteBehavior($behaviorId){
+		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
+				<p>
+				  <a href='".base_url()."index.php/boss/deleteBehaviorAction/".$behaviorId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
+				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
+				</p>";
+	}
+	
+	function deleteBehaviorAction($behaviorId){
+		
+		$this->Behavior->setBehaviorId($behaviorId);
+		$this->Behavior->deleteBehaviorDataPk();
+		echo "<script>parent.jQuery.fancybox.close();</script>";
+	}
+	
 
 }
 

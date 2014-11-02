@@ -17,7 +17,7 @@ function confirmDel(){
 <div id="headTitleContentbg">
  <h2 id="headTitleContent">รายการข้อมูลหมวดหมู่พฤติกรรมทัตสุขภาพ</h2>
  </div>
- <p style="margin-top:16px;"><a class="fancyboxMini" style="font-size:12px" href="<?php echo base_url();?>index.php/boss/addDistance"><img src="<?php echo base_url()?>img/icon/distanceIconAdd.png" width="40px"/>เพิ่มช่วงอายุ</a></p>
+ <p style="margin-top:16px;"><a class="fancyboxMini" style="font-size:12px" href="<?php echo base_url();?>index.php/boss/addBehaviorMagType"><img src="<?php echo base_url()?>img/icon/distanceIconAdd.png" width="40px"/>เพิ่มข้อมูลหมวดหมู่พฤติกรรมทัตสุขภาพ</a></p>
 <div class="table"align="center"><br>
 <table border="0" align="center" cellpadding="7" cellspacing="3">
 
@@ -33,8 +33,8 @@ function confirmDel(){
     <tr>    
            <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['behaviorTypeId'];?></p></td>  
        <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['behaviorTypeName'];?></p></td>
- <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxMini" href="<?php echo base_url();?>index.php/boss/editDistance/<?php echo $c['behaviorTypeId'];?>">แก้ไข</a></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxDelete" href="<?php echo base_url();?>index.php/boss/deleteDistanceData/<?php echo $c['behaviorTypeId'];?>" >ลบ</a></td>
+ <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxMini" href="<?php echo base_url();?>index.php/boss/editBehaviorMagType/<?php echo $c['behaviorTypeId'];?>">แก้ไข</a></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxDelete" href="<?php echo base_url();?>index.php/boss/deleteBehaviorMagType/<?php echo $c['behaviorTypeId'];?>" >ลบ</a></td>
     </tr>
     <?php  }?>
 </table>

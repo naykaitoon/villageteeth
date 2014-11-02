@@ -17,7 +17,7 @@ function confirmDel(){
 <div id="headTitleContentbg">
  <h2 id="headTitleContent">รายการข้อมูลพฤติกรรมทัตสุขภาพ</h2>
  </div>
- <p style="margin-top:16px;"><a class="fancyboxMini" style="font-size:12px" href="<?php echo base_url();?>index.php/boss/addDistance"><img src="<?php echo base_url()?>img/icon/distanceIconAdd.png" width="40px"/>เพิ่มช่วงอายุ</a></p>
+ <p style="margin-top:16px;"><a class="addBehavior" style="font-size:12px" href="<?php echo base_url();?>index.php/boss/addBehavior"><img src="<?php echo base_url()?>img/icon/distanceIconAdd.png" width="40px"/>เพิ่มข้อมูลพฤติกรรมทัตสุขภาพ</a></p>
 <div class="table"align="center"><br>
 <table border="0" align="center" cellpadding="7" cellspacing="3">
 
@@ -39,9 +39,9 @@ function confirmDel(){
  <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>
  <?php if($c['behaviorType']=='normal'){ echo 'แบบข้อความ';}else{echo 'ใช้รูปฟัน';}?></p></td>
   <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['behaviorTypeName'];?></p></td>
-   <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px" ><p style="background-color:<?php echo $c['colorCode'];?>;width:50px;"><?php echo $c['colorCode'];?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxMini" href="<?php echo base_url();?>index.php/boss/editDistance/<?php echo $c['behaviorId'];?>">แก้ไข</a></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxDelete" href="<?php echo base_url();?>index.php/boss/deleteDistanceData/<?php echo $c['behaviorId'];?>" >ลบ</a></td>
+   <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px" ><p style="background-color:#<?php echo $c['colorCode'];?>;width:50px;"><?php echo $c['colorCode'];?></p></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="editBehavior" href="<?php echo base_url();?>index.php/boss/editBehavior/<?php echo $c['behaviorId'];?>">แก้ไข</a></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxDelete" href="<?php echo base_url();?>index.php/boss/deleteBehavior/<?php echo $c['behaviorId'];?>" >ลบ</a></td>
     </tr>
     <?php  }?>
 </table>
