@@ -43,8 +43,8 @@ jQuery(function($){
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenAge'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenBirthday'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['cantonName'];?>&nbsp;อ.<?php echo $c['districtName'];?>&nbsp;จ.<?php echo $c['provinceName'];?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">แก้ไข</td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">ลบ</td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/editChildent/<?php echo $c['childrenId'];?>" class="fancyboxMagChildent">แก้ไข</a></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/deleteChildentData/<?php echo $c['childrenId'];?>" class="fancyboxMagChildent">ลบ</a></td>
     </tr>
     <?php $i++; }?>
  	<tr>

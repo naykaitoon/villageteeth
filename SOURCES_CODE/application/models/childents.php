@@ -108,7 +108,7 @@ function getChillentInArea($page,$url){
 
 	$data = $this->db->get('address',$pageValue,$page)->result_array();
 	$loginData2 = $this->session->userdata('loginData');
-	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
+	$config['base_url'] = "".base_url()."/index.php/boss/".$url."/".$page; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
 	
 	$this->db->select('*');
 	$this->db->from('address');
@@ -150,7 +150,7 @@ function getChillentInArea($page,$url){
 	$data = $this->db->get('address',$pageValue,$page)->result_array();
 	$loginData2 = $this->session->userdata('loginData');
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
-	
+	$config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
 	$this->db->select('*');
 	$this->db->from('address');
 	$this->db->where('address.ownerType ','childents'); 
@@ -161,7 +161,7 @@ function getChillentInArea($page,$url){
 	$this->db->join('childrens','address.ownerId = childrens.childrenId');
 
   	$config['total_rows'] = $this->db->count_all_results();// ส่วนนี้ จะนับว่า ฟิว ทั้งหมดที่อยู่ใน tb_user มีเท่าไหร่
-	$config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
+	
 		 
 		 $this->pagination->create_links();
   		 $this->pagination->initialize($config);   // จากกนั้น เอาค่า ไป config ใน object pagination ที่เรา load มา 
@@ -182,19 +182,34 @@ function addChildent(){
 	return $this->db->insert_id();
 }
 
-function test(){
-	$data = $this->session->userdata('loginData');
+function updateChildent(){
+	$data = array(
+	'childrenName' => $this->getChildrenName(),
+	'childrenLastName' => $this->getChildrenLastName(),
+	'childrenBirthday' => $this->getChildrenBirthday(),
+	'childrenIDCard' => $this->getChildrenIDCard()
+	);
+	$this->db->where('childrenId',$this->getChildrenId());
+	$this->db->update('childrens',$data);
+
+}
+
+function getChildentInAearPKs(){
+		
 	$this->db->where('address.ownerType ','childents'); 
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
-
-	$this->db->join('childrens','address.ownerId = childrens.childrenId');
-	$this->db->where('address.cantonId',$data['areaId']);
-	$this->db->or_where('address.districtId',$data['areaId']);
-	$this->db->or_where('address.provinceId',$data['areaId']);
-	return $this->db->get('address')->result_array();
+	$this->db->join('tel','tel.addressId = address.addressId');
 	
+	$this->db->join('childrens','address.ownerId = childrens.childrenId');
+	$this->db->where('childrens.childrenId ',$this->getChildrenId()); 
+	$data = $this->db->get('address')->result_array();
+	return $data;
+	}
+function deleteChildent(){
+	$this->db->where('childrenId',$this->getChildrenId());
+	$this->db->delete('childrens');
 }
 }
 ?>

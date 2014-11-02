@@ -14,6 +14,9 @@ class Address extends CI_Model {
     var $districtId ; ######  รหัสข้อมูลอำเภอ  ######
     var $provinceId ; ######  รหัสข้อมูลจังหวัด  ######
     var $street ; ######  ชื่อภนน  ######
+	var $telId;
+	var $tel;
+	var $telNote;
 ###### End Attribute  ###### 
 
  ###### SET : $addressId ######
@@ -127,6 +130,46 @@ class Address extends CI_Model {
      }
 ###### End GET : $street ###### 
 
+ ###### SET : $telId ######
+    function setTelId($telId){
+        $this->telId = $telId; 
+     }
+###### End SET : $telId ###### 
+
+
+###### GET : $telId ######
+    function getTelId(){
+        return $this->telId; 
+     }
+###### End GET : $telId ###### 
+
+ ###### SET : $tel ######
+    function setTel($tel){
+        $this->tel = $tel; 
+     }
+###### End SET : $tel ###### 
+
+
+###### GET : $tel ######
+    function getTel(){
+        return $this->tel; 
+     }
+###### End GET : $tel ###### 
+
+ ###### SET : $telNote ######
+    function setTelNote($telNote){
+        $this->telNote = $telNote; 
+     }
+###### End SET : $telNote ###### 
+
+
+###### GET : $telNote ######
+    function getTelNote(){
+        return $this->telNote; 
+     }
+###### End GET : $telNote ###### 
+
+
 ////////////////////////    /////////////////////////////
 function getProvinceAll(){
 	return $this->db->get('province')->result_array();
@@ -219,6 +262,59 @@ function addAddress(){
 
 	$this->db->insert('address',$data);
 	
+	$id = $this->db->insert_id();
+	
+	$dataTel = array(
+		'addressId' => $id,
+		'tel' => $this->getTel(),
+		'telNote' => $this->getTelNote()
+	);
+	$this->db->insert('tel',$dataTel);
+	
+}
+
+
+
+function updateAddress(){
+	$data = array(
+		'ownerType' => $this->getOwnerType(),
+		'addressDetial' => $this->getAddressDetial(),
+		'provinceId' => $this->getProvinceId(),
+		'districtId' => $this->getDistrictId(),
+		'cantonId' => $this->getCantonId(),
+		'street' => $this->getStreet()
+	);
+	$this->db->where('addressId',$this->getAddressId());
+	$this->db->update('address',$data);
+	
+	
+	
+}
+function updateTel(){
+	$dataTel = array(
+		'tel' => $this->getTel(),
+		'telNote' => $this->getTelNote()
+	);
+	$this->db->where('telId',$this->getTelId());
+	$this->db->update('tel',$dataTel);
+}
+function deleteAddress(){
+	$this->db->where('ownerId',$this->getOwnerId());
+	$this->db->delete('address');
+}
+
+function getAddressFK(){
+	$this->db->join('childrens','childrens.childrenId = address.ownerId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+	$this->db->join('zipcodes','zipcodes.cantonId = canton.cantonId');
+	$this->db->join('tel','tel.addressId = address.addressId');
+	$this->db->where('ownerType','childents');
+	$this->db->where('address.ownerId',$this->getOwnerId());
+	$data = $this->db->get('address')->result_array();
+	
+	return $data;
 }
 
 }

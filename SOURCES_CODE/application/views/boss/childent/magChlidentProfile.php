@@ -40,7 +40,7 @@ jQuery(function($){
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p ><input style="text-align:center" type="text" class="idcard" value="<?php echo $c['childrenIDCard'];?>" size="16" maxlength="17" readonly /></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenAge'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenBirthday'];?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">คลิก</td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/childentAddress/<?php echo $c['childrenId'];?>" class="fancybox">คลิก</a></td>
     </tr>
     <?php $i++; }?>
  	<tr>
