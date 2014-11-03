@@ -1,5 +1,5 @@
 $(document).ready(function(){
-                $('.content').fadeOut().hide().load( '/index.php/boss/chillentInArea' ).fadeIn();
+                $('.content').fadeOut().hide().load( '/index.php/boss/childentInArea' ).fadeIn();
 				 $(".submenu , .submenusub").click(function(event) {
 	 				 event.preventDefault();
                 var href = $(this).attr('href');
@@ -23,9 +23,9 @@ $(document).ready(function(){
 	
 });
 $('.fancyboxMagChildent').fancybox({
-			height :	'500',
+			height :	'650',
 				width :	'80%',
-				autoSize : false,
+				autoSize : true,
 				scrolling : 'auto',
 				arrows : false,
 				type				: 'iframe',
@@ -98,7 +98,7 @@ $('.fancyboxMagChildentAll').fancybox({
 });
   $('.fancyboxDelete').fancybox({
 	  			height :	'200',
-				width :	'400',
+				width :	'200',
 				autoSize : false,
 				scrolling : 'auto',
 				arrows : false,

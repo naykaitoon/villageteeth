@@ -4,6 +4,8 @@ class Boss extends CI_Controller {
 	function __construct(){ /// เป็นฟังชั่นที่จะทำงานก่อน index จะทำงานเมื่อมีการเรียกใช้คราส Login นี้
             parent::__construct();
             $this->redirects();
+			$this->load->library('pagination');
+			
     }
 	   
 	function index()
@@ -22,16 +24,16 @@ class Boss extends CI_Controller {
 			 }
    
  	}
-	function chillentInArea($page=0){
-		$data['childent'] = $this->Childents->getchillentInArea($page,'chillentInArea');
+	function childentInArea($page=0){
+		$data['childent'] = $this->Childents->getChildentInArea($page,'childentInArea');
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
 			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
 		}
 		$this->load->view('boss/childent/magChlidentIntArea',$data);
 	}
-	function chillentAll($page=0){
-		$data['childent'] = $this->Childents->getChillentAll($page,'chillentAll');
+	function childentAll($page=0){
+		$data['childent'] = $this->Childents->getChildentAll($page,'childentAll');
 		
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
@@ -49,8 +51,8 @@ class Boss extends CI_Controller {
 	}
 
 
-	function chillentAllProfile($page=0){
-			$data['childent'] = $this->Childents->getChillentAll($page,'chillentAll');
+	function childentAllProfile($page=0){
+			$data['childent'] = $this->Childents->getChildentAll($page,'childentAllProfile');
 		
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
@@ -126,14 +128,22 @@ class Boss extends CI_Controller {
 ##########################END function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็ก############################	
  ##########################Start function  addActionChillent เพิ่มข้อมูลเด็ก ############################	
 	function editActionChildent(){
-			$addressId = $this->input->post('addressId');
 			$childrenId = $this->input->post('childrenId');
 			$childrenName = $this->input->post('childrenName');
 			$childrenLastName = $this->input->post('childrenLastName');
 			$childrenIDCard = $this->input->post('childrenIDCard');
-			$childrenBirthday = $this->input->post('childrenBirthday');
+			$date = $this->input->post('childrenBirthday');
 			
-			$addressDetial = $this->input->post('addressDetial');
+			$childrenBirthday = $this->formatDate($date);
+
+			
+			$addressDetialNumber = $this->input->post('addressDetialNumber');
+			$addressDetialM = $this->input->post('addressDetialM');
+			$addressDetialSubStreet = $this->input->post('addressDetialSubStreet');
+			
+			$addressDetial = $addressDetialNumber.' หมู่ '.$addressDetialM.' ซอย '.$addressDetialSubStreet;
+			
+			$addressId = $this->input->post('addressId');
 			$provinceId = $this->input->post('province');
 			$districtId = $this->input->post('district');
 			$cantonId = $this->input->post('canton');
@@ -142,48 +152,51 @@ class Boss extends CI_Controller {
 			$telId = $this->input->post('telId');
 			$tel = $this->input->post('tel');
 			$telNote = $this->input->post('telNote');
-
-	
 			
-			$this->Childents->setChildrenId($childrenId);
-			$this->Childents->setChildrenName($childrenName);
-			$this->Childents->setChildrenLastName($childrenLastName);
-			$this->Childents->setChildrenBirthday($childrenBirthday);
-			$this->Childents->setChildrenIDCard($childrenIDCard);
-			
-			$this->Childents->updateChildent();
 			
 			$this->Address->setAddressId($addressId);
-			$this->Address->setOwnerType('childents');
-			$this->Address->setAddressDetial($addressDetial);
 			$this->Address->setProvinceId($provinceId);
 			$this->Address->setDistrictId($districtId);
 			$this->Address->setCantonId($cantonId);
 			$this->Address->setStreet($street);
 			
-				$this->Address->updateAddress();
-				
-			$this->Address->setTelId($telId);
-			$this->Address->setTel($tel);
-			$this->Address->setTelNote($telNote);
+			$this->Address->updateAddress();
 			
-			$this->Address->updateTel();
+			$this->Childents->setChildrenId($childrenId);
+			$this->Childents->setAddressId($addressId);
+			$this->Childents->setAddressDetial($addressDetial);
+			$this->Childents->setChildrenName($childrenName);
+			$this->Childents->setChildrenLastName($childrenLastName);
+			$this->Childents->setChildrenBirthday($childrenBirthday);
+			$this->Childents->setChildrenIDCard($childrenIDCard);
+
+			
+			$this->Childents->updateChildent();
+			
+			
+			for($i=0;$i<count($tel);$i++){	
+				$this->Address->setTelId($telId[$i]);
+				$this->Address->setTel($tel[$i]);
+				$this->Address->setTelNote($telNote[$i]);
+				$this->Address->updateTel();
+				
+			}
 			
 				echo "<center><br><br><br>การแก้ไขข้อมูลสำเร็จ  </center>";
 			
 	}
 ##########################END function  addActionChillent เพิ่มข้อมูลเด็ก ############################	
-function deleteChildentData($id){
+function deleteChildentData($id,$addressId){
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
-				  <a href='".base_url()."index.php/boss/deleteChildentAction/".$id."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
+				  <a href='".base_url()."index.php/boss/deleteChildentAction/".$id."/".$addressId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
 				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
 				</p>";
 	}
-function deleteChildentAction($childrenId){
+function deleteChildentAction($childrenId,$addressId){
 	$this->Childents->setChildrenId($childrenId);
 	$this->Childents->deleteChildent();
-	$this->Address->setOwnerId($childrenId);
+	$this->Address->setAddressId($addressId);
 	$this->Address->deleteAddress();
 	echo "<center><br><br><br>ลบข้อมูลสำเร็จ  </center>";
 }
@@ -199,9 +212,16 @@ function deleteChildentAction($childrenId){
 			$childrenName = $this->input->post('childrenName');
 			$childrenLastName = $this->input->post('childrenLastName');
 			$childrenIDCard = $this->input->post('childrenIDCard');
-			$childrenBirthday = $this->input->post('childrenBirthday');
+			$date = $this->input->post('childrenBirthday');
 			
-			$addressDetial = $this->input->post('addressDetial');
+			$childrenBirthday = $this->formatDate($date);
+
+			$addressDetialNumber = $this->input->post('addressDetialNumber');
+			$addressDetialM = $this->input->post('addressDetialM');
+			$addressDetialSubStreet = $this->input->post('addressDetialSubStreet');
+			
+			$addressDetial = $addressDetialNumber.' หมู่ '.$addressDetialM.' ซอย '.$addressDetialSubStreet;
+			
 			$provinceId = $this->input->post('province');
 			$districtId = $this->input->post('district');
 			$cantonId = $this->input->post('canton');
@@ -210,25 +230,34 @@ function deleteChildentAction($childrenId){
 			$tel = $this->input->post('tel');
 			$telNote = $this->input->post('telNote');
 			
-			$this->Childents->setChildrenName($childrenName);
-			$this->Childents->setChildrenLastName($childrenLastName);
-			$this->Childents->setChildrenBirthday($childrenBirthday);
-			$this->Childents->setChildrenIDCard($childrenIDCard);
-			
-			$childrenId = $this->Childents->addChildent();
-			
-			$this->Address->setOwnerId($childrenId);
-			$this->Address->setOwnerType('childents');
-			$this->Address->setAddressDetial($addressDetial);
 			$this->Address->setProvinceId($provinceId);
 			$this->Address->setDistrictId($districtId);
 			$this->Address->setCantonId($cantonId);
 			$this->Address->setStreet($street);
 			
-			$this->Address->setTel($tel);
-			$this->Address->setTelNote($telNote);
+			$addressId = $this->Address->addAddress();
 			
-			$this->Address->addAddress();
+			$this->Childents->setAddressId($addressId);
+			$this->Childents->setAddressDetial($addressDetial);
+			$this->Childents->setChildrenName($childrenName);
+			$this->Childents->setChildrenLastName($childrenLastName);
+			$this->Childents->setChildrenBirthday($childrenBirthday);
+			$this->Childents->setChildrenIDCard($childrenIDCard);
+
+			
+			$childrenId = $this->Childents->addChildent();
+			
+			
+			$this->Address->setAddressId($addressId);
+			
+			for($i=0;$i<count($tel);$i++){			
+				$this->Address->setTel($tel[$i]);
+				$this->Address->setTelNote($telNote[$i]);
+				$this->Address->addTel();
+				
+			}
+			
+			
 			
 				echo "<center><br><br><br>การเพิ่มข้อมูลสำเร็จ  </center>";
 			
@@ -430,14 +459,10 @@ function deleteChildentAction($childrenId){
 		$provinceId = $this->input->post('provinceId');
 		$districtId = $this->input->post('districtId');
 		$cantonId = $this->input->post('cantonId');
-		if($provinceId){
-			$this->Address->setProvinceId($provinceId);
-		}else if($districtId){
-			$this->Address->setDistrictId($districtId);
-		}else{
-			$this->Address->setCantonId($cantonId);
-		}
-		
+
+		$this->Address->setProvinceId($provinceId);
+		$this->Address->setDistrictId($districtId);
+		$this->Address->setCantonId($cantonId);
 		$data['province']=$this->Address->getProvinceAll();
 		$data['member'] = $this->Address->getMemberByAddress($page,'memberByAreaSearch');
 		$this->load->view('boss/member/magMemberListByArea',$data);
@@ -445,13 +470,12 @@ function deleteChildentAction($childrenId){
 #################### strat function memberAll แสดง ผุ็ใช้งานทั้งหมด ##################
 	function memberAll($page=0){
 		$data['member'] = $this->Member->getAllDataMember($page,'chillentAll');
-
 		$this->load->view('boss/member/magMemberList',$data);
 	}
 ####################end	function memberAll กแสดง ผุ็ใช้งานทั้งหมด ##################
 
-	function childentAddress($childentId){
-		$this->Address->setOwnerId($childentId);
+	function childentAddress($addressId){
+		$this->Address->setAddressId($addressId);
 		$data['childent'] = $this->Address->getAddressFK();
 		$this->load->view('boss/childent/detialChildent',$data);
 	}
@@ -511,16 +535,18 @@ function deleteChildentAction($childrenId){
 				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
 				</p>";
 	}
+function formatDate($date) {
+    $data = explode("-", $date);
+    $newdata = sprintf("%d-%d-%d", $data[2], $data[1], $data[0]);
+    return $newdata;
+
+}
 	
 	function deleteBehaviorAction($behaviorId){
 		
 		$this->Behavior->setBehaviorId($behaviorId);
 		$this->Behavior->deleteBehaviorDataPk();
 		echo "<script>parent.jQuery.fancybox.close();</script>";
-	}
-	
-	function addMember(){
-		
 	}
 	
 

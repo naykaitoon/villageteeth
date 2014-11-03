@@ -249,9 +249,7 @@ function forgetPasswordMemberByCode()
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 		$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
-		$this->db->where('members.memberStatus','officials');
-		$this->db->group_by('members.memberId');
-		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
+		$data = $this->db->get('members')->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
 	$this->db->select('*');
 	$this->db->from('members');

@@ -23,7 +23,6 @@
 	
                
 	});
-	});
 	</script>
 </head>
 
@@ -66,9 +65,9 @@
         		 <a class="mainMenu" href="#" onClick="return false">
                  <img src="<?php echo base_url();?>img/icon/magChilldent.png" height="30px" > จัดการข้อมูลเด้ก</a>
         <ul>
-          	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/chillentInArea">- เด็กในเขตความรับผิดชอบ</a></li>
-         	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/chillentAll">- เด็กทั้งหมด</a></li>
-           	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/chillentAllProfile">- ข้อมูลประวัติเด็ก</a></li>
+          	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/childentInArea">- เด็กในเขตความรับผิดชอบ</a></li>
+         	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/childentAll">- เด็กทั้งหมด</a></li>
+           	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/childentAllProfile">- ข้อมูลประวัติเด็ก</a></li>
         </ul>
       </li>  
       <li><a class="mainMenu" href="#" onClick="return false"><img src="<?php echo base_url();?>img/icon/grap.png" height="30px" > รายงานข้อมูลสถิติ</a>

@@ -1,4 +1,4 @@
- $(function() {
+  $(function() {
     applyPagination();
     function applyPagination() {
       $(".ajax_paging a").click(function() {

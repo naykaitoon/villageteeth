@@ -47,7 +47,6 @@ if(!checkIDSubmit(document.form1.childrenIDCard.value)) {
  	alert('รหัสประชาชนไม่ถูกต้อง');
 	result = false;
 }else{
-	 alert('รหัสประชาชนถูกต้อง เชิญผ่านได้'); 
 	 result = true;
 	 }
 	 return result;
@@ -64,10 +63,30 @@ return false; return true;}
   $(function() {
     $( "#childrenBirthday" ).datepicker({
       changeMonth: true,
-      changeYear: true
+      changeYear: true,
+	  dateFormat: 'dd-mm-yy',
+	  maxDate : 'NOW()',
+	   showOn: "button",
+		buttonImage: "<?php echo base_url()?>img/calendar.png",
+		buttonImageOnly: true,
+		buttonText: "เลือกวันที่"
     });
   });
   </script>
+   <script type="text/javascript">
+$(function(){
+	$("#addRow").click(function(){
+		$("#myTbl tbody:last").append($(".firstTr").clone());
+	});
+	$("#removeRow").click(function(){
+		if($(".firstTr").size()>1){
+			$("#myTbl tbody tr:last").remove();
+		}else{
+			alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
+		}
+	});			
+});
+</script>
   <style>
 	*{
 		font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
@@ -79,9 +98,9 @@ return false; return true;}
 
 <body>
 <div class="table"align="center" >
-<form id="form1" name="form1" method="post" onsubmit="return checkFormSubmit();"action="<?php echo base_url();?>index.php/boss/addActionChildent">
+<form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/boss/addActionChildent" onsubmit="return checkFormSubmit();" >
   <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0">
-    <tbody>
+   
       <tr>
         <th colspan="2" align="center" valign="middle" nowrap="nowrap">เพิ่มข้อมูลเด็กในพื้นที่</th>
       </tr>
@@ -134,20 +153,19 @@ return false; return true;}
         <td align="right" valign="middle">รหัสไปรษณีย์:</td>
         <td align="left" valign="middle"><input name="zipcode" type="text"  id="zipcode" size="5" maxlength="5" disabled  readonly></td>
       </tr>
-            <tr>
-        <td align="right" valign="middle">เบอร์โทร : </td>
-        <td align="left" valign="middle"><input type="text" name="tel" id="tel"> </td>
-      </tr>
-        <tr>
-        <td align="right" valign="middle">หมายเหตุเบอร์โทร : </td>
-        <td align="left" valign="middle"><input type="text" name="telNote" id="telNote"></td>
-      </tr>
-      <tr>
-        <td colspan="2" align="center" valign="middle"><input type="submit" name="save" id="save" value="บันทึก">
-        &nbsp;&nbsp;
-        <input type="button" name="close" id="close" onClick="parent.jQuery.fancybox.close();" value="ยกเลิก"></td>
+       <tbody>
+        <tr class="firstTr">
+        <td align="right" valign="middle">เบอร์โทร - หมายเหตุเบอร์โทร</td>
+        <td align="left" valign="middle"><input type="text" name="tel[]" id="tel[]" required> - <input type="text" name="telNote[]" id="telNote" required></td>
       </tr>
     </tbody>
+    </table>
+      
+     <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
+       <tr>    <td colspan="2" align="center" valign="middle"><input type="submit" name="submit" id="submit" value="บันทึก">
+          &nbsp;&nbsp;&nbsp;
+<input type="button" name="addRow" id="addRow" value="เพิ่มเบอร์โทร">  <input type="button" name="removeRow" id="removeRow" value="ลบเบอร์โทร"></td>
+      </tr>
   </table>
 </form>
 </div>

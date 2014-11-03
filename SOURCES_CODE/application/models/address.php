@@ -33,47 +33,6 @@ class Address extends CI_Model {
 ###### End GET : $addressId ###### 
 
 
- ###### SET : $ownerId ######
-    function setOwnerId($ownerId){
-        $this->ownerId = $ownerId; 
-     }
-###### End SET : $ownerId ###### 
-
-
-###### GET : $ownerId ######
-    function getOwnerId(){
-        return $this->ownerId; 
-     }
-###### End GET : $ownerId ###### 
-
-
- ###### SET : $ownerType ######
-    function setOwnerType($ownerType){
-        $this->ownerType = $ownerType; 
-     }
-###### End SET : $ownerType ###### 
-
-
-###### GET : $ownerType ######
-    function getOwnerType(){
-        return $this->ownerType; 
-     }
-###### End GET : $ownerType ###### 
-
-
- ###### SET : $addressDetial ######
-    function setAddressDetial($addressDetial){
-        $this->addressDetial = $addressDetial; 
-     }
-###### End SET : $addressDetial ###### 
-
-
-###### GET : $addressDetial ######
-    function getAddressDetial(){
-        return $this->addressDetial; 
-     }
-###### End GET : $addressDetial ###### 
-
 
  ###### SET : $cantonId ######
     function setCantonId($cantonId){
@@ -209,26 +168,24 @@ function getmemberAear(){
 
 function getMemberByAddress($page,$url){
 	$pageValue = 15;///จำนวนข้อมูลต่อ1หน้า
-	$this->db->join('address','address.ownerId = members.memberId');
+	$this->db->join('address','address.addressId = members.addressId');
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 	$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
 		
 	if($this->getCantonId()){
-		$this->db->where('liablearea.areaId',$this->getCantonId());
+		$this->db->where('address.cantonId',$this->getCantonId());
 	}else if($this->getDistrictId()){
-		$this->db->where('liablearea.areaId',$this->getDistrictId());
+		$this->db->where('address.districtId',$this->getDistrictId());
 	}else if($this->getProvinceId()){
-		$this->db->where('liablearea.areaId',$this->getProvinceId());
+		$this->db->where('address.provinceId',$this->getProvinceId());
 	}
-		$this->db->where('address.ownerType','members');
-		
-		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
+		$data = $this->db->get('members')->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
 	$this->db->select('*');
 	$this->db->from('members');
-	$this->db->join('address','address.ownerId = members.memberId');
+	$this->db->join('address','address.addressId = members.addressId');
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
@@ -253,9 +210,6 @@ function getMemberByAddress($page,$url){
 
 function addAddress(){
 	$data = array(
-		'ownerId' => $this->getOwnerId(),
-		'ownerType' => $this->getOwnerType(),
-		'addressDetial' => $this->getAddressDetial(),
 		'provinceId' => $this->getProvinceId(),
 		'districtId' => $this->getDistrictId(),
 		'cantonId' => $this->getCantonId(),
@@ -264,23 +218,23 @@ function addAddress(){
 
 	$this->db->insert('address',$data);
 	
-	$id = $this->db->insert_id();
+	return $this->db->insert_id();
 	
+	
+}
+
+function addTel(){
 	$dataTel = array(
-		'addressId' => $id,
+		'addressId' => $this->getAddressId(),
 		'tel' => $this->getTel(),
 		'telNote' => $this->getTelNote()
 	);
 	$this->db->insert('tel',$dataTel);
-	
 }
-
 
 
 function updateAddress(){
 	$data = array(
-		'ownerType' => $this->getOwnerType(),
-		'addressDetial' => $this->getAddressDetial(),
 		'provinceId' => $this->getProvinceId(),
 		'districtId' => $this->getDistrictId(),
 		'cantonId' => $this->getCantonId(),
@@ -301,20 +255,19 @@ function updateTel(){
 	$this->db->update('tel',$dataTel);
 }
 function deleteAddress(){
-	$this->db->where('ownerId',$this->getOwnerId());
+	$this->db->where('addressId',$this->getAddressId());
 	$this->db->delete('address');
 }
 
 function getAddressFK(){
-	$this->db->join('childrens','childrens.childrenId = address.ownerId');
+	$this->db->join('address','address.addressId = childrens.addressId');
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 	$this->db->join('zipcodes','zipcodes.cantonId = canton.cantonId');
 	$this->db->join('tel','tel.addressId = address.addressId');
-	$this->db->where('ownerType','childents');
-	$this->db->where('address.ownerId',$this->getOwnerId());
-	$data = $this->db->get('address')->result_array();
+	$this->db->where('address.addressId',$this->getAddressId());
+	$data = $this->db->get('childrens')->result_array();
 	
 	return $data;
 }

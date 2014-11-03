@@ -1,22 +1,24 @@
-<script src="<?php echo base_url();?>js/jquery.maskedinput.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>js/pageSection.js" type="text/javascript"></script>
-<script>
-jQuery(function($){
-   $(".idcard").mask("9-9999-99999-99-9");
-});
-
-  </script>
-
+<?php 
+function idFormat($idCard){
+	 $id1 = substr($idCard, 0, 1);
+	 $id2= substr($idCard, 1, 4);
+	 $id3= substr($idCard, 5, 5);
+	 $id4= substr($idCard, 10, 2);
+	 $id5= substr($idCard, 12, 1);
+	 echo $id1.'-'.$id2.'-'.$id3.'-'.$id4.'-'.$id5;
+}
+?>
 <div id="headTitleContentbg">
  <h2 id="headTitleContent">รายชื่อเด็กทั้งหมด</h2>
  </div>
-<div class="table"align="center">
+<div class="table" align="center">
 <br>
   <p>
     <label for="textfield">ค้นหา:</label>
     <input type="text" name="searchBox" id="searchBox" class="searchBox">
-    <a href="#" class="searchBt">ค้นหา</a>
-  <a href="<?php echo base_url();?>index.php/boss/addChillent" class="fancybox" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px"/>เพิ่มข้อมูลเด็ก</a>
+   <a href="#" class="searchBt">ค้นหา</a>
+  <a href="<?php echo base_url();?>index.php/boss/addChillent" class="fancyboxMagChildentAll" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px"/>เพิ่มข้อมูลเด็ก</a>
  
 </p>
   <br>
@@ -37,18 +39,18 @@ jQuery(function($){
 	$i = 1;
 	 foreach($childent as $c){?>
     <tr>    
-           <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $i;?></p></td>  
+           <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenId'];?></p></td>  
        <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenName'];?>&nbsp;&nbsp;<?php echo $c['childrenLastName'];?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p ><input style="text-align:center" type="text" class="idcard" value="<?php echo $c['childrenIDCard'];?>" size="16" maxlength="17" readonly /></p></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p ><?php idFormat($c['childrenIDCard']);?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenAge'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenBirthday'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['cantonName'];?>&nbsp;อ.<?php echo $c['districtName'];?>&nbsp;จ.<?php echo $c['provinceName'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/editChildent/<?php echo $c['childrenId'];?>" class="fancyboxMagChildentAll">แก้ไข</a></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/deleteChildentData/<?php echo $c['childrenId'];?>" class="fancyboxMagChildentAll">ลบ</a></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/deleteChildentData/<?php echo $c['childrenId'];?>/<?php echo $c['addressId'];?>" class="fancyboxDelete">ลบ</a></td>
     </tr>
     <?php $i++; }?>
- 	<tr>
-  	<td colspan="8" align="center"><div class="ajax_paging"><?php if($this->pagination->create_links()!=''){echo $this->pagination->create_links();}else{ echo "1"; }?></div></td>
+<tr>
+  	<td colspan="8" align="center"><div class="ajax_paging"><?php echo $this->pagination->create_links(); ?></div></td>
   </tr>
 </table>
 </div>
