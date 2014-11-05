@@ -45,11 +45,10 @@ CREATE TABLE IF NOT EXISTS `address` (
 --
 
 INSERT INTO `address` (`addressId`, `cantonId`, `districtId`, `provinceId`, `street`) VALUES
-(00002, 00000, 00000, 00000, '-'),
 (00006, 05643, 00628, 00042, '-'),
 (00012, 05643, 00628, 00042, '2'),
 (00015, 05643, 00628, 00042, '0'),
-(00016, 00000, 00000, 00000, '0');
+(00016, 05643, 00628, 00042, '0');
 
 -- --------------------------------------------------------
 
@@ -72,17 +71,17 @@ CREATE TABLE IF NOT EXISTS `behavior` (
 --
 
 INSERT INTO `behavior` (`behaviorId`, `behaviorName`, `behaviorType`, `behaviorTypeId`, `colorCode`) VALUES
-(001, 'รับประทานนมหวาน', 'normal', 01, '000000'),
-(002, 'รับประทานขวดนม', 'normal', 01, '000000'),
-(003, 'ทานขนมมากกว่า2ครั้ง/วัน', 'normal', 01, '000000'),
+(001, 'รับประทานนมหวาน', 'normal', 01, 'FF1212'),
+(002, 'รับประทานขวดนม', 'normal', 01, 'FF7733'),
+(003, 'ทานขนมมากกว่า2ครั้ง/วัน', 'normal', 01, 'FF03E6'),
 (004, 'แปรงฟันเช็ดฟันโดยผู้ปกครองทุกวัน', 'normal', 01, '000000'),
-(005, 'มีแผ่นครบจุลินทรีย์', 'normal', 01, '000000'),
+(005, 'มีแผ่นครบจุลินทรีย์', 'normal', 01, 'FF6E63'),
 (006, 'ฟันWhite sport', 'photo', 04, '000000'),
 (007, 'ฟันผุ', 'photo', 04, '000000'),
 (013, 'ฝึกปฏิบัติแปรงฟัน', 'normal', 03, '000000'),
 (012, 'แนะนำเรื่องอาหารและการแปรงฟันระบุ', 'normal', 03, '000000'),
-(010, 'ใช้ยาสีฟันผสมฟลูออไรด์', 'normal', 02, 'FF00B3'),
-(011, 'คราบจุลินทรีย์ที่ฟันหน้าบน', 'photo', 04, '000000'),
+(010, 'ใช้ยาสีฟันผสมฟลูออไรด์', 'normal', 02, 'FF6B6B'),
+(011, 'คราบจุลินทรีย์ที่ฟันหน้าบน', 'photo', 04, '1CFF3A'),
 (014, 'ทาฟลูออไรด์', 'normal', 03, '000000');
 
 -- --------------------------------------------------------
@@ -95,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `behaviortype` (
   `behaviorTypeId` int(2) unsigned zerofill NOT NULL AUTO_INCREMENT COMMENT 'รหัสข้อมูลหมวดหมู่พฤติกรรม',
   `behaviorTypeName` varchar(50) NOT NULL COMMENT 'ชื่อหมวดหมู่พฤติกรรม',
   PRIMARY KEY (`behaviorTypeId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='ข้อมูลหมวดหมู่พฤติกรรม' AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='ข้อมูลหมวดหมู่พฤติกรรม' AUTO_INCREMENT=7 ;
 
 --
 -- dump ตาราง `behaviortype`
@@ -9034,9 +9033,9 @@ CREATE TABLE IF NOT EXISTS `childrens` (
 --
 
 INSERT INTO `childrens` (`childrenId`, `addressId`, `addressDetial`, `childrenName`, `childrenLastName`, `childrenBirthday`, `childrenIDCard`) VALUES
-(0001, 00015, ' หมู่  ซอย ', 'แดง', 'อยู่ดี', '2012-11-06', '1540500061495'),
-(0002, 00002, ' หมู่  ซอย ', 'นนทนัท', 'เวียงทอง', '0000-00-00', '1540500061495'),
-(0011, 00016, ' หมู่  ซอย ', 'test', 'test', '0000-00-00', '1540500061495');
+(0001, 00015, ' หมู่  ซอย ', 'แดง', 'อยู่ดี', '2012-05-17', '1540500061495'),
+(0002, 00012, ' หมู่  ซอย ', 'นนทนัท', 'เวียงทอง', '2013-11-06', '1540500061495'),
+(0011, 00016, ' หมู่ 3  ซอย 2', 'test', 'test', '2013-11-13', '1540500061495');
 
 -- --------------------------------------------------------
 
@@ -10108,24 +10107,29 @@ INSERT INTO `district` (`districtId`, `districtName`, `provinceId`) VALUES
 
 CREATE TABLE IF NOT EXISTS `liablearea` (
   `liableAreaId` int(7) unsigned zerofill NOT NULL AUTO_INCREMENT COMMENT 'รหัสข้อมูลเขตความรับผิดชอบ',
-  `areaId` int(5) unsigned zerofill NOT NULL COMMENT 'รหัสข้อมูลเขต เช่น รหัสข้อมูลจังหวัด,รหัสข้อมูลอำเภอ,รหัสข้อมูลตำบล',
+  `provinceId` int(5) unsigned zerofill NOT NULL,
+  `districtId` int(5) unsigned zerofill NOT NULL,
+  `cantonId` int(5) unsigned zerofill NOT NULL COMMENT 'รหัสข้อมูลเขต เช่น รหัสข้อมูลจังหวัด,รหัสข้อมูลอำเภอ,รหัสข้อมูลตำบล',
   `memberId` int(4) unsigned zerofill NOT NULL COMMENT 'รหัสข้อมูลผู้ใช้งาน',
-  `liableAreaType` enum('province','district','canton') NOT NULL COMMENT 'ประเภทข้อมูลเขตความรับผิดชอบ จะอ้างอิง กับ areaId',
   PRIMARY KEY (`liableAreaId`),
-  KEY `areaId` (`areaId`),
-  KEY `memberId` (`memberId`)
+  KEY `areaId` (`cantonId`),
+  KEY `memberId` (`memberId`),
+  KEY `provinceId` (`provinceId`),
+  KEY `districtId` (`districtId`),
+  KEY `cantonId` (`cantonId`),
+  KEY `memberId_2` (`memberId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='ข้อมูลเขตความรับผิดชอบ' AUTO_INCREMENT=6 ;
 
 --
 -- dump ตาราง `liablearea`
 --
 
-INSERT INTO `liablearea` (`liableAreaId`, `areaId`, `memberId`, `liableAreaType`) VALUES
-(0000001, 05643, 0001, 'canton'),
-(0000002, 05643, 0003, 'canton'),
-(0000003, 05643, 0004, 'canton'),
-(0000004, 05643, 0002, 'canton'),
-(0000005, 05643, 0006, 'canton');
+INSERT INTO `liablearea` (`liableAreaId`, `provinceId`, `districtId`, `cantonId`, `memberId`) VALUES
+(0000001, 00042, 00628, 05643, 0001),
+(0000002, 00042, 00628, 05643, 0003),
+(0000003, 00042, 00628, 05643, 0004),
+(0000004, 00042, 00628, 05643, 0002),
+(0000005, 00042, 00628, 05643, 0006);
 
 -- --------------------------------------------------------
 
@@ -10323,21 +10327,21 @@ CREATE TABLE IF NOT EXISTS `tel` (
 --
 
 INSERT INTO `tel` (`telId`, `addressId`, `tel`, `telNote`) VALUES
-(0000001, 00001, '087-578-8242', 'มือถือ'),
+(0000001, 00015, '087-578-8242', 'มือถือ'),
 (0000002, 00001, '054-547057', 'บ้าน'),
 (0000003, 00002, '054-5475557777', 'บ้าน'),
 (0000004, 00002, '08-888-88564515', 'มือถือ'),
 (0000005, 00008, 'lllllll', 'llllll'),
 (0000006, 00009, 'ssss', 'ssss'),
 (0000007, 00010, '0', '0'),
-(0000008, 00011, '', ''),
+(0000008, 00012, 'tel', 'tel'),
 (0000009, 00012, '055', '055'),
-(0000010, 00013, '51000', '1'),
+(0000010, 00012, '51000', '1'),
 (0000011, 00013, '0000', '0000'),
 (0000012, 00013, '000', '000'),
 (0000013, 00013, '0', '1'),
 (0000014, 00014, '054547057', 'บ้าน'),
-(0000015, 00015, '59656', '626'),
+(0000015, 00015, '5965611', '62611'),
 (0000016, 00016, '054-44', '45'),
 (0000017, 00016, '08-', 'มือถือ');
 

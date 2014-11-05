@@ -67,6 +67,7 @@
 		float:left;
 	 }
 	.logindata{
+		
 		display: inline;
 
 		display: inline;
@@ -90,6 +91,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#58a4eb', end
 	}
 	 @-moz-document url-prefix() {
                         .logindata{
-                       margin-top:-12px;
+                       margin-top:-16px;
                     }
       }

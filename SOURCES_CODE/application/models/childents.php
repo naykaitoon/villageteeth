@@ -109,28 +109,41 @@ class Childents extends CI_Model {
     function getAddressDetial(){
         return $this->addressDetial; 
      }
-###### End GET : $addressDetial ###### 
+###### End GET : $textSearch ###### 
+###### SET : $addressDetial ######
+    function setTextSearch($textSearch){
+        $this->textSearch = $textSearch; 
+     }
+###### End SET : $textSearch ###### 
+
+
+###### GET : $textSearch ######
+    function getTextSearch(){
+        return $this->textSearch; 
+     }
+###### End GET : $textSearch ###### 
 ######################  end get/set ############################
 
 ######################  start getchillentInArea ############################
 ###########################  ดึงข้อมูลเด็กในเขตความรับผิดชอบของผู้ใช้งาน  #############################
 function getChildentInArea($page,$url){
 	 $pageValue = 15;///จำนวนข้อมูลต่อ1หน้า
-	$data = $this->session->userdata('loginData');
+	$datas= $this->session->userdata('loginData');
+
 	$this->db->join('address','address.addressId = childrens.addressId');
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 	
 
-		$this->db->where('address.cantonId',$data['areaId']);
+		$this->db->where('address.cantonId',$datas['cantonId']);
 
-		$this->db->or_where('address.districtId',$data['areaId']);
+		$this->db->where('address.districtId',$datas['districtId']);
 
-		$this->db->or_where('address.provinceId',$data['areaId']);
+		$this->db->where('address.provinceId',$datas['provinceId']);
 
 
-	$datas = $this->db->get('childrens',$pageValue,$page)->result_array();
+	$data = $this->db->get('childrens',$pageValue,$page)->result_array();
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
    		
 	$this->db->from('childrens');
@@ -140,17 +153,20 @@ function getChildentInArea($page,$url){
 	$this->db->join('province','province.provinceId = address.provinceId');
 	
 
-		$this->db->where('address.cantonId',$data['areaId']);
 
-		$this->db->or_where('address.districtId',$data['areaId']);
+		$this->db->where('address.cantonId',$datas['cantonId']);
 
-		$this->db->or_where('address.provinceId',$data['areaId']);
+		$this->db->where('address.districtId',$datas['districtId']);
+
+		$this->db->where('address.provinceId',$datas['provinceId']);
+
 		
 		 $config['total_rows'] = $this->db->count_all_results(); // ส
   		 $config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
 		 $this->pagination->create_links();
   		 $this->pagination->initialize($config);   // จากกนั้น เอาค่า ไป config ใน object pagination ที่เรา load มา 
-	 return $datas;
+
+	 return $data;
 
 
 	}
@@ -185,6 +201,39 @@ function getChildentInArea($page,$url){
 	}
 ######################  end getChillentAll ############################
 
+	function getChildentAllSearch($page,$url){
+	 $pageValue = 15;///จำนวนข้อมูลต่อ1หน้า
+	$this->db->join('address','address.addressId = childrens.addressId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+	$this->db->like('childrens.childrenName',$this->getTextSearch());
+	$this->db->or_like('childrens.childrenName',$this->getTextSearch());
+	$this->db->or_like('childrens.childrenLastName',$this->getTextSearch());
+	$this->db->or_like('childrens.childrenIDCard',$this->getTextSearch());
+	$data = $this->db->get('childrens',$pageValue,$page)->result_array();
+	$loginData2 = $this->session->userdata('loginData');
+	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
+	$config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
+	$this->db->select('*');
+	$this->db->from('childrens');
+	$this->db->join('address','address.addressId = childrens.addressId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+	$this->db->or_like('childrens.childrenName',$this->getTextSearch());
+	$this->db->or_like('childrens.childrenLastName',$this->getTextSearch());
+	$this->db->or_like('childrens.childrenIDCard',$this->getTextSearch());
+  	$config['total_rows'] = $this->db->count_all_results();// ส่วนนี้ จะนับว่า ฟิว ทั้งหมดที่อยู่ใน tb_user มีเท่าไหร่
+	
+		 
+		 $this->pagination->create_links();
+  		 $this->pagination->initialize($config);   // จากกนั้น เอาค่า ไป config ใน object pagination ที่เรา load มา 
+	 return $data;
+
+
+	}
+
 function addChildent(){
 	$data = array(
 	'addressId'  => $this->getAddressId(),
@@ -217,7 +266,8 @@ function getChildentInAearPKs(){
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
-	$this->db->join('tel','tel.addressId = address.addressId');
+	$this->db->join('zipcodes','zipcodes.cantonId = canton.cantonId');
+	$this->db->group_by('childrens.childrenId');
 	$this->db->where('childrens.childrenId ',$this->getChildrenId()); 
 	$data = $this->db->get('childrens')->result_array();
 	return $data;
@@ -226,5 +276,7 @@ function deleteChildent(){
 	$this->db->where('childrenId',$this->getChildrenId());
 	$this->db->delete('childrens');
 }
+
+
 }
 ?>

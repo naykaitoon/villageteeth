@@ -17,16 +17,13 @@
 							provinceId:str
 						  },
 						  function(data){
-							$("#district").removeAttr('disabled');
-							$("#canton").attr('disabled','disabled');
-							$("#zipcode").attr('disabled','disabled');
+							
 							$('#district').html(data);
 						  });
 				})
 		.trigger( "change" );
 		  
-		 $( "#district" )
-			.change(function() {
+		 $( "#district" ).click(function() {
 				var str = "";
 					$( "select#district option:selected" ).each(function() {
 						str += $( this ).val() + " ";
@@ -53,13 +50,14 @@
 							cantonId:str
 						  },
 						  function(data){
-							  $('#zipcode').removeAttr("disabled");
+			
 							$('#zipcode').val(data);
 						  });
 				})
 		.trigger( "change" );
 	
 		});
+		
 	</script>
       <script language="javascript">
 function checkForm() 
@@ -99,7 +97,12 @@ return false; return true;}
     $( "#childrenBirthday" ).datepicker({
       changeMonth: true,
       changeYear: true,
-	  dateFormat: 'dd-mm-yy'
+	  dateFormat: 'dd-mm-yy',
+	  maxDate : 'NOW()',
+	   showOn: "button",
+		buttonImage: "<?php echo base_url()?>img/calendar.png",
+		buttonImageOnly: true,
+		buttonText: "เลือกวันที่"
     });
   });
   </script>
@@ -124,7 +127,9 @@ return false; return true;}
       </tr>
       <tr>
         <td align="right" valign="middle">วันเกิด ป/ด/ว: </td>
-        <td align="left" valign="middle"><input type="text" name="childrenBirthday" value="<?php echo $childent[0]['childrenBirthday'];?>"  id="childrenBirthday" readonly></td>
+        <td align="left" valign="middle"><input type="text" name="childrenBirthday" value="<?php
+		echo date("d-m-Y", strtotime($childent[0]['childrenBirthday'])); 
+		?>"  id="childrenBirthday" readonly></td>
       </tr>
       <tr>
         <td align="right" valign="middle">ที่อยู่บ้านเลขที่/หมู่/ซอย : </td>
@@ -137,7 +142,7 @@ return false; return true;}
       <tr>
         <td align="right" valign="middle">จังหวัด</td>
         <td align="left" valign="middle"><select name="province" id="province">
-  <option value="0">กรุณาเลือก</option>
+            <option value="<?php echo $childent[0]['provinceId']?>"><?php echo $childent[0]['provinceName']?></option>
   <?php foreach($province as $p){?>
   <option value="<?php echo $p['provinceId']?>"><?php echo $p['provinceName']?></option>
   <?php }?>
@@ -146,24 +151,23 @@ return false; return true;}
       <tr>
         <td align="right" valign="middle">อำเภอ</td>
         <td align="left" valign="middle">
-  <select name="district"  id="district" disabled>
-    <option value="0">กรุณาเลือกจังหวัด</option>
+  <select name="district"  id="district" >
+    <option value="<?php echo $childent[0]['districtId']?>"><?php echo $childent[0]['districtName']?></option>
   </select></td>
       </tr>
       <tr>
         <td align="right" valign="middle">ตำบล</td>
-        <td align="left" valign="middle"> <select name="canton"  id="canton" disabled>
- 
-    <option value="0">กรุณาเลือก</option>
-
+        <td align="left" valign="middle"> 
+      <select name="canton"  id="canton" >
+          <option value="<?php echo $childent[0]['cantonId']?>"><?php echo $childent[0]['cantonName']?></option>
   </select></td>
       </tr>
       <tr >
         <td align="right" valign="middle">รหัสไปรษณีย์:</td>
-        <td align="left" valign="middle"><input name="zipcode" type="text"  id="zipcode" size="5" maxlength="5" disabled  readonly></td>
+        <td align="left" valign="middle"><input name="zipcode"  type="text"  id="zipcode" size="5" maxlength="5" value="<?php echo $childent[0]['zipcode'];?>"  readonly></td>
       </tr>   
        <tbody>
-              <?php foreach($childent as $t){?>
+              <?php foreach($tel as $t){?>
               <tr class="firstTr">
         <td align="right" valign="middle">เบอร์โทร - หมายเหตุเบอร์โทร : <input type="hidden" name="telId[]" value="<?php echo $t['telId']?>"></td>
         <td align="left" valign="middle"><input type="text" name="tel[]" value="<?php echo $t['tel']?>"> - <input type="text" name="telNote[]" value="<?php echo $t['telNote']?>"></td>

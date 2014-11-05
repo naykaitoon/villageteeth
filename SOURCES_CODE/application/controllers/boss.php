@@ -32,6 +32,19 @@ class Boss extends CI_Controller {
 		}
 		$this->load->view('boss/childent/magChlidentIntArea',$data);
 	}
+	
+	function childentInAreaSearch($page=0){
+		$text = $this->input->post('key');
+		$this->Childents->setTextSearch($text);
+		$data['childent'] = $this->Childents->getChildentAllSearch($page,'childentInAreaSearch');
+		for($i=0;$i<count($data['childent']);$i++){
+			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
+			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
+		}
+		$this->load->view('boss/childent/searchResultChildentInAera',$data);
+	}
+	
+	
 	function childentAll($page=0){
 		$data['childent'] = $this->Childents->getChildentAll($page,'childentAll');
 		
@@ -41,12 +54,31 @@ class Boss extends CI_Controller {
 		}
 		$this->load->view('boss/childent/magChlidentIntAll',$data);
 	}
+	function childentAllSearch($page=0){
+		$text = $this->input->post('key');
+		$this->Childents->setTextSearch($text);
+		$data['childent'] = $this->Childents->getChildentAllSearch($page,'childentAllSearch');
+		
+		for($i=0;$i<count($data['childent']);$i++){
+			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
+			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
+		}
+		$this->load->view('boss/childent/searchResultChildent',$data);
+	}
 	
-	
-	function editChildent($id){
-		$data['province']=$this->Address->getProvinceAll();
-		$this->Childents->setChildrenId($id);
+	function editChildent($childentId){
+		$data['loginData'] = $this->session->userdata('loginData');
+		
+		
+		$this->Childents->setChildrenId($childentId);
+		
 		$data['childent'] = $this->Childents->getChildentInAearPKs();
+		$addressId = $data['childent'][0]['addressId'];
+		 $this->Address->setAddressId($addressId);
+		$data['tel'] = $this->Address->getTelFk();
+
+		$data['province'] = $this->Address->getProvinceAll();
+
 		$this->load->view('boss/childent/fromEditChildent',$data);
 	}
 
@@ -59,6 +91,18 @@ class Boss extends CI_Controller {
 			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
 		}
 		$this->load->view('boss/childent/magChlidentProfile',$data);
+	}
+	
+	function childentAllProfileSearch($page=0){
+		$text = $this->input->post('key');
+		$this->Childents->setTextSearch($text);
+		$data['childent'] = $this->Childents->getChildentAllSearch($page,'childentAllSearch');
+		
+		for($i=0;$i<count($data['childent']);$i++){
+			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
+			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
+		}
+		$this->load->view('boss/childent/searchResultChildentProfile',$data);
 	}
 ########################## START function  timespan คำนวนวันเกิด ############################	
 	function timespan($seconds = 1){	
@@ -97,13 +141,13 @@ class Boss extends CI_Controller {
  ##########################Start function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็กในพื้นที่ ############################	
 	function addChillentInArea(){
 		$data['loginData'] = $this->session->userdata('loginData');
-		if($data['loginData']['areaType']==='canton'){
+
 			$this->Address->setCantonId($data['loginData']['areaId']);
-		}else if($data['loginData']['areaType']==='district'){
+	
 			$this->Address->setDistrictId($data['loginData']['areaId']);
-		}else if($data['loginData']['areaType']==='province'){
+
 			$this->Address->setProvinceId($data['loginData']['areaId']);
-		}
+	
 		$data['area']=$this->Address->getmemberAear();
 
 		$this->load->view('boss/childent/formAddChildentMyArea',$data);
@@ -111,19 +155,21 @@ class Boss extends CI_Controller {
 ##########################END function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็ก############################	
 
  ##########################Start function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็กในพื้นที่ ############################	
-	function editChillentInArea($childentId){
+	function editChildentInArea($childentId){
 		$data['loginData'] = $this->session->userdata('loginData');
-		if($data['loginData']['areaType']==='canton'){
-			$this->Address->setCantonId($data['loginData']['areaId']);
-		}else if($data['loginData']['areaType']==='district'){
-			$this->Address->setDistrictId($data['loginData']['areaId']);
-		}else if($data['loginData']['areaType']==='province'){
-			$this->Address->setProvinceId($data['loginData']['areaId']);
-		}
-		$data['area']=$this->Address->getmemberAear();
+		
+		
 		$this->Childents->setChildrenId($childentId);
+		
 		$data['childent'] = $this->Childents->getChildentInAearPKs();
-		$this->load->view('boss/childent/formEditChildentMyArea',$data);
+		$addressId = $data['childent'][0]['addressId'];
+		 $this->Address->setAddressId($addressId);
+		$data['tel'] = $this->Address->getTelFk();
+
+		$data['province'] = $this->Address->getProvinceAll();
+
+		
+		$this->load->view('boss/childent/fromEditChildent',$data);
 	}
 ##########################END function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็ก############################	
  ##########################Start function  addActionChillent เพิ่มข้อมูลเด็ก ############################	
@@ -137,11 +183,7 @@ class Boss extends CI_Controller {
 			$childrenBirthday = $this->formatDate($date);
 
 			
-			$addressDetialNumber = $this->input->post('addressDetialNumber');
-			$addressDetialM = $this->input->post('addressDetialM');
-			$addressDetialSubStreet = $this->input->post('addressDetialSubStreet');
-			
-			$addressDetial = $addressDetialNumber.' หมู่ '.$addressDetialM.' ซอย '.$addressDetialSubStreet;
+			$addressDetial = $this->input->post('addressDetial');
 			
 			$addressId = $this->input->post('addressId');
 			$provinceId = $this->input->post('province');
@@ -287,7 +329,6 @@ function deleteChildentAction($childrenId,$addressId){
 		$this->Address->setDistrictId($districtId);
 		$data = $this->Address->getCantonFk();
 		if($data){
-			echo '<option value="0">กรุณาเลือก</option>';
 		for($i=0;$i<count($data);$i++){
 			echo '<option value="'.$data[$i]['cantonId'].'">'.$data[$i]['cantonName'].'</option>';
 			echo '<script>$("#canton").removeAttr("disabled");</script>';
@@ -436,11 +477,23 @@ function deleteChildentAction($childrenId,$addressId){
 		
 	}
 	function deleteBehaviorMagType($behaviorTypeId){
+		$this->Behavior->setBehaviorType($behaviorTypeId);
+		$row = $this->Behavior->checkBehaviorInType();
+		$num = count($row);
+
+		if($num==0){
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
 				  <a href='".base_url()."index.php/boss/deleteBehaviorMagTypeAction/".$behaviorTypeId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
 				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
 				</p>";
+		}else{
+			echo "<body style='text-align: center' ><p style='color:red; font-size:20;'>คุณไม่สามารถ ลบข้อมูลได้ เนื่งจากมีข้อพฤติกรรมในหมวดนี้อยู่</p>
+			<p style='color:red;font-size:14;'>กรุณาทำการลบพฤติกรรมให้หมดก่อน จะลบ หมวดหมู่</p>
+				<p>
+				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
+				</p>";
+		}
 	}
 	
 	function deleteBehaviorMagTypeAction($behaviorTypeId){
@@ -474,9 +527,14 @@ function deleteChildentAction($childrenId,$addressId){
 	}
 ####################end	function memberAll กแสดง ผุ็ใช้งานทั้งหมด ##################
 
-	function childentAddress($addressId){
-		$this->Address->setAddressId($addressId);
-		$data['childent'] = $this->Address->getAddressFK();
+	function childentAddress($childentId){
+		$this->Childents->setChildrenId($childentId);
+		$data['childent'] = $this->Childents->getChildentInAearPKs();
+		$addressId = $data['childent'][0]['addressId'];
+		 $this->Address->setAddressId($addressId);
+		$data['tel'] = $this->Address->getTelFk();
+
+		$data['province'] = $this->Address->getProvinceAll();
 		$this->load->view('boss/childent/detialChildent',$data);
 	}
 	
@@ -549,6 +607,25 @@ function formatDate($date) {
 		echo "<script>parent.jQuery.fancybox.close();</script>";
 	}
 	
+function police($page=0){
+	$data['childent'] = $this->Childents->getChildentInArea($page,'police');
+		for($i=0;$i<count($data['childent']);$i++){
+			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
+			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
+		}
+	$this->load->view('boss/policing/policingChildents',$data);
+	
+}
+function policeSearch($page=0){
+		$text = $this->input->post('key');
+		$this->Childents->setTextSearch($text);
+		$data['childent'] = $this->Childents->getChildentAllSearch($page,'policeSearch');
+		for($i=0;$i<count($data['childent']);$i++){
+			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
+			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
+		}
+		$this->load->view('boss/policing/searchResultPolicingChildents',$data);
+	}
 
 }
 

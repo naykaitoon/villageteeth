@@ -134,6 +134,7 @@ function getProvinceAll(){
 	return $this->db->get('province')->result_array();
 }
 
+
 function getDistrictFk(){
 	$this->db->where('provinceId',$this->getProvinceId());
 	return $this->db->get('district')->result_array();
@@ -149,17 +150,26 @@ function getZipcodeFk(){
 	return $this->db->get('zipcodes')->result_array();
 }
 
+function getAllCantonDetail(){
+	$this->db->join('district','district.districtId = canton.districtId');
+	$this->db->join('province','province.provinceId = canton.provinceId');
+	$this->db->join('zipcodes','zipcodes.cantonId = canton.cantonId');
+	$this->db->where('canton.provinceId',$this->getProvinceId());
+	return $this->db->get('canton')->result_array();
+}
+
+
 function getmemberAear(){
 	
 	$this->db->join('district','district.districtId = canton.districtId');
 	$this->db->join('province','province.provinceId = canton.provinceId');
-	if($this->getCantonId()){
+
 		$this->db->where('canton.cantonId',$this->getCantonId());
-	}else if($this->getDistrictId()){
+
 		$this->db->where('canton.districtId',$this->getDistrictId());
-	}else if($this->getProvinceId()){
+
 		$this->db->where('canton.provinceId',$this->getProvinceId());
-	}
+
 	$data = $this->db->get('canton')->result_array();
 	
 	return $data;
@@ -222,7 +232,10 @@ function addAddress(){
 	
 	
 }
-
+function getTelFk(){
+	$this->db->where('tel.addressId',$this->getAddressId());
+	return $this->db->get('tel')->result_array();
+}
 function addTel(){
 	$dataTel = array(
 		'addressId' => $this->getAddressId(),
@@ -259,18 +272,7 @@ function deleteAddress(){
 	$this->db->delete('address');
 }
 
-function getAddressFK(){
-	$this->db->join('address','address.addressId = childrens.addressId');
-	$this->db->join('canton','canton.cantonId = address.cantonId');
-	$this->db->join('district','district.districtId = address.districtId');
-	$this->db->join('province','province.provinceId = address.provinceId');
-	$this->db->join('zipcodes','zipcodes.cantonId = canton.cantonId');
-	$this->db->join('tel','tel.addressId = address.addressId');
-	$this->db->where('address.addressId',$this->getAddressId());
-	$data = $this->db->get('childrens')->result_array();
-	
-	return $data;
-}
+
 
 }
 ?>

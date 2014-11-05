@@ -130,6 +130,12 @@ class Behavior extends CI_Model {
 		return $this->db->get('behaviortype')->result_array();		
 	}
 	
+	function checkBehaviorInType(){
+
+		$this->db->where('behavior.behaviorTypeId',$this->getBehaviorType());
+		return $this->db->get('behavior')->result_array();		
+	}
+	
 	function updateBehaviorType(){
 		$data = array(
 			'behaviorTypeName' => $this->getBehaviorTypeName()
@@ -155,8 +161,6 @@ class Behavior extends CI_Model {
 		$this->db->where('behaviorTypeId',$this->getBehaviorTypeId());
 		$this->db->delete('behaviortype');
 		
-		$this->db->where('behavior.behaviorTypeId',$this->getBehaviorTypeId());
-		$this->db->delete('behavior',$data);
 		
 	}
 	

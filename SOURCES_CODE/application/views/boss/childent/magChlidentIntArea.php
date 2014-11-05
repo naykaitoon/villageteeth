@@ -1,3 +1,23 @@
+<script type="text/javascript">
+		$(document).ready(function(){
+			 $(".searchBox").keyup(function(event){
+				   event.preventDefault();
+        		 $.post( 
+             "<?php echo base_url();?>index.php/boss/childentInAreaSearch",
+             { key: $("#searchBox").val() },
+             function(data) {
+                $('#searchResult').html(data);
+             }
+
+          ); 
+		
+      });
+	 
+	
+
+ });
+		
+</script>
 <script src="<?php echo base_url();?>js/pageSection.js" type="text/javascript"></script>
 <?php 
 function idFormat($idCard){
@@ -17,11 +37,11 @@ function idFormat($idCard){
   <p>
     <label for="textfield">ค้นหา:</label>
     <input type="text" name="searchBox" id="searchBox" class="searchBox">
-    <a href="#" class="searchBt">ค้นหา</a>
-  <a href="<?php echo base_url();?>index.php/boss/addChillentInArea" class="fancyboxMagChildent" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px"/>
+  <a href="<?php echo base_url();?>index.php/boss/addChillentInArea" class="fancyboxMagChildent" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px" class="iconAction"/>
   เพิ่มข้อมูลเด็กในพื้นที่</a>
 </p>
   <br>
+    <div id="searchResult">
 <table width="100%" border="0" align="center" cellpadding="7" cellspacing="3">
 
     <tr>   
@@ -45,13 +65,18 @@ function idFormat($idCard){
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenAge'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenBirthday'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['cantonName'];?>&nbsp;อ.<?php echo $c['districtName'];?>&nbsp;จ.<?php echo $c['provinceName'];?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/editChillentInArea/<?php echo $c['childrenId'];?>" class="fancyboxMagChildent">แก้ไข</a></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/deleteChildentData/<?php echo $c['childrenId'];?>/<?php echo $c['addressId'];?>" class="fancyboxDelete">ลบ</a></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/editChildentInArea/<?php echo $c['childrenId'];?>" class="fancyboxMagChildent">
+      <img class="iconAction" src="<?php echo base_url();?>img/editIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
+      </a></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/deleteChildentData/<?php echo $c['childrenId'];?>/<?php echo $c['addressId'];?>" class="deletechildentInArea">
+         <img class="iconAction" src="<?php echo base_url();?>img/deleteIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
+      </a></td>
     </tr>
     <?php $i++; }?>
  	<tr>
   	<td colspan="8" align="center"><div class="ajax_paging"><?php echo $this->pagination->create_links(); ?></div></td>
   </tr>
 </table>
+</div>
 </div>
 

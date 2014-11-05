@@ -31,7 +31,7 @@ $('.fancyboxMagChildent').fancybox({
 				type				: 'iframe',
 				afterClose : function() {
 					
-       		$('.content').load('/index.php/boss/chillentInArea');
+       		$('.content').load('/index.php/boss/childentInArea');
 
     }
 	
@@ -77,7 +77,7 @@ $('.fancyboxMagChildentAll').fancybox({
 				type				: 'iframe',
 				afterClose : function() {
 					
-       		$('.content').load('/index.php/boss/chillentAll');
+       		$('.content').load('/index.php/boss/childentAll');
 
     }
 	
@@ -97,15 +97,59 @@ $('.fancyboxMagChildentAll').fancybox({
 	
 });
   $('.fancyboxDelete').fancybox({
-	  			height :	'200',
-				width :	'200',
+	  			height :	'250',
+				width :	'250',
 				autoSize : false,
 				scrolling : 'auto',
 				arrows : false,
 				type				: 'iframe',
 				afterClose : function() {
 					
-       		$('.content').load($('#linkPopupclick').val());
+       		$('.content').load("/index.php/boss/behaviorMag");
+
+    }
+	
+});
+  $('.fancyboxDeleteMagAll').fancybox({
+	  			height :	'250',
+				width :	'250',
+				autoSize : false,
+				scrolling : 'auto',
+				arrows : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/boss/behaviorMag");
+
+    }
+	
+});
+
+  $('.deletechildentAll').fancybox({
+	  			height :	'250',
+				width :	'300',
+				autoSize : false,
+				scrolling : 'no',
+				arrows : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/boss/childentAll");
+
+    }
+	
+});
+
+  $('.deletechildentInArea').fancybox({
+	  			height :	'250',
+				width :	'300',
+				autoSize : false,
+				scrolling : 'no',
+				arrows : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/boss/childentInArea");
 
     }
 	

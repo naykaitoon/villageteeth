@@ -43,7 +43,7 @@
         <td align="right" valign="middle">รหัสไปรษณีย์:</td>
         <td align="left" valign="middle"><?php echo $childent[0]['zipcode']?></td>
       </tr>
-       <?php foreach($childent as $t){?>
+       <?php foreach($tel as $t){?>
        <tr>
      <td align="right" valign="middle">เบอร์โทร - หมายเหตุเบอร์โทร</td>
         <td align="left" valign="middle"><?php echo $t['tel']?> - <?php echo $t['telNote']?></td>

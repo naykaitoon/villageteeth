@@ -58,19 +58,19 @@
 		<ul class="dropdown">
  			<li>
        			 <a class="mainMenu"  id="headMenu" onClick="return false" style="font-size:25px;">
-                 <img src="<?php echo base_url();?>img/icon/menu.png" height="30px">&nbsp;&nbsp;เมนู
+                 <img class="iconAction" src="<?php echo base_url();?>img/icon/menu.png" height="30px">&nbsp;&nbsp;เมนู
                  </a>
         	</li>
       		<li>
-        		 <a class="mainMenu" href="#" onClick="return false">
-                 <img src="<?php echo base_url();?>img/icon/magChilldent.png" height="30px" > จัดการข้อมูลเด้ก</a>
+        		 <a class="mainMenu" href="" onClick="return false">
+                 <img class="iconAction" src="<?php echo base_url();?>img/icon/magChilldent.png" height="30px" > จัดการข้อมูลเด้ก</a>
         <ul>
           	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/childentInArea">- เด็กในเขตความรับผิดชอบ</a></li>
          	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/childentAll">- เด็กทั้งหมด</a></li>
            	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/childentAllProfile">- ข้อมูลประวัติเด็ก</a></li>
         </ul>
       </li>  
-      <li><a class="mainMenu" href="#" onClick="return false"><img src="<?php echo base_url();?>img/icon/grap.png" height="30px" > รายงานข้อมูลสถิติ</a>
+      <li><a class="mainMenu" href="" onClick="return false"><img class="iconAction" src="<?php echo base_url();?>img/icon/grap.png" height="30px" > รายงานข้อมูลสถิติ</a>
         <ul>
           <li><a class="submenu" href="#">- สถิติโดยรวมทั้งหมด</a></li>
            <li><a class="submenu" href="#">- สถิติโดยแบ่งตามพื้นที่</a></li>
@@ -81,7 +81,7 @@
                            <li><a class="submenu" href="#">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
        			 </ul>
             <li>
-           <li><a class="submenu" href="#" onClick="return false">- สถิติเด็กการตรวจของฉัน</a>
+           <li><a class="submenu" href="" onClick="return false">- สถิติเด็กการตรวจของฉัน</a>
           	  <ul>
         		        <li><a class="submenu" href="#" >- แบ่งตามพฤษติกรรม</a></li>
                         <li><a class="submenu" href="#">- แบ่งตามช่วงอายุ</a>                
@@ -91,7 +91,7 @@
         </ul>
       </li>
       <li>
-        <a class="mainMenu" href="#" onClick="return false"><img src="<?php echo base_url();?>img/icon/policy.png" height="30px" > จัดการข้อมูลการตรวจ</a>
+        <a class="mainMenu" href="" onClick="return false"><img class="iconAction" src="<?php echo base_url();?>img/icon/policy.png" height="30px" > จัดการข้อมูลการตรวจ</a>
         <ul>
           <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/distanceDataList">- ระยะเวลาการตรวจ</a></li>
           		
@@ -108,7 +108,11 @@
           <li><a class="submenu"  href="<?php echo base_url();?>index.php/boss/memberAll">- ผู้ใช้งานทั้งหมด</a></li>
         </ul>
       </li>
-   
+     <li> <a class="mainMenu" href="" onClick="return false;" ><img class="iconAction" src="<?php echo base_url();?>img/polincy.png" height="30px" > ลงข้อมูลการตรวจ</a>
+     	 <ul>
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/police">- ตามเขตรับผิดชอบ</a></li>
+        </ul>
+      </li>
     </ul>
     <script src="<?php echo base_url();?>js/menu/tendina.min.js"></script>
     <script>

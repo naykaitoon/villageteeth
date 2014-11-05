@@ -28,8 +28,9 @@ class Login extends CI_Controller { /// คราสชื่อ Login
 				  'name' => $r->memberName, /// ตั้งข้อมูลใน array ชื่อ name = memberName ที่ดึงจาก Model
 				  'lastName' => $r->memberLastName, /// ตั้งข้อมูลใน array ชื่อ lastName = memberLastName ที่ดึงจาก Model
 				  'status' => $r->memberStatus, /// ตั้งข้อมูลใน array ชื่อ status = memberStatus ที่ดึงจาก Model
-				  'areaId' => $r->areaId, /// ตั้งข้อมูลใน array ชื่อ status = memberStatus ที่ดึงจาก Model
-				  'areaType' => $r->liableAreaType, /// ตั้งข้อมูลใน array ชื่อ status = memberStatus ที่ดึงจาก Model
+				  'cantonId' => $r->cantonId, /// ตั้งข้อมูลใน array ชื่อ status = memberStatus ที่ดึงจาก Model
+				  'districtId' => $r->districtId, /// ตั้งข้อมูลใน array ชื่อ status = memberStatus ที่ดึงจาก Model
+				  'provinceId' => $r->provinceId
 				);
 	
 				$this->session->set_userdata('loginData',$sesData); ////นำค่า $sesData ที่เป็น array มาเก็บใน session ชื่อ loginData

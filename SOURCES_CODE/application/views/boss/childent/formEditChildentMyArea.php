@@ -64,7 +64,12 @@ return false; return true;}
     $( "#childrenBirthday" ).datepicker({
       changeMonth: true,
       changeYear: true,
-	  dateFormat: 'dd-mm-yy'
+	  dateFormat: 'dd-mm-yy',
+	  maxDate : 'NOW()',
+	   showOn: "button",
+		buttonImage: "<?php echo base_url()?>img/calendar.png",
+		buttonImageOnly: true,
+		buttonText: "เลือกวันที่"
     });
   });
   </script>
