@@ -99,7 +99,7 @@ $(function(){
 <body>
 <div class="table"align="center" >
 <form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/boss/addActionChildent" onsubmit="return checkFormSubmit();" >
-  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0">
+  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
    
       <tr>
         <th colspan="2" align="center" valign="middle" nowrap="nowrap">เพิ่มข้อมูลเด็กในพื้นที่</th>
@@ -161,7 +161,7 @@ $(function(){
     </tbody>
     </table>
       
-     <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
+     <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" >
        <tr>    <td colspan="2" align="center" valign="middle"><input type="submit" name="submit" id="submit" value="บันทึก">
           &nbsp;&nbsp;&nbsp;
 <input type="button" name="addRow" id="addRow" value="เพิ่มเบอร์โทร">  <input type="button" name="removeRow" id="removeRow" value="ลบเบอร์โทร"></td>

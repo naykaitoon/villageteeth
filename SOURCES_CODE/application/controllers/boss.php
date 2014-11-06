@@ -142,11 +142,11 @@ class Boss extends CI_Controller {
 	function addChillentInArea(){
 		$data['loginData'] = $this->session->userdata('loginData');
 
-			$this->Address->setCantonId($data['loginData']['areaId']);
+			$this->Address->setCantonId($data['loginData']['cantonId']);
 	
-			$this->Address->setDistrictId($data['loginData']['areaId']);
+			$this->Address->setDistrictId($data['loginData']['districtId']);
 
-			$this->Address->setProvinceId($data['loginData']['areaId']);
+			$this->Address->setProvinceId($data['loginData']['provinceId']);
 	
 		$data['area']=$this->Address->getmemberAear();
 

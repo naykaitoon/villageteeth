@@ -122,7 +122,7 @@ return false; return true;}
     });
   });
   </script>
-  <script type="text/javascript">
+   <script type="text/javascript">
 $(function(){
 	$("#addRow").click(function(){
 		$("#myTbl tbody:last").append($(".firstTr").clone());
@@ -202,10 +202,11 @@ $(function(){
       </tr>
      
     </tbody> 
-      </table>
+  </table>
       
-     <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
-       <tr>    <td colspan="2" align="center" valign="middle"><input type="submit" name="submit" id="submit" value="บันทึก">
+     <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" >
+       <tr>    
+       <td colspan="2" align="center" valign="middle"><input type="submit" name="submit" id="submit" value="บันทึก">
           &nbsp;&nbsp;&nbsp;
 <input type="button" name="addRow" id="addRow" value="เพิ่มเบอร์โทร">  <input type="button" name="removeRow" id="removeRow" value="ลบเบอร์โทร"></td>
       </tr>
