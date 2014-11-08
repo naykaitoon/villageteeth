@@ -33,8 +33,8 @@ function confirmDel(){
     <tr>    
            <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['behaviorTypeId'];?></p></td>  
        <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['behaviorTypeName'];?></p></td>
- <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxMini" href="<?php echo base_url();?>index.php/boss/editBehaviorMagType/<?php echo $c['behaviorTypeId'];?>"> <img class="iconAction" src="<?php echo base_url();?>img/editIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;"></a></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxDeleteBehaviorTypeDelete" href="<?php echo base_url();?>index.php/boss/deleteBehaviorMagType/<?php echo $c['behaviorTypeId'];?>" > <img class="iconAction" src="<?php echo base_url();?>img/deleteIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;"></a></td>
+ <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="behaviorTypeEdit" href="<?php echo base_url();?>index.php/boss/editBehaviorMagType/<?php echo $c['behaviorTypeId'];?>"> <img class="iconAction" src="<?php echo base_url();?>img/editIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;"></a></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="behaviorTypeDelete" href="<?php echo base_url();?>index.php/boss/deleteBehaviorMagType/<?php echo $c['behaviorTypeId'];?>" > <img class="iconAction" src="<?php echo base_url();?>img/deleteIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;"></a></td>
     </tr>
     <?php  }?>
 </table>

@@ -100,7 +100,7 @@ return false; return true;}
       </tr>
       <tr>
         <td align="right" valign="middle">วันเกิด ป/ด/ว: </td>
-        <td align="left" valign="middle"><input type="text" name="childrenBirthday" value="<?php echo $childent[0]['childrenBirthday'];?>"  id="childrenBirthday" readonly></td>
+        <td align="left" valign="middle"><input type="text" name="childrenBirthday" value="<?php echo $childent[0]['childrenBirthday'];?>"  id="childrenBirthday" readonly required></td>
       </tr>
       <tr>
         <td align="right" valign="middle">ที่อยู่บ้านเลขที่/หมู่/ซอย : </td>

@@ -36,24 +36,24 @@ function idFormat($idCard){
 <br>
   <p>
     <label for="textfield">ค้นหา:</label>
-    <input type="text" name="searchBox" id="searchBox" class="searchBox">
+    <input type="text" name="searchBox" id="searchBox" class="searchBox" placeholder="ชื่อ หรือ รหัสประจำตัวประชาชน">
   <a href="<?php echo base_url();?>index.php/boss/addChillentInArea" class="fancyboxMagChildent" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px" class="iconAction"/>
   เพิ่มข้อมูลเด็กในพื้นที่</a>
 </p>
   <br>
     <div id="searchResult">
-<table width="100%" border="0" align="center" cellpadding="7" cellspacing="3">
+<table width="80%" border="0" align="center" cellpadding="7" cellspacing="3">
 
     <tr>   
-    <th width="61" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>รหัสเด็ก</p></th>
-    	<th width="158" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>ชื่อ - สกุล</p></th>
-      <th width="169" align="center" valign="baseline" nowrap="nowrap" style="text-align: center; font-size: 12px;"><p>รหัสประจำตัวประชาชน</p></th>
+    <th align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>รหัสเด็ก</p></th>
+    	<th align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>ชื่อ - สกุล</p></th>
+      <th align="center" valign="baseline" nowrap="nowrap" style="text-align: center; font-size: 12px;"><p>รหัสประจำตัวประชาชน</p></th>
  
-      <th width="105" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">อายุ</th>
-      <th width="80" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>วันเกิด</p></th>
-      <th width="91" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>อยู่ในเขต</p></th>
-      <th width="46" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">แก้ไข</th>
-      <th width="46" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">ลบ</th>
+      <th align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">อายุ</th>
+      <th align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>วันเกิด</p></th>
+      <th align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>อยู่ในเขต</p></th>
+      <th align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">แก้ไข</th>
+      <th align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">ลบ</th>
     </tr>
     <?php
 	$i = 1;

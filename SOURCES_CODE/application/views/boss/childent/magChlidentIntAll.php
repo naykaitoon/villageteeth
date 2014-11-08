@@ -36,7 +36,7 @@ function idFormat($idCard){
 <br>
   <p>
     <label for="textfield">ค้นหา:</label>
-    <input type="text" name="searchBox" id="searchBox" class="searchBox">
+    <input type="text" name="searchBox" id="searchBox" class="searchBox" placeholder="ชื่อ หรือ รหัสประจำตัวประชาชน">
   <a href="<?php echo base_url();?>index.php/boss/addChillent" class="fancyboxMagChildentAll" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px" class="iconAction"/>เพิ่มข้อมูลเด็ก</a>
  
 </p>

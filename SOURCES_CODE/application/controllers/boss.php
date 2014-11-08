@@ -5,7 +5,12 @@ class Boss extends CI_Controller {
             parent::__construct();
             $this->redirects();
 			$this->load->library('pagination');
-			
+			include_once('login.php');
+  			$login = new login(); 
+			$result = $login->checkingLogin();
+			if($result!=TRUE){
+				echo"<script langquage='javascript'>window.location='".base_url()."index.php/home';</script>";
+			}
     }
 	   
 	function index()
@@ -182,8 +187,11 @@ class Boss extends CI_Controller {
 			
 			$childrenBirthday = $this->formatDate($date);
 
+			$addressDetialNumber = $this->input->post('addressDetialNumber');
+			$addressDetialM = $this->input->post('addressDetialM');
+			$addressDetialSubStreet = $this->input->post('addressDetialSubStreet');
 			
-			$addressDetial = $this->input->post('addressDetial');
+			$addressDetial = $addressDetialNumber.' หมู่ '.$addressDetialM.' ซอย '.$addressDetialSubStreet;
 			
 			$addressId = $this->input->post('addressId');
 			$provinceId = $this->input->post('province');

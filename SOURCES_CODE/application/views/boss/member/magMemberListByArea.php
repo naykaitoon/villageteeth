@@ -16,8 +16,12 @@
        <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['memberName'];?>&nbsp;&nbsp;<?php echo $c['memberLastName'];?></p></td>
        <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><?php echo $c['memberUsername'];?></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['cantonName'];?>&nbsp;อ.<?php echo $c['districtName'];?>&nbsp;จ.<?php echo $c['provinceName'];?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">แก้ไข</td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">ลบ</td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/editChildentInArea/<?php echo $c['memberId'];?>" class="fancyboxMagChildent">
+      <img class="iconAction" src="<?php echo base_url();?>img/editIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
+      </a></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/deleteChildentData/<?php echo $c['memberId'];?>/<?php echo $c['addressId'];?>/" class="deletechildentInArea">
+         <img class="iconAction" src="<?php echo base_url();?>img/deleteIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
+      </a></td>
     </tr>
     <?php  }}else{?>
      <tr>    

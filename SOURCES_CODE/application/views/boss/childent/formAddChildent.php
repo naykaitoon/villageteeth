@@ -122,10 +122,15 @@ return false; return true;}
     });
   });
   </script>
-   <script type="text/javascript">
+ <script src="j.js"></script>
+  <script type="text/javascript">
 $(function(){
 	$("#addRow").click(function(){
-		$("#myTbl tbody:last").append($(".firstTr").clone());
+		if($(".firstTr").size()<=3){
+		$("#myTbl tbody:last").append($("#myTbl tbody tr:last").clone());
+		}else{
+			alert("ขออภัยเพิ่มเบอร์โทรได้สูงสุด 4 เบอร์");
+		}
 	});
 	$("#removeRow").click(function(){
 		if($(".firstTr").size()>1){
@@ -146,8 +151,8 @@ $(function(){
         <th colspan="2" align="center" valign="middle" nowrap="nowrap">เพิ่มข้อมูลเด็ก</th>
       </tr>
       <tr>
-        <td width="48%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
-        <td width="52%" align="left" valign="middle"><input type="text" name="childrenName" id="childrenName" required> - <input type="text" name="childrenLastName" id="childrenLastName" required></td>
+        <td width="33%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
+        <td width="67%" align="left" valign="middle"><input type="text" name="childrenName" id="childrenName" required> - <input type="text" name="childrenLastName" id="childrenLastName" required></td>
       </tr>
       <tr>
         <td align="right" valign="middle">เลขบัตรประจำตัวประชาชน : </td>
@@ -178,14 +183,14 @@ $(function(){
       <tr>
         <td align="right" valign="middle">อำเภอ</td>
         <td align="left" valign="middle">
-  <select name="district"  id="district" disabled required>
+  <select name="district"  id="district" required>
     <option value="0">กรุณาเลือกจังหวัด</option>
 
   </select></td>
       </tr>
       <tr>
         <td align="right" valign="middle">ตำบล</td>
-        <td align="left" valign="middle"> <select name="canton"  id="canton" disabled required>
+        <td align="left" valign="middle"> <select name="canton"  id="canton" required>
  
     <option value="0">กรุณาเลือก</option>
 
@@ -196,17 +201,17 @@ $(function(){
         <td align="left" valign="middle"><input name="zipcode" type="text"  id="zipcode" size="5" maxlength="5" disabled  readonly required></td>
       </tr>
         <tbody>
-      <tr class="firstTr">
-        <td align="right" valign="middle">เบอร์โทร - หมายเหตุเบอร์โทร</td>
-        <td align="left" valign="middle"><input type="text" name="tel[]" id="tel[]" required> - <input type="text" name="telNote[]" id="telNote" required></td>
+     <tr class="firstTr">
+        <td align="right" valign="middle">เบอร์โทร : </td>
+        <td align="left" valign="middle"><input type="text" name="tel[]" id="tel[]" required>
+           *หมายเหตุเบอร์โทร           <input type="text" name="telNote[]" id="telNote" required></td>
       </tr>
      
     </tbody> 
-  </table>
+      </table>
       
-     <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" >
-       <tr>    
-       <td colspan="2" align="center" valign="middle"><input type="submit" name="submit" id="submit" value="บันทึก">
+     <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
+       <tr>    <td colspan="2" align="center" valign="middle"><input type="submit" name="submit" id="submit" value="บันทึก">
           &nbsp;&nbsp;&nbsp;
 <input type="button" name="addRow" id="addRow" value="เพิ่มเบอร์โทร">  <input type="button" name="removeRow" id="removeRow" value="ลบเบอร์โทร"></td>
       </tr>

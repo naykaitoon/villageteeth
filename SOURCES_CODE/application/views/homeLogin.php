@@ -12,16 +12,41 @@
     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
 
      <script src="<?php echo base_url();?>js/jquery-1.11.1.min.js"></script>
+       <script src="<?php echo base_url()?>js/pace.min.js"></script>
+  <link href="<?php echo base_url()?>css/pace-theme-barber-shop.css" rel="stylesheet" />
      <script>
 	 $(document).ready(function(){
-
-                $('.load').load( '<?php echo base_url();?>index.php/home/loginForm' );         
+		  
+		 var href = '<?php echo base_url();?>index.php/home/loginForm';
+				load(20,href);
+										load(100,href);
+										load(500,href);
+										load(2000,href);
+										load(3000,href);
+									
+										setTimeout(function(){
+										  Pace.ignore(function(){
+											load(3100,href);
+										  });
+										}, 4000);
+									
+										Pace.on('hide', function(){
+										  console.log('done');
+										});
+				   
+                
+				 	function load(time,href){
+										  var x = new XMLHttpRequest()
+										  x.open('GET', href + time, true);
+										  x.send(); 
+										  $('.load').load( '<?php echo base_url();?>index.php/home/loginForm' ); 
+										};   
  });
  
 	 </script>
 </head>
 
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">	
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" id="homeLoginBody">	
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -44,7 +69,8 @@
 </div>
 <br>
 <br>
-<div id="footerLoagin" title="ที่อยู่ที่ติดต่อ" align="center"><p id="footerText">โครงการลูกรักฟันดีเริ่มที่ซี้แรก ร่วมกับ โรงพยาบาลสมเด็จพระยุพราชเด่นชัย<br>
+<div id="footerLoaginLoginHome" title="ที่อยู่ที่ติดต่อ" align="center">
+  <p id="footerText">โครงการลูกรักฟันดีเริ่มที่ซี้แรก ร่วมกับ โรงพยาบาลสมเด็จพระยุพราชเด่นชัย&nbsp;:&nbsp;&nbsp;http://www.villageteeth.com<br>
 545 หมู่ 9 ตำบลเด่นชัย อำเภอเด่นชัย จังหวัดแพร่54110 โทรศัพท์ 054-613134 Fax. 054-613195 WebSite : http://www.denchaihosp.com/<br>Copyright © 2014 All rights Reserved. </p></div>
 </body>
 </html>
