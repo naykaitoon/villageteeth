@@ -127,13 +127,13 @@ class Boss extends CI_Controller {
 	$str = '';
 	$years = floor($seconds / 31536000);
 	if ($years > 0){	
-		$str .= $years.' ปี ';
+		$str .= $years.' ปี&nbsp;';
 	}	
 	$seconds -= $years * 31536000;
 	$months = floor($seconds / 2628000);
  
-	if ($years > 0 OR $months > 0){
-		if ($months > 0){	
+	if ($years > 0 || $months > 0){
+		if ($months >= 1){	
 			$str .= $months.' เดือน, ';
 		}	
 		$seconds -= $months * 2628000;
@@ -231,8 +231,7 @@ class Boss extends CI_Controller {
 				$this->Address->updateTel();
 				
 			}
-			
-				echo "<center><br><br><br>การแก้ไขข้อมูลสำเร็จ  </center>";
+				echo "<script>parent.$.fancybox.close();</script>";
 			
 	}
 ##########################END function  addActionChillent เพิ่มข้อมูลเด็ก ############################	
@@ -309,7 +308,7 @@ function deleteChildentAction($childrenId,$addressId){
 			
 			
 			
-				echo "<center><br><br><br>การเพิ่มข้อมูลสำเร็จ  </center>";
+				echo "<script>parent.$.fancybox.close();</script>";
 			
 	}
 ##########################END function  addActionChillent เพิ่มข้อมูลเด็ก ############################	
@@ -475,7 +474,7 @@ function deleteChildentAction($childrenId,$addressId){
 		$this->Behavior->setBehaviorTypeId($behaviorTypeId);
 		$this->Behavior->setBehaviorTypeName($behaviorTypeName);
 		$this->Behavior->updateBehaviorType();
-		echo "<center><br><br><br>การแก้ไขข้อมูลสำเร็จ</center>";
+		echo "<script>parent.$.fancybox.close();</script>";
 	}
 	function editBehaviorMagType($behaviorTypeId){
 
@@ -535,6 +534,14 @@ function deleteChildentAction($childrenId,$addressId){
 	}
 ####################end	function memberAll กแสดง ผุ็ใช้งานทั้งหมด ##################
 
+	function addMember(){
+		$data['province']=$this->Address->getProvinceAll();
+		$this->load->view('boss/member/formAddMember',$data);
+	}
+	function addActionMember(){
+		var_dump($_POST);
+	}
+
 	function childentAddress($childentId){
 		$this->Childents->setChildrenId($childentId);
 		$data['childent'] = $this->Childents->getChildentInAearPKs();
@@ -591,7 +598,7 @@ function deleteChildentAction($childrenId,$addressId){
 		
 		$this->Behavior->updateBehavior();
 		
-		echo "<center><br><br><br>การแก้ไขข้อมูลสำเร็จ</center>";
+		echo "<script>parent.$.fancybox.close();</script>";
 	}
 	
 	function deleteBehavior($behaviorId){

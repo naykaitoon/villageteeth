@@ -66,7 +66,10 @@ function idFormat($idCard){
        <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenName'];?>&nbsp;&nbsp;<?php echo $c['childrenLastName'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p ><?php idFormat($c['childrenIDCard']);?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenAge'];?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenBirthday'];?></p></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php
+	  $date = new DateTime($c['childrenBirthday']);
+echo $date->format('d-m-Y');
+	  ?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/childentAddress/<?php echo $c['childrenId'];?>" class="fancybox">
          <img class="iconAction" src="<?php echo base_url();?>img/viewIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
       </a></td>
@@ -76,6 +79,9 @@ function idFormat($idCard){
   	<td colspan="8" align="center"><div class="ajax_paging"><?php echo $this->pagination->create_links(); ?></div></td>
   </tr>
 </table>
+<br>
+<br>
+<br>
 </div>
 </div>
 

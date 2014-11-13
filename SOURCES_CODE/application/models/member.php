@@ -244,7 +244,7 @@ function forgetPasswordMemberByCode()
 ######################## function getAllDataMember #############################
 	function getAllDataMember($page,$url){
 	 $pageValue = 15;///จำนวนข้อมูลต่อ1หน้า
-	$this->db->join('address','address.ownerId = members.memberId');
+	$this->db->join('address','address.addressId = members.addressId');
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
@@ -253,7 +253,7 @@ function forgetPasswordMemberByCode()
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
 	$this->db->select('*');
 	$this->db->from('members');
-	$this->db->join('address','address.ownerId = members.memberId');
+	$this->db->join('address','address.addressId = members.addressId');
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');

@@ -14,6 +14,17 @@ $(document).ready(function(){
 			$('.mainMenu').click(function(event) {
 				 event.preventDefault();
 				 });
+$("#dropdown").on("click", function(e){
+  e.preventDefault();
+  
+  if($(this).hasClass("open")) {
+    $(this).removeClass("open");
+    $(this).children("ul").slideUp("fast");
+  } else {
+    $(this).addClass("open");
+    $(this).children("ul").slideDown("fast");
+  }
+});
          
  });
  
@@ -131,7 +142,7 @@ $('.fancyboxMagChildentAll').fancybox({
 	
 });
   $('.fancyboxDelete').fancybox({
-	  			height :	'180',
+	  			height :	'350',
 				width :	'350',
 				fitToView	: false,
 				scrolling : 'auto',
@@ -188,7 +199,7 @@ $('.fancyboxMagChildentAll').fancybox({
 	
 });
   $('.behaviorTypeDelete').fancybox({
-	  			height :	'200',
+	  			height :	'350',
 				width :	'550',
 				fitToView	: false,
 				scrolling : 'auto',
@@ -207,8 +218,8 @@ $('.fancyboxMagChildentAll').fancybox({
 	
 });
   $('.fancyboxDeleteMagAll').fancybox({
-	  			height :	'250',
-				width :	'250',
+	  			height :	'350',
+				width :	'300',
 				fitToView	: false,
 				scrolling : 'auto',
 				
@@ -227,7 +238,7 @@ $('.fancyboxMagChildentAll').fancybox({
 });
 
   $('.deletechildentAll').fancybox({
-	  			height :	'250',
+	  			height :	'350',
 				width :	'300',
 				scrolling : 'no',
 				type				: 'iframe',
@@ -245,7 +256,7 @@ $('.fancyboxMagChildentAll').fancybox({
 });
 
   $('.deletechildentInArea').fancybox({
-	  			height :	'250',
+	  			height :	'300',
 				width :	'300',
 				scrolling : 'no',
 				type				: 'iframe',

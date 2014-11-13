@@ -171,6 +171,10 @@ $(function(){
           ซอย
           <input name="addressDetialSubStreet" type="text" required id="addressDetialSubStreet" size="20" maxlength="50"></td>
       </tr>
+                   <tr>
+        <td align="right" valign="middle">ถนน</td>
+        <td align="left" valign="middle"><input type="text" name="street" id="street"  required></td>
+      </tr>
       <tr>
         <td align="right" valign="middle">จังหวัด</td>
         <td align="left" valign="middle"><select name="province" id="province" required>
