@@ -1,7 +1,9 @@
 <script type="text/javascript">
 		$(document).ready(function(){
+			$(".searchBox").focus();
 			 $(".searchBox").keyup(function(event){
 				   event.preventDefault();
+				    if($("#searchBox").val()!=""){
         		 $.post( 
              "<?php echo base_url();?>index.php/boss/childentAllSearch",
              { key: $("#searchBox").val() },
@@ -10,6 +12,9 @@
              }
 
           ); 
+		   }else{
+			 $('.content').load("<?php echo base_url();?>index.php/boss/childentAllProfile");
+		  }
 		
       });
 	 

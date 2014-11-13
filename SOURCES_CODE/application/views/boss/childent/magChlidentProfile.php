@@ -1,15 +1,19 @@
 <script type="text/javascript">
 		$(document).ready(function(){
+			$(".searchBox").focus();
 			 $(".searchBox").keyup(function(event){
 				   event.preventDefault();
+				   if($("#searchBox").val()!=""){
         		 $.post( 
              "<?php echo base_url();?>index.php/boss/childentAllProfileSearch",
              { key: $("#searchBox").val() },
              function(data) {
                 $('#searchResult').html(data);
              }
-
-          ); 
+          );  
+		  }else{
+			 $('.content').load("<?php echo base_url();?>index.php/boss/childentAllProfile");
+		  }
 		
       });
 	 
