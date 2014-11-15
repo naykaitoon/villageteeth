@@ -73,6 +73,73 @@
 				})
 		.trigger( "change" );
 	
+	
+	
+	$( "#province2" ).focus(function() {
+				$( "#province2" ).trigger("click");
+				});
+				
+			$( "#province2" ).keyup(function() {
+				$( "#province2" ).trigger("click");
+			});
+			
+			 $( "#district2" ).keyup(function() {
+				$( "#district2" ).trigger("change");
+			});
+			 $( "#canton2" ).keyup(function() {
+				$( "#canton2" ).trigger("change");
+			});
+		 $( "#province2" ).click(function() {
+				var str = "";
+					$( "select#province2 option:selected" ).each(function() {
+						str += $( this ).val() + " ";
+					});
+						$.post("<?php echo base_url()?>index.php/boss/getDistrict",
+						  {
+							provinceId:str
+						  },
+						  function(data){
+							$("#district2").removeAttr('disabled');
+
+							$('#district2').html(data);
+						  });
+				})
+		.trigger( "change" );
+		  
+		 $( "#district2" )
+			.change(function() {
+				var str = "";
+					$( "select#district2 option:selected" ).each(function() {
+						str += $( this ).val() + " ";
+					});
+						$.post("<?php echo base_url()?>index.php/boss/getCanton",
+						  {
+							districtId:str
+						  },
+						  function(data){
+							 
+							$('#canton2').html(data);
+						  });
+				})
+		.trigger( "change" );
+		
+		 $( "#canton2" )
+			.change(function() {
+				var str = "";
+					$( "select#canton2 option:selected" ).each(function() {
+						str += $( this ).val() + " ";
+					});
+						$.post("<?php echo base_url()?>index.php/boss/getZipCode",
+						  {
+							cantonId:str
+						  },
+						  function(data){
+							  $('#zipcode2').removeAttr("disabled");
+							$('#zipcode2').val(data);
+						  });
+				})
+		.trigger( "change" );
+	
 		});
 	</script>
   <script language="javascript">
@@ -148,38 +215,38 @@ $(function(){
 <form id="form1" action="<?php echo base_url();?>index.php/boss/addActionMember" name="form1" method="post" onsubmit="return checkFormSubmit();" >
   <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
       <tr>
-        <th colspan="2" align="center" valign="middle" nowrap="nowrap">เพิ่มผู้ใช้งาน</th>
+        <th colspan="5" align="center" valign="middle" nowrap="nowrap">เพิ่มผู้ใช้งาน</th>
       </tr>
       <tr>
-        <td width="33%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
-        <td width="67%" align="left" valign="middle"><input type="text" name="memberName" id="memberName" required> - <input type="text" name="memberLastName" id="memberLastName" required></td>
+        <td width="30%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
+        <td colspan="4" align="left" valign="middle"><input type="text" name="memberName" id="memberName" required> - <input type="text" name="memberLastName" id="memberLastName" required></td>
       </tr>
      <tr>
         <td align="right" valign="middle">ชื่อเข้าใช้งาน : </td>
-        <td align="left" valign="middle"><input type="text" name="memberUsername" id="memberUsername"  required>
+        <td colspan="4" align="left" valign="middle"><input type="text" name="memberUsername" id="memberUsername"  required>
           <a id="memberUsernameResult"></a></td>
      </tr>
           <tr>
         <td align="right" valign="middle">รหัสผ่าน : </td>
-        <td align="left" valign="middle"><input type="text" name="memberPassword" id="memberPassword"  required>
+        <td colspan="4" align="left" valign="middle"><input type="text" name="memberPassword" id="memberPassword"  required>
 ยืนยันรหัสผ่าน        &nbsp;
         <input type="text" name="memberPasswordC" id="memberPasswordC"  required>        <a id="memberPasswordResult"></a></td>
      </tr>
       <tr>
         <td align="right" valign="middle">เลขบัตรประจำตัวประชาชน : </td>
-        <td align="left" valign="middle"><input type="text" name="memberIdIDCard" id="memberIdIDCard" onFocus="checkForm();" onKeyUp="checkForm();" required><a id="memberIdIDCardResult"></a></td>
+        <td colspan="4" align="left" valign="middle"><input type="text" name="memberIdIDCard" id="memberIdIDCard" onFocus="checkForm();" onKeyUp="checkForm();" required><a id="memberIdIDCardResult"></a></td>
       </tr>
        <tr>
         <td align="right" valign="middle">อีเมล์ : </td>
-        <td align="left" valign="middle"><input type="text" name="memberEmail" id="memberEmail" required><a id="memberEmailResult"></a></td>
+        <td colspan="4" align="left" valign="middle"><input type="text" name="memberEmail" id="memberEmail" required><a id="memberEmailResult"></a></td>
       </tr>
       <tr>
         <td align="right" valign="middle">วันเกิด ป/ด/ว: </td>
-        <td align="left" valign="middle"><input type="text" name="memberBirthday" id="memberBirthday" readonly required></td>
+        <td colspan="4" align="left" valign="middle"><input type="text" name="memberBirthday" id="memberBirthday" readonly required></td>
       </tr>
       <tr>
         <td align="right" valign="middle">ที่อยู่บ้านเลขที่/หมู่/ซอย : </td>
-        <td align="left" valign="middle">บ้านเลขที่ 
+        <td colspan="4" align="left" valign="middle">บ้านเลขที่ 
           <input name="addressDetialNumber" type="text" required id="addressDetialNumber" size="10"> 
           หมู่ 
           <input name="addressDetialM" type="text" required id="addressDetialM" size="4" maxlength="2">
@@ -188,40 +255,56 @@ $(function(){
       </tr>
       <tr>
         <td align="right" valign="middle">จังหวัด</td>
-        <td align="left" valign="middle"><select name="province" id="province" required>
+        <td width="24%" align="left" valign="middle"><select name="province" id="province" required>
   <option value="0">กรุณาเลือก</option>
   <?php foreach($province as $p){?>
   <option value="<?php echo $p['provinceId']?>"><?php echo $p['provinceName']?></option>
   <?php }?>
   </select></td>
+        <td width="11%" rowspan="3" align="right" valign="middle">เขตพื้นที่ที่รับผิดชอบ  </td>
+        <td width="9%" align="right" valign="middle">จังหวัด</td>
+        <td width="26%" align="left" valign="middle"><select name="liableareaprovince" id="province2" required>
+          <option value="0">กรุณาเลือก</option>
+          <?php foreach($province as $p){?>
+          <option value="<?php echo $p['provinceId']?>"><?php echo $p['provinceName']?></option>
+          <?php }?>
+        </select></td>
       </tr>
       <tr>
         <td align="right" valign="middle">อำเภอ</td>
         <td align="left" valign="middle">
-  <select name="district"  id="district" required>
-    <option value="0">กรุณาเลือกจังหวัด</option>
-
-  </select></td>
+          <select name="district"  id="district" required>
+            <option value="0">กรุณาเลือกจังหวัด</option>
+            
+        </select></td>
+        <td align="right" valign="middle">อำเภอ </td>
+        <td align="left" valign="middle"><select name="liableareadistrict"  id="district2" required>
+          <option value="0">กรุณาเลือกจังหวัด</option>
+        </select></td>
       </tr>
       <tr>
         <td align="right" valign="middle">ตำบล</td>
         <td align="left" valign="middle"> <select name="canton"  id="canton" required>
- 
-    <option value="0">กรุณาเลือก</option>
-
-  </select></td>
+          
+          <option value="0">กรุณาเลือก</option>
+          
+        </select></td>
+        <td align="right" valign="middle">ตำบล</td>
+        <td align="left" valign="middle"><select name="liableareacanton"  id="canton2" required>
+          <option value="0">กรุณาเลือก</option>
+        </select></td>
       </tr>
       <tr>
         <td align="right" valign="middle">รหัสไปรษณีย์:</td>
-        <td align="left" valign="middle"><input name="zipcode" type="text"  id="zipcode" size="5" maxlength="5" disabled  readonly required></td>
+        <td colspan="4" align="left" valign="middle"><input name="zipcode" type="text"  id="zipcode" size="5" maxlength="5" disabled  readonly required></td>
       </tr>
        <tr>
         <td align="right" valign="middle">ตำแหน่ง : </td>
-        <td align="left" valign="middle"><input type="text" name="tel[]2" id="tel[]2" required></td>
+        <td colspan="4" align="left" valign="middle"><input type="text" name="tel[]2" id="tel[]2" required></td>
       </tr>
       <tr>
         <td align="right" valign="middle">สถานะบัญชี : </td>
-        <td align="left" valign="middle"> <select name="memberStatus"  id="memberStatus" required>
+        <td colspan="4" align="left" valign="middle"> <select name="memberStatus"  id="memberStatus" required>
  	<option value="officials">เจ้าหน้าที่</option>
     <option value="boss">ผู้ดูแลระบบ</option>
   </select></td>
@@ -229,7 +312,7 @@ $(function(){
         <tbody>
      <tr class="firstTr">
         <td align="right" valign="middle">เบอร์โทร : </td>
-        <td align="left" valign="middle"><input type="text" name="tel[]" id="tel[]" required>
+        <td colspan="4" align="left" valign="middle"><input type="text" name="tel[]" id="tel[]" required>
            *หมายเหตุเบอร์โทร           <input type="text" name="telNote[]" id="telNote" required></td>
       </tr>   
     </tbody> 

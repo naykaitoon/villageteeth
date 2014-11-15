@@ -529,10 +529,16 @@ function deleteChildentAction($childrenId,$addressId){
 	}
 #################### strat function memberAll แสดง ผุ็ใช้งานทั้งหมด ##################
 	function memberAll($page=0){
-		$data['member'] = $this->Member->getAllDataMember($page,'chillentAll');
+		$data['member'] = $this->Member->getAllDataMember($page,'memberAll');
 		$this->load->view('boss/member/magMemberList',$data);
 	}
 ####################end	function memberAll กแสดง ผุ็ใช้งานทั้งหมด ##################
+	function memberAllSearch($page=0){
+		$text = $this->input->post('key');
+		$this->Member->setTextSearch($text);
+		$data['member'] = $this->Member->getSearchDataMember($page,'memberAllSearch');
+		$this->load->view('boss/member/magMemberListSearchResult',$data);
+	}
 
 	function addMember(){
 		$data['province']=$this->Address->getProvinceAll();

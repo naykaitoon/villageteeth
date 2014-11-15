@@ -93,7 +93,6 @@
 	
 		});
 	</script>
-
 <div id="headTitleContentbg">
  <h2 id="headTitleContent">รายชื่อผู้ใช้งานตามเขตรับผิดชอบ</h2>
  </div>
@@ -109,17 +108,18 @@
   </select>
     <label for="textfield">อำเภอ:</label>
      <select class="address" name="district"  id="district"  >
-    		<option value="0" selected>กรุณาเลือกจังหวัด</option>
+    		<option value="0" >กรุณาเลือกจังหวัด</option>
   	 </select>
     <label for="textfield">ตำบล:</label>
     <select class="address" name="canton"  id="canton" >
  
-    <option value="0" selected>กรุณาเลือกอำเภอ</option>
+    <option value="0" >กรุณาเลือกอำเภอ</option>
 
   </select>
   </p>
   <div id="listDataMember">
   </div>
+  
   <p>&nbsp;</p>
 </div>
 

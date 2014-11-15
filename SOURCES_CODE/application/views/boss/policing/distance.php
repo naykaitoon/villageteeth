@@ -22,17 +22,17 @@ function confirmDel(){
 <table width="50%" border="0" align="center" cellpadding="7" cellspacing="3">
 
     <tr>   
-    <th width="122" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>รหัสช่วงอายุ</p></th>
-    	<th width="198" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>ระยะเวลา/เดือน</p></th>
-      <th width="71" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">แก้ไข</th>
-      <th width="72" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">ลบ</th>
+    <th width="72" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>ลำดับที่</p></th>
+    	<th width="296" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>ระยะเวลา/เดือน</p></th>
+      <th width="83" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">แก้ไข</th>
+      <th width="86" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">ลบ</th>
     </tr>
     <?php
 	$i = 1;
 	 foreach($distance as $c){?>
     <tr>    
-           <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['distanceId'];?></p></td>  
-       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['distanceMonth'];?></p></td>
+           <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $i;?></p></td>  
+       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['distanceMonth'];?>&nbsp;เดือน</p></td>
 
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxMini" href="<?php echo base_url();?>index.php/boss/editDistance/<?php echo $c['distanceId'];?>">      <img class="iconAction" src="<?php echo base_url();?>img/editIcon.png" width="25px" height="25px" style="margin-bottom:-8px;"></a></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxdistanceDataList" href="<?php echo base_url();?>index.php/boss/deleteDistanceData/<?php echo $c['distanceId'];?>" > <img class="iconAction" src="<?php echo base_url();?>img/deleteIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;"></a></td>

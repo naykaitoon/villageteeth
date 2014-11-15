@@ -1,3 +1,26 @@
+<script>
+$(function() {
+    applyPagination();
+    function applyPagination() {
+      $(".ajax_paging a").click(function() {
+        var url = $(this).attr("href");
+        $.ajax({
+          type: "POST",
+          data: "$page=1",
+          url: url,
+          beforeSend: function() {
+            $("#listDataMember").load(url);
+          },
+          success: function(msg) {
+            $("#listDataMember").load(url);
+            applyPagination();
+          }
+        });
+        return false;
+      });
+    }
+  });
+</script>
 <table width="100%" border="0" align="center" cellpadding="7" cellspacing="3">
 
     <tr>   
@@ -28,7 +51,7 @@
            <td colspan="6" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>ไม่พบข้อมูล</p></td>  
     </tr>
     <?php }?>
- 	<tr>
-  	<td colspan="9" align="center"><div class="ajax_paging"><?php if($this->pagination->create_links()!=''){echo $this->pagination->create_links();}else{ echo "1"; }?></div></td>
+ <tr>
+  	<td colspan="9" align="center"><div class="ajax_paging"><?php echo $this->pagination->create_links(); ?></div></td>
   </tr>
 </table>

@@ -191,25 +191,23 @@ function getMemberByAddress($page,$url){
 	}else if($this->getProvinceId()){
 		$this->db->where('address.provinceId',$this->getProvinceId());
 	}
-		$data = $this->db->get('members')->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
+		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
-	$this->db->select('*');
+	
 	$this->db->from('members');
-	$this->db->join('address','address.addressId = members.addressId');
+		$this->db->join('address','address.addressId = members.addressId');
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
+	$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
 		
-		if($this->getCantonId()){
+	if($this->getCantonId()){
 		$this->db->where('address.cantonId',$this->getCantonId());
 	}else if($this->getDistrictId()){
 		$this->db->where('address.districtId',$this->getDistrictId());
 	}else if($this->getProvinceId()){
 		$this->db->where('address.provinceId',$this->getProvinceId());
 	}
-		
-		
-		$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
 		$config['total_rows'] = $this->db->count_all_results();// ส่วนนี้ จะนับว่า ฟิว ทั้งหมดที่อยู่ใน tb_user มีเท่าไหร่
 		$config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
 		 

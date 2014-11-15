@@ -50,7 +50,7 @@ function idFormat($idCard){
 <table width="100%" border="0" align="center" cellpadding="7" cellspacing="3">
 
     <tr>   
-    <th width="61" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>ลำดับที่</p></th>
+    <th width="61" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>รหัสเด็ก</p></th>
     	<th width="158" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>ชื่อ - สกุล</p></th>
       <th width="169" align="center" valign="baseline" nowrap="nowrap" style="text-align: center; font-size: 12px;"><p>รหัสประจำตัวประชาชน</p></th>
  

@@ -1,5 +1,16 @@
     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
         <link rel="stylesheet" href="<?php echo base_url();?>css/boxFormMain.css">
+        <style type="text/css">
+        body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.table{
+	margin-top:20px;
+}
+        </style>
         <script language="javascript">
 function chkSubmit()
 	{
@@ -18,7 +29,7 @@ function checkValue(){
 		document.getElementById("distanceMonth").value = 0;
 	}
 }
-</script>
+        </script>
 <div class="table"align="center" >
 <form action="<?php echo base_url();?>index.php/boss/addDistanceAction" method="post" onsubmit="return chkSubmit(); ">
   <table width="100%" border="0" align="center" cellpadding="7" cellspacing="3">    

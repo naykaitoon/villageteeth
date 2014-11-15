@@ -22,7 +22,7 @@ function checkValue(){
 
 <div class="table"align="center" >
 <form action="<?php echo base_url();?>index.php/boss/editDistanceAction" method="post" onsubmit="return chkSubmit(); ">
-  <table width="40%" border="0" align="center" cellpadding="7" cellspacing="3">    
+  <table width="100%" border="0" align="center" cellpadding="7" cellspacing="3">    
  <tr>   
     <th colspan="2" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>แก้ไขระยะช่วงเวลา</p></th>
    	</tr><?php

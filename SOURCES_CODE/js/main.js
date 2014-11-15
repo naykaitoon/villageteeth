@@ -29,11 +29,11 @@ $("#dropdown").on("click", function(e){
  });
  
   $('.fancybox').fancybox({
-				height :	'500',
+				height :	550,
 				width :	'80%',
 				fitToView	: false,
 				scrolling : 'auto',
-				
+				autoSize : false,
 				type				: 'iframe',
 				overlay : {
             				css : {
@@ -42,12 +42,31 @@ $("#dropdown").on("click", function(e){
 				}
 	
 });
-$('.fancyboxMagChildent').fancybox({
-			height :	'650',
+  $('.AddMember').fancybox({
+				height :	580,
 				width :	'80%',
 				fitToView	: false,
 				scrolling : 'auto',
-				
+				autoSize : false,
+				type				: 'iframe',
+				overlay : {
+            				css : {
+               				 'background' : 'rgba(58, 42, 45, 0.95)',
+           				 }
+				},
+					afterClose : function() {
+					
+       		$('.content').load('/index.php/boss/memberAll');
+
+    },
+	
+});
+$('.fancyboxMagChildent').fancybox({
+				height :	580,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
 				type				: 'iframe',
 				afterClose : function() {
 					
@@ -62,13 +81,33 @@ $('.fancyboxMagChildent').fancybox({
 	
 	
 });
-
-$('.addBehavior').fancybox({
-			height :	'500',
+$('.fancyboxMagChildentPolincy').fancybox({
+				height :	580,
 				width :	'80%',
 				fitToView	: false,
 				scrolling : 'auto',
-				
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load('/index.php/boss/polince');
+
+    },
+				overlay : {
+            				css : {
+               				 'background' : 'rgba(58, 42, 45, 0.95)'
+           				 }
+				}
+	
+	
+});
+
+$('.addBehavior').fancybox({
+				height :	320,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
 				type				: 'iframe',
 				afterClose : function() {
 					
@@ -84,11 +123,11 @@ $('.addBehavior').fancybox({
 	
 });
 $('.editBehavior').fancybox({
-			height :	'500',
+			height :	320,
 				width :	'80%',
 				fitToView	: false,
 				scrolling : 'auto',
-				
+				autoSize : false,
 				type				: 'iframe',
 				afterClose : function() {
 					
@@ -104,11 +143,11 @@ $('.editBehavior').fancybox({
 	
 });
 $('.fancyboxMagChildentAll').fancybox({
-				height :	'500',
+				height :	550,
 				width :	'80%',
 				fitToView	: false,
 				scrolling : 'auto',
-				
+				autoSize : false,
 				type				: 'iframe',
 				afterClose : function() {
 					
@@ -123,11 +162,11 @@ $('.fancyboxMagChildentAll').fancybox({
 	
 });
   $('.fancyboxMini').fancybox({
-	  			height :	'300',
-				width :	'400',
+	  			height :	230,
+				width :	400,
 				fitToView	: false,
 				scrolling : 'auto',
-				
+				autoSize : false,
 				type				: 'iframe',
 				afterClose : function() {
 					
@@ -141,12 +180,31 @@ $('.fancyboxMagChildentAll').fancybox({
 				}
 	
 });
-  $('.fancyboxDelete').fancybox({
-	  			height :	'350',
-				width :	'350',
+  $('.fancyboxMiniBehaviorType').fancybox({
+	  			height :	200,
+				width :	400,
 				fitToView	: false,
 				scrolling : 'auto',
-				
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load($('#linkPopupclick').val());
+
+    },
+				overlay : {
+            				css : {
+               				 'background' : 'rgba(58, 42, 45, 0.95)'
+           				 },showEarly : false
+				}
+	
+});
+  $('.fancyboxDeleteBehavior').fancybox({
+	  			height :	150,
+				width :	350,
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
 				type				: 'iframe',
 				afterClose : function() {
 					
@@ -161,11 +219,11 @@ $('.fancyboxMagChildentAll').fancybox({
 	
 });
   $('.fancyboxdistanceDataList').fancybox({
-	  			height :	'250',
-				width :	'250',
+	  			height :	150,
+				width :	250,
 				fitToView	: false,
 				scrolling : 'auto',
-				
+				autoSize : false,
 				type				: 'iframe',
 				afterClose : function() {
 					
@@ -180,11 +238,11 @@ $('.fancyboxMagChildentAll').fancybox({
 	
 });
   $('.behaviorTypeEdit').fancybox({
-	  			height :	'180',
-				width :	'350',
+	  			height :	180,
+				width :	350,
 				fitToView	: false,
 				scrolling : 'auto',
-				
+				autoSize: false,
 				type				: 'iframe',
 				afterClose : function() {
 					
@@ -199,11 +257,11 @@ $('.fancyboxMagChildentAll').fancybox({
 	
 });
   $('.behaviorTypeDelete').fancybox({
-	  			height :	'350',
-				width :	'550',
+	  			height :	200,
+				width :	550,
 				fitToView	: false,
 				scrolling : 'auto',
-				
+				autoSize : false,
 				type				: 'iframe',
 				afterClose : function() {
 					
@@ -238,9 +296,10 @@ $('.fancyboxMagChildentAll').fancybox({
 });
 
   $('.deletechildentAll').fancybox({
-	  			height :	'350',
-				width :	'300',
+	  			height :	150,
+				width :	300,
 				scrolling : 'no',
+				autoSize : false,
 				type				: 'iframe',
 				afterClose : function() {
 					
@@ -256,9 +315,10 @@ $('.fancyboxMagChildentAll').fancybox({
 });
 
   $('.deletechildentInArea').fancybox({
-	  			height :	'300',
-				width :	'300',
+	  			height :	150,
+				width :	300,
 				scrolling : 'no',
+				autoSize : false,
 				type				: 'iframe',
 				afterClose : function() {
 					

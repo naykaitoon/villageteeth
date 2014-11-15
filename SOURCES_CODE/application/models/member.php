@@ -17,6 +17,7 @@ class Member extends CI_Model {
     var $memberForgetCode ; ######  code ใช้ในการลืมรหัสผ่าน  ######
 	var $memberEmail ; ######  อีเมล์ของผู้ใช้งาน  ######
     var $memberActiveStatus ; ######  สถานะการเปิดใช้บัญชีผู้ใช้งาน  ######
+	var $textSearch;
 ###### End Attribute  ###### 
 
  ###### SET : $memberId ######
@@ -167,6 +168,20 @@ class Member extends CI_Model {
     function getMemberActiveStatus(){
         return $this->memberActiveStatus; 
      }
+###### End GET : $memberActiveStatus ###### 
+
+ 
+###### SET : $memberActiveStatus ######
+    function setTextSearch($textSearch){
+        $this->textSearch = $textSearch; 
+     }
+###### End SET : $memberActiveStatus ###### 
+
+
+###### GET : $memberActiveStatus ######
+    function getTextSearch(){
+        return $this->textSearch; 
+     }
 
 ###################################### End GET SET ######################################
 
@@ -249,7 +264,7 @@ function forgetPasswordMemberByCode()
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 		$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
-		$data = $this->db->get('members')->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
+		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
 	$this->db->select('*');
 	$this->db->from('members');
@@ -266,6 +281,42 @@ function forgetPasswordMemberByCode()
 		return $data; ///  สั่งส่งค่า ตัวแปร Array $data กลับ
 	}
 ######################## end function getAllDataMember #############################
+
+######################## function getSearchDataMember #############################
+	function getSearchDataMember($page,$url){
+	 $pageValue = 15;///จำนวนข้อมูลต่อ1หน้า
+	 
+	 $this->db->like('members.memberUsername',$this->getTextSearch());
+	 $this->db->or_like('members.memberIdIDCard',$this->getTextSearch());
+	 $this->db->or_like('members.memberName',$this->getTextSearch());
+	 $this->db->or_like('members.memberLastName',$this->getTextSearch());
+	 $this->db->or_like('members.memberPosition',$this->getTextSearch());
+	$this->db->join('address','address.addressId = members.addressId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+	$this->db->join('liablearea', 'liablearea.memberId = members.memberId');
+		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
+	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
+
+	$this->db->from('members');
+	 $this->db->like('members.memberUsername',$this->getTextSearch());
+	 $this->db->or_like('members.memberIdIDCard',$this->getTextSearch());
+	 $this->db->or_like('members.memberName',$this->getTextSearch());
+	 $this->db->or_like('members.memberLastName',$this->getTextSearch());
+	 $this->db->or_like('members.memberPosition',$this->getTextSearch());
+	$this->db->join('address','address.addressId = members.addressId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+	$this->db->join('liablearea', 'liablearea.memberId = members.memberId');
+ 		 $config['total_rows'] = $this->db->count_all_results(); // ส
+  		 $config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
+		 $this->pagination->create_links();
+  		 $this->pagination->initialize($config);   // จากกนั้น เอาค่า ไป config ใน object pagination ที่เรา load มา 
+		return $data; ///  สั่งส่งค่า ตัวแปร Array $data กลับ
+	}
+######################## end function getSearchDataMember #############################
 
 ######################## function getMemberPk #############################
 	function updatePasswordMemberPk(){
