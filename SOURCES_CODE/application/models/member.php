@@ -17,7 +17,10 @@ class Member extends CI_Model {
     var $memberForgetCode ; ######  code ใช้ในการลืมรหัสผ่าน  ######
 	var $memberEmail ; ######  อีเมล์ของผู้ใช้งาน  ######
     var $memberActiveStatus ; ######  สถานะการเปิดใช้บัญชีผู้ใช้งาน  ######
+	var $memberIdIDCard;
 	var $textSearch;
+	var $addressId;
+	var $addressDetial;
 ###### End Attribute  ###### 
 
  ###### SET : $memberId ######
@@ -183,6 +186,45 @@ class Member extends CI_Model {
         return $this->textSearch; 
      }
 
+
+###### SET : $addressId ######
+    function setAddressId($addressId){
+        $this->addressId = $addressId; 
+     }
+###### End SET : $addressId ###### 
+
+
+###### GET : $addressId ######
+    function getAddressId(){
+        return $this->addressId; 
+     }
+	 
+
+
+###### SET : $memberIdIDCard ######
+    function setMemberIdIDCard($memberIdIDCard){
+        $this->memberIdIDCard = $memberIdIDCard; 
+     }
+###### End SET : $memberIdIDCard ###### 
+
+
+###### GET : $memberIdIDCard ######
+    function getMemberIdIDCard(){
+        return $this->memberIdIDCard; 
+     }
+	 
+
+###### SET : $memberIdIDCard ######
+    function setAddressDetial($addressDetial){
+        $this->addressDetial = $addressDetial; 
+     }
+###### End SET : $memberIdIDCard ###### 
+
+
+###### GET : $memberIdIDCard ######
+    function getAddressDetial(){
+        return $this->addressDetial; 
+     }
 ###################################### End GET SET ######################################
 
 ######################## function login #############################
@@ -341,6 +383,28 @@ function checkUsername()
 		return $result;
 
 	
+ }
+ 
+ function addMember(){
+
+		$data = array(
+				'memberName' => $this->getMemberName(),
+				'memberLastName' => $this->getMemberLastName(),
+				'memberUsername' => $this->getMemberUsername(),
+				'memberPassword' => MD5($this->getMemberPassword()),
+				'memberIdIDCard' => $this->getMemberIdIDCard(),
+				'memberEmail' => $this->getMemberEmail(),
+				'memberBirthday' => $this->getMemberBirthday(),
+				'addressDetial' => $this->getAddressDetial(),
+				'memberPosition' => $this->getMemberPosition(),
+				'memberStatus' => $this->getMemberStatus(),
+				'addressId' => $this->getAddressId(),
+				'memberForgetCode'  => MD5($this->getMemberName().$this->getMemberUsername().$this->getAddressId()),
+				'memberActiveStatus' => 'activated'
+		);
+		
+		$this->db->insert('members',$data);
+		return $this->db->insert_id();
  }
 
 

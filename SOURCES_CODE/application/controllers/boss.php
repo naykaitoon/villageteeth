@@ -556,7 +556,71 @@ function deleteChildentAction($childrenId,$addressId){
 	}
 
 	function addActionMember(){
-		var_dump($_POST);
+
+		$memberName = $this->input->post('memberName');
+		$memberLastName = $this->input->post('memberLastName');
+		$memberUsername = $this->input->post('memberUsername');
+		$memberPassword = $this->input->post('memberPassword');
+		$memberIdIDCard = $this->input->post('memberIdIDCard');
+		$memberEmail = $this->input->post('memberEmail');
+		$dateB = $this->input->post('memberBirthday');
+		
+		$memberBirthday = $this->formatDate($dateB);
+		
+		$addressDetial = $this->input->post('addressDetial');
+		$memberPosition = $this->input->post('memberPosition');
+		$memberStatus = $this->input->post('memberStatus');
+		
+		$provinceId = $this->input->post('province');
+		$districtId = $this->input->post('district');
+		$cantonId = $this->input->post('canton');
+		$street = $this->input->post('street');
+		
+		
+		$tel = $this->input->post('tel');
+		$telNote = $this->input->post('telNote');
+		
+		
+		$liableareaProvinceId = $this->input->post('liableareaprovince');
+		$liableareaDistrictId = $this->input->post('liableareadistrict');
+		$liableareaCantonId = $this->input->post('liableareacanton');
+		
+		$this->Address->setProvinceId($provinceId);
+		$this->Address->setDistrictId($districtId);
+		$this->Address->setCantonId($cantonId);
+		$this->Address->setStreet($street);
+		
+		$addressId = $this->Address->addAddress();
+		$addressIdTel = $addressId;
+			$this->Member->setMemberName($memberName);
+			$this->Member->setMemberLastName($memberLastName);
+			$this->Member->setMemberUsername($memberUsername);
+			$this->Member->setMemberPassword($memberPassword);
+			$this->Member->setMemberIdIDCard($memberIdIDCard);
+			$this->Member->setMemberEmail($memberEmail);
+			$this->Member->setMemberBirthday($memberBirthday);
+			$this->Member->setAddressDetial($addressDetial);
+			$this->Member->setMemberPosition($memberPosition);
+			$this->Member->setMemberStatus($memberStatus );
+			$this->Member->setAddressId($addressId);
+			
+			$memberId = $this->Member->addMember();
+			
+		$this->Address->setProvinceId($liableareaProvinceId);
+		$this->Address->setDistrictId($liableareaDistrictId);
+		$this->Address->setCantonId($liableareaCantonId);
+		$this->Address->setMemberId($memberId);
+		
+		$this->Address->addLiableArea();
+		for($i=0;$i<count($tel);$i++){
+			$this->Address->setTelNote($telNote[$i]);
+			$this->Address->setTel($tel[$i]);
+			$this->Address->setAddressId($addressIdTel);
+		}
+		
+		echo "<center> เพิ่มข้อมูลผู้ใช้งานสำเร็จ<br>
+		 <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a></center>";
+		
 	}
 
 	function childentAddress($childentId){

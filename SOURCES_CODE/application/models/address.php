@@ -17,6 +17,7 @@ class Address extends CI_Model {
 	var $telId;
 	var $tel;
 	var $telNote;
+	var $memberId;
 ###### End Attribute  ###### 
 
  ###### SET : $addressId ######
@@ -128,7 +129,18 @@ class Address extends CI_Model {
      }
 ###### End GET : $telNote ###### 
 
+ ###### SET : $addressId ######
+    function setMemberId($memberId){
+        $this->memberId = $memberId; 
+     }
+###### End SET : $addressId ###### 
 
+
+###### GET : $addressId ######
+    function getMemberId(){
+        return $this->memberId; 
+     }
+###### End GET : $addressId ###### 
 ////////////////////////    /////////////////////////////
 function getProvinceAll(){
 	return $this->db->get('province')->result_array();
@@ -269,6 +281,19 @@ function deleteAddress(){
 	$this->db->where('addressId',$this->getAddressId());
 	$this->db->delete('address');
 }
+
+
+function addLiableArea(){
+	$dataLiable = array(
+		'provinceId' => $this->getProvinceId(),
+		'districtId' => $this->getDistrictId(),
+		'cantonId' => $this->getCantonId(),
+		'memberId' => $this->getMemberId()
+	);
+	$this->db->insert('liablearea',$dataLiable);
+}
+
+
 
 
 

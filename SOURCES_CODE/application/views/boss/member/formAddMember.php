@@ -325,7 +325,7 @@ $(function(){
       </tr>
        <tr>
         <td align="right" valign="middle">อีเมล์ : </td>
-        <td colspan="4" align="left" valign="middle"><input type="email" name="memberEmail" id="memberEmail" required></td>
+        <td colspan="4" align="left" valign="middle"><input name="memberEmail" type="email" required id="memberEmail" size="35"></td>
       </tr>
       <tr>
         <td align="right" valign="middle">วันเกิด ป/ด/ว: </td>
@@ -333,8 +333,9 @@ $(function(){
       </tr>
       <tr>
         <td align="right" valign="middle">ที่อยู่บ้านเลขที่/หมู่/ซอย : </td>
-        <td colspan="4" align="left" valign="middle"><input name="addressDetial" type="text" required id="addressDetial" size="40"> 
-        </td>
+        <td colspan="4" align="left" valign="middle"><input name="addressDetial" type="text" required id="addressDetial" size="40">
+&nbsp;ถนน :       
+<input type="text" name="street" id="street" required></td>
       </tr>
       <tr>
         <td align="right" valign="middle">จังหวัด</td>
@@ -383,7 +384,7 @@ $(function(){
       </tr>
        <tr>
         <td align="right" valign="middle">ตำแหน่ง : </td>
-        <td colspan="4" align="left" valign="middle"><input name="tel[]2" type="text" required id="tel[]2" size="40"></td>
+        <td colspan="4" align="left" valign="middle"><input name="memberPosition" type="text" required id="memberPosition" size="40"></td>
       </tr>
       <tr>
         <td align="right" valign="middle">สถานะบัญชี : </td>
@@ -396,7 +397,7 @@ $(function(){
      <tr class="firstTr">
         <td align="right" valign="middle">เบอร์โทร : </td>
         <td colspan="4" align="left" valign="middle"><input type="text" name="tel[]" id="tel[]" required>
-           *หมายเหตุเบอร์โทร           <input type="text" name="telNote[]" id="telNote" required></td>
+           *หมายเหตุเบอร์โทร           <input type="text" name="telNote[]" id="telNote[]" required></td>
       </tr>   
     </tbody> 
       </table>
