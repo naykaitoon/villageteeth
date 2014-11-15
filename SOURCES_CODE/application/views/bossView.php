@@ -105,20 +105,20 @@
       </li>  
       <li><a class="mainMenu" href="" onClick="return false"><img class="iconAction" src="<?php echo base_url();?>img/icon/grap.png?v=1001" height="30px" > รายงานข้อมูลสถิติ</a>
         <ul>
-          <li><a class="submenu" href="#">- สถิติโดยรวมทั้งหมด</a></li>
-           <li><a class="submenu" href="#">- สถิติโดยแบ่งตามพื้นที่</a></li>
-           <li><a class="submenu" href="#">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
-           <li><a class="submenu" href="#" onClick="return false">- สถิติเด็กในเขตของฉัน</a>
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยรวมทั้งหมด</a></li>
+           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพื้นที่</a></li>
+           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
+           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติเด็กในเขตของฉัน</a>
            		  <ul>
-        		           <li><a class="submenu" href="#">- สถิติโดยรวมในเขตของฉัน</a></li>
-                           <li><a class="submenu" href="#">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
+        		           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยรวมในเขตของฉัน</a></li>
+                           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
        			 </ul>
             <li>
-           <li><a class="submenu" href="" onClick="return false">- สถิติเด็กการตรวจของฉัน</a>
+           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติเด็กการตรวจของฉัน</a>
           	  <ul>
-        		        <li><a class="submenu" href="#" >- แบ่งตามพฤษติกรรม</a></li>
-                        <li><a class="submenu" href="#">- แบ่งตามช่วงอายุ</a>                
-                        <li><a class="submenu" href="#">- ข้อมูลการตรวจรายบุคคล</a>
+        		        <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false" >- แบ่งตามพฤษติกรรม</a></li>
+                        <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- แบ่งตามช่วงอายุ</a>                
+                        <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- ข้อมูลการตรวจรายบุคคล</a>
        			 </ul>
             <li>
         </ul>
@@ -130,7 +130,7 @@
           		
           <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/behaviorMag">- พฤติกรรมทัตสุขภาพ</a></li>
           <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/behaviorMagType">- หมวดหมู่พฤติกรรมทัตสุขภาพ</a></li>
-          <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/content">- ตารางการนัดเด็กของฉัน</a></li>      
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix">- ตารางการนัดเด็กของฉัน</a></li>      
 
         </ul>
       </li>

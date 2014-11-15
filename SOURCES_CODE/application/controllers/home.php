@@ -27,58 +27,10 @@ class Home extends CI_Controller {
 	function loginForm(){
 		$this->load->view('form/loginForm');
 	}
-	function test(){
-		var_dump($this->Member->tests());
+	function fix(){
+		$this->load->view('fix');
 	}
 
-/*	
-	function test1()
-	{
-		$id = $this->input->post('provinceId');
-		$data = $this->Member->getDistrict($id);
-		if($id!=0){
-		for($i=0;$i<count($data);$i++){
-			echo '<option value="'.$data[$i]['districtId'].'">'.$data[$i]['districtName'].'</option>';
-		}
-		}else{
-			 echo '<option value="0">------</option>';
-		}
-		
-		
-	}
-	
-	function test2()
-	{
-		$id = $this->input->post('districtId');
-		$data = $this->Member->getCanton($id);
-		if($data){
-		for($i=0;$i<count($data);$i++){
-			echo '<option value="'.$data[$i]['cantonId'].'">'.$data[$i]['cantonName'].'</option>';
-			echo '<script>$("#canton").removeAttr("disabled");</script>';
-		}
-		}else{
-			 echo '<option value="0">------</option>';
-		}
-		
-	}
-	
-	function test3()
-	{
-		$id = $this->input->post('cantonId');
-		$data = $this->Member->getZipcode($id);
-		if($id!=0){
-			echo $data[0]['zipcode'];
-		}else{
-			 echo '-';
-		}
-		
-	}
-	
-	function ss()
-	{
-		var_dump($_POST);
-	}
-*/	
 }
 
 ?>
