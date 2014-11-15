@@ -134,19 +134,89 @@
 							cantonId:str
 						  },
 						  function(data){
-							  $('#zipcode2').removeAttr("disabled");
-							$('#zipcode2').val(data);
+							 
 						  });
 				})
 		.trigger( "change" );
 	
+	$( "#memberUsername" ).focus(function() {
+				$( "#memberUsername" ).trigger("click");
+	});
+	$( "#memberUsername" ).keyup(function() {
+				$( "#memberUsername" ).trigger("click");
+	});
+	$( "#memberUsername" ).click(function() {
+		 if($(this).val()!=""){
+		$.post("<?php echo base_url()?>index.php/boss/checkUserName",
+						  {
+							username:$(this).val()
+						  },
+						  function(data){
+						    if(data==1){
+								$('#memberUsernameResult').html("<font color='GREEN'>usernameนี้สามารถใช้ได้</font>");
+								$('#memberUsernameC').val($("#memberUsername").val());
+							}else if(data==0){
+								$('#memberUsernameResult').html("<font color='#E40003'>usernameนี้มีผู้ใช้งานแล้ว</font>");
+								$('#memberUsernameC').val(0);
+							}
+						  });
+		 }else{
+			 $('#memberUsernameResult').html("<font color='#E40003'>กรุณาระบุ username ในการเข้าใช้งาน</font>");
+			 $('#memberUsernameC').val(0);
+		 }
+	});
+
+
+$( "#memberPassword" ).focus(function() {
+				$( "#memberPassword" ).trigger("click");
+	});
+	$( "#memberPassword" ).keyup(function() {
+				$( "#memberPassword" ).trigger("click");
+	});
+$( "#memberPassword" ).click(function() {
+	var value = $(this).val();
+if(value!=""){
+		 if(value==$( "#memberPasswordC" ).val()){
+			 $('#memberPasswordResult').html("<font color='GREEN'>รหัสผ่านสามารถใช้ได้</font>");
+			 $('#memberPasswordCheck').val(value);
+		 }else{
+			 $('#memberPasswordResult').html("<font color='#E40003'>รหัสผ่านไม่ตรงกัน</font>");
+			 $('#memberPasswordCheck').val(0);
+		 }
+}else{
+	$('#memberPasswordResult').html("<font color='#E40003'>รหัสผ่านไม่ตรงกัน</font>");
+	$('#memberPasswordCheck').val(0);
+}
+	});
+	
+$( "#memberPasswordC" ).focus(function() {
+				$( "#memberPasswordC" ).trigger("click");
+	});
+	$( "#memberPasswordC" ).keyup(function() {
+				$( "#memberPasswordC" ).trigger("click");
+	});
+$( "#memberPasswordC" ).click(function() {
+	var value = $(this).val();
+if(value!=""){
+		 if(value==$( "#memberPassword" ).val()){
+			 $('#memberPasswordResult').html("<font color='GREEN'>รหัสผ่านสามารถใช้ได้</font>");
+			 $('#memberPasswordCheck').val(value);
+		 }else{
+			 $('#memberPasswordResult').html("<font color='#E40003'>รหัสผ่านไม่ตรงกัน</font>");
+			 $('#memberPasswordCheck').val(0);
+		 }
+}else{
+	$('#memberPasswordResult').html("<font color='#E40003'>รหัสผ่านไม่ตรงกัน</font>");
+	$('#memberPasswordCheck').val(0);
+}
+	});
 		});
 	</script>
   <script language="javascript">
 function checkForm() 
-{ if(!checkID(document.form1.childrenIDCard.value)) 
- $('#childrenIDCardResult').html('<font color="red">รหัสประชาชนไม่ถูกต้อง</font>');
-else  $('#childrenIDCardResult').html('<font color="green">รหัสประชาชนถูกต้อง เชิญผ่านได้</font>');}
+{ if(!checkID(document.form1.memberIdIDCard.value)) 
+ $('#memberIdIDCardResult').html('<font color="red">รหัสประชาชนไม่ถูกต้อง</font>');
+else  $('#memberIdIDCardResult').html('<font color="green">รหัสประชาชนถูกต้อง</font>');}
  function checkID(id){ 
 		
 if(id.length != 13) return false; 
@@ -159,9 +229,24 @@ return false; return true;}
 function checkFormSubmit() 
 { 
 	var result = false;
-if(!checkIDSubmit(document.form1.childrenIDCard.value)) {
- 	alert('รหัสประชาชนไม่ถูกต้อง');
-	result = false;
+	var addressResult = true;
+	var address = document.getElementsByClassName('address');
+for(i=0;i<address.length;++i){
+	if(address[i].value==0){
+		addressResult = false;
+	}
+}
+if(!checkIDSubmit(document.form1.memberIdIDCard.value)||document.form1.memberUsernameC.value == 0||!addressResult) {
+ 	alert('กรุณาใส่ข้อมูลที่ถูกต้อง');
+	if(!addressResult){
+		result = false;
+		alert('กรุณาระบุที่อยู่ หรือ พื้นที่ที่รับผิดชอบให้ครบถ้วน');
+	}
+		result = false;
+	if(document.form1.memberPasswordCheck.value == 0){
+		result = false;
+		alert('กรุณายืนยันรหัสผ่านใหม่');
+	}
 }else{
 	 result = true;
 	 }
@@ -219,18 +304,20 @@ $(function(){
       </tr>
       <tr>
         <td width="30%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
-        <td colspan="4" align="left" valign="middle"><input type="text" name="memberName" id="memberName" required> - <input type="text" name="memberLastName" id="memberLastName" required></td>
+        <td colspan="4" align="left" valign="middle"><input type="text" name="memberName" id="memberName" required> - <input type="text" name="memberLastName" id="memberLastName" required>
+        
+        </td>
       </tr>
      <tr>
         <td align="right" valign="middle">ชื่อเข้าใช้งาน : </td>
-        <td colspan="4" align="left" valign="middle"><input type="text" name="memberUsername" id="memberUsername"  required>
-          <a id="memberUsernameResult"></a></td>
+        <td colspan="4" align="left" valign="middle"><input type="text" name="memberUsername" id="memberUsername" autocomplete='off'  required>
+          <a id="memberUsernameResult"></a><input type="hidden" name="memberUsernameC" id="memberUsernameC" value="0"  required></td>
      </tr>
           <tr>
         <td align="right" valign="middle">รหัสผ่าน : </td>
         <td colspan="4" align="left" valign="middle"><input type="text" name="memberPassword" id="memberPassword"  required>
 ยืนยันรหัสผ่าน        &nbsp;
-        <input type="text" name="memberPasswordC" id="memberPasswordC"  required>        <a id="memberPasswordResult"></a></td>
+        <input type="text" name="memberPasswordC" id="memberPasswordC"  required>        <a id="memberPasswordResult"></a><input type="hidden" name="memberPasswordCheck" id="memberPasswordCheck"  required></td>
      </tr>
       <tr>
         <td align="right" valign="middle">เลขบัตรประจำตัวประชาชน : </td>
@@ -238,7 +325,7 @@ $(function(){
       </tr>
        <tr>
         <td align="right" valign="middle">อีเมล์ : </td>
-        <td colspan="4" align="left" valign="middle"><input type="text" name="memberEmail" id="memberEmail" required><a id="memberEmailResult"></a></td>
+        <td colspan="4" align="left" valign="middle"><input type="email" name="memberEmail" id="memberEmail" required></td>
       </tr>
       <tr>
         <td align="right" valign="middle">วันเกิด ป/ด/ว: </td>
@@ -246,24 +333,20 @@ $(function(){
       </tr>
       <tr>
         <td align="right" valign="middle">ที่อยู่บ้านเลขที่/หมู่/ซอย : </td>
-        <td colspan="4" align="left" valign="middle">บ้านเลขที่ 
-          <input name="addressDetialNumber" type="text" required id="addressDetialNumber" size="10"> 
-          หมู่ 
-          <input name="addressDetialM" type="text" required id="addressDetialM" size="4" maxlength="2">
-          ซอย
-          <input name="addressDetialSubStreet" type="text" required id="addressDetialSubStreet" size="20" maxlength="50"></td>
+        <td colspan="4" align="left" valign="middle"><input name="addressDetial" type="text" required id="addressDetial" size="40"> 
+        </td>
       </tr>
       <tr>
         <td align="right" valign="middle">จังหวัด</td>
-        <td width="24%" align="left" valign="middle"><select name="province" id="province" required>
+        <td width="24%" align="left" valign="middle"><select name="province" id="province" class="address" required>
   <option value="0">กรุณาเลือก</option>
   <?php foreach($province as $p){?>
   <option value="<?php echo $p['provinceId']?>"><?php echo $p['provinceName']?></option>
   <?php }?>
   </select></td>
-        <td width="11%" rowspan="3" align="right" valign="middle">เขตพื้นที่ที่รับผิดชอบ  </td>
+        <th width="11%" rowspan="3" align="right" valign="middle" nowrap="nowrap">เขตพื้นที่ที่รับผิดชอบ  </th>
         <td width="9%" align="right" valign="middle">จังหวัด</td>
-        <td width="26%" align="left" valign="middle"><select name="liableareaprovince" id="province2" required>
+        <td width="26%" align="left" valign="middle"><select name="liableareaprovince" id="province2" class="address" required>
           <option value="0">กรุณาเลือก</option>
           <?php foreach($province as $p){?>
           <option value="<?php echo $p['provinceId']?>"><?php echo $p['provinceName']?></option>
@@ -273,24 +356,24 @@ $(function(){
       <tr>
         <td align="right" valign="middle">อำเภอ</td>
         <td align="left" valign="middle">
-          <select name="district"  id="district" required>
+          <select name="district"  id="district" class="address" required>
             <option value="0">กรุณาเลือกจังหวัด</option>
             
         </select></td>
         <td align="right" valign="middle">อำเภอ </td>
-        <td align="left" valign="middle"><select name="liableareadistrict"  id="district2" required>
+        <td align="left" valign="middle"><select name="liableareadistrict"  id="district2" class="address" required>
           <option value="0">กรุณาเลือกจังหวัด</option>
         </select></td>
       </tr>
       <tr>
         <td align="right" valign="middle">ตำบล</td>
-        <td align="left" valign="middle"> <select name="canton"  id="canton" required>
+        <td align="left" valign="middle"> <select name="canton"  id="canton" class="address" required>
           
           <option value="0">กรุณาเลือก</option>
           
         </select></td>
         <td align="right" valign="middle">ตำบล</td>
-        <td align="left" valign="middle"><select name="liableareacanton"  id="canton2" required>
+        <td align="left" valign="middle"><select name="liableareacanton"  id="canton2" class="address" required>
           <option value="0">กรุณาเลือก</option>
         </select></td>
       </tr>
@@ -300,7 +383,7 @@ $(function(){
       </tr>
        <tr>
         <td align="right" valign="middle">ตำแหน่ง : </td>
-        <td colspan="4" align="left" valign="middle"><input type="text" name="tel[]2" id="tel[]2" required></td>
+        <td colspan="4" align="left" valign="middle"><input name="tel[]2" type="text" required id="tel[]2" size="40"></td>
       </tr>
       <tr>
         <td align="right" valign="middle">สถานะบัญชี : </td>

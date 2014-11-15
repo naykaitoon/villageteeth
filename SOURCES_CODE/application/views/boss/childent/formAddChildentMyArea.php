@@ -109,8 +109,8 @@ $(function(){
         <th colspan="2" align="center" valign="middle" nowrap="nowrap">เพิ่มข้อมูลเด็กในพื้นที่</th>
       </tr>
             <tr>
-        <td width="33%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
-        <td width="67%" align="left" valign="middle"><input type="text" name="childrenName" id="childrenName" required> - <input type="text" name="childrenLastName" id="childrenLastName" required></td>
+        <td width="28%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
+        <td width="72%" align="left" valign="middle"><input type="text" name="childrenName" id="childrenName" required> - <input type="text" name="childrenLastName" id="childrenLastName" required></td>
       </tr>
       <tr>
         <td align="right" valign="middle">เลขบัตรประจำตัวประชาชน : </td>
@@ -134,8 +134,8 @@ $(function(){
         <td align="left" valign="middle"><input type="text" name="street" id="street"  required></td>
       </tr>
       <tr>
-        <td width="48%" align="right" valign="middle">จังหวัด</td>
-        <td width="52%" align="left" valign="middle"><select name="province" id="province">
+        <td width="28%" align="right" valign="middle">จังหวัด</td>
+        <td width="72%" align="left" valign="middle"><select name="province" id="province">
   <?php foreach($area as $p){?>
   <option value="<?php echo $p['provinceId']?>"><?php echo $p['provinceName']?></option>
   <?php }?>

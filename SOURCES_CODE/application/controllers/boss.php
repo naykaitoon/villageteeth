@@ -544,6 +544,17 @@ function deleteChildentAction($childrenId,$addressId){
 		$data['province']=$this->Address->getProvinceAll();
 		$this->load->view('boss/member/formAddMember',$data);
 	}
+	function checkUserName(){
+		$username = $this->input->post('username');
+		$this->Member->setMemberUsername($username);
+		$username = $this->Member->checkUsername();
+		if($username){
+			echo 0;
+		}else{
+			echo 1;
+		}
+	}
+
 	function addActionMember(){
 		var_dump($_POST);
 	}

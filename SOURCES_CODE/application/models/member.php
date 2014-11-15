@@ -331,7 +331,17 @@ function forgetPasswordMemberByCode()
 	}
 ######################## end function getMemberPk #############################
 
+function checkUsername()
+ {
+	$this->db->select('memberUsername');
+  	$this->db->where('memberUsername',$this->getMemberUsername());
+	$this->db->limit(1);
+	$result = $this->db->get('members')->result_array();
+	
+		return $result;
 
+	
+ }
 
 
 
