@@ -175,6 +175,10 @@ $( "#memberPassword" ).focus(function() {
 	});
 $( "#memberPassword" ).click(function() {
 	var value = $(this).val();
+	if(value.length<6){
+			 $('#memberPasswordResult').html("<font color='#E40003'>รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอัคษร</font>");
+			 $('#memberPasswordCheck').val(0);
+	}else{
 if(value!=""){
 		 if(value==$( "#memberPasswordC" ).val()){
 			 $('#memberPasswordResult').html("<font color='GREEN'>รหัสผ่านสามารถใช้ได้</font>");
@@ -187,6 +191,7 @@ if(value!=""){
 	$('#memberPasswordResult').html("<font color='#E40003'>รหัสผ่านไม่ตรงกัน</font>");
 	$('#memberPasswordCheck').val(0);
 }
+	}
 	});
 	
 $( "#memberPasswordC" ).focus(function() {
@@ -197,6 +202,10 @@ $( "#memberPasswordC" ).focus(function() {
 	});
 $( "#memberPasswordC" ).click(function() {
 	var value = $(this).val();
+	if(value.length<6){
+			 $('#memberPasswordResult').html("<font color='#E40003'>รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอัคษร</font>");
+			 $('#memberPasswordCheck').val(0);
+	}else{
 if(value!=""){
 		 if(value==$( "#memberPassword" ).val()){
 			 $('#memberPasswordResult').html("<font color='GREEN'>รหัสผ่านสามารถใช้ได้</font>");
@@ -209,6 +218,7 @@ if(value!=""){
 	$('#memberPasswordResult').html("<font color='#E40003'>รหัสผ่านไม่ตรงกัน</font>");
 	$('#memberPasswordCheck').val(0);
 }
+	}
 	});
 		});
 	</script>
