@@ -12,7 +12,7 @@
 
     <tr>    
            <td width="61" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>ชื่อหมวดหมู่</p></td>  
-       <td width="158" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><input  type="text" name="behaviorTypeName" id="behaviorTypeName" value="<?php echo $d['behaviorTypeName'];?>"  required ><input  type="hidden" name="behaviorTypeId" id="behaviorTypeId" value="<?php echo $d['behaviorTypeId'];?>"  required ></p></td>
+       <td width="158" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><input name="behaviorTypeName"  type="text"  required id="behaviorTypeName" value="<?php echo $d['behaviorTypeName'];?>" size="50" ><input  type="hidden" name="behaviorTypeId" id="behaviorTypeId" value="<?php echo $d['behaviorTypeId'];?>"  required ></p></td>
 
    
     </tr>

@@ -117,7 +117,7 @@ $(function(){
         <td align="left" valign="middle"><input type="text" name="childrenIDCard" id="childrenIDCard" onFocus="checkForm();" onKeyUp="checkForm();" required><a id="childrenIDCardResult"></a></td>
       </tr>
       <tr>
-        <td align="right" valign="middle">วันเกิด ป/ด/ว: </td>
+        <td align="right" valign="middle">วันเกิด ว/ด/ป (ค.ศ.): </td>
         <td align="left" valign="middle"><input type="text" name="childrenBirthday" id="childrenBirthday" readonly required></td>
       </tr>
       <tr>
@@ -172,10 +172,14 @@ $(function(){
       </table>
       
      <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
-       <tr>    <td colspan="2" align="center" valign="middle"><input type="submit" name="submit" id="submit" value="บันทึก">
-          &nbsp;&nbsp;&nbsp;
-<input type="button" name="addRow" id="addRow" value="เพิ่มเบอร์โทร">  <input type="button" name="removeRow" id="removeRow" value="ลบเบอร์โทร"></td>
+       <tr>    <td width="50%" align="center" valign="middle">&nbsp;&nbsp;&nbsp;
+<input type="button" name="addRow" id="addRow" value="เพิ่มเบอร์โทร">  <input type="button" name="removeRow" id="removeRow" value="ลบเบอร์โทร">
+<input type="reset" name="reset" id="reset" value="ล้างข้อมูล" ></td>
+         <td width="50%" align="center" valign="middle"><input type="submit" name="submit" id="submit" value="บันทึก">
+         &nbsp;
+         <input type="button" name="cancle" id="cancle" value="ยกเลิก/ปิด" onClick="parent.jQuery.fancybox.close();"></td>
       </tr>
   </table>
 </form>
 </div>
+</body>

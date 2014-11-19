@@ -116,7 +116,7 @@
     <option value="0" >กรุณาเลือกอำเภอ</option>
 
   </select>
-  </p>
+   <a href="<?php echo base_url();?>index.php/boss/addMember" class="AddMember" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addMember.png" width="40px" height="40px"/>เพิ่มข้อมูลผู้ใช้งาน</a></p>
   <div id="listDataMember">
   </div>
   

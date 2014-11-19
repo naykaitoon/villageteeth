@@ -11,7 +11,7 @@
 
     <tr>    
            <td width="61" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>ชื่อหมวดหมู่</p></td>  
-       <td width="158" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><input  type="text" name="behaviorTypeName" id="behaviorTypeName"  required ></p></td>
+       <td width="158" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><input name="behaviorTypeName"  type="text"  required id="behaviorTypeName" size="50" ></p></td>
 
    
     </tr>

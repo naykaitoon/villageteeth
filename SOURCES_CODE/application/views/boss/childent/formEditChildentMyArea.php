@@ -81,8 +81,6 @@ return false; return true;}
 	
 	</style>
 </head>
-
-<body>
 <div class="table"align="center" >
 <form id="form1" name="form1" method="post"action="<?php echo base_url();?>index.php/boss/editActionChildent" onsubmit="return checkFormSubmit();">
   <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -99,7 +97,7 @@ return false; return true;}
         <td align="left" valign="middle"><input type="text" name="childrenIDCard" id="childrenIDCard" value="<?php echo $childent[0]['childrenIDCard'];?>" onKeyUp="checkForm();"><a id="childrenIDCardResult"></a></td>
       </tr>
       <tr>
-        <td align="right" valign="middle">วันเกิด ป/ด/ว: </td>
+        <td align="right" valign="middle">วันเกิด ว/ด/ป (ค.ศ.): </td>
         <td align="left" valign="middle"><input type="text" name="childrenBirthday" value="<?php echo $childent[0]['childrenBirthday'];?>"  id="childrenBirthday" readonly required></td>
       </tr>
       <tr>
@@ -150,7 +148,10 @@ return false; return true;}
     </table>
     
      <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
-       <tr>    <td colspan="2" align="center" valign="middle"><input type="submit" name="submit" id="submit" value="บันทึก"></td>
+       <tr>    <td align="center" valign="middle">&nbsp;&nbsp;&nbsp;
+          <input type="submit" name="submit" id="submit" value="บันทึก">
+         &nbsp;
+         <input type="button" name="cancle" id="cancle" value="ยกเลิก/ปิด" onClick="parent.jQuery.fancybox.close();"></td>
       </tr>
   </table>
 </form>

@@ -59,6 +59,7 @@ function idFormat($idCard){
       <th width="46" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">ดูประวัติ</th>
     </tr>
     <?php
+	if($childent){
 	$i = 1;
 	 foreach($childent as $c){?>
     <tr>    
@@ -78,6 +79,11 @@ echo $date->format('d-m-Y');
 <tr>
   	<td colspan="8" align="center"><div class="ajax_paging"><?php echo $this->pagination->create_links(); ?></div></td>
   </tr>
+  <?php 	}else{?>
+  	<tr>
+  	<td colspan="8" align="center">ไม่พบข้อมูล</td>
+  </tr>
+  <?php }?>
 </table>
 <br>
 <br>

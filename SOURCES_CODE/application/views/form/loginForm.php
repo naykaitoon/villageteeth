@@ -34,12 +34,18 @@
 				}
 			  });
 			});
-$('.formInputLogin').keypress(function (e) {
-  if (e.which == 13) {
-	  if($("#username").val()!=""&&$("#password").val()!=""){
-    $( "#login" ).trigger( "click" );
+$('.formInputLogin').keypress(function (event) {
+  if (event.which == 13) {
+	  if($("#username").val()!=""){
+		  if($("#password").val()!=""){
+		  
+				$( "#login" ).trigger( "click" );
+		 
+		  }else{
+			$("#password").focus();
+		  } 
 	  }else{
-		  alert("กรุณารุบุ ชื่อ ผู้ใช้ และ รหัสผ่าน");
+		 $("#username").focus();
 	  }
   }
 });

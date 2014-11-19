@@ -18,10 +18,15 @@
 		
       });
 	 
-	
+	$('.memberActiveStatus').click(function(event){
+	 		event.preventDefault();
+			 var href = $(this).attr('href');
+			 $('.content').load(href);
+	});
+	 
 
  });
-		
+
 </script>
 <script src="<?php echo base_url();?>js/pageSection.js" type="text/javascript"></script>
 <?php 
@@ -42,7 +47,7 @@ function idFormat($idCard){
   <p>
     <label for="textfield">ค้นหา:</label>
     <input type="text" name="searchBox" id="searchBox" class="searchBox">
-  <a href="<?php echo base_url();?>index.php/boss/addMember" class="AddMember" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px"/>เพิ่มข้อมูลผู้ใช้งาน</a>
+  <a href="<?php echo base_url();?>index.php/boss/addMember" class="AddMember" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addMember.png" width="40px" height="40px"/>เพิ่มข้อมูลผู้ใช้งาน</a>
  
 </p>
   <br>
@@ -50,18 +55,22 @@ function idFormat($idCard){
 <table width="100%" border="0" align="center" cellpadding="7" cellspacing="3">
 
     <tr>   
-    <th width="61" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>รหัสสมาชิก</p></th>
-      <th width="77" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>ชื่อ - สกุล</p></th>
-      <th width="78" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>ชื่อเข้าใช้งาน</p></th>
-      <th width="44" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>เขตการดูแล</p></th>
-      <th width="44" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">สถานะบัญชี</th>
-      <th width="44" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">สถานะ เปิด/ปิด</th>
-      <th width="46" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">แก้ไข</th>
-      <th width="46" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px">ลบ</th>
+      <th width="12%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>รหัสสมาชิก</p></th>
+      <th width="29%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>ชื่อ - สกุล</p></th>
+      <th width="12%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>ชื่อเข้าใช้งาน</p></th>
+      <th width="16%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>เขตการดูแล</p></th>
+      <th width="10%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">สถานะบัญชี</th>
+      <th width="7%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">สถานะ เปิด/ปิด</th>
+      <th width="8%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">แก้ไข</th>
+      <th width="6%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">ลบ</th>
     </tr>
     <?php
-
-	 foreach($member as $c){?>
+ $loginData = $this->session->userdata('loginData');
+ $loginId = $loginData['id'];
+ if($member){
+	 foreach($member as $c){
+		if($loginId!=$c['memberId']&&$c['memberStatus']!='boss'){
+		 ?>
     <tr>    
            <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['memberId'];?></p></td>  
        <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['memberName'];?>&nbsp;&nbsp;<?php echo $c['memberLastName'];?></p></td>
@@ -74,19 +83,44 @@ function idFormat($idCard){
 		  echo "เจ้าหน้าที่อนามัย";
 	  }
 	  ?></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><?php 
-	  if($c['memberActiveStatus']=="activated"){
-	  	echo "<font color='green'>เปิดใช้งาน</font>";
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">
+      <?php
+	   if($c['memberActiveStatus']=="activated"){
+	  	  echo "
+		  <a href='".base_url()."index.php/boss/switchMembers/off/".$c['memberId']."' class='memberActiveStatus' onClick='return updateStatus();'>
+		  <img src='".base_url()."img/icon/onSwich.png' class='swich'/>
+		  </a>
+		  ";
 	  }else{
-		  	echo "<font color='red'>ปิดใช้งาน</font>";
-	  }?></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">แก้ไข</td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">ลบ</td>
+		  echo "
+		    <a href='".base_url()."index.php/boss/switchMembers/on/".$c['memberId']."' class='memberActiveStatus' onClick='return updateStatus();'>
+		  <img src='".base_url()."img/icon/offSwich.png' class='swich'/>
+		  </a>
+		  ";
+	  }
+	  ?>
+      </td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">
+    <a href="<?php echo base_url();?>index.php/boss/editMembers/<?php echo $c['memberId'];?>" class="fancyboxMagMemberAll">
+  <img class="iconAction" src="<?php echo base_url();?>img/editIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
+    </a>
+      </td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">
+  <a href="<?php echo base_url();?>index.php/boss/deleteMembers/<?php echo $c['memberId'];?>" class="deleteMemberAll">
+  <img class="iconAction" src="<?php echo base_url();?>img/deleteIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
+  </a></td>
     </tr>
-    <?php  }?>
+    <?php  
+		}
+	}?>
  	<tr>
   	<td colspan="8" align="center"><div class="ajax_paging"><?php echo $this->pagination->create_links(); ?></div></td>
   </tr>
+  <?php }else{ ?>
+  <tr>
+  	<td colspan="8" align="center">ไม่พบข้อมูล</td>
+  </tr>
+  <?php } ?>
 </table>
 <br>
 <br>

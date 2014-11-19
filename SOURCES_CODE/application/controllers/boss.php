@@ -240,7 +240,9 @@ function deleteChildentData($id,$addressId){
 				<p>
 				  <a href='".base_url()."index.php/boss/deleteChildentAction/".$id."/".$addressId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
 				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
-				</p>";
+				</p>
+				</body>
+				";
 	}
 function deleteChildentAction($childrenId,$addressId){
 	$this->Childents->setChildrenId($childrenId);
@@ -429,7 +431,9 @@ function deleteChildentAction($childrenId,$addressId){
 				<p>
 				  <a href='".base_url()."index.php/boss/deleteDistanceAction/".$id."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
 				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
-				</p>";
+				</p>
+				</body>
+				";
 	}
 ####################end	function editDistance ยืนยันการลบ Distance##################
 
@@ -493,13 +497,17 @@ function deleteChildentAction($childrenId,$addressId){
 				<p>
 				  <a href='".base_url()."index.php/boss/deleteBehaviorMagTypeAction/".$behaviorTypeId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
 				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
-				</p>";
+				</p>
+				</body>
+				";
 		}else{
 			echo "<body style='text-align: center' ><p style='color:red; font-size:20;'>คุณไม่สามารถ ลบข้อมูลได้ เนื่งจากมีข้อพฤติกรรมในหมวดนี้อยู่</p>
 			<p style='color:red;font-size:14;'>กรุณาทำการลบพฤติกรรมให้หมดก่อน จะลบ หมวดหมู่</p>
 				<p>
 				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
-				</p>";
+				</p>
+				</body>
+				";
 		}
 	}
 	
@@ -616,11 +624,205 @@ function deleteChildentAction($childrenId,$addressId){
 			$this->Address->setTelNote($telNote[$i]);
 			$this->Address->setTel($tel[$i]);
 			$this->Address->setAddressId($addressIdTel);
+			$this->Address->addTel();
 		}
 		
 		echo "<center> เพิ่มข้อมูลผู้ใช้งานสำเร็จ<br>
-		 <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a></center>";
+<a onClick='<script>parent.jQuery.fancybox.close();</script>'><input type='button' name='button2' id='button2' value='ปิด'></a></center>";
 		
+	}
+function switchMembers($status,$memberId){
+			$this->Member->setMemberId($memberId);
+			$memberData = $this->Member->getMemberById();
+	if($memberId){
+		if($status=="off"){
+			$memberActiveStatus="notActivated";
+			$messageTitles = "แจ้งการระงับการใช้งาน";
+			$message = "สวัดดีคุณ ".$memberData['memberName']." ".$memberData['memberLastName']."\n\n";
+			$message .= "ชื่อเข้าใช้งานของคุณคือ ".$memberData['memberUsername']."\n\n";
+			$message .= "แจ้งการระงับการใช้งาน บัญชี ".$memberData['memberUsername']." เนื่องจากเหตุผลบางประการ \n\n";
+			$message .= "หากท่านต้องการที่จะเปิดใช้งานบัญชี กรุณาติดต่อหัวหน้าโครงการ หรือผู้ดูแลระบบ \n\n";
+			$message .= "http://www.villageteeth.com  โรงพยาบาลสมเด็จพระยุพราชเด่นชัย \n";
+			$message .= "545 หมู่ 9 ตำบลเด่นชัย อำเภอเด่นชัย จังหวัดแพร่54110 โทรศัพท์ 054-613134\n";
+			$message .= "หัวหน้าโครงการ คุณ ฉลวย ศิริกุลพันธ์ Tel. 087-5788-242 \n";
+			$message .= "Email : villaget@villageteeth.com";
+			$message .= "\n";
+		}else if($status=="on"){
+			$memberActiveStatus="activated";
+			$messageTitles = "แจ้งการยกเลิกระงับการใช้งาน";
+			$message = "สวัดดีคุณ ".$memberData['memberName']." ".$memberData['memberLastName']."\n\n";
+			$message .= "ชื่อเข้าใช้งานของคุณคือ ".$memberData['memberUsername']."\n\n";
+			$message .= "แจ้งการรยกเลิกการะงับการใช้งาน บัญชี ".$memberData['memberUsername']." \n\n";
+			$message .= "ขณะนี้บัญชีของท่านสามรถใช้งานได้ตามปรกติและค่ะ \n\n";
+			$message .= "http://www.villageteeth.com  โรงพยาบาลสมเด็จพระยุพราชเด่นชัย \n";
+			$message .= "545 หมู่ 9 ตำบลเด่นชัย อำเภอเด่นชัย จังหวัดแพร่54110 โทรศัพท์ 054-613134\n";
+			$message .= "หัวหน้าโครงการ คุณ ฉลวย ศิริกุลพันธ์ Tel. 087-5788-242 \n";
+			$message .= "Email : villaget@villageteeth.com";
+			$message .= "\n";
+			
+		}
+		$title = $messageTitles.' บัญชี  villageteeth.com คุณ : '.$memberData['memberName'];
+
+			$this->Member->setMemberId($memberId);
+			$this->Member->setMemberActiveStatus($memberActiveStatus);
+			
+			$this->Member->updateMemberActiveStatus();			
+				
+				$config['protocol'] = 'SMTP';
+				$config['smtp_host'] = 'mail.villageteeth.com';
+				$config['smtp_port'] = 2525;
+				$config['smtp_user'] = 'villaget@villageteeth.com';
+				$config['smtp_pass'] = '0875788242';
+				$config['wordwrap'] = FALSE;
+				$config['mailtype'] = 'text';
+				$config['charset'] = 'utf-8';
+				$config['newline'] = '\n';
+				
+		$this->email->initialize($config);
+		$this->email->from('villaget@villageteeth.com', $title);
+		$this->email->to($memberData['memberEmail']);
+		$this->email->subject($messageTitles.' บัญชี villageteeth.com ');
+		$this->email->message($message);
+		$this->email->send();
+				if($status=="off"){
+			  	  echo "<script>alert('ได้ทำการระงับใช้ บัญชี และส่ง Email เพื่อแจ้งเตือนให้แก่บัญชีดังกล่าวเรียบร้อยแล้ว')</script>";
+				}else if($status=="on"){
+				  echo "<script>alert('ได้ทำการยกเลิกการระงับใช้ บัญชี และส่ง Email เพื่อแจ้งเตือนให้แก่บัญชีดังกล่าวเรียบร้อยแล้ว')</script>";
+				}
+	}else{
+		echo "<script>alert('กรุณาเรียกใช้การเปิดปิดบัญชีให้ถูกต้องด้วยนะค่ะ');</script>";
+		 
+	}
+	 $this->memberAll();
+	
+}
+	function editMembers($memberId){
+		$this->Member->setMemberId($memberId);
+		$data['member'] = $this->Member->getMemberByIdAndDetial();
+		$this->Address->setCantonId($data['member']['addressCantonId']);
+		$this->Address->setDistrictId($data['member']['addressDistrictId']);
+		$this->Address->setProvinceId($data['member']['addressProvinceId']);
+		$data['address'] = $this->Address->getmemberAear();
+		
+		$this->Address->setCantonId($data['member']['liableareaCantonId']);
+		$this->Address->setDistrictId($data['member']['liableareaDistrictId']);
+		$this->Address->setProvinceId($data['member']['liableareaProvinceId']);
+		$data['liablearea'] = $this->Address->getmemberAear();
+		
+		$addressId = $data['member']['addressId'];
+		$this->Address->setAddressId($addressId);
+		$data['tel'] = $this->Address->getTelFk();
+		
+		$data['province']=$this->Address->getProvinceAll();
+		$this->load->view('boss/member/formEditMember',$data);
+	}
+	function editActionMember(){
+		$memberId = $this->input->post('memberId');
+		$memberName = $this->input->post('memberName');
+		$memberLastName = $this->input->post('memberLastName');
+		$memberUsername = $this->input->post('memberUsername');
+		$memberPassword = $this->input->post('memberPassword');
+		$memberIdIDCard = $this->input->post('memberIdIDCard');
+		$memberEmail = $this->input->post('memberEmail');
+		$dateB = $this->input->post('memberBirthday');
+		
+		$memberBirthday = $this->formatDate($dateB);
+		
+		$addressId = $this->input->post('addressId');
+		$addressDetial = $this->input->post('addressDetial');
+		$memberPosition = $this->input->post('memberPosition');
+		$memberStatus = $this->input->post('memberStatus');
+		
+		$provinceId = $this->input->post('province');
+		$districtId = $this->input->post('district');
+		$cantonId = $this->input->post('canton');
+		$street = $this->input->post('street');
+		
+		$telId = $this->input->post('telId');
+		$tel = $this->input->post('tel');
+		$telNote = $this->input->post('telNote');
+		
+		
+		$liableareaId = $this->input->post('liableareaId');
+		$liableareaProvinceId = $this->input->post('liableareaprovince');
+		$liableareaDistrictId = $this->input->post('liableareadistrict');
+		$liableareaCantonId = $this->input->post('liableareacanton');
+		
+		$this->Address->setAddressId($addressId);
+		$this->Address->setProvinceId($provinceId);
+		$this->Address->setDistrictId($districtId);
+		$this->Address->setCantonId($cantonId);
+		$this->Address->setStreet($street);
+		
+		$this->Address->updateAddress();
+		
+			$this->Member->setMemberId($memberId);
+			$this->Member->setMemberName($memberName);
+			$this->Member->setMemberLastName($memberLastName);
+			$this->Member->setMemberUsername($memberUsername);
+			$this->Member->setMemberPassword($memberPassword);
+			$this->Member->setMemberIdIDCard($memberIdIDCard);
+			$this->Member->setMemberEmail($memberEmail);
+			$this->Member->setMemberBirthday($memberBirthday);
+			$this->Member->setAddressDetial($addressDetial);
+			$this->Member->setMemberPosition($memberPosition);
+			$this->Member->setMemberStatus($memberStatus);
+			
+			
+		$this->Member->updateMember();
+		
+		$this->Address->setLiableareaId($liableareaId);
+		$this->Address->setProvinceId($liableareaProvinceId);
+		$this->Address->setDistrictId($liableareaDistrictId);
+		$this->Address->setCantonId($liableareaCantonId);
+
+		
+		$this->Address->updateLiableArea();
+		
+		for($i=0;$i<count($telId);$i++){
+			$this->Address->setTelId($telId[$i]);
+			$this->Address->setTelNote($telNote[$i]);
+			$this->Address->setTel($tel[$i]);
+			$this->Address->updateTel();
+		}
+		
+		echo "<body>
+				<p align='center'>แก้ไขข้อมูลสำเร็จ</p>
+				<p align='center'>
+					<a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
+					</p>
+					</body>";
+		
+	}
+	
+	function deleteMembers($memberId){
+		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
+				<p>
+					<a href='".base_url()."index.php/boss/deleteMembersAction/".$memberId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
+					<a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
+					</p>
+		</body>";
+	}
+	
+	function deleteMembersAction($memberId){
+		$this->Member->setMemberId($memberId);
+		$data = $this->Member->getMemberByIdAndDetial();
+		$this->Address->setAddressId($data['addressId']);
+		$this->Address->deleteAddress();
+		
+		$this->Address->setLiableareaId($data['liableareaId']);
+		$this->Address->deleteLiableArea();
+		
+		$this->Member->setMemberId($data['memberId']);
+		$this->Member->deleteMember();
+				echo "
+				<body>
+				<p align='center'>ลบข้อมูลสำเร็จ</p>
+				<p align='center'>
+					<a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
+					</p>
+					</body>
+		";
 	}
 
 	function childentAddress($childentId){
@@ -687,7 +889,9 @@ function deleteChildentAction($childrenId,$addressId){
 				<p>
 				  <a href='".base_url()."index.php/boss/deleteBehaviorAction/".$behaviorId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
 				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
-				</p>";
+				</p>
+				</body>
+				";
 	}
 function formatDate($date) {
     $data = explode("-", $date);
@@ -721,8 +925,6 @@ function policeSearch($page=0){
 			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
 		}
 		$this->load->view('boss/policing/searchResultPolicingChildents',$data);
-	}
-
 }
-
-?>
+	
+}?>

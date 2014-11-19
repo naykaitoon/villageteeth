@@ -16,17 +16,16 @@
   <link href="<?php echo base_url()?>css/pace-theme-barber-shop.css" rel="stylesheet" />
      <script>
 	 $(document).ready(function(){
-		  
-		 var href = '<?php echo base_url();?>index.php/home/loginForm';
-				load(20,href);
-										load(100,href);
-										load(500,href);
-										load(2000,href);
-										load(3000,href);
+		    $('.load').load( '<?php echo base_url();?>index.php/home/loginForm' ); 
+										load(20);
+										load(100);
+										load(500);
+										load(2000);
+										load(3000);
 									
 										setTimeout(function(){
 										  Pace.ignore(function(){
-											load(3100,href);
+											load(3100);
 										  });
 										}, 4000);
 									
@@ -35,11 +34,11 @@
 										});
 				   
                 
-				 	function load(time,href){
+				 	function load(time){
 										  var x = new XMLHttpRequest()
-										  x.open('GET', href + time, true);
+										  x.open('GET', time, true);
 										  x.send(); 
-										  $('.load').load( '<?php echo base_url();?>index.php/home/loginForm' ); 
+										
 										};   
  });
  

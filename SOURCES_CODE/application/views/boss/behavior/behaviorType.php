@@ -1,7 +1,7 @@
 <div id="headTitleContentbg">
  <h2 id="headTitleContent">รายการข้อมูลหมวดหมู่พฤติกรรมทัตสุขภาพ</h2>
  </div>
- <p style="margin-top:16px;"><a class="fancyboxMiniBehaviorType" style="font-size:12px" href="<?php echo base_url();?>index.php/boss/addBehaviorMagType"><img class="iconAction" src="<?php echo base_url()?>img/icon/distanceIconAdd.png" width="40px"/>เพิ่มข้อมูลหมวดหมู่พฤติกรรมทัตสุขภาพ</a></p>
+ <p style="margin-top:16px;"><a class="fancyboxMiniBehaviorType" style="font-size:12px" href="<?php echo base_url();?>index.php/boss/addBehaviorMagType"><img class="iconAction" src="<?php echo base_url()?>img/icon/behaviorTypeIconAdd.png" width="40px"/>เพิ่มข้อมูลหมวดหมู่พฤติกรรมทัตสุขภาพ</a></p>
 <div class="table"align="center"><br>
 <table width="60%" border="0" align="center" cellpadding="7" cellspacing="3">
 
@@ -16,7 +16,7 @@
 	 foreach($behaviorMagType as $c){?>
     <tr>    
            <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $i;?></p></td>  
-       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['behaviorTypeName'];?></p></td>
+       <td align="left" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>&nbsp;- <?php echo $c['behaviorTypeName'];?></p></td>
  <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="behaviorTypeEdit" href="<?php echo base_url();?>index.php/boss/editBehaviorMagType/<?php echo $c['behaviorTypeId'];?>"> <img class="iconAction" src="<?php echo base_url();?>img/editIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;"></a></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="behaviorTypeDelete" href="<?php echo base_url();?>index.php/boss/deleteBehaviorMagType/<?php echo $c['behaviorTypeId'];?>" > <img class="iconAction" src="<?php echo base_url();?>img/deleteIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;"></a></td>
     </tr>

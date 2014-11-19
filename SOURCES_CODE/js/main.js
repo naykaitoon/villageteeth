@@ -58,7 +58,7 @@ $("#dropdown").on("click", function(e){
 					
        		$('.content').load('/index.php/boss/memberAll');
 
-    },
+    }
 	
 });
 $('.fancyboxMagChildent').fancybox({
@@ -161,6 +161,42 @@ $('.fancyboxMagChildentAll').fancybox({
 				}
 	
 });
+$('.fancyboxMagMemberAll').fancybox({
+				height :	580,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				overlay : {
+            				css : {
+               				 'background' : 'rgba(58, 42, 45, 0.95)',
+           				 }
+				},
+					afterClose : function() {
+					
+       		$('.content').load('/index.php/boss/memberAll');
+
+    }
+	
+});
+$('.deleteMemberAll').fancybox({
+					  			height :	150,
+				width :	300,
+				scrolling : 'no',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/boss/memberAll");
+
+    },
+				overlay : {
+            				css : {
+               				 'background' : 'rgba(58, 42, 45, 0.95)'
+           				 },showEarly : false
+				}
+});
   $('.fancyboxMini').fancybox({
 	  			height :	230,
 				width :	400,
@@ -182,7 +218,7 @@ $('.fancyboxMagChildentAll').fancybox({
 });
   $('.fancyboxMiniBehaviorType').fancybox({
 	  			height :	200,
-				width :	400,
+				width :	500,
 				fitToView	: false,
 				scrolling : 'auto',
 				autoSize : false,
@@ -238,8 +274,8 @@ $('.fancyboxMagChildentAll').fancybox({
 	
 });
   $('.behaviorTypeEdit').fancybox({
-	  			height :	180,
-				width :	350,
+	  			height :	200,
+				width :	500,
 				fitToView	: false,
 				scrolling : 'auto',
 				autoSize: false,

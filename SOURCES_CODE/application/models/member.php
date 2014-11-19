@@ -306,6 +306,7 @@ function forgetPasswordMemberByCode()
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 		$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
+		$this->db->where('members.memberStatus','officials');
 		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
 	$this->db->select('*');
@@ -315,6 +316,7 @@ function forgetPasswordMemberByCode()
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 		$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
+		$this->db->where('members.memberStatus','officials');
 		$config['total_rows'] = $this->db->count_all_results();// ส่วนนี้ จะนับว่า ฟิว ทั้งหมดที่อยู่ใน tb_user มีเท่าไหร่
 		$config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
 		 
@@ -338,6 +340,7 @@ function forgetPasswordMemberByCode()
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 	$this->db->join('liablearea', 'liablearea.memberId = members.memberId');
+	$this->db->where('members.memberStatus','officials');
 		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
 
@@ -352,6 +355,7 @@ function forgetPasswordMemberByCode()
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 	$this->db->join('liablearea', 'liablearea.memberId = members.memberId');
+	$this->db->where('members.memberStatus','officials');
  		 $config['total_rows'] = $this->db->count_all_results(); // ส
   		 $config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
 		 $this->pagination->create_links();
@@ -380,7 +384,7 @@ function checkUsername()
 	$this->db->limit(1);
 	$result = $this->db->get('members')->result_array();
 	
-		return $result;
+	return $result;
 
 	
  }
@@ -406,7 +410,75 @@ function checkUsername()
 		$this->db->insert('members',$data);
 		return $this->db->insert_id();
  }
+ 
+ function updateMember(){
 
+		$data = array(
+				'memberName' => $this->getMemberName(),
+				'memberLastName' => $this->getMemberLastName(),
+				'memberIdIDCard' => $this->getMemberIdIDCard(),
+				'memberEmail' => $this->getMemberEmail(),
+				'memberBirthday' => $this->getMemberBirthday(),
+				'addressDetial' => $this->getAddressDetial(),
+				'memberPosition' => $this->getMemberPosition(),
+				'memberStatus' => $this->getMemberStatus()
+		);
+		$this->db->where('memberId',$this->getMemberId());
+		$this->db->update('members',$data);
+ }
+ 
+function updateMemberActiveStatus(){
+	$data = array(
+	'memberActiveStatus' => $this->getMemberActiveStatus()
+	);
+	$this->db->where('memberId',$this->getMemberId());
+	$this->db->limit(1);
+	$this->db->update('members',$data);
+}
+
+function getMemberById(){
+	$this->db->where('memberId',$this->getMemberId());
+	$memberData = $this->db->get('members')->result_array();
+	return $memberData[0];
+}
+function deleteMember(){
+	$this->db->where('memberId',$this->getMemberId());
+	$this->db->delete('members');
+}
+
+function getMemberByIdAndDetial(){
+	$this->db->select(
+   'members.memberId,
+    members.memberUsername,
+	members.memberName,
+	memberLastName,
+	members.memberIdIDCard,
+	members.memberPosition,
+	members.memberBirthday,
+	members.memberStatus,
+	members.addressDetial,
+	members.memberEmail,
+	members.memberActiveStatus,
+	address.addressId,
+	address.cantonId AS addressCantonId,
+	address.districtId AS addressDistrictId,
+	address.provinceId AS addressProvinceId,
+	address.street AS addressStreet,
+	liablearea.liableareaId,
+	liablearea.cantonId AS liableareaCantonId,
+	liablearea.districtId AS liableareaDistrictId,
+	liablearea.provinceId AS liableareaProvinceId	
+	'
+	);
+	$this->db->join('address','address.addressId = members.addressId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+	$this->db->join('liablearea', 'liablearea.memberId = members.memberId');
+	$this->db->where('members.memberId',$this->getMemberId());
+	$memberData = $this->db->get('members')->result_array();
+	return $memberData[0];
+}
 
 
 }

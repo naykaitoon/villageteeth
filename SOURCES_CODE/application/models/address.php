@@ -7,8 +7,6 @@ class Address extends CI_Model {
 
 ######  Attribute  ###### 
     var $addressId ; ######  รหัสข้อมูลที่อยู่  ######
-    var $ownerId ; ######   	รหัสข้อมูลผู้ใช้งาน หรือ รหัสข้อมูลเด็ก  ######
-    var $ownerType ; ######  ประเภทของที่อยู่ เป็นของ ผู้ใช้งานหรือเด็ก  ######
     var $addressDetial ; ######  รายละเอียดข้อมูลที่อยู่  ######
     var $cantonId ; ######  รหัสข้อมูลตำบล  ######
     var $districtId ; ######  รหัสข้อมูลอำเภอ  ######
@@ -18,6 +16,7 @@ class Address extends CI_Model {
 	var $tel;
 	var $telNote;
 	var $memberId;
+	var $liableareaId;
 ###### End Attribute  ###### 
 
  ###### SET : $addressId ######
@@ -141,6 +140,20 @@ class Address extends CI_Model {
         return $this->memberId; 
      }
 ###### End GET : $addressId ###### 
+
+ ###### SET : $addressId ######
+    function setLiableareaId($liableareaId){
+        $this->liableareaId = $liableareaId; 
+     }
+###### End SET : $addressId ###### 
+
+
+###### GET : $addressId ######
+    function getLiableareaId(){
+        return $this->liableareaId; 
+     }
+###### End GET : $addressId ###### 
+
 ////////////////////////    /////////////////////////////
 function getProvinceAll(){
 	return $this->db->get('province')->result_array();
@@ -203,6 +216,7 @@ function getMemberByAddress($page,$url){
 	}else if($this->getProvinceId()){
 		$this->db->where('address.provinceId',$this->getProvinceId());
 	}
+	$this->db->where('members.memberStatus','officials');
 		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
 	
@@ -220,6 +234,7 @@ function getMemberByAddress($page,$url){
 	}else if($this->getProvinceId()){
 		$this->db->where('address.provinceId',$this->getProvinceId());
 	}
+	$this->db->where('members.memberStatus','officials');
 		$config['total_rows'] = $this->db->count_all_results();// ส่วนนี้ จะนับว่า ฟิว ทั้งหมดที่อยู่ใน tb_user มีเท่าไหร่
 		$config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
 		 
@@ -266,9 +281,15 @@ function updateAddress(){
 	$this->db->where('addressId',$this->getAddressId());
 	$this->db->update('address',$data);
 	
+}
+
+function deleteAddress(){
 	
+	$this->db->where('addressId',$this->getAddressId());
+	$this->db->delete('address');
 	
 }
+
 function updateTel(){
 	$dataTel = array(
 		'tel' => $this->getTel(),
@@ -277,11 +298,6 @@ function updateTel(){
 	$this->db->where('telId',$this->getTelId());
 	$this->db->update('tel',$dataTel);
 }
-function deleteAddress(){
-	$this->db->where('addressId',$this->getAddressId());
-	$this->db->delete('address');
-}
-
 
 function addLiableArea(){
 	$dataLiable = array(
@@ -292,8 +308,20 @@ function addLiableArea(){
 	);
 	$this->db->insert('liablearea',$dataLiable);
 }
+function updateLiableArea(){
+	$data = array(
+		'provinceId' => $this->getProvinceId(),
+		'districtId' => $this->getDistrictId(),
+		'cantonId' => $this->getCantonId()
+	);
+	$this->db->where('liableAreaId',$this->getLiableareaId());
+	$this->db->update('liablearea',$data);
+}
 
-
+function deleteLiableArea(){
+	$this->db->where('liableareaId',$this->getLiableareaId());
+	$this->db->delete('liablearea');
+}
 
 
 
