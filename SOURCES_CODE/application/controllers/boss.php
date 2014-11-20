@@ -203,6 +203,10 @@ class Boss extends CI_Controller {
 			$tel = $this->input->post('tel');
 			$telNote = $this->input->post('telNote');
 			
+			$diseasesId = $this->input->post('diseasesId');
+			$diseasesName = $this->input->post('diseasesName');
+			$medicine = $this->input->post('medicine');
+			
 			
 			$this->Address->setAddressId($addressId);
 			$this->Address->setProvinceId($provinceId);
@@ -223,6 +227,12 @@ class Boss extends CI_Controller {
 			
 			$this->Childents->updateChildent();
 			
+			$this->Childents->setDiseasesId($diseasesId);
+			$this->Childents->setChildrenId($childrenId);
+			$this->Childents->setDiseasesName($diseasesName);
+			$this->Childents->setMedicine($medicine);
+			
+			$this->Childents->updateDiseases();
 			
 			for($i=0;$i<count($tel);$i++){	
 				$this->Address->setTelId($telId[$i]);
@@ -281,6 +291,9 @@ function deleteChildentAction($childrenId,$addressId){
 			$tel = $this->input->post('tel');
 			$telNote = $this->input->post('telNote');
 			
+			$diseasesName = $this->input->post('diseasesName');
+			$medicine = $this->input->post('medicine');
+			
 			$this->Address->setProvinceId($provinceId);
 			$this->Address->setDistrictId($districtId);
 			$this->Address->setCantonId($cantonId);
@@ -298,8 +311,13 @@ function deleteChildentAction($childrenId,$addressId){
 			
 			$childrenId = $this->Childents->addChildent();
 			
+			$this->Childents->setChildrenId($childrenId);
+			$this->Childents->setDiseasesName($diseasesName);
+			$this->Childents->setMedicine($medicine);
 			
 			$this->Address->setAddressId($addressId);
+			
+			$this->Childents->addDiseases();
 			
 			for($i=0;$i<count($tel);$i++){			
 				$this->Address->setTel($tel[$i]);
@@ -925,6 +943,20 @@ function policeSearch($page=0){
 			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
 		}
 		$this->load->view('boss/policing/searchResultPolicingChildents',$data);
+}
+
+function policing($childentId){
+	$this->Childents->setChildrenId($childentId);
+	$data['loginData'] = $this->session->userdata('loginData');
+	$data['childent'] = $this->Childents->getChildentInAearPKs();
+	$data['behaviorall'] = $this->Policings->getPolicingData();
+	$data['behaviorTypeAll'] = $this->Policings->getPolicingDataBehaviortype();
+	$data['distance'] = $this->Policings->getPolicingDataDistance();
+	$this->load->view('boss/policing/fromPolicing',$data);
+}
+
+function policingPhoto($behaviorId){
+		$this->load->view('boss/policing/fromPolicingPhoto');
 }
 	
 }?>

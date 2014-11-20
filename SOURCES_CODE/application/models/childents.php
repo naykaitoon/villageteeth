@@ -12,6 +12,9 @@ class Childents extends CI_Model {
     var $childrenBirthday ; ######  วันเกิด  ######
     var $childrenIDCard ; ######  รหัสบัตรประจำตัวประชาชน  ######
 	var $addressId ; ######  รหัสบัตรประจำตัวประชาชน  ######
+	var $diseasesId;
+	var $diseasesName;
+	var $medicine;
 	var $textSearch ; ######  คำค้นหรือ pk fk  ######
 ###### End Attribute  ###### 
 ######################  start get/set ############################
@@ -122,6 +125,52 @@ class Childents extends CI_Model {
         return $this->textSearch; 
      }
 ###### End GET : $textSearch ###### 
+
+ ###### SET : $childrenId ######
+    function setDiseasesId($diseasesId){
+        $this->diseasesId = $diseasesId; 
+     }
+###### End SET : $childrenId ###### 
+
+
+###### GET : $childrenId ######
+    function getDiseasesId(){
+        return $this->diseasesId; 
+     }
+###### End GET : $childrenId ###### 
+
+
+
+ ###### SET : $childrenId ######
+    function setDiseasesName($diseasesName){
+        $this->diseasesName = $diseasesName; 
+     }
+###### End SET : $childrenId ###### 
+
+
+###### GET : $childrenId ######
+    function getDiseasesName(){
+        return $this->diseasesName; 
+     }
+###### End GET : $childrenId ###### 
+
+
+
+ ###### SET : $childrenId ######
+    function setMedicine($medicine){
+        $this->medicine = $medicine; 
+     }
+###### End SET : $childrenId ###### 
+
+
+###### GET : $childrenId ######
+    function getMedicine(){
+        return $this->medicine; 
+     }
+###### End GET : $childrenId ###### 
+
+
+
 ######################  end get/set ############################
 
 ######################  start getchillentInArea ############################
@@ -134,7 +183,7 @@ function getChildentInArea($page,$url){
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
-	
+	$this->db->join('diseases','diseases.childrenId = childrens.childrenId');
 
 		$this->db->where('address.cantonId',$datas['cantonId']);
 
@@ -178,7 +227,7 @@ function getChildentInArea($page,$url){
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
-
+		$this->db->join('diseases','diseases.childrenId = childrens.childrenId');
 	$data = $this->db->get('childrens',$pageValue,$page)->result_array();
 	$loginData2 = $this->session->userdata('loginData');
 	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
@@ -189,7 +238,7 @@ function getChildentInArea($page,$url){
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
-
+	$this->db->join('diseases','diseases.childrenId = childrens.childrenId');
   	$config['total_rows'] = $this->db->count_all_results();// ส่วนนี้ จะนับว่า ฟิว ทั้งหมดที่อยู่ใน tb_user มีเท่าไหร่
 	
 		 
@@ -207,6 +256,7 @@ function getChildentInArea($page,$url){
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
+		$this->db->join('diseases','diseases.childrenId = childrens.childrenId');
 	$this->db->like('childrens.childrenName',$this->getTextSearch());
 	$this->db->or_like('childrens.childrenName',$this->getTextSearch());
 	$this->db->or_like('childrens.childrenLastName',$this->getTextSearch());
@@ -221,6 +271,7 @@ function getChildentInArea($page,$url){
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
+		$this->db->join('diseases','diseases.childrenId = childrens.childrenId');
 	$this->db->or_like('childrens.childrenName',$this->getTextSearch());
 	$this->db->or_like('childrens.childrenLastName',$this->getTextSearch());
 	$this->db->or_like('childrens.childrenIDCard',$this->getTextSearch());
@@ -267,6 +318,7 @@ function getChildentInAearPKs(){
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 	$this->db->join('zipcodes','zipcodes.cantonId = canton.cantonId');
+	$this->db->join('diseases','diseases.childrenId = childrens.childrenId');
 	$this->db->group_by('childrens.childrenId');
 	$this->db->where('childrens.childrenId ',$this->getChildrenId()); 
 	$data = $this->db->get('childrens')->result_array();
@@ -275,8 +327,29 @@ function getChildentInAearPKs(){
 function deleteChildent(){
 	$this->db->where('childrenId',$this->getChildrenId());
 	$this->db->delete('childrens');
+	$this->db->where('diseases.childrenId',$this->getChildrenId());
+	$this->db->delete('diseases');
+
 }
 
+function addDiseases(){
+	$data = array(
+	'childrenId' => $this->getChildrenId(),
+	'diseasesName' => $this->getDiseasesName(),
+	'medicine' => $this->getMedicine()
+	);
+	$this->db->insert('diseases',$data);
+}
+
+function updateDiseases(){
+	$data = array(
+	'childrenId' => $this->getChildrenId(),
+	'diseasesName' => $this->getDiseasesName(),
+	'medicine' => $this->getMedicine()
+	);
+	$this->db->where('diseases.diseasesId',$this->getDiseasesId());
+	$this->db->update('diseases',$data);
+}
 
 }
 ?>
