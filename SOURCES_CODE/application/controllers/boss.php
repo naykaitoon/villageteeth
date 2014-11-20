@@ -956,6 +956,7 @@ function policing($childentId){
 }
 
 function policingPhoto($behaviorId){
+		$data['behaviorall'] = $this->Policings->getPolicingData();
 		$this->load->view('boss/policing/fromPolicingPhoto');
 }
 	

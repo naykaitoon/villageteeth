@@ -123,22 +123,4 @@ $check = 1;
   </tbody>
 </table>
 </form>
-
 <br><br><br><br>
-
- <script>
-	 $('.policingPhoto').fancybox({
-				height : 550,
-				width :	900,
-				fitToView	: false,
-				scrolling : 'on',
-				autoSize : false,
-				type				: 'iframe',
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)',
-           				 }
-				}
-	
-});
-	</script>
