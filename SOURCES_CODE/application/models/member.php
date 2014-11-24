@@ -252,6 +252,28 @@ function login()
  }
  ######################## end function login #############################
  
+ ####################### function checkPassword #############################
+function checkPassword()
+ {
+   $this -> db -> select('*');  						###########
+   $this -> db -> from('members'); 						 ########### เช็คข้อมูลใน DB 
+   $this -> db -> where('memberId', $this->getMemberId()); ###########
+   $this -> db -> where('memberPassword', MD5($this->getMemberPassword())); ###########
+   $this -> db -> where('memberActiveStatus', 'activated'); ###########
+   $this -> db -> limit(1); ############## ตำกัดให้คืนค่าแค่ record เดียว
+   $query = $this -> db -> get()->result_array(); ##############  สั่งดึงข้อมูลตามเงื่อนไข
+   if($query)  ############  เมื่อมีข้อมูล 1 record 
+   {
+     return $query; ############# ส่งค้าที่ดึงได้กลับ
+   }
+   else ########### เมื่อไม่ตรงตามเงื่อนไข
+   {
+	 return $query;  ############# ส่งค้า FALSE กลับ
+
+   }
+ }
+ ######################## end function checkPassword #############################
+ 
  ######################## function forgetPasswordMember #############################
 function forgetPasswordMember()
  {

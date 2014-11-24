@@ -147,12 +147,16 @@ class Login extends CI_Controller { /// คราสชื่อ Login
 	
 	function checkingLogin(){
 			$loginData = $this->session->userdata('loginData'); 
-			if($loginData){
-				return TRUE;
+			if($loginData['status']=='boss'){
+				$loginData =  'boss';
+				$returnData = $loginData;
+			}else if($loginData['status']=='officials'){
+				$returnData = $loginData;
 			}else{
 				$this->session->unset_userdata('loginData'); 
-				return FALSE;
+				$returnData = FALSE;
 			}
+			return $returnData;
 	}
 	
 

@@ -112,7 +112,7 @@ return false; return true;}
   <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0">
 
       <tr>
-        <th colspan="2" align="center" valign="middle" nowrap="nowrap">แก้ไขข้อมูลเด็กในพื้นที่</th>
+        <th colspan="2" align="center" valign="middle" nowrap="nowrap">แก้ไขข้อมูลเด็ก</th>
       </tr>
       <tr>
         <td width="48%" align="right" valign="middle">ชื่อ - นามสกุล : <input type="hidden" name="childrenId" id="childrenId" value="<?php echo $childent[0]['childrenId'];?>"><input type="hidden" name="addressId" id="addressId" value="<?php echo $childent[0]['addressId'];?>"></td>

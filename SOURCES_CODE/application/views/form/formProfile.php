@@ -258,7 +258,10 @@ if(id.length != 13) return false;
 for(i=0, sum=0; i < 12; i++) 
 sum += parseFloat(id.charAt(i))*(13-i); if((11-sum%11)%10!=parseFloat(id.charAt(12))) 
 return false; return true;}
-		
+function confirms(){
+	var values = confirm('คุณแน่ใจที่จะเปลี่ยนแลงข้อมูลหรือไม่');
+	return values;
+}
  </script>
   <script>
 var d = new Date();
@@ -302,10 +305,10 @@ $(function(){
 
 <body>
 <div class="table"align="center" >
-<form id="form1" action="<?php echo base_url();?>index.php/boss/editActionMember" name="form1" method="post" onsubmit="return checkFormSubmit();" >
+<form id="form1" action="<?php echo base_url();?>index.php<?php echo $link;?>" name="form1" method="post" onsubmit="return checkFormSubmit();" >
   <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
       <tr>
-        <th colspan="5" align="center" valign="middle" nowrap="nowrap">แก้ไขข้อมูลผู้ใช้งาน</th>
+        <th colspan="5" align="center" valign="middle" nowrap="nowrap">แก้ไขข้อมูลส่วนตัว</th>
       </tr>
       <tr>
         <td width="30%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
@@ -348,7 +351,7 @@ $(function(){
   </select></td>
         <th width="11%" rowspan="3" align="right" valign="middle" nowrap="nowrap">เขตพื้นที่ที่รับผิดชอบ  </th>
         <td width="9%" align="right" valign="middle">จังหวัด</td>
-        <td width="26%" align="left" valign="middle"><select name="liableareaprovince" id="province2" class="address" required>
+        <td width="26%" align="left" valign="middle"><select name="liableareaprovince" required disabled class="address" id="province2">
           <option value="0">กรุณาเลือก</option>
           <?php foreach($province as $p){?>
           <option value="<?php echo $p['provinceId']?>" <?php if($member['liableareaProvinceId']==$p['provinceId']){ echo 'selected';}?> ><?php echo $p['provinceName']?></option>
@@ -363,7 +366,7 @@ $(function(){
             
         </select></td>
         <td align="right" valign="middle">อำเภอ </td>
-        <td align="left" valign="middle"><select name="liableareadistrict"  id="district2" class="address" required>
+        <td align="left" valign="middle"><select name="liableareadistrict" required disabled class="address"  id="district2">
           <option value="<?php  echo $liablearea[0]['districtId'];?>"><?php echo $liablearea[0]['districtName'];?></option>
         </select></td>
       </tr>
@@ -375,7 +378,7 @@ $(function(){
           
         </select></td>
         <td align="right" valign="middle">ตำบล</td>
-        <td align="left" valign="middle"><select name="liableareacanton"  id="canton2" class="address" required>
+        <td align="left" valign="middle"><select name="liableareacanton" required disabled class="address"  id="canton2">
           <option value="<?php  echo $liablearea[0]['cantonId'];?>"><?php  echo $liablearea[0]['cantonName'];?></option>
         </select></td>
       </tr>
@@ -389,10 +392,9 @@ $(function(){
       </tr>
       <tr>
         <td align="right" valign="middle">สถานะบัญชี : </td>
-        <td colspan="4" align="left" valign="middle"> <select name="memberStatus"  id="memberStatus" required>
- 	<option value="officials" <?php if($member['memberStatus']=='officials'){echo 'selected';}?> >เจ้าหน้าที่</option>
-    <option value="boss" <?php if($member['memberStatus']=='officials'){echo 'boss';}?> >ผู้ดูแลระบบ</option>
-  </select></td>
+        <td colspan="4" align="left" valign="middle"> 
+    <?php if($member['memberStatus']=='officials'){echo 'เจ้าหน้าที่';}else{echo 'ผู้ดูแลระบบ';}?>
+</td>
       </tr>
         <tbody>
     <?php foreach($tel as $t){?>
@@ -407,7 +409,7 @@ $(function(){
      <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
        <tr>    <td width="50%" align="center" valign="middle">&nbsp;&nbsp;&nbsp;
          <input type="reset" name="reset" id="reset" value="ล้างข้อมูล" ></td>
-         <td width="50%" align="center" valign="middle"><input type="submit" name="submit" id="submit" value="บันทึก">
+         <td width="50%" align="center" valign="middle"><input type="submit" name="submit" id="submit" value="บันทึก" onClick="return confirms();">
          &nbsp;
          <input type="button" name="cancle" id="cancle" value="ยกเลิก/ปิด" onClick="parent.jQuery.fancybox.close();"></td>
        </tr>

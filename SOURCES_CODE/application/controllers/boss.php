@@ -8,7 +8,8 @@ class Boss extends CI_Controller {
 			include_once('login.php');
   			$login = new login(); 
 			$result = $login->checkingLogin();
-			if($result!=TRUE){
+			if($result!='boss'){
+				$this->session->unset_userdata('loginData'); 
 				echo"<script langquage='javascript'>window.location='".base_url()."index.php/home';</script>";
 			}
     }
@@ -737,12 +738,153 @@ function switchMembers($status,$memberId){
 		$data['province']=$this->Address->getProvinceAll();
 		$this->load->view('boss/member/formEditMember',$data);
 	}
+	function editMyProfile(){
+		$loginData = $this->session->userdata('loginData');
+		$memberId = $loginData['id'];
+		$data['link'] = '/boss/editMyProfileAction';
+		$this->Member->setMemberId($memberId);
+		$data['member'] = $this->Member->getMemberByIdAndDetial();
+		$this->Address->setCantonId($data['member']['addressCantonId']);
+		$this->Address->setDistrictId($data['member']['addressDistrictId']);
+		$this->Address->setProvinceId($data['member']['addressProvinceId']);
+		$data['address'] = $this->Address->getmemberAear();
+		
+		$this->Address->setCantonId($data['member']['liableareaCantonId']);
+		$this->Address->setDistrictId($data['member']['liableareaDistrictId']);
+		$this->Address->setProvinceId($data['member']['liableareaProvinceId']);
+		$data['liablearea'] = $this->Address->getmemberAear();
+		
+		$addressId = $data['member']['addressId'];
+		$this->Address->setAddressId($addressId);
+		$data['tel'] = $this->Address->getTelFk();
+		
+		$data['province']=$this->Address->getProvinceAll();
+		$this->load->view('form/formProfile',$data);
+	}
+	function editMyProfileAction(){
+		$loginData = $this->session->userdata('loginData');
+		$memberId = $loginData['id'];
+		$memberName = $this->input->post('memberName');
+		$memberLastName = $this->input->post('memberLastName');
+		$memberUsername = $this->input->post('memberUsername');
+		$memberPassword = $this->input->post('memberPassword');
+		$memberIdIDCard = $this->input->post('memberIdIDCard');
+		$memberEmail = $this->input->post('memberEmail');
+		$dateB = $this->input->post('memberBirthday');
+		
+		$memberBirthday = $this->formatDate($dateB);
+		
+		$addressId = $this->input->post('addressId');
+		$addressDetial = $this->input->post('addressDetial');
+		$memberPosition = $this->input->post('memberPosition');
+		$memberStatus = $loginData['status'];
+		
+		$provinceId = $this->input->post('province');
+		$districtId = $this->input->post('district');
+		$cantonId = $this->input->post('canton');
+		$street = $this->input->post('street');
+		
+		$telId = $this->input->post('telId');
+		$tel = $this->input->post('tel');
+		$telNote = $this->input->post('telNote');
+		
+		
+		$liableareaId = $this->input->post('liableareaId');
+		$liableareaProvinceId = $loginData['provinceId'];
+		$liableareaDistrictId = $loginData['districtId'];
+		$liableareaCantonId = $loginData['cantonId'];
+		
+		
+		$this->Address->setAddressId($addressId);
+		$this->Address->setProvinceId($provinceId);
+		$this->Address->setDistrictId($districtId);
+		$this->Address->setCantonId($cantonId);
+		$this->Address->setStreet($street);
+		
+		$this->Address->updateAddress();
+		
+			$this->Member->setMemberId($memberId);
+			$this->Member->setMemberName($memberName);
+			$this->Member->setMemberLastName($memberLastName);
+			$this->Member->setMemberUsername($memberUsername);
+			$this->Member->setMemberPassword($memberPassword);
+			$this->Member->setMemberIdIDCard($memberIdIDCard);
+			$this->Member->setMemberEmail($memberEmail);
+			$this->Member->setMemberBirthday($memberBirthday);
+			$this->Member->setAddressDetial($addressDetial);
+			$this->Member->setMemberPosition($memberPosition);
+			$this->Member->setMemberStatus($memberStatus);
+			
+			
+		$this->Member->updateMember();
+		
+		$this->Address->setLiableareaId($liableareaId);
+		$this->Address->setProvinceId($liableareaProvinceId);
+		$this->Address->setDistrictId($liableareaDistrictId);
+		$this->Address->setCantonId($liableareaCantonId);
+
+		
+		$this->Address->updateLiableArea();
+		
+		for($i=0;$i<count($telId);$i++){
+			$this->Address->setTelId($telId[$i]);
+			$this->Address->setTelNote($telNote[$i]);
+			$this->Address->setTel($tel[$i]);
+			$this->Address->updateTel();
+		}
+		$sesData = array(
+				  'id' => $memberId,
+				  'username' => $memberUsername, 
+				  'name' => $memberName,
+				  'lastName' => $memberLastName, 
+				  'status' => $memberStatus, 
+				  'cantonId' => $liableareaCantonId,
+				  'districtId' => $liableareaDistrictId, 
+				  'provinceId' => $liableareaProvinceId
+				);
+	
+				$this->session->set_userdata('loginData',$sesData);
+			echo "<script>parent.jQuery.fancybox.close();</script>";
+		
+	}
+	function chooseNewPassword(){
+		$data['link'] = '/boss/chooseNewPasswordCheckingAndAction';
+		$this->load->view('form/choosePassword',$data);
+	}
+	function chooseNewPasswordCheckingAndAction(){
+		$loginData = $this->session->userdata('loginData');
+		$memberId = $loginData['id'];
+		$memberPassword = $this->input->post('memberPassword');
+		$memberPasswordOld = $this->input->post('memberPasswordOld');
+		$memberPasswordCon = $this->input->post('memberPasswordCon');
+		
+		$this->Member->setMemberId($memberId);
+		$this->Member->setMemberPassword($memberPasswordOld);
+		$result = $this->Member->checkPassword();
+	
+		if($result){
+			if($memberPassword==$memberPasswordCon){
+					$this->Member->setMemberId($memberId);
+					$this->Member->setMemberPassword($memberPassword);
+					$this->Member->updatePasswordMemberPk();
+				echo "<center> แก้ไขรหัสสำเร็จ คลิกปิด เพื่อกลับไปหน้าแรก และ ลงชื่อเข้าใช้งานใหม่<br>
+	<a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
+	</center>";
+			}else{
+				echo "<center><font color='#FF0004'>รหัสผ่านไม่ถูกต้อง กรุณาทำรายการใหม่</font><br>
+	<a onClick='parent.jQuery.fancybox.close();' href='".base_url()."index.php/boss/chooseNewPassword'><input type='button' name='button2' id='button2' value='กลับ'></a>
+	</center>";
+			}
+		}else{
+			echo "<center><font color='#FF0004' size='25px'>รหัสผ่านเดิมไม่ถูกต้อง กรุณาทำรายการใหม่</font><br><a onClick='parent.jQuery.fancybox.close();' href='".base_url()."index.php/boss/chooseNewPassword'><input type='button' name='button2' id='button2' value='กลับ'></a>
+	</center>";
+		}
+	}
 	function editActionMember(){
 		$memberId = $this->input->post('memberId');
 		$memberName = $this->input->post('memberName');
 		$memberLastName = $this->input->post('memberLastName');
 		$memberUsername = $this->input->post('memberUsername');
-		$memberPassword = $this->input->post('memberPassword');
 		$memberIdIDCard = $this->input->post('memberIdIDCard');
 		$memberEmail = $this->input->post('memberEmail');
 		$dateB = $this->input->post('memberBirthday');
@@ -781,7 +923,6 @@ function switchMembers($status,$memberId){
 			$this->Member->setMemberName($memberName);
 			$this->Member->setMemberLastName($memberLastName);
 			$this->Member->setMemberUsername($memberUsername);
-			$this->Member->setMemberPassword($memberPassword);
 			$this->Member->setMemberIdIDCard($memberIdIDCard);
 			$this->Member->setMemberEmail($memberEmail);
 			$this->Member->setMemberBirthday($memberBirthday);
@@ -990,6 +1131,7 @@ function addPolicingPhoto($behaviorId,$childentId){
 		$data['d'.$downData[$i].''] = 1;
 	}
 	$this->session->set_userdata($behaviorId.$childentId,$data);
+	
 }
 
 function t(){

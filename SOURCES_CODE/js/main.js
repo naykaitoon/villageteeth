@@ -182,6 +182,44 @@ $('.fancyboxMagChildentAll').fancybox({
 				}
 	
 });
+$('.editProfile').fancybox({
+				height :	580,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				overlay : {
+            				css : {
+               				 'background' : 'rgba(58, 42, 45, 0.95)',
+           				 }
+				},
+					afterClose : function() {
+					
+       		window.location='/index.php/boss';
+
+    }
+	
+});
+$('.chooseNewPassword').fancybox({
+				height :	300,
+				width :	'50%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				overlay : {
+            				css : {
+               				 'background' : 'rgba(58, 42, 45, 0.95)',
+           				 }
+				},
+					afterClose : function() {
+					
+       		window.location='/index.php/boss';
+
+    }
+	
+});
 $('.fancyboxMagMemberAll').fancybox({
 				height :	580,
 				width :	'80%',

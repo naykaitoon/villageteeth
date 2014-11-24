@@ -81,17 +81,19 @@
     </p>
     <div class="logindata">
     <p>
-    			<li class="textlog" style="text-align:center;">ยินดีต้อนรับ คุณ : <?php echo $loginData['name'].' '.$loginData['lastName'];?></li>
-                <br>
-    <li class="textlog" style="text-align:center;">
+    			<li class="textlog" style="text-align:center;">
+               
+              <h2 style="padding-top:5px;margin-top:-3px;margin-left:-15px;"><font color="#ACACAC;"> ยินดีต้อนรับ</font> คุณ : <?php echo $loginData['name'].' '.$loginData['lastName'];?></h2>
+               <br>
+
      <ul class="dropdownAcou" style="text-align:center;">
-        <li >
-            <a href="" onClick="return false;" id="headicon"><img src="<?php echo base_url();?>img/icon/settingIcon.png" width="30" height="30" /></a>
+        <li class="headicon">
+            <a href="" onClick="return false;" ><img src="<?php echo base_url();?>img/icon/settingIcon.png" width="30" height="30" class="iconAction" />&nbsp;&nbsp;จัดการบีญชี</a>
       <ul>
-                <li style="text-align:center;"><a href="#" onClick="return false;"><img src="<?php echo base_url();?>img/icon/prof.png" width="30" height="30" />แก้ไขข้อมูลส่วนตัว</a></li>
+                <li style="text-align:center;"><a href="<?php echo base_url();?>index.php/boss/editMyProfile" class="editProfile"><img src="<?php echo base_url();?>img/icon/prof.png" width="30" height="30" />แก้ไขข้อมูลส่วนตัว</a></li>
             </ul>
                   <ul style="text-align:center;">
-                <li style="text-align:center;"><a href="#" onClick="return false;"><img src="<?php echo base_url();?>img/icon/editpass.png" width="30" height="30" />เปลี่ยนรหัสผ่าน</a></li>
+                <li style="text-align:center;"><a href="<?php echo base_url();?>index.php/boss/chooseNewPassword" class="chooseNewPassword"><img src="<?php echo base_url();?>img/icon/editpass.png" width="30" height="30" />เปลี่ยนรหัสผ่าน</a></li>
             </ul>
         </li>
     </ul>
