@@ -790,9 +790,9 @@ function switchMembers($status,$memberId){
 		
 		
 		$liableareaId = $this->input->post('liableareaId');
-		$liableareaProvinceId = $loginData['provinceId'];
-		$liableareaDistrictId = $loginData['districtId'];
-		$liableareaCantonId = $loginData['cantonId'];
+		$liableareaProvinceId =$this->input->post('liableareaprovince');
+		$liableareaDistrictId = $this->input->post('liableareadistrict');
+		$liableareaCantonId =$this->input->post('liableareacanton');
 		
 		
 		$this->Address->setAddressId($addressId);

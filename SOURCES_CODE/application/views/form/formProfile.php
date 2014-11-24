@@ -351,7 +351,7 @@ $(function(){
   </select></td>
         <th width="11%" rowspan="3" align="right" valign="middle" nowrap="nowrap">เขตพื้นที่ที่รับผิดชอบ  </th>
         <td width="9%" align="right" valign="middle">จังหวัด</td>
-        <td width="26%" align="left" valign="middle"><select name="liableareaprovince" required disabled class="address" id="province2">
+        <td width="26%" align="left" valign="middle"><select name="liableareaprovince" required class="address" id="province2">
           <option value="0">กรุณาเลือก</option>
           <?php foreach($province as $p){?>
           <option value="<?php echo $p['provinceId']?>" <?php if($member['liableareaProvinceId']==$p['provinceId']){ echo 'selected';}?> ><?php echo $p['provinceName']?></option>
@@ -366,7 +366,7 @@ $(function(){
             
         </select></td>
         <td align="right" valign="middle">อำเภอ </td>
-        <td align="left" valign="middle"><select name="liableareadistrict" required disabled class="address"  id="district2">
+        <td align="left" valign="middle"><select name="liableareadistrict" required class="address"  id="district2">
           <option value="<?php  echo $liablearea[0]['districtId'];?>"><?php echo $liablearea[0]['districtName'];?></option>
         </select></td>
       </tr>
@@ -378,7 +378,7 @@ $(function(){
           
         </select></td>
         <td align="right" valign="middle">ตำบล</td>
-        <td align="left" valign="middle"><select name="liableareacanton" required disabled class="address"  id="canton2">
+        <td align="left" valign="middle"><select name="liableareacanton" required class="address"  id="canton2">
           <option value="<?php  echo $liablearea[0]['cantonId'];?>"><?php  echo $liablearea[0]['cantonName'];?></option>
         </select></td>
       </tr>
