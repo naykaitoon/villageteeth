@@ -43,6 +43,18 @@
         <td align="right" valign="middle">รหัสไปรษณีย์:</td>
         <td align="left" valign="middle"><?php echo $childent[0]['zipcode']?></td>
       </tr>
+      <tr>
+        <td align="right" valign="middle">โรคประจำตัว</td>
+        <td align="left" valign="middle"><?php echo $childent[0]['diseasesName'];?></td>
+      </tr>
+       <tr>
+        <td align="right" valign="middle">ยาที่กินประจำ</td>
+        <td align="left" valign="middle"><?php echo $childent[0]['medicine'];?></td>
+      </tr>
+             <tr>
+        <td align="right" valign="middle">ยาที่แพ้</td>
+        <td align="left" valign="middle"><?php echo $childent[0]['allergicMedicine'];?></td>
+      </tr>
        <?php foreach($tel as $t){?>
        <tr>
      <td align="right" valign="middle">เบอร์โทร - หมายเหตุเบอร์โทร</td>

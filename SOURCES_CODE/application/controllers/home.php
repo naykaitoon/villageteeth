@@ -30,6 +30,14 @@ class Home extends CI_Controller {
 	function fix(){
 		$this->load->view('fix');
 	}
+	
+	function test(){
+		$this->load->view('test');
+	}
+	
+	function test2(){
+		$this->load->view('test2');
+	}
 
 }
 

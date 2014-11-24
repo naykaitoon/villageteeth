@@ -16,6 +16,7 @@ class Childents extends CI_Model {
 	var $diseasesName;
 	var $medicine;
 	var $textSearch ; ######  คำค้นหรือ pk fk  ######
+	var $allergicMedicine;
 ###### End Attribute  ###### 
 ######################  start get/set ############################
 
@@ -169,7 +170,18 @@ class Childents extends CI_Model {
      }
 ###### End GET : $childrenId ###### 
 
+ ###### SET : $childrenId ######
+    function setAllergicMedicine($allergicMedicine){
+        $this->allergicMedicine = $allergicMedicine; 
+     }
+###### End SET : $childrenId ###### 
 
+
+###### GET : $childrenId ######
+    function getAllergicMedicine(){
+        return $this->allergicMedicine; 
+     }
+###### End GET : $childrenId ###### 
 
 ######################  end get/set ############################
 
@@ -336,7 +348,8 @@ function addDiseases(){
 	$data = array(
 	'childrenId' => $this->getChildrenId(),
 	'diseasesName' => $this->getDiseasesName(),
-	'medicine' => $this->getMedicine()
+	'medicine' => $this->getMedicine(),
+	'allergicMedicine' => $this->getAllergicMedicine()
 	);
 	$this->db->insert('diseases',$data);
 }
@@ -345,7 +358,8 @@ function updateDiseases(){
 	$data = array(
 	'childrenId' => $this->getChildrenId(),
 	'diseasesName' => $this->getDiseasesName(),
-	'medicine' => $this->getMedicine()
+	'medicine' => $this->getMedicine(),
+	'allergicMedicine' => $this->getAllergicMedicine()
 	);
 	$this->db->where('diseases.diseasesId',$this->getDiseasesId());
 	$this->db->update('diseases',$data);

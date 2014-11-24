@@ -143,7 +143,7 @@ class Boss extends CI_Controller {
 
 ##########################END function  timespan คำนวนวันเกิด ############################	
 
- ##########################Start function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็กในพื้นที่ ############################	
+ ##########################Start function  addChillentInArea ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็กในพื้นที่ ############################	
 	function addChillentInArea(){
 		$data['loginData'] = $this->session->userdata('loginData');
 
@@ -157,9 +157,9 @@ class Boss extends CI_Controller {
 
 		$this->load->view('boss/childent/formAddChildentMyArea',$data);
 	}
-##########################END function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็ก############################	
+##########################END function  addChillentInArea ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็ก############################	
 
- ##########################Start function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็กในพื้นที่ ############################	
+ ##########################Start function  editChildentInArea ตึงข้อมูลแบบฟรอมการแก้ไขข้อมูลเด็กในพื้นที่ ############################	
 	function editChildentInArea($childentId){
 		$data['loginData'] = $this->session->userdata('loginData');
 		
@@ -176,8 +176,8 @@ class Boss extends CI_Controller {
 		
 		$this->load->view('boss/childent/fromEditChildent',$data);
 	}
-##########################END function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็ก############################	
- ##########################Start function  addActionChillent เพิ่มข้อมูลเด็ก ############################	
+##########################END function  editChildentInArea ตึงข้อมูลแบบฟรอมการแก้ไขข้อมูลเด็กในพื้นที่############################	
+ ##########################Start function  editActionChildent ฟังชั่นแก้ไขข้อมูลเด็กลง db ############################	
 	function editActionChildent(){
 			$childrenId = $this->input->post('childrenId');
 			$childrenName = $this->input->post('childrenName');
@@ -206,7 +206,7 @@ class Boss extends CI_Controller {
 			$diseasesId = $this->input->post('diseasesId');
 			$diseasesName = $this->input->post('diseasesName');
 			$medicine = $this->input->post('medicine');
-			
+			$allergicMedicine = $this->input->post('allergicMedicine');
 			
 			$this->Address->setAddressId($addressId);
 			$this->Address->setProvinceId($provinceId);
@@ -231,6 +231,7 @@ class Boss extends CI_Controller {
 			$this->Childents->setChildrenId($childrenId);
 			$this->Childents->setDiseasesName($diseasesName);
 			$this->Childents->setMedicine($medicine);
+			$this->Childents->setAllergicMedicine($allergicMedicine);
 			
 			$this->Childents->updateDiseases();
 			
@@ -244,7 +245,7 @@ class Boss extends CI_Controller {
 				echo "<script>parent.$.fancybox.close();</script>";
 			
 	}
-##########################END function  addActionChillent เพิ่มข้อมูลเด็ก ############################	
+##########################END function  editActionChildent เพิ่มข้อมูลเด็ก ############################	
 function deleteChildentData($id,$addressId){
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
@@ -267,7 +268,7 @@ function deleteChildentAction($childrenId,$addressId){
 		$this->load->view('boss/childent/formAddChildent',$data);
 	}
 ##########################END function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็ก############################	
- ##########################Start function  addActionChillent เพิ่มข้อมูลเด็ก ############################	
+ ##########################Start function  addActionChildent เพิ่มข้อมูลเด็กลง DB ############################	
 	function addActionChildent(){
 
 			$childrenName = $this->input->post('childrenName');
@@ -293,6 +294,7 @@ function deleteChildentAction($childrenId,$addressId){
 			
 			$diseasesName = $this->input->post('diseasesName');
 			$medicine = $this->input->post('medicine');
+			$allergicMedicine = $this->input->post('allergicMedicine');
 			
 			$this->Address->setProvinceId($provinceId);
 			$this->Address->setDistrictId($districtId);
@@ -314,6 +316,7 @@ function deleteChildentAction($childrenId,$addressId){
 			$this->Childents->setChildrenId($childrenId);
 			$this->Childents->setDiseasesName($diseasesName);
 			$this->Childents->setMedicine($medicine);
+			$this->Childents->setAllergicMedicine($allergicMedicine);
 			
 			$this->Address->setAddressId($addressId);
 			
@@ -331,7 +334,7 @@ function deleteChildentAction($childrenId,$addressId){
 				echo "<script>parent.$.fancybox.close();</script>";
 			
 	}
-##########################END function  addActionChillent เพิ่มข้อมูลเด็ก ############################	
+##########################END function  addActionChildent เพิ่มข้อมูลเด็ก ############################	
 
 	function getDistrict()
 	{
@@ -385,13 +388,13 @@ function deleteChildentAction($childrenId,$addressId){
 		$this->load->view('boss/policing/distance',$data);
 	}
 	
-	#################### strat function editDistance จัดการข้อมูลระยะเวลาการตรวจ ##################
+	#################### strat function addDistance ดึงแบบฟรอมเพิ่มข้อมูลระยะเวลาการตรวจ ##################
 	function addDistance(){
 		$this->load->view('boss/policing/addDistance');
 	}
-	#################### End function editDistance จัดการข้อมูลระยะเวลาการตรวจ ##################
+	#################### End function addDistance ดึงแบบฟรอมเพิ่มข้อมูลระยะเวลาการตรวจ ##################
 	
-	#################### strat function addDistanceAction เพิ่มข้อมูลระยะเวลาการตรวจ ##################
+	#################### strat function addDistanceAction เพิ่มข้อมูลระยะเวลาการตรวจลง db ##################
 	function addDistanceAction(){
 		$distanceMonth = $this->input->post('distanceMonth');
 
@@ -409,7 +412,7 @@ function deleteChildentAction($childrenId,$addressId){
 		}
 		
 	}
-	#################### End function addDistanceAction เพิ่มข้อมูลระยะเวลาการตรวจ ##################
+	#################### End function addDistanceAction เพิ่มข้อมูลระยะเวลาการตรวจลงdb ################
 	
 	#################### strat function editDistance จัดการข้อมูลระยะเวลาการตรวจ ##################
 	function editDistance($distanceId){
@@ -955,9 +958,46 @@ function policing($childentId){
 	$this->load->view('boss/policing/fromPolicing',$data);
 }
 
-function policingPhoto($behaviorId){
-		$data['behaviorall'] = $this->Policings->getPolicingData();
-		$this->load->view('boss/policing/fromPolicingPhoto');
+function policingPhoto($behaviorId,$childentId){
+	$data['pImg'] = $this->session->userdata($behaviorId.$childentId);
+	
+	$this->Policings->setBehaviorId($behaviorId);
+	$data['behavior'] = $this->Policings->getPolicingDataPk();
+	
+	$data['childentId'] = $childentId;
+
+	$this->load->view('boss/policing/fromPolicingPhoto',$data);
+}
+
+function addPolicingPhoto($behaviorId,$childentId){
+	
+	for($i=1;$i<=10;$i++){
+		$data['u'.$i.''] = 0;
+	}
+	
+	for($i=1;$i<=10;$i++){
+		$data['d'.$i.''] = 0;
+	}
+	
+	$upData = $this->input->post('up');
+	$downData = $this->input->post('down');
+	
+	for($i=0;$i<count($upData);$i++){
+		$data['u'.$upData[$i].''] = 1;
+	}
+	
+	for($i=0;$i<count($downData);$i++){
+		$data['d'.$downData[$i].''] = 1;
+	}
+	$this->session->set_userdata($behaviorId.$childentId,$data);
+}
+
+function t(){
+	$this->load->view('2');
+}
+
+function addPolicing(){
+		var_dump($_POST);
 }
 	
 }?>

@@ -1,3 +1,24 @@
+<script>
+
+			$("#submit").click(function(event){
+				  event.preventDefault();
+				  $.post( "<?php echo base_url();?>index.php/boss/addPolicing", 
+				  $( ".addPolicing" ).serialize() 
+				  )
+				  .done(
+				  function( data ) {
+				$('.table').html(data);
+				});
+				
+			  });
+			$("#cancle").click(function(event){
+				  event.preventDefault();
+					$('.content').load("<?php echo base_url();?>index.php/boss/police");
+				
+			  });
+			
+
+</script>
 <?php 
 function idFormat($idCard){
 	 $id1 = substr($idCard, 0, 1);
@@ -11,7 +32,8 @@ function idFormat($idCard){
 <div id="headTitleContentbg">
  <h2 id="headTitleContent">แบบบันทึกข้อมูลเด็กรายบุคคลในคลินิกส่งเสริมทันตสุขภาพเด็ก</h2>
  </div>
-<form action="<?php echo base_url();?>index.php/boss/test2" method="post" class="table">
+ <div class="table">
+<form class="addPolicing" action="<?php echo base_url();?>index.php/boss/addPolicing" method="post" >
   <?php foreach($childent as $c){?>
   <br><br>
   <table width="50%" border="0" align="left" cellpadding="7" cellspacing="3" style="margin-bottom:15px;box-shadow:2px 2px 2px #373737;" >
@@ -51,7 +73,7 @@ function idFormat($idCard){
     <tr valign="baseline">
       <td width="68%" height="0" align="center" valign="middle" nowrap="nowrap" style="background-color:#0B80FF;font-size:18px;color:#fff;text-shadow:2px 2px 2px #373737;"><p style="padding-top:15px;">แบบบันทึกข้อมูลเด็ก</p></td>
       <td height="20" colspan="2" align="center" valign="middle" nowrap="nowrap"  style="background-color:#0B80FF;font-size:18px;color:#fff;text-shadow:2px 2px 2px #373737;"><p style="">การตรวจช่วง : 
-        <select name="distance" id="distance">
+        <select name="distanceId" id="distanceId">
         <?php foreach($distance as $d){ ?>
         <option value="<?php echo $d['distanceId']?>"><?php echo $d['distanceMonth']?> เดือน</option>
         <?php }?>
@@ -64,6 +86,7 @@ function idFormat($idCard){
     </tr>
 <?php
 $check = 1;
+$roop = 0;
  for($ii=0;$ii<count($behaviorTypeAll);$ii++){
 	foreach($behaviorall as $b){
 		if($behaviorTypeAll[$ii]['behaviorTypeId']==$b['behaviorTypeId']){
@@ -73,16 +96,35 @@ $check = 1;
 	<td colspan="3" align="left" style="font-weight:bold;background-color:#6DB3FF;color:#FFF;text-shadow:1px 1px 1px #434343;">&nbsp;&nbsp;&nbsp;<?php echo $behaviorTypeAll[$ii]['behaviorTypeName']; $check=0;?></td>
     </tr> 
     <tr>
-	<td align="left" valign="baseline" style="font-weight:600;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;<?php echo $b['behaviorName'];?></td>
+	<td align="left" valign="middle" style="font-weight:600;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;<?php echo $b['behaviorName'];?></td>
     <?php if($b['behaviorType']=='normal'){?>   
     <td align="center" valign="baseline">
      
-      <input type="hidden" name="behaviorId[]" value="<?php echo $b['behaviorId']; ?>">
-     					 <input type="radio" name="<?php echo  $b['behaviorId']; ?>" id="<?php echo $b['behaviorId']; ?>" value="1"></td>
-      <td align="center" valign="baseline"><input name="<?php echo  $b['behaviorId']; ?>" type="radio" required  id="<?php $b['behaviorId']; ?>2" value="0" checked></td>
- <?php }else{ ?>
-   <td width="10%" colspan="2" align="center">
-   <a class="policingPhoto" href="<?php echo base_url();?>index.php/boss/policingPhoto/<?php echo $b['behaviorId']; ?>">ลงข้อมูลฟันแบบรูปภาพ</a>
+      <input type="hidden" name="policing[]" value="<?php echo $b['behaviorId']; ?>">
+     					 <input type="radio" name="policingValue[<?php echo $roop;?>]" id="<?php echo $b['behaviorId']; ?>" value="1"></td>
+      <td align="center" valign="baseline"><input name="policingValue[<?php echo $roop;?>]" type="radio" required  id="<?php $b['behaviorId']; ?>2" value="0" checked></td>
+ <?php 
+ $roop++;
+ }else{ ?>
+   <td width="10%"  align="center" class="reloadText">
+   <input type="hidden" name="policingPhoto[]" value="<?php echo $b['behaviorId']; ?>">
+   <?php 
+   $polincyPhoto = $this->session->userdata($b['behaviorId'].$childent[0]['childrenId']);
+   if(!$polincyPhoto){
+	   		$text = 'ตรวจ';
+	   }else{ 
+	   		$text = 'ตรวจใหม่อีกครั้ง';
+	    }?>
+    <a class="policingPhoto" href="<?php echo base_url();?>index.php/boss/policingPhoto/<?php echo $b['behaviorId']; ?>/<?php echo $childent[0]['childrenId']; ?>"><?php echo $text;?></a>
+       </td>
+   <td align="center" class="reload" >
+   <?php 
+   $polincyPhoto = $this->session->userdata($b['behaviorId'].$childent[0]['childrenId']);
+   if(!$polincyPhoto){?>
+  <img src="<?php echo base_url();?>img/icon/null.png" width="50px"/>
+   <?php }else{ ?>
+  <img src="<?php echo base_url();?>img/icon/notnull.png"  width="50px"/>
+   <?php }?>
     </td>
  <?php }?>
     
@@ -90,15 +132,34 @@ $check = 1;
 <?php }else if($check==0){?> 
 <tr>
 
-	<td align="left" valign="baseline" style="font-weight:600;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;<?php echo $b['behaviorName'];?></td>
+	<td align="left" valign="middle" style="font-weight:600;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;<?php echo $b['behaviorName'];?></td>
      <?php if($b['behaviorType']=='normal'){?>   
-        <td align="center" valign="baseline"><input type="hidden" name="behaviorId[]"  value="<?php echo $b['behaviorId']; ?>">
-     					 <input type="radio" name="<?php echo  $b['behaviorId'] ?>" id="<?php echo  $b['behaviorId'] ?>" value="1"></td>
-      <td align="center" valign="baseline"><input name="<?php echo  $b['behaviorId'] ?>" type="radio" required id="<?php echo  $b['behaviorId'] ?>2" value="0" checked></td>
+        <td align="center" valign="baseline"><input type="hidden" name="policing[]"  value="<?php echo $b['behaviorId']; ?>">
+     					 <input type="radio" name="policingValue[<?php echo $roop;?>]" id="<?php echo  $b['behaviorId'] ?>" value="1"></td>
+      <td align="center" valign="baseline"><input name="policingValue[<?php echo $roop;?>]" type="radio" required id="<?php echo  $b['behaviorId'] ?>2" value="0" checked></td>
  
-     <?php }else{ ?>
-   <td align="center" colspan="2">
-   <a class="policingPhoto" href="<?php echo base_url();?>index.php/boss/policingPhoto/<?php echo $b['behaviorId']; ?>">ลงข้อมูลฟันแบบรูปภาพ</a>
+     <?php $roop++;
+	 
+	 }else{ ?>
+   <td align="center" class="reloadText">
+   <input type="hidden" name="policingPhoto[]" value="<?php echo $b['behaviorId']; ?>">
+   <?php
+      $polincyPhoto = $this->session->userdata($b['behaviorId'].$childent[0]['childrenId']);
+   if(!$polincyPhoto){
+	   		$text = 'ตรวจ';
+	   }else{ 
+	   		$text = 'ตรวจใหม่อีกครั้ง';
+	    }?>
+    <a class="policingPhoto" href="<?php echo base_url();?>index.php/boss/policingPhoto/<?php echo $b['behaviorId']; ?>/<?php echo $childent[0]['childrenId']; ?>"><?php echo $text;?></a>
+   </td>
+   <td align="center" class="reload">
+    <?php 
+   $polincyPhoto = $this->session->userdata($b['behaviorId'].$childent[0]['childrenId']);
+   if(!$polincyPhoto){?>
+  <img src="<?php echo base_url();?>img/icon/null.png" width="50px"/>
+   <?php }else{ ?>
+  <img src="<?php echo base_url();?>img/icon/notnull.png"  width="50px"/>
+   <?php }?>
     </td>
  <?php }?>
     </tr>
@@ -115,12 +176,13 @@ $check = 1;
     <tr valign="baseline">
       <td colspan="3" align="left">&nbsp;&nbsp;&nbsp;วันที่นัดครั้งต่อไป&nbsp;&nbsp;
         : 
-        <input type="text" name="textfield" id="textfield"></td>
+        <input type="text" name="textfield" id="textfieldsssssss"></td>
       </tr>
     <tr valign="baseline">
-      <td colspan="3" align="center"><input type="submit" name="submit" id="submit" value="บันทึก"></td>
+      <td colspan="3" align="center"><input type="button" name="submit" id="submit" value="บันทึก"> <input type="button" name="cancle" id="cancle" value="ยกเบิก" onClick="cancle()"></td>
       </tr>
   </tbody>
 </table>
 </form>
+</div>
 <br><br><br><br>

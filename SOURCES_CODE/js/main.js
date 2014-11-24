@@ -74,6 +74,12 @@ $("#dropdown").on("click", function(e){
                				 'background' : 'rgba(58, 42, 45, 0.95)',
            				 }
 				}
+				,
+					afterClose : function() {
+						
+					}
+				
+				
 	
 });
 $('.fancyboxMagChildent').fancybox({

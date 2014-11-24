@@ -174,6 +174,11 @@ return false; return true;}
         <td align="left" valign="middle"><input name="medicine" type="text" required id="medicine" size="40" maxlength="50" value="<?php echo $childent[0]['medicine'];?>"> 
           &nbsp;&nbsp;<span style="color: #8F0205">*ตัวอย่าง</span>&nbsp; <span style="color: #494949">ยา1,ยา2,...</span></td>
       </tr>
+              <tr>
+        <td align="right" valign="middle">ยาที่แพ้</td>
+        <td align="left" valign="middle"><input name="allergicMedicine" type="text" required id="allergicMedicine" size="40" maxlength="50" value="<?php echo $childent[0]['allergicMedicine'];?>"> 
+          &nbsp;&nbsp;<span style="color: #8F0205">*ตัวอย่าง</span>&nbsp; <span style="color: #494949">ยา1,ยา2,...</span></td>
+      </tr>
        <tbody>
               <?php foreach($tel as $t){?>
               <tr class="firstTr">

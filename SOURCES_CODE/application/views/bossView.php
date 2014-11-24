@@ -80,10 +80,24 @@
     		ระบบทันตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย<br>Dental Health System
     </p>
     <div class="logindata">
-    			ยินดีต้อนรับ คุณ : <?php echo $loginData['name'].' '.$loginData['lastName'];?>
+    <p>
+    			<li class="textlog" style="text-align:center;">ยินดีต้อนรับ คุณ : <?php echo $loginData['name'].' '.$loginData['lastName'];?></li>
                 <br>
-                <img src="<?php echo base_url();?>img/icon/lock.png?v=1001" width="30px">
+    <li class="textlog" style="text-align:center;">
+     <ul class="dropdownAcou" style="text-align:center;">
+        <li >
+            <a href="" onClick="return false;" id="headicon"><img src="<?php echo base_url();?>img/icon/settingIcon.png" width="30" height="30" /></a>
+      <ul>
+                <li style="text-align:center;"><a href="#" onClick="return false;"><img src="<?php echo base_url();?>img/icon/prof.png" width="30" height="30" />แก้ไขข้อมูลส่วนตัว</a></li>
+            </ul>
+                  <ul style="text-align:center;">
+                <li style="text-align:center;"><a href="#" onClick="return false;"><img src="<?php echo base_url();?>img/icon/editpass.png" width="30" height="30" />เปลี่ยนรหัสผ่าน</a></li>
+            </ul>
+        </li>
+    </ul>
                 <a href="<?php echo base_url();?>index.php/home/logout" class="logoutBt">ออกจากระบบ</a>
+                </p>
+        </li>
     </div>
 </div>
 <div class="allContent">
