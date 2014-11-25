@@ -1134,10 +1134,6 @@ function addPolicingPhoto($behaviorId,$childentId){
 	
 }
 
-function t(){
-	$this->load->view('2');
-}
-
 function addPolicing(){
 		var_dump($_POST);
 }
