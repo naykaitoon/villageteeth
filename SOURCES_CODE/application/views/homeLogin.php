@@ -10,7 +10,7 @@
   	<link rel="stylesheet" href="<?php echo base_url();?>css/main.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/header.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
-
+     <link rel="stylesheet" href="<?php echo base_url();?>css/font.css?v=1001">
      <script src="<?php echo base_url();?>js/jquery-1.11.1.min.js"></script>
        <script src="<?php echo base_url()?>js/pace.min.js"></script>
   <link href="<?php echo base_url()?>css/pace-theme-barber-shop.css" rel="stylesheet" />

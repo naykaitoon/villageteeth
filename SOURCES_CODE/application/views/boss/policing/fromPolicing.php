@@ -1,5 +1,18 @@
+<html>
+<head>
+<link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.min.css"  media="screen">
+<link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.theme.min.css"   media="screen">
 <script>
-
+ $( ".meetingDate" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+	  dateFormat: 'dd-mm-yy',
+	  	  minDate : 'NOW()',
+	   showOn: "button",
+		buttonImage: "<?php echo base_url()?>img/calendar.png",
+		buttonImageOnly: true,
+		buttonText: "เลือกวันที่"
+    });
 			$("#submit").click(function(event){
 				  event.preventDefault();
 				  $.post( "<?php echo base_url();?>index.php/boss/addPolicing", 
@@ -7,18 +20,20 @@
 				  )
 				  .done(
 				  function( data ) {
-				$('.table').html(data);
+					$('.table').html(data);
 				});
 				
 			  });
-			$("#cancle").click(function(event){
+			  
+			  $('#cancle').click(function(event){
 				  event.preventDefault();
-					$('.content').load("<?php echo base_url();?>index.php/boss/police");
+					$('.content').load('<?php echo base_url();?>index.php/boss/police');	
 				
 			  });
 			
 
 </script>
+
 <?php 
 function idFormat($idCard){
 	 $id1 = substr($idCard, 0, 1);
@@ -29,12 +44,16 @@ function idFormat($idCard){
 	 echo $id1.'-'.$id2.'-'.$id3.'-'.$id4.'-'.$id5;
 }
 ?>
+</head>
+<body>
 <div id="headTitleContentbg">
  <h2 id="headTitleContent">แบบบันทึกข้อมูลเด็กรายบุคคลในคลินิกส่งเสริมทันตสุขภาพเด็ก</h2>
  </div>
  <div class="table">
+
 <form class="addPolicing" action="<?php echo base_url();?>index.php/boss/addPolicing" method="post" >
   <?php foreach($childent as $c){?>
+  <input type="hidden" name="childrenId" value="<?php echo $c['childrenId'];?>"/>
   <br><br>
   <table width="50%" border="0" align="left" cellpadding="7" cellspacing="3" style="margin-bottom:15px;box-shadow:2px 2px 2px #373737;" >
     <tbody>
@@ -74,9 +93,9 @@ function idFormat($idCard){
       <td width="68%" height="0" align="center" valign="middle" nowrap="nowrap" style="background-color:#0B80FF;font-size:18px;color:#fff;text-shadow:2px 2px 2px #373737;"><p style="padding-top:15px;">แบบบันทึกข้อมูลเด็ก</p></td>
       <td height="20" colspan="2" align="center" valign="middle" nowrap="nowrap"  style="background-color:#0B80FF;font-size:18px;color:#fff;text-shadow:2px 2px 2px #373737;"><p style="">การตรวจช่วง : 
         <select name="distanceId" id="distanceId">
-        <?php foreach($distance as $d){ ?>
+        <?php foreach($distance as $d){ if($d['distanceMonth']>$max[0]['distanceMonth']){ ?>
         <option value="<?php echo $d['distanceId']?>"><?php echo $d['distanceMonth']?> เดือน</option>
-        <?php }?>
+        <?php }}?>
       </select></p></td>
     </tr>
     <tr>
@@ -174,15 +193,18 @@ $roop = 0;
       <td colspan="3" align="left">&nbsp;&nbsp;&nbsp;ผู้ให้บริการ&nbsp;&nbsp;<a style="background-color:#787878;color:#FFFFFF;padding:5px;"><?php echo $loginData['name'].' '.$loginData['lastName'];?></a>&nbsp;&nbsp;วันที่ให้บริการ&nbsp;<a style="background-color:#787878;color:#FFFFFF;padding:5px;"><?php echo date('d-m-Y');?></a></td>
       </tr>
     <tr valign="baseline">
-      <td colspan="3" align="left">&nbsp;&nbsp;&nbsp;วันที่นัดครั้งต่อไป&nbsp;&nbsp;
+      <td colspan="3" align="left">
+      &nbsp;&nbsp;&nbsp;วันที่นัดครั้งต่อไป&nbsp;&nbsp;
         : 
-        <input type="text" name="textfield" id="textfieldsssssss"></td>
+        <input type="text" name="meetingDate" style="font-size:18px;text-align:center;" class="meetingDate" value="<?php echo date('d-m-Y');?>" readonly></td>
       </tr>
     <tr valign="baseline">
-      <td colspan="3" align="center"><input type="button" name="submit" id="submit" value="บันทึก"> <input type="button" name="cancle" id="cancle" value="ยกเบิก" onClick="cancle()"></td>
+      <td colspan="3" align="center"><input type="button" name="submit" id="submit" value="บันทึก">&nbsp;&nbsp;&nbsp;<input type="button" name="cancle" id="cancle" value="ยกเลิก/กลับ"> </td>
       </tr>
   </tbody>
 </table>
 </form>
 </div>
+</body>
 <br><br><br><br>
+</html>

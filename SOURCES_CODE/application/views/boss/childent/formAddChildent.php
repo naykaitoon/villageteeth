@@ -114,7 +114,7 @@ return false; return true;}
       changeMonth: true,
       changeYear: true,
 	  dateFormat: 'dd-mm-yy',
-	  maxDate : 'NOW()',
+	  	  maxDate : 'NOW()',
 	   showOn: "button",
 		buttonImage: "<?php echo base_url()?>img/calendar.png",
 		buttonImageOnly: true,
@@ -143,16 +143,16 @@ $(function(){
 </script>
 </head>
 
-<body>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="table"align="center" >
 <form id="form1" action="<?php echo base_url();?>index.php/boss/addActionChildent" name="form1" method="post" onsubmit="return checkFormSubmit();" >
-  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
       <tr>
         <th colspan="2" align="center" valign="middle" nowrap="nowrap">เพิ่มข้อมูลเด็ก</th>
       </tr>
       <tr>
-        <td width="33%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
-        <td width="67%" align="left" valign="middle"><input type="text" name="childrenName" id="childrenName" required> - <input type="text" name="childrenLastName" id="childrenLastName" required></td>
+        <td width="28%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
+        <td width="72%" align="left" valign="middle"><input type="text" name="childrenName" id="childrenName" required> - <input type="text" name="childrenLastName" id="childrenLastName" required></td>
       </tr>
       <tr>
         <td align="right" valign="middle">เลขบัตรประจำตัวประชาชน : </td>

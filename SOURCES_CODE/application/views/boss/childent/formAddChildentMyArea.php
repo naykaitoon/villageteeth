@@ -101,10 +101,10 @@ $(function(){
 	</style>
 </head>
 
-<body>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="table"align="center" >
 <form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/boss/addActionChildent" onsubmit="return checkFormSubmit();" >
-  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
       <tr>
         <th colspan="2" align="center" valign="middle" nowrap="nowrap">เพิ่มข้อมูลเด็กในพื้นที่</th>
       </tr>

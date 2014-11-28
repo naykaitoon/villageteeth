@@ -432,16 +432,22 @@ function deleteChildentAction($childrenId,$addressId){
 			$this->Distance->setDistanceMonth($distanceMonth);
 			$this->Distance->updateDistanceData();
 			if($distanceMonth!=FALSE&&$distanceMonth!=""){
-				echo "<center>การแก้ไขข้อมูลสำเร็จ<br>
-						<a href='".base_url()."index.php/boss/distanceDataList'  style='font-size:12px' onClick='parent.jQuery.fancybox.close();'>
-						<button>คลิกที่นี้เพื่อปิด</button></a>
-					  </center>";
+				echo "
+				<body>
+				<center>การแก้ไขข้อมูลสำเร็จ<br>
+						<a  style='font-size:12px' onClick='parent.jQuery.fancybox.close();'>
+						<button onClick='parent.jQuery.fancybox.close();'>คลิกที่นี้เพื่อปิด</button></a>
+					  </center>
+					  </body>";
 			}
 			
 		}else{
-			echo "<center>กรุณาใส่จำนวนให้ถูกต้อง<br>
+			echo "
+			<body>
+			<center>กรุณาใส่จำนวนให้ถูกต้อง<br>
 			<a href='".base_url()."index.php/boss/editDistance/".$distanceId."' style='font-size:12px'>คลิกที่นี้เพิ่อกลับ</a>
-			</center>";
+			</center>
+			</body>";
 		}
 		
 	}
@@ -452,7 +458,7 @@ function deleteChildentAction($childrenId,$addressId){
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
 				  <a href='".base_url()."index.php/boss/deleteDistanceAction/".$id."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
-				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
+				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' onClick='parent.jQuery.fancybox.close();' value='ยกเลิก'></a>
 				</p>
 				</body>
 				";
@@ -489,7 +495,8 @@ function deleteChildentAction($childrenId,$addressId){
 		$behaviorTypeName = $this->input->post('behaviorTypeName');
 		$this->Behavior->setBehaviorTypeName($behaviorTypeName);
 		$this->Behavior->addBehaviorType();
-		echo "<center><br><br><br>การเพิ่มข้อมูลสำเร็จ</center>";
+		echo "<body><center><br><br><br>การเพิ่มข้อมูลสำเร็จ<br>						<a  style='font-size:12px' onClick='parent.jQuery.fancybox.close();'>
+						<button onClick='parent.jQuery.fancybox.close();'>คลิกที่นี้เพื่อปิด</button></a></center></body>";
 	}
 	
 	function editBehaviorMagTypeAction(){
@@ -518,7 +525,7 @@ function deleteChildentAction($childrenId,$addressId){
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
 				  <a href='".base_url()."index.php/boss/deleteBehaviorMagTypeAction/".$behaviorTypeId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
-				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
+				  <a onClick='parent.jQuery.fancybox.close();'><input onClick='parent.jQuery.fancybox.close();' type='button' name='button2' id='button2' value='ยกเลิก'></a>
 				</p>
 				</body>
 				";
@@ -526,7 +533,7 @@ function deleteChildentAction($childrenId,$addressId){
 			echo "<body style='text-align: center' ><p style='color:red; font-size:20;'>คุณไม่สามารถ ลบข้อมูลได้ เนื่งจากมีข้อพฤติกรรมในหมวดนี้อยู่</p>
 			<p style='color:red;font-size:14;'>กรุณาทำการลบพฤติกรรมให้หมดก่อน จะลบ หมวดหมู่</p>
 				<p>
-				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
+				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' onClick='parent.jQuery.fancybox.close();' name='button2' id='button2' value='ปิด'></a>
 				</p>
 				</body>
 				";
@@ -868,15 +875,15 @@ function switchMembers($status,$memberId){
 					$this->Member->setMemberPassword($memberPassword);
 					$this->Member->updatePasswordMemberPk();
 				echo "<center> แก้ไขรหัสสำเร็จ คลิกปิด เพื่อกลับไปหน้าแรก และ ลงชื่อเข้าใช้งานใหม่<br>
-	<a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
+	<a onClick='parent.jQuery.fancybox.close();'><input onClick='parent.jQuery.fancybox.close();' type='button' name='button2' id='button2' value='ปิด'></a>
 	</center>";
 			}else{
 				echo "<center><font color='#FF0004'>รหัสผ่านไม่ถูกต้อง กรุณาทำรายการใหม่</font><br>
-	<a onClick='parent.jQuery.fancybox.close();' href='".base_url()."index.php/boss/chooseNewPassword'><input type='button' name='button2' id='button2' value='กลับ'></a>
+	<a onClick='parent.jQuery.fancybox.close();' href='".base_url()."index.php/boss/chooseNewPassword'><input type='button' name='button2' id='button2' onClick='parent.jQuery.fancybox.close();' value='กลับ'></a>
 	</center>";
 			}
 		}else{
-			echo "<center><font color='#FF0004' size='25px'>รหัสผ่านเดิมไม่ถูกต้อง กรุณาทำรายการใหม่</font><br><a onClick='parent.jQuery.fancybox.close();' href='".base_url()."index.php/boss/chooseNewPassword'><input type='button' name='button2' id='button2' value='กลับ'></a>
+			echo "<center><font color='#FF0004' size='25px'>รหัสผ่านเดิมไม่ถูกต้อง กรุณาทำรายการใหม่</font><br><a onClick='parent.jQuery.fancybox.close();' href='".base_url()."index.php/boss/chooseNewPassword'><input type='button' name='button2' id='button2' onClick='parent.jQuery.fancybox.close();' value='กลับ'></a>
 	</center>";
 		}
 	}
@@ -951,7 +958,7 @@ function switchMembers($status,$memberId){
 		echo "<body>
 				<p align='center'>แก้ไขข้อมูลสำเร็จ</p>
 				<p align='center'>
-					<a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
+					<a onClick='parent.jQuery.fancybox.close();'><input onClick='parent.jQuery.fancybox.close();' type='button' name='button2' id='button2' value='ปิด'></a>
 					</p>
 					</body>";
 		
@@ -960,8 +967,8 @@ function switchMembers($status,$memberId){
 	function deleteMembers($memberId){
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
-					<a href='".base_url()."index.php/boss/deleteMembersAction/".$memberId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
-					<a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
+					<a href='".base_url()."index.php/boss/deleteMembersAction/".$memberId."'><input onClick='parent.jQuery.fancybox.close();' type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
+					<a onClick='parent.jQuery.fancybox.close();'><input onClick='parent.jQuery.fancybox.close();' type='button' name='button2' id='button2' value='ยกเลิก'></a>
 					</p>
 		</body>";
 	}
@@ -981,7 +988,7 @@ function switchMembers($status,$memberId){
 				<body>
 				<p align='center'>ลบข้อมูลสำเร็จ</p>
 				<p align='center'>
-					<a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
+					<a onClick='parent.jQuery.fancybox.close();'><input type='button' onClick='parent.jQuery.fancybox.close();' name='button2' id='button2' value='ปิด'></a>
 					</p>
 					</body>
 		";
@@ -1017,7 +1024,7 @@ function switchMembers($status,$memberId){
 		
 		$this->Behavior->addBehavior();
 		
-		echo "<center><br><br><br>การเพิ่มข้อมูลสำเร็จ</center>";
+		echo "<center><br><br><br>การเพิ่มข้อมูลสำเร็จ<br>	<a onClick='parent.jQuery.fancybox.close();'><input type='button' onClick='parent.jQuery.fancybox.close();' name='button2' id='button2' value='ปิด'></a></center>";
 	}
 	
 	function editBehavior($behaviorId){
@@ -1050,7 +1057,7 @@ function switchMembers($status,$memberId){
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
 				  <a href='".base_url()."index.php/boss/deleteBehaviorAction/".$behaviorId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
-				  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ยกเลิก'></a>
+				 	<a onClick='parent.jQuery.fancybox.close();'><input type='button' onClick='parent.jQuery.fancybox.close();' name='button2' id='button2' value='ปิด'></a>
 				</p>
 				</body>
 				";
@@ -1096,10 +1103,15 @@ function policing($childentId){
 	$data['behaviorall'] = $this->Policings->getPolicingData();
 	$data['behaviorTypeAll'] = $this->Policings->getPolicingDataBehaviortype();
 	$data['distance'] = $this->Policings->getPolicingDataDistance();
+	
+	$this->Policings->setChildrenId($childentId);
+	
+	$data['max'] = $this->Policings->findMaxPolicing();
 	$this->load->view('boss/policing/fromPolicing',$data);
 }
 
 function policingPhoto($behaviorId,$childentId){
+
 	$data['pImg'] = $this->session->userdata($behaviorId.$childentId);
 	
 	$this->Policings->setBehaviorId($behaviorId);
@@ -1107,6 +1119,9 @@ function policingPhoto($behaviorId,$childentId){
 	
 	$data['childentId'] = $childentId;
 
+
+
+	
 	$this->load->view('boss/policing/fromPolicingPhoto',$data);
 }
 
@@ -1124,18 +1139,111 @@ function addPolicingPhoto($behaviorId,$childentId){
 	$downData = $this->input->post('down');
 	
 	for($i=0;$i<count($upData);$i++){
-		$data['u'.$upData[$i].''] = 1;
+		if($upData[$i]!=FALSE){
+			$data['u'.$upData[$i].''] = 1;
+		}
 	}
 	
 	for($i=0;$i<count($downData);$i++){
-		$data['d'.$downData[$i].''] = 1;
+		if($downData[$i]!=FALSE){
+			$data['d'.$downData[$i].''] = 1;
+		}
 	}
 	$this->session->set_userdata($behaviorId.$childentId,$data);
+	echo "<script>parent.jQuery.fancybox.close();</script>";
 	
+}
+function policingPhotoDeleteValue($behaviorId,$childrenId){
+	$this->session->unset_userdata($behaviorId.$childrenId);
+	$this->addPolicingPhoto($behaviorId,$childentId);
+}
+	
+function addPolicing(){
+	
+		$childrenId = $this->input->post('childrenId');
+		$distanceId = $this->input->post('distanceId');
+		$policing = $this->input->post('policing');
+		$policingValue = $this->input->post('policingValue');
+		$policingPhoto = $this->input->post('policingPhoto');
+		
+		for($i=0;$i<count($policingPhoto);$i++){
+			$data=$this->session->userdata($policingPhoto[$i].$childrenId);
+			if($data!=FALSE){
+				$policyPhotoData[$i]['behaviorId']=$policingPhoto[$i];
+				$policyPhotoData[$i]['policingDetialValue']=$data;
+				
+			}
+		}
+
+		for($i=0;$i<count($policing);$i++){
+			$policingData[$i]['behaviorId'] = $policing[$i];
+			$policingData[$i]['policingDetialValue'] = $policingValue[$i];
+		}
+
+		$loginData = $this->session->userdata('loginData');
+		$this->Policings->setDistanceId($distanceId);
+		$this->Policings->setChildrenId($childrenId);
+		$this->Policings->setMemberId($loginData['id']);
+		$returnPolicingsId = $this->Policings->addPolicing();
+			
+		$meetingDate = $this->formatDate($this->input->post('meetingDate'));
+		
+			$this->Policings->setPolicingId($returnPolicingsId);
+			$this->Policings->setChildrenId($childrenId);
+			$this->Policings->setMeetingsDate($meetingDate);
+			$this->Policings->addMeetings();
+		
+		for($i=0;$i<count($policingData);$i++){
+			$this->Policings->setPolicingId($returnPolicingsId);
+			$this->Policings->setBehaviorId($policingData[$i]['behaviorId']);
+			$this->Policings->setPolicingDetialValue($policingData[$i]['policingDetialValue']);
+			$this->Policings->addPolicingDetial();
+		}
+		
+		for($i=0;$i<count($policyPhotoData);$i++){
+			$this->Policings->setPolicingId($returnPolicingsId);
+			$this->Policings->setBehaviorId($policyPhotoData[$i]['behaviorId']);
+			$this->Policings->setPolicingDetialValue(3);
+			$returnPolicingDetialId = $this->Policings->addPolicingDetial();
+			$this->policingPhotoDeleteValue($policyPhotoData[$i]['behaviorId'],$childrenId);
+				for($ii=1;$ii<=10;$ii++){
+	
+					if($policyPhotoData[$i]['policingDetialValue']['d'.$ii.'']!=0){
+						$this->Policings->setPolicingDetialId($returnPolicingDetialId);
+					
+						$this->Policings->setBrokenToothNumber($ii);
+						$this->Policings->setBrokenToothSide('down');
+						$this->Policings->addBrokentooth();		
+					}
+			
+				}
+				for($ii=1;$ii<10;$ii++){
+		
+					if($policyPhotoData[$i]['policingDetialValue']['u'.$ii.'']!=0){
+						$this->Policings->setPolicingDetialId($returnPolicingDetialId);
+					
+						$this->Policings->setBrokenToothNumber($ii);
+						$this->Policings->setBrokenToothSide('up');
+						$this->Policings->addBrokentooth();		
+					}
+			
+				}
+		}
+
+	echo "<script>alert('ลงตรวจข้อมูลการตรวจสำเร็จ');</script>";	
+	$this->police();
+		
 }
 
-function addPolicing(){
-		var_dump($_POST);
-}
+function policingFind(){
 	
+	$data['policings'] = $this->Policings->findding();
+	for($i=0;$i<count($data['policings']);$i++){
+			$childrenBirthday = strtotime($data['policings'][$i]['childrenBirthday']);
+			$data['policings'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
+		}
+	$this->load->view('boss/policing/findPolicingChildents',$data);
+}
+
+
 }?>

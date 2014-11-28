@@ -29,31 +29,26 @@ $("#dropdown").on("click", function(e){
  });
  
   $('.fancybox').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+	  
 				height :	550,
 				width :	'80%',
 				fitToView	: false,
 				scrolling : 'auto',
 				autoSize : false,
-				type				: 'iframe',
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)',
-           				 }
-				}
+				type				: 'iframe'
 	
 });
   $('.AddMember').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 				height :	580,
 				width :	'80%',
 				fitToView	: false,
 				scrolling : 'auto',
 				autoSize : false,
 				type				: 'iframe',
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)',
-           				 }
-				},
 					afterClose : function() {
 					
        		$('.content').load('/index.php/boss/memberAll');
@@ -63,26 +58,25 @@ $("#dropdown").on("click", function(e){
 });
 
 	 $('.policingPhoto').fancybox({
-				height : 550,
+	  	        openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : 600,
 				width :	900,
-				fitToView	: false,
-				scrolling : 'on',
+				scrolling : 'auto',
 				autoSize : false,
-				type				: 'iframe',
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)',
-           				 }
-				}
+				fitToView	: false,
+				type				: 'iframe'
 				,
 					afterClose : function() {
-						
+					$('.content').load($('#linkPopupclick').val());
 					}
 				
 				
 	
 });
 $('.fancyboxMagChildent').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 				height :	580,
 				width :	'80%',
 				fitToView	: false,
@@ -93,16 +87,12 @@ $('.fancyboxMagChildent').fancybox({
 					
        		$('.content').load('/index.php/boss/childentInArea');
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 }
-				}
-	
+    }
 	
 });
 $('.fancyboxMagChildentPolincy').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 				height :	580,
 				width :	'80%',
 				fitToView	: false,
@@ -113,17 +103,14 @@ $('.fancyboxMagChildentPolincy').fancybox({
 					
        		$('.content').load('/index.php/boss/polince');
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 }
-				}
+    }
 	
 	
 });
 
 $('.addBehavior').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 				height :	320,
 				width :	'80%',
 				fitToView	: false,
@@ -134,16 +121,13 @@ $('.addBehavior').fancybox({
 					
        		$('.content').load('/index.php/boss/behaviorMag');
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+    }
 	
 	
 });
 $('.editBehavior').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 			height :	320,
 				width :	'80%',
 				fitToView	: false,
@@ -154,16 +138,12 @@ $('.editBehavior').fancybox({
 					
        		$('.content').load('/index.php/boss/behaviorMag');
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
-	
+    }
 	
 });
 $('.fancyboxMagChildentAll').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 				height :	550,
 				width :	'80%',
 				fitToView	: false,
@@ -174,15 +154,12 @@ $('.fancyboxMagChildentAll').fancybox({
 					
        		$('.content').load('/index.php/boss/childentAll');
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+    }
 	
 });
 $('.editProfile').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 				height :	580,
 				width :	'80%',
 				fitToView	: false,
@@ -202,17 +179,14 @@ $('.editProfile').fancybox({
 	
 });
 $('.chooseNewPassword').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 				height :	300,
 				width :	'50%',
 				fitToView	: false,
 				scrolling : 'auto',
 				autoSize : false,
 				type				: 'iframe',
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)',
-           				 }
-				},
 					afterClose : function() {
 					
        		window.location='/index.php/boss';
@@ -221,17 +195,14 @@ $('.chooseNewPassword').fancybox({
 	
 });
 $('.fancyboxMagMemberAll').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 				height :	580,
 				width :	'80%',
 				fitToView	: false,
 				scrolling : 'auto',
 				autoSize : false,
 				type				: 'iframe',
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)',
-           				 }
-				},
 					afterClose : function() {
 					
        		$('.content').load('/index.php/boss/memberAll');
@@ -240,6 +211,8 @@ $('.fancyboxMagMemberAll').fancybox({
 	
 });
 $('.deleteMemberAll').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 					  			height :	150,
 				width :	300,
 				scrolling : 'no',
@@ -249,14 +222,11 @@ $('.deleteMemberAll').fancybox({
 					
        		$('.content').load("/index.php/boss/memberAll");
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+    }
 });
   $('.fancyboxMini').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 	  			height :	230,
 				width :	400,
 				fitToView	: false,
@@ -267,15 +237,12 @@ $('.deleteMemberAll').fancybox({
 					
        		$('.content').load($('#linkPopupclick').val());
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+    }
 	
 });
   $('.fancyboxMiniBehaviorType').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 	  			height :	200,
 				width :	500,
 				fitToView	: false,
@@ -286,15 +253,12 @@ $('.deleteMemberAll').fancybox({
 					
        		$('.content').load($('#linkPopupclick').val());
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+    }
 	
 });
   $('.fancyboxDeleteBehavior').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 	  			height :	150,
 				width :	350,
 				fitToView	: false,
@@ -305,15 +269,12 @@ $('.deleteMemberAll').fancybox({
 					
        		$('.content').load("/index.php/boss/behaviorMag");
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+    }
 	
 });
   $('.fancyboxdistanceDataList').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 	  			height :	150,
 				width :	250,
 				fitToView	: false,
@@ -324,15 +285,12 @@ $('.deleteMemberAll').fancybox({
 					
        		$('.content').load("/index.php/boss/distanceDataList");
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+    }
 	
 });
   $('.behaviorTypeEdit').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 	  			height :	200,
 				width :	500,
 				fitToView	: false,
@@ -343,15 +301,12 @@ $('.deleteMemberAll').fancybox({
 					
        		$('.content').load("/index.php/boss/behaviorMagType");
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+    }
 	
 });
   $('.behaviorTypeDelete').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 	  			height :	200,
 				width :	550,
 				fitToView	: false,
@@ -362,15 +317,12 @@ $('.deleteMemberAll').fancybox({
 					
        		$('.content').load("/index.php/boss/behaviorMagType");
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+    }
 	
 });
   $('.fancyboxDeleteMagAll').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 	  			height :	'350',
 				width :	'300',
 				fitToView	: false,
@@ -381,16 +333,13 @@ $('.deleteMemberAll').fancybox({
 					
        		$('.content').load("/index.php/boss/behaviorMag");
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+    }
 	
 });
 
   $('.deletechildentAll').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 	  			height :	150,
 				width :	300,
 				scrolling : 'no',
@@ -400,16 +349,13 @@ $('.deleteMemberAll').fancybox({
 					
        		$('.content').load("/index.php/boss/childentAll");
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+    }
 	
 });
 
   $('.deletechildentInArea').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 	  			height :	150,
 				width :	300,
 				scrolling : 'no',
@@ -419,25 +365,17 @@ $('.deleteMemberAll').fancybox({
 					
        		$('.content').load("/index.php/boss/childentInArea");
 
-    },
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 }
-				}
+    }
 	
 });
 
   $('.fancyboxAuto').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
 				autoSize : true,
 				scrolling : 'auto',
 				fitToView	: false,
-				type				: 'iframe',
-				overlay : {
-            				css : {
-               				 'background' : 'rgba(58, 42, 45, 0.95)'
-           				 },showEarly : false
-				}
+				type				: 'iframe'
 				
 	
 });

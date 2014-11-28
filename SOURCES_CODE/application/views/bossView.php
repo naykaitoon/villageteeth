@@ -8,11 +8,14 @@
   	<link rel="stylesheet" href="<?php echo base_url();?>css/main.css?v=1001">
     <link rel="stylesheet" href="<?php echo base_url();?>css/header.css?v=1001">
     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css?v=1001">
+     <link rel="stylesheet" href="<?php echo base_url();?>css/font.css?v=1001">
 	<script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js?v=1001"></script>
-	<script type="text/javascript" src="<?php echo base_url()?>js/fancy/lib/jquery.mousewheel-3.0.6.pack.js?v=1001"></script>
-	<script type="text/javascript" src="<?php echo base_url()?>js/fancy/source/jquery.fancybox.pack.js?v=1001&?v=2.1.5"></script>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/source/jquery.fancybox-thumbs.css?v=1001&?v=2.1.5" media="screen" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/source/jquery.fancybox.css?v=1001&?v=2.1.5" media="screen" />
+  <script type="text/javascript" src="<?php echo base_url()?>js/jquery.mousewheel-3.0.6.pack.js"></script>
+   <script src="<?php echo base_url()?>js/jqueryui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url()?>js/jquery.fancybox.js?v=1001&?v=2.1.5"></script>
+    	<script type="text/javascript" src="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.js?v=1001&?v=2.1.5"></script>
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.css?v=1001&?v=2.1.5" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/jquery.fancybox.css?v=2.1.5" media="screen" />
     <script type="text/javascript" src="<?php echo base_url()?>js/main.js?v=1001"></script>
       <script src="<?php echo base_url()?>js/pace.min.js"></script>
   <link href="<?php echo base_url()?>css/pace-theme-barber-shop.css" rel="stylesheet" />
@@ -105,7 +108,7 @@
 <div class="allContent">
 	<div id="menu">
 		<ul class="dropdown">
- 			<li>
+ 			<li id="headMenubg">
        			 <a class="mainMenu"  id="headMenu" onClick="return false" style="font-size:25px;">
                  <img class="iconAction" src="<?php echo base_url();?>img/icon/menu.png?v=1001?v=1001" height="30px">&nbsp;&nbsp;เมนู
                  </a>
@@ -146,6 +149,7 @@
           		
           <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/behaviorMag">- พฤติกรรมทัตสุขภาพ</a></li>
           <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/behaviorMagType">- หมวดหมู่พฤติกรรมทัตสุขภาพ</a></li>
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/policingFind">- ค้นหาประวัติการตรวจ</a></li>   
           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix">- ตารางการนัดเด็กของฉัน</a></li>      
 
         </ul>

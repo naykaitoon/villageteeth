@@ -7,6 +7,7 @@
 <script>
 $(document).ready(function(e) {
 	 $('.next').click(function() {
+		 $('#page2').load("<?php echo base_url();?>index.php/home");
 		 $('body').css('margin-left','-900px');
 	 });
   	 $('.back').click(function() {
@@ -15,7 +16,7 @@ $(document).ready(function(e) {
 });
 </script>
 <style>
-body{
+.bodys{
 	width:1800px;
 	margin-top:0;
 	margin-left:0;

@@ -312,5 +312,63 @@ function getPolicingData(){
 	function getPolicingDataDistance(){
 		return $this->db->get('distance')->result_array();
 	}
+	
+	function addPolicing(){
+		$data =array(
+		'distanceId' => $this->getDistanceId(),
+		'childrenId' => $this->getChildrenId(),
+		'memberId' => $this->getMemberId(),
+		'policingDate' => date('Y-m-d H:m:s')
+		);
+		$this->db->insert('policings',$data);
+		return $this->db->insert_id();
+	}
+	
+	function addPolicingDetial(){
+		$data =array(
+			'policingId'=> $this->getPolicingId(),
+			'behaviorId'=> $this->getBehaviorId(),
+			'policingDetialValue'=> $this->getPolicingDetialValue()
+		);
+		$this->db->insert('policingdetial',$data);
+		return $this->db->insert_id();	
+	}
+	
+	function addBrokentooth(){
+		$data =array(
+			'policingDetialId'=> $this->getPolicingDetialId(),
+			'brokenToothNumber'=> $this->getBrokenToothNumber(),
+			'brokenToothSide'=> $this->getBrokenToothSide()
+		);
+		$this->db->insert('brokentooth',$data);
+		
+	}
+	
+	function addMeetings(){
+			$data =array(
+			'policingId'=> $this->getPolicingId(),
+			'childrenId'=> $this->getChildrenId(),
+			'meetingsDate'=> $this->getMeetingsDate()
+		);
+		$this->db->insert('meetings',$data);
+	}
+	
+	function findMaxPolicing(){
+		$this->db->select_max('distance.distanceMonth');
+		$this->db->join('distance','distance.distanceId = policings.distanceId');
+		$this->db->where('policings.childrenId',$this->getChildrenId());
+		return $this->db->get('policings')->result_array();
+	}
+	
+	function findding(){
+		
+	
+		$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+		$this->db->join('members','members.memberId = policings.memberId');
+		
+		$this->db->join('distance','distance.distanceId = policings.distanceId');
+		
+		return $this->db->get('policings')->result_array();
+	}
 }
 ?>

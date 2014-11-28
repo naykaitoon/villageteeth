@@ -81,16 +81,16 @@ return false; return true;}
 	
 	</style>
 </head>
-<div class="table"align="center" >
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"><div class="table"align="center" >
 <form id="form1" name="form1" method="post"action="<?php echo base_url();?>index.php/boss/editActionChildent" onsubmit="return checkFormSubmit();">
-  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0">
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
 
       <tr>
         <th colspan="2" align="center" valign="middle" nowrap="nowrap">แก้ไขข้อมูลเด็กในพื้นที่</th>
       </tr>
       <tr>
-        <td width="48%" align="right" valign="middle">ชื่อ - นามสกุล : <input type="hidden" name="childrenId" id="childrenId" value="<?php echo $childent[0]['childrenId'];?>"><input type="hidden" name="addressId" id="addressId" value="<?php echo $childent[0]['addressId'];?>"></td>
-        <td width="52%" align="left" valign="middle"><input type="text" name="childrenName" id="childrenName" value="<?php echo $childent[0]['childrenName'];?>"> - <input type="text" name="childrenLastName" id="childrenLastName"  value="<?php echo $childent[0]['childrenLastName'];?>"></td>
+        <td width="30%" align="right" valign="middle">ชื่อ - นามสกุล : <input type="hidden" name="childrenId" id="childrenId" value="<?php echo $childent[0]['childrenId'];?>"><input type="hidden" name="addressId" id="addressId" value="<?php echo $childent[0]['addressId'];?>"></td>
+        <td width="70%" align="left" valign="middle"><input type="text" name="childrenName" id="childrenName" value="<?php echo $childent[0]['childrenName'];?>"> - <input type="text" name="childrenLastName" id="childrenLastName"  value="<?php echo $childent[0]['childrenLastName'];?>"></td>
       </tr>
       <tr>
         <td align="right" valign="middle">เลขบัตรประจำตัวประชาชน : </td>

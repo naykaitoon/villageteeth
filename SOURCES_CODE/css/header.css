@@ -104,6 +104,7 @@
         float: left;
         text-align: center;
         line-height: 28px;
+		margin-top:1px;
 		-webkit-transition: all ease-in-out 0.2s;
 		transition: all ease-in-out 0.2s;
     }
@@ -169,6 +170,7 @@
 	text-shadow:0px 1px 0px #854629;
 	margin-top:10px;
 	margin-left:10px;
+
 }
 .logoutBt:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bc3315), color-stop(1, #d0451b));
@@ -218,7 +220,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#58a4eb', end
       }
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
  .logindata{margin-top:-15px;} 
-  ul.dropdownAcou li{margin-top:-10px;}
+  ul.dropdownAcou li{margin-top:1px;}
   .textlog h2{
 
 		margin-bottom:-13px;

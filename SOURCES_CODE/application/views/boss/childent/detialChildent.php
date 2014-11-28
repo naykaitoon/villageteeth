@@ -2,14 +2,14 @@
  <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
          <link rel="stylesheet" href="<?php echo base_url();?>css/boxFormMain.css">    
          <div class="table"align="center" >
-  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0">
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
     <tbody>
       <tr>
         <th colspan="2" align="center" valign="middle" nowrap="nowrap">แก้ไขข้อมูลเด็กในพื้นที่</th>
       </tr>
       <tr>
-        <td width="48%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
-        <td width="52%" align="left" valign="middle"><?php echo $childent[0]['childrenName'];?> - <?php echo $childent[0]['childrenLastName'];?></td>
+        <td width="29%" align="right" valign="middle">ชื่อ - นามสกุล : </td>
+        <td width="71%" align="left" valign="middle"><?php echo $childent[0]['childrenName'];?> - <?php echo $childent[0]['childrenLastName'];?></td>
       </tr>
       <tr>
         <td align="right" valign="middle">เลขบัตรประจำตัวประชาชน : </td>
