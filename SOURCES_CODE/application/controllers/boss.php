@@ -1245,5 +1245,178 @@ function policingFind(){
 	$this->load->view('boss/policing/findPolicingChildents',$data);
 }
 
+	function calendaAlert($now='',$searchDate=NULL){
+		
+		if(!$now){
+			$now = strtotime("now");
+			}else{
+				$now = $_GET['now'];
+			}
+		if($_GET){
+				$dates= $_GET['searchDate'];
+		}else{
+			$dates= strtotime("now");
+		}
+		$date= date('Y-m',$dates);
+	    $this->Policings->setMeetingsDate($this->formatDateYM($date));
+		$meeting = $this->Policings->getAllCalendaMeeting();
+		
+		$data['html'] =$this->calenda($now,$meeting);
+		$this->load->view('boss/policing/calendaListAlert',$data);
+		
+	}
+	
+	function calenda($date,$meeting){
+			$now = $date;
+			
+			if(isset($_GET['now']) && !empty($_GET['now'])){
+				 $now = $_GET['now'];
+			}
 
+		$month = date('n',$now);
+		$year = date('Y',$now);
+		$first = strtotime("$year-$month-1");
+		$first_day = date('w',$first);
+		$num_day = date('t',$now);
+		$today = date("Y-n-j");
+		$TH_Day = array("อา.","จ.","อ.","พ.","พฤ.","ศ.","ส.");
+		$TH_Month = array(1 => "มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน",
+		"กรกฏาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
+		$TH_Year = $year+543;
+		
+		$class = "default";
+		
+		$url_togo = $_SERVER['PHP_SELF'] . "?now=";
+		$last_month = strtotime("-1 month $year-$month");
+		$next_month = strtotime("+1 month $year-$month");
+		
+		$last_searchDate = strtotime("-1 month $year-$month");
+		$next_searchDate = strtotime("+1 month $year-$month");
+			
+		$url_lastMonth = "<a href=\"" . $url_togo . $last_month ."&searchDate=".$last_searchDate. "\">&laquo;</a>";
+		$url_nextMonth = "<a href=\"" . $url_togo . $next_month ."&searchDate=".$next_searchDate. "\">&raquo;</a>";
+		
+		$html = ("<table id='calenda' border=0 cellspacing=1 cellpadding=7 >
+		<tr>
+		 <th>$url_lastMonth</th>
+		 <th colspan=5>พุทธศักราช  $TH_Year<p>$TH_Month[$month]</th>
+		 <th>$url_nextMonth</th>
+		</tr>
+		<tr bgcolor=#FFFACD><th>" . implode("</th><th>",$TH_Day) . "</th></tr>");
+		
+		$start = 1 - $first_day;
+		$w = 1;
+			for($d = $start; ;$d++){
+				
+
+				$cloasa = '</a>';
+				
+				 $class = "default";
+				 $date = "$year-$month-$d";
+		//		
+					
+				
+				
+				 if($w == 1){
+					  $class = "sunday  >";
+					  $html .= ("<tr align=center class=$class");
+				 }else if($w == 7){
+					  $class = "saturday  >";
+				 }else{
+					  $class = "default  >";
+				 }
+	//		
+				 if($d < 1){
+					  for($loop = 0; $loop<count($meeting);$loop++){
+
+							if($this->formatDateD($meeting[$loop]['meetingsDate'])==$d){
+								
+								$class = "meettingAlert > <a href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'>";
+									
+						  }
+					  }
+					   $html .= ("<td class=$class &nbsp;</td>");
+				 }else if($d >= $num_day){
+					  if($d == $num_day){
+
+							 
+							  if($today == $date){
+	
+											$class = "today >";
+								
+								 }	
+		
+							 for($loop = 0; $loop<count($meeting);$loop++){
+
+							if($this->formatDateD($meeting[$loop]['meetingsDate'])==$d){
+								
+							$class = "meettingAlert > <a href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'>";
+									
+						  }
+					  }		
+							  $html .= ("<td align=center class=$class $d $cloasa</td>");
+					 }else{
+							 if($w == 7){
+									$class = "saturday >";
+							 }else{
+									$class = "default >";
+							 }
+					for($loop = 0; $loop<count($meeting);$loop++){
+
+							if($this->formatDateD($meeting[$loop]['meetingsDate'])==$d){
+								
+									$class = "meettingAlert > <a href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'> ดู</a>";
+						  }
+					  }
+							  $html .= ("<td class=$class &nbsp;</td>");
+					}
+					if($w == 7){
+						  $html .= ("</tr>");
+						 break;
+					}
+				}else{
+					 if($today == $date){
+						  $class = "today >";
+					 }
+					  for($loop = 0; $loop<count($meeting);$loop++){
+
+							if($this->formatDateD($meeting[$loop]['meetingsDate'])==$d){
+								
+								$class = "meettingAlert > <a href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'>";
+									
+						  }
+					  }
+					  $html .= ("<td align=center class=$class $d $cloasa</td>");
+				}
+			
+				if($w == 7){
+					 $html .= ("</tr>");
+					$w = 1;
+				}else{
+					$w++;
+				}
+			
+			}
+			 $html .='</table>';
+			return $html;
+			}
+
+
+function formatDateYM($date) {
+    $data = explode("-", $date);
+    $newdata = sprintf("%d-%d", $data[0], $data[1]);
+    return $newdata;
+
+}
+
+function formatDateD($date) {
+    $data = explode("-", $date);
+    $newdata = sprintf("%d",$data[2]);
+    return $newdata;
+
+}
+
+function getAlertCalendaByDate($date){
+	echo $date;
+}
 }?>

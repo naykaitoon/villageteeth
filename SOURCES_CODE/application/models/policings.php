@@ -364,11 +364,16 @@ function getPolicingData(){
 		
 	
 		$this->db->join('childrens','childrens.childrenId = policings.childrenId');
-		$this->db->join('members','members.memberId = policings.memberId');
-		
+		$this->db->join('members','members.memberId = policings.memberId');		
 		$this->db->join('distance','distance.distanceId = policings.distanceId');
 		
 		return $this->db->get('policings')->result_array();
+	}
+	
+	function getAllCalendaMeeting(){
+		
+		$this->db->like('meetings.meetingsDate',$this->getMeetingsDate());
+		return $this->db->get('meetings')->result_array();
 	}
 }
 ?>

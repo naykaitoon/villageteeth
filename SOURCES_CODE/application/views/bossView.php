@@ -150,7 +150,7 @@
           <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/behaviorMag">- พฤติกรรมทัตสุขภาพ</a></li>
           <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/behaviorMagType">- หมวดหมู่พฤติกรรมทัตสุขภาพ</a></li>
           <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/policingFind">- ค้นหาประวัติการตรวจ</a></li>   
-          <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix">- ตารางการนัดเด็กของฉัน</a></li>      
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/boss/calendaAlert">- ตารางการนัดเด็กของฉัน</a></li>      
 
         </ul>
       </li>
