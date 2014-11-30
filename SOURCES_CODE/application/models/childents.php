@@ -365,5 +365,100 @@ function updateDiseases(){
 	$this->db->update('diseases',$data);
 }
 
+function getChildentInAreaAlerting($page,$url){
+	 $pageValue = 15;///จำนวนข้อมูลต่อ1หน้า
+		$date = strtotime(date('Y-m-d'));
+   		$dates = strtotime("+7 day", $date);
+		$datass = $this->session->userdata('loginData');
+
+
+	$this->db->join('address','address.addressId = childrens.addressId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+	$this->db->join('diseases','diseases.childrenId = childrens.childrenId');
+	$this->db->join('meetings','meetings.childrenId = childrens.childrenId');
+	$this->db->join('policings','policings.policingId = meetings.policingId');
+		$this->db->where('address.cantonId',$datass['cantonId']);
+
+		$this->db->where('address.districtId',$datass['districtId']);
+
+		$this->db->where('address.provinceId',$datass['provinceId']);
+
+		$this->db->where('meetings.meetingsDate >=',date('Y-m-d'));
+		$this->db->where('meetings.meetingsDate <=',date('Y-m-d',$dates));
+		$this->db->where('policings.memberId',$datass['id']);
+	$data = $this->db->get('childrens',$pageValue,$page)->result_array();
+	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
+   		
+	$this->db->from('childrens');
+	$this->db->join('address','address.addressId = childrens.addressId');
+	$this->db->join('canton','canton.cantonId = address.cantonId');
+	$this->db->join('district','district.districtId = address.districtId');
+	$this->db->join('province','province.provinceId = address.provinceId');
+	$this->db->join('meetings','meetings.childrenId = childrens.childrenId');
+	$this->db->join('policings','policings.policingId = meetings.policingId');
+	
+		$this->db->where('address.cantonId',$datass['cantonId']);
+
+		$this->db->where('address.districtId',$datass['districtId']);
+
+		$this->db->where('address.provinceId',$datass['provinceId']);
+
+		$this->db->where('meetings.meetingsDate >=',date('Y-m-d'));
+		$this->db->where('meetings.meetingsDate <=',date('Y-m-d',$dates));
+		$this->db->where('policings.memberId',$datass['id']);
+		 $config['total_rows'] = $this->db->count_all_results(); // ส
+  		 $config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
+		 $this->pagination->create_links();
+  		 $this->pagination->initialize($config);   // จากกนั้น เอาค่า ไป config ใน object pagination ที่เรา load มา 
+
+	 return $data;
+
+
+	}
+	
+	function getChildentInAreaAlertingSearch($page,$url){
+		$pageValue = 15;///จำนวนข้อมูลต่อ1หน้า
+		$date = strtotime(date('Y-m-d'));
+   		$dates = strtotime("+7 day", $date);
+		$datass = $this->session->userdata('loginData');
+
+
+	$this->db->join('meetings','meetings.childrenId = childrens.childrenId');
+	$this->db->join('policings','policings.policingId = meetings.policingId');
+	if($this->getTextSearch()!=""||$this->getTextSearch()!=FALSE){
+		$this->db->or_like('childrens.childrenName',$this->getTextSearch());
+		$this->db->or_like('childrens.childrenLastName',$this->getTextSearch());
+		$this->db->or_like('childrens.childrenIDCard',$this->getTextSearch());
+		$data = $this->db->get('childrens',$pageValue,$page)->result_array();
+		}
+		$this->db->where('meetings.meetingsDate >=',date('Y-m-d'));
+		$this->db->where('meetings.meetingsDate <=',date('Y-m-d',$dates));
+		$this->db->where('policings.memberId',$datass['id']);
+		
+	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
+   		
+	$this->db->from('childrens');
+	$this->db->join('meetings','meetings.childrenId = childrens.childrenId');
+	$this->db->join('policings','policings.policingId = meetings.policingId');
+	if($this->getTextSearch()!=""||$this->getTextSearch()!=FALSE){
+	$this->db->or_like('childrens.childrenName',$this->getTextSearch());
+	$this->db->or_like('childrens.childrenLastName',$this->getTextSearch());
+	$this->db->or_like('childrens.childrenIDCard',$this->getTextSearch());
+	}
+		$this->db->where('meetings.meetingsDate >=',date('Y-m-d'));
+		$this->db->where('meetings.meetingsDate <=',date('Y-m-d',$dates));
+		$this->db->where('policings.memberId',$datass['id']);
+
+		 $config['total_rows'] = $this->db->count_all_results(); // ส
+  		 $config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
+		 $this->pagination->create_links();
+  		 $this->pagination->initialize($config);   // จากกนั้น เอาค่า ไป config ใน object pagination ที่เรา load มา 
+
+	 return $data;
+
+	}
+
 }
 ?>

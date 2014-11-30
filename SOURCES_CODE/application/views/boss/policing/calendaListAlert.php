@@ -1,41 +1,57 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Untitled Document</title>
-<script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url()?>js/fancy/lib/jquery.mousewheel-3.0.6.pack.js?v=1001"></script>
-	<script type="text/javascript" src="<?php echo base_url()?>js/fancy/source/jquery.fancybox.pack.js?v=1001&?v=2.1.5"></script>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/source/jquery.fancybox-thumbs.css?v=1001&?v=2.1.5" media="screen" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/source/jquery.fancybox.css?v=1001&?v=2.1.5" media="screen" />
     <style>
-	  .sunday{color: white;background-color:#FD4545;}
-     .saturday{color: #000000;background-color:#FFCB99;}
+	  .sunday{color: white;background-color:#FF8D8D;}
+     .saturday{color: white;background-color:#FF8D8D;}
      .default{color: black;background-color:white;}
-     .today{color: #FFFFFF;background-color:#0074FF;}
+     .today{color: #FFFFFF;background-color:#3B8600;}
 	  table#calenda{
 	 	border-radius:3px;
+		background-color:#BFE4FF;
 	 }
 	#calenda th{
 		border-radius:3px;
-		color:#F7F7F7;
-		background-color:#0084FF;
+		background-color:#58A4EB;
 		padding-left:20;
 		padding-right:20;
 		padding:5;
 	}
 	#calenda td{
-
 		padding:10 20;
 	}
 	.meettingAlert{
 		background-color:#FFB600;
 	}
-	</style>
-</head>
+	.meettingAlert a{
 
-<body>
-<?php echo $html;?>
+		padding:10;
+	}
+.listmeettingAlert{
+	width:100%;
+	margin-left:10px;
+	margin-top:10px;
+}
+.table{
+	border-radius:3px;
+	width:90%;
 
-</body>
-</html>
+}
+.table table{
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+</style>
+<div id="headTitleContentbg">
+ <h2 id="headTitleContent">ตารางการนัดเด็กของฉัน</h2>
+</div>
+<div class="table">
+<table width="100%;" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#BFE4FF" id="bodycalenda" >
+    <tr>
+        <td width="50%" align="center" valign="middle" bgcolor="#BFE4FF" class="calenda"><?php echo $html;?></td>
+        <td width="50%" align="center" valign="middle" bgcolor="#BFE4FF">
+        <div class="listmeettingAlert">
+        </div>
+        </td>
+    </tr>
+</table>
+</div>

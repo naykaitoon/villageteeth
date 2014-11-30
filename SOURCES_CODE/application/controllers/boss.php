@@ -12,6 +12,7 @@ class Boss extends CI_Controller {
 				$this->session->unset_userdata('loginData'); 
 				echo"<script langquage='javascript'>window.location='".base_url()."index.php/home';</script>";
 			}
+			
     }
 	   
 	function index()
@@ -1265,7 +1266,24 @@ function policingFind(){
 		$this->load->view('boss/policing/calendaListAlert',$data);
 		
 	}
-	
+	function loadCalendaOlry($now='',$searchDate=NULL){
+				
+		if(!$now){
+			$now = strtotime("now");
+			}else{
+				$now = $_GET['now'];
+			}
+		if($_GET){
+				$dates= $_GET['searchDate'];
+		}else{
+			$dates= strtotime("now");
+		}
+		$date= date('Y-m',$dates);
+	    $this->Policings->setMeetingsDate($this->formatDateYM($date));
+		$meeting = $this->Policings->getAllCalendaMeeting();
+		$html = $this->calenda($now,$meeting);
+		echo $html;
+	}
 	function calenda($date,$meeting){
 			$now = $date;
 			
@@ -1286,17 +1304,30 @@ function policingFind(){
 		
 		$class = "default";
 		
-		$url_togo = $_SERVER['PHP_SELF'] . "?now=";
+		$url_togo = base_url(). "index.php/boss/loadCalendaOlry?now=";
 		$last_month = strtotime("-1 month $year-$month");
 		$next_month = strtotime("+1 month $year-$month");
 		
 		$last_searchDate = strtotime("-1 month $year-$month");
 		$next_searchDate = strtotime("+1 month $year-$month");
 			
-		$url_lastMonth = "<a href=\"" . $url_togo . $last_month ."&searchDate=".$last_searchDate. "\">&laquo;</a>";
-		$url_nextMonth = "<a href=\"" . $url_togo . $next_month ."&searchDate=".$next_searchDate. "\">&raquo;</a>";
+		$url_lastMonth = "<a class='nextM' href='" . $url_togo . $last_month ."&searchDate=".$last_searchDate. "'>&laquo;</a>";
+		$url_nextMonth = "<a class='nextM' href='" . $url_togo . $next_month ."&searchDate=".$next_searchDate. "'>&raquo;</a>";
 		
-		$html = ("<table id='calenda' border=0 cellspacing=1 cellpadding=7 >
+		$html = (" 
+<script>
+	$('.nextM').click(function(event){
+		event.preventDefault();
+		 var href = $(this).attr('href');
+		$('#calenda').load(href);
+	});
+	$('.findDate').click(function(event){
+		event.preventDefault();
+		 var href = $(this).attr('href');
+		$('.listmeettingAlert').load(href);
+	});
+	</script>
+	<table id='calenda' border=0 cellspacing=1 cellpadding=7 align='center'>
 		<tr>
 		 <th>$url_lastMonth</th>
 		 <th colspan=5>พุทธศักราช  $TH_Year<p>$TH_Month[$month]</th>
@@ -1331,7 +1362,7 @@ function policingFind(){
 
 							if($this->formatDateD($meeting[$loop]['meetingsDate'])==$d){
 								
-								$class = "meettingAlert > <a href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'>";
+								$class = "meettingAlert > <a class='findDate' href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'>";
 									
 						  }
 					  }
@@ -1350,7 +1381,7 @@ function policingFind(){
 
 							if($this->formatDateD($meeting[$loop]['meetingsDate'])==$d){
 								
-							$class = "meettingAlert > <a href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'>";
+							$class = "meettingAlert > <a class='findDate' href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'>";
 									
 						  }
 					  }		
@@ -1365,7 +1396,7 @@ function policingFind(){
 
 							if($this->formatDateD($meeting[$loop]['meetingsDate'])==$d){
 								
-									$class = "meettingAlert > <a href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'> ดู</a>";
+									$class = "meettingAlert > <a class='findDate' href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'> ดู</a>";
 						  }
 					  }
 							  $html .= ("<td class=$class &nbsp;</td>");
@@ -1382,7 +1413,7 @@ function policingFind(){
 
 							if($this->formatDateD($meeting[$loop]['meetingsDate'])==$d){
 								
-								$class = "meettingAlert > <a href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'>";
+								$class = "meettingAlert > <a class='findDate' href='".base_url()."index.php/boss/getAlertCalendaByDate/".$meeting[$loop]['meetingsDate']."'>";
 									
 						  }
 					  }
@@ -1417,6 +1448,59 @@ function formatDateD($date) {
 }
 
 function getAlertCalendaByDate($date){
-	echo $date;
+	$this->Policings->setMeetingsDate($date);
+	$data['policings'] = $this->Policings->getAllCalendaMeetingByDate();
+	for($i=0;$i<count($data['policings']);$i++){
+			$childrenBirthday = strtotime($data['policings'][$i]['childrenBirthday']);
+			$data['policings'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
+		}
+	$this->load->view('boss/policing/listByDateCalenda',$data);
 }
+
+function countAlert(){
+	$data = $this->Policings->countAlertPolencing();
+
+	if(!$data){
+		$num = '0';
+	}else{
+		$num = count($data);
+	}
+	echo '<a style="margin-left:-10px;" >'.$num.'</a>';
+}
+function printAlert(){
+	$data = $this->Policings->countAlertPolencing();
+
+	if(!$data){
+		$num = '0';
+	}else{
+		$num = count($data);
+	}
+	echo '<input id="alertValue" type="hidden" value="'.$num.'">';
+}
+function listAllAlert($page=0){
+	
+	$data['childent'] = $this->Childents->getChildentInAreaAlerting($page,'listAllAlert');
+	
+		for($i=0;$i<count($data['childent']);$i++){
+			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
+			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
+		}
+
+	$this->load->view('boss/policing/listAlert',$data);
+}
+
+function listAllAlertSearch($page=0){
+	$text=$this->input->post('key');
+	$this->Childents->setTextSearch($text);
+	$data['childent'] = $this->Childents->getChildentInAreaAlertingSearch($page,'listAllAlertSearch');
+
+		for($i=0;$i<count($data['childent']);$i++){
+			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
+			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
+		}
+
+	$this->load->view('boss/policing/listAlertSearchResult',$data);
+}
+
+
 }?>

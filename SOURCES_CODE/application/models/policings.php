@@ -371,8 +371,45 @@ function getPolicingData(){
 	}
 	
 	function getAllCalendaMeeting(){
-		
+		$data['loginData'] = $this->session->userdata('loginData');
+		$this->db->join('policings','policings.policingId = meetings.policingId');
 		$this->db->like('meetings.meetingsDate',$this->getMeetingsDate());
+		$this->db->where('policings.memberId',$data['loginData']['id']);
+		return $this->db->get('meetings')->result_array();
+	}
+	
+	function countAlertPolencing(){
+    		$date = strtotime(date('Y-m-d'));
+    		$dates = strtotime("+7 day", $date);
+			$data['loginData'] = $this->session->userdata('loginData');
+		$this->db->join('policings','policings.policingId = meetings.policingId');
+		$this->db->where('meetings.meetingsDate >=',date('Y-m-d'));
+		$this->db->where('meetings.meetingsDate <=',date('Y-m-d',$dates));
+		$this->db->where('policings.memberId <=',$data['loginData']['id']);
+		return $this->db->get('meetings')->result_array();
+	}
+	
+	function alertPolencing(){
+    		$date = strtotime(date('Y-m-d'));
+    		$dates = strtotime("+7 day", $date);
+			$data['loginData'] = $this->session->userdata('loginData');
+		$this->db->join('policings','policings.policingId = meetings.policingId');
+		$this->db->where('meetings.meetingsDate >=',date('Y-m-d'));
+		$this->db->where('meetings.meetingsDate <=',date('Y-m-d',$dates));
+		$this->db->where('policings.memberId <=',$data['loginData']['id']);
+	
+		return $this->db->get('meetings')->result_array();
+	}
+	
+	function getAllCalendaMeetingByDate(){
+		$data['loginData'] = $this->session->userdata('loginData');
+		
+		$this->db->join('policings','policings.policingId = meetings.policingId');
+		$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+		$this->db->join('members','members.memberId = policings.memberId');
+		$this->db->like('meetings.meetingsDate',$this->getMeetingsDate());
+		$this->db->where('policings.memberId',$data['loginData']['id']);
+		$this->db->where('meetings.meetingsDate',$this->getMeetingsDate());
 		return $this->db->get('meetings')->result_array();
 	}
 }

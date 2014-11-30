@@ -2,66 +2,55 @@
 <head>
 <meta charset="utf-8">
 <title>ระบบทันตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย</title>
-<meta name="keywords" content="สมเด็จพระยุพราชเด่นชัย,โรงพยาบาลสมเด็จพระยุพราชเด่นชัย,ทันตสุขภาพเด็ก,villageteeth,ระบบทันตสุขภาพเด็ก" />
-<meta name="description" content="ระบบจัดการ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ จัดการข้อมูลสถิติ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่" />
-    <link rel="stylesheet" href="<?php echo base_url();?>css/menu.css?v=1001">
-  	<link rel="stylesheet" href="<?php echo base_url();?>css/main.css?v=1001">
-    <link rel="stylesheet" href="<?php echo base_url();?>css/header.css?v=1001">
-    <link rel="stylesheet" href="<?php echo base_url();?>css/table.css?v=1001">
-     <link rel="stylesheet" href="<?php echo base_url();?>css/font.css?v=1001">
-	<script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js?v=1001"></script>
-  <script type="text/javascript" src="<?php echo base_url()?>js/jquery.mousewheel-3.0.6.pack.js"></script>
-   <script src="<?php echo base_url()?>js/jqueryui/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url()?>js/jquery.fancybox.js?v=1001&?v=2.1.5"></script>
-    	<script type="text/javascript" src="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.js?v=1001&?v=2.1.5"></script>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.css?v=1001&?v=2.1.5" media="screen" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/jquery.fancybox.css?v=2.1.5" media="screen" />
-    <script type="text/javascript" src="<?php echo base_url()?>js/main.js?v=1001"></script>
-      <script src="<?php echo base_url()?>js/pace.min.js"></script>
-  <link href="<?php echo base_url()?>css/pace-theme-barber-shop.css" rel="stylesheet" />
-    <script>
+<meta name="keywords" content="สมเด็จพระยุพราชเด่นชัย,โรงพยาบาลสมเด็จพระยุพราชเด่นชัย,ทันตสุขภาพเด็ก,villageteeth,ระบบทันตสุขภาพเด็ก,ทันตสุขภาพเด่นชัย" />
+<meta name="description" content="ระบบจัดการ ทัตสุขภาพเด็ก เด่นชัย โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ จัดการข้อมูลสถิติ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่" />
+<link rel="stylesheet" href="<?php echo base_url();?>css/menu.css?v=1001">
+<link rel="stylesheet" href="<?php echo base_url();?>css/main.css?v=1001">
+<link rel="stylesheet" href="<?php echo base_url();?>css/header.css?v=1001">
+<link rel="stylesheet" href="<?php echo base_url();?>css/table.css?v=1001">
+<link rel="stylesheet" href="<?php echo base_url();?>css/font.css?v=1001">
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js?v=1001"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/jqueryui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery.fancybox.js?v=1001&?v=2.1.5"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery.mousewheel-3.0.6.pack.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.css?v=1001&?v=2.1.5" media="screen" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/jquery.fancybox.css?v=2.1.5" media="screen" />
+<script type="text/javascript" src="<?php echo base_url()?>js/main.js?v=1001"></script>
+<script>
 	$(document).ready(function() {
+		var alertValurCheck;
+		$('.alert').load('<?php echo base_url();?>index.php/boss/countAlert');
+		$('.alertValues').load('<?php echo base_url();?>index.php/boss/printAlert');
+			setInterval(function (){
+		$('.alert').load('<?php echo base_url();?>index.php/boss/countAlert');
+		$('.alertValues').load('<?php echo base_url();?>index.php/boss/printAlert');
+		
+			alertValurCheck = $('#saveValueAlert').val();
+			$('#saveValueAlert').val($('#alertValue').val());
+	if($('#saveValueAlert').val()!=0){
+			if(alertValurCheck!=$('#saveValueAlert').val()){
+				$('.alert').fadeIn('slow');
+				  $('audio').remove();
+  				  $('body').append('<audio controls autoplay preload="none">  <source src="<?php echo base_url();?>sound/alert.MP3" type="audio/ogg"> </audio>');
+			}
+	}else{
+		$('.alert').fadeOut('slow');
+	}
+			
+			
+		}, 3000);
+	
   		$('.dropdown a').click(function(event) {
 				 event.preventDefault();
 				 var href = $(this).attr('href');
 				 				
 						 $('#linkPopupclick').val(href);				
-										load(20,href);
-										load(100,href);
-										load(500,href);
-										load(2000,href);
-										load(3000,href);
-									
-										setTimeout(function(){
-										  Pace.ignore(function(){
-											load(3100,href);
-											
-										  });
-										}, 4000);
-									
-										Pace.on('hide', function(){
-										  console.log('done');
-										});
-				
-				
-			
-	
-               	function load(time,href){
-										  var x = new XMLHttpRequest()
-										  x.open('GET', href + time, true);
-										  x.send();
-										};
 				}); 
 	}); 
 
-	</script>
-      <script>
-    paceOptions = {
-      $(document): true
-    };
-  </script>
+</script>
 </head>
-
 <body>	
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -70,7 +59,7 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js?v=1001','ga');
   ga('create', 'UA-55870926-1', 'auto');
   ga('send', 'pageview');
-	ga('set', '&uid', {{"<?php echo $loginData['id'];?>"}}); // ตั้งค่ารหัสผู้ใช้โดยใช้ user_id ที่ลงชื่อเข้าใช้
+	ga('set', '&uid', {{"<?php echo MD5($loginData['id'].date('Y-m-d H:m:s'));?>"}}); // ตั้งค่ารหัสผู้ใช้โดยใช้ user_id ที่ลงชื่อเข้าใช้
 </script>
 <div id="header" >
 	<div id="logo1">
@@ -82,6 +71,13 @@
     <p class="p">
     		ระบบทันตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย<br>Dental Health System
     </p>
+	
+   <a id="submenu" class="submenu" href="<?php echo base_url()?>index.php/boss/listAllAlert" >
+   <p class="alert"></p>
+   
+   </a>
+   
+ 	<input type="hidden" id="saveValueAlert">
     <div class="logindata">
     <p>
     			<li class="textlog" style="text-align:center;">
@@ -105,6 +101,7 @@
         </li>
     </div>
 </div>
+
 <div class="allContent">
 	<div id="menu">
 		<ul class="dropdown">
@@ -115,7 +112,7 @@
         	</li>
       		<li>
         		 <a class="mainMenu" href="" onClick="return false">
-                 <img class="iconAction" src="<?php echo base_url();?>img/icon/magChilldent.png?v=1001" height="30px" > จัดการข้อมูลเด้ก</a>
+                 <img class="iconAction" src="<?php echo base_url();?>img/icon/magChilldent.png?v=1001" height="30px" > จัดการข้อมูลเด็ก</a>
         <ul>
           	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/childentInArea">- เด็กในเขตความรับผิดชอบ</a></li>
          	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/childentAll">- เด็กทั้งหมด</a></li>
@@ -196,5 +193,6 @@
 <input type="hidden" id="linkPopupclick">
 <div id="footerLoagin" title="ที่อยู่ที่ติดต่อ" align="center"><p id="footerText">โครงการลูกรักฟันดีเริ่มที่ซี้แรก ร่วมกับ โรงพยาบาลสมเด็จพระยุพราชเด่นชัย&nbsp;:&nbsp;&nbsp;http://www.villageteeth.com<br>
 545 หมู่ 9 ตำบลเด่นชัย อำเภอเด่นชัย จังหวัดแพร่54110 โทรศัพท์ 054-613134 Fax. 054-613195 WebSite : <a href="http://www.denchaihosp.com/">http://www.denchaihosp.com/</a><br>Copyright © 2014 All rights Reserved. </p></div>
+<div class="alertValues"></div>
 </body>
 </html>
