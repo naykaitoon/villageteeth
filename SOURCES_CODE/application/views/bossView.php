@@ -120,7 +120,7 @@ $('body').append('<audio controls autoplay preload="none"><source src="<?php ech
       </li>  
       <li><a class="mainMenu" href="" onClick="return false"><img class="iconAction" src="<?php echo base_url();?>img/icon/grap.png?v=1001" height="30px" > รายงานข้อมูลสถิติ</a>
         <ul>
-          <li><a class="policyPopup" href="<?php echo base_url();?>index.php/report/chartsPolicingsReport">- สถิติเด็กที่เข้ารับการตรวจ</a></li>
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/report/statisticPolicingsReport">- สถิติการข้ารับการตรวจ</a></li>
            <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพื้นที่</a></li>
            <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
            <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติเด็กในเขตของฉัน</a>

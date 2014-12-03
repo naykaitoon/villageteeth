@@ -6,7 +6,7 @@ class Boss extends CI_Controller {
             $this->redirects();
 			$this->load->library('pagination');
 
-			include_once('file:///D|/wamp/www/villageteethProject/SOURCES_CODE/application/controllers/login.php');
+			include_once('login.php');
   			$login = new login(); 
 			$result = $login->checkingLogin();
 			if($result!='boss'){

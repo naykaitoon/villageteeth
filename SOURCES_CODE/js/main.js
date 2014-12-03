@@ -56,6 +56,19 @@ $("#dropdown").on("click", function(e){
     }
 	
 });
+$('.popupPrint').fancybox({
+	  	        openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : 550,
+				width :	'100%',
+				scrolling : 'auto',
+				autoSize : false,
+				fitToView	: false,
+				type				: 'iframe'
+				
+				
+	
+});
 
 	 $('.policingPhoto').fancybox({
 	  	        openEffect	: 'elastic',

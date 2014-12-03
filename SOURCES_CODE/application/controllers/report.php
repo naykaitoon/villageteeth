@@ -10,8 +10,11 @@ class Report extends CI_Controller {
 
 			
     }
-
-	    function chartsPolicingsReport(){
+function statisticPolicingsReport(){
+	$this->load->view('statistic/statisticPolicings');
+	
+}
+function chartsPolicingsReport(){
         $this->gcharts->load('PieChart');
 	
 
@@ -41,45 +44,43 @@ class Report extends CI_Controller {
         $this->gcharts->DataTable('Policings')
                       ->addColumn('string', 'Policings', 'policings')
                       ->addColumn('number', 'Amount', 'amount');
-		$title[1] ='ได้เข้ารับการตรวจ';
-		$title[2] ='ไม่ได้เข้ารับการตรวจ';
+		$title[1] ='ได้รับการตรวจ';
+		$title[2] ='ไม่ได้รับการตรวจ';
 		
 
 
 		for($a = 1; $a <= 2; $a++)
         {
             $data = array(
-                $title[$a],$Amount[$a],
+                $title[$a],$Amount[$a]
             );
 
             $this->gcharts->DataTable('Policings')->addRow($data);
 
 			
         }
+		        $titleStyle = $this->gcharts->textStyle()
+                                    ->color('#2A2A2A')
+                                    ->fontName('Tahoma')
+                                    ->fontSize(20);
         $config = array(
             'title' => 'สถิติการเข้ารับการตรวจสุขภาพฟัน',
-			'colors' => array('#00CD00', '#FF4500')
+			'titleTextStyle' => $titleStyle,
+			'colors' => array('#00CD00', '#FF4500'),
+			'is3D' => TRUE
         );
-
+	
         $this->gcharts->PieChart('Policings')->setConfig($config);
 
-     //   $html = $this->load->view('chart/PolicingChart',TRUE);
-	$html = '
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body><center>';
-	 $html.=	$this->gcharts->PieChart('Policings')->outputInto('chartResult_div');
-   	 $html.=	$this->gcharts->div(635,350);
-	$html.= '<input  type="button" value="พิมพ์" onClick="window.print()"/></center></body>
-</html>';
+     // $html = $this->load->view('chart/PolicingChart',TRUE);
+	 $html.=$this->gcharts->PieChart('Policings')->outputInto('chartResult_div');
+  	$html.=$this->gcharts->div(700,400);
 
-echo $html;
+	echo $html;
 
     }
+function policingsColumnChart(){
 	
-	
+}
 
 }?>
