@@ -72,11 +72,14 @@ function chartsPolicingsReport(){
 	
         $this->gcharts->PieChart('Policings')->setConfig($config);
 
-     // $html = $this->load->view('chart/PolicingChart',TRUE);
-	 $html.=$this->gcharts->PieChart('Policings')->outputInto('chartResult_div');
-  	$html.=$this->gcharts->div(700,400);
+	
+	 $html['graph'].=$this->gcharts->PieChart('Policings')->outputInto('chartResult_div');
+	 $html['graph'].='<input type="button" onClick="window.print()" value="พิมพ์" style="z-index:9999;margin-top:0px;"/>';
+  	$html['graph'].=$this->gcharts->div(700,400);
 
-	echo $html;
+
+
+	$this->load->view('chart/PolicingChart',$html); 
 
     }
 function policingsColumnChart(){
