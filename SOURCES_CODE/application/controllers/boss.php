@@ -5,13 +5,16 @@ class Boss extends CI_Controller {
             parent::__construct();
             $this->redirects();
 			$this->load->library('pagination');
-			include_once('login.php');
+
+			include_once('file:///D|/wamp/www/villageteethProject/SOURCES_CODE/application/controllers/login.php');
   			$login = new login(); 
 			$result = $login->checkingLogin();
 			if($result!='boss'){
 				$this->session->unset_userdata('loginData'); 
 				echo"<script langquage='javascript'>window.location='".base_url()."index.php/home';</script>";
 			}
+
+
 			
     }
 	   
@@ -1465,18 +1468,9 @@ function countAlert(){
 	}else{
 		$num = count($data);
 	}
-	echo '<a style="margin-left:-10px;" >'.$num.'</a>';
+	echo $num;
 }
-function printAlert(){
-	$data = $this->Policings->countAlertPolencing();
 
-	if(!$data){
-		$num = '0';
-	}else{
-		$num = count($data);
-	}
-	echo '<input id="alertValue" type="hidden" value="'.$num.'">';
-}
 function listAllAlert($page=0){
 	
 	$data['childent'] = $this->Childents->getChildentInAreaAlerting($page,'listAllAlert');
@@ -1502,5 +1496,7 @@ function listAllAlertSearch($page=0){
 	$this->load->view('boss/policing/listAlertSearchResult',$data);
 }
 
+   
+	
 
 }?>

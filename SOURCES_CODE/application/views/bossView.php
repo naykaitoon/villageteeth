@@ -19,34 +19,36 @@
 <script type="text/javascript" src="<?php echo base_url()?>js/main.js?v=1001"></script>
 <script>
 	$(document).ready(function() {
-		var alertValurCheck;
-		$('.alert').load('<?php echo base_url();?>index.php/boss/countAlert');
-		$('.alertValues').load('<?php echo base_url();?>index.php/boss/printAlert');
-			setInterval(function (){
-		$('.alert').load('<?php echo base_url();?>index.php/boss/countAlert');
-		$('.alertValues').load('<?php echo base_url();?>index.php/boss/printAlert');
-		
-			alertValurCheck = $('#saveValueAlert').val();
-			$('#saveValueAlert').val($('#alertValue').val());
-	if($('#saveValueAlert').val()!=0){
-			if(alertValurCheck!=$('#saveValueAlert').val()){
-				$('.alert').fadeIn('slow');
-				  $('audio').remove();
-  				  $('body').append('<audio controls autoplay preload="none">  <source src="<?php echo base_url();?>sound/alert.MP3" type="audio/ogg"> </audio>');
-			}
-	}else{
-		$('.alert').fadeOut('slow');
-	}
-			
-			
-		}, 3000);
-	
-  		$('.dropdown a').click(function(event) {
+		var check;
+		$.get( '<?php echo base_url();?>index.php/boss/countAlert', function(num){
+			check = num;
+				$('.alert').html(num);
+		});
+$('.dropdown a').click(function(event) {
 				 event.preventDefault();
 				 var href = $(this).attr('href');
 				 				
 						 $('#linkPopupclick').val(href);				
-				}); 
+}); 
+	setInterval(function (){
+			
+			$.get( '<?php echo base_url();?>index.php/boss/countAlert', function( data ) {
+
+				$('.alert').html(data);
+
+			$('body').remove('audio');
+
+				if(check != data){					
+$('body').append('<audio controls autoplay preload="none"><source src="<?php echo base_url();?>sound/alert.MP3" type="audio/ogg"> </audio>');
+				}
+			check = data;
+			
+
+			});
+			
+				
+	},5000);		
+  		
 	}); 
 
 </script>
@@ -73,12 +75,9 @@
     </p>
 	
    <a id="submenu" class="submenu" href="<?php echo base_url()?>index.php/boss/listAllAlert" >
-   <p class="alert"></p>
-   
+   <p class="alert" style="text-decoration:none;text-align:left;"></p>
    </a>
-   
- 	<input type="hidden" id="saveValueAlert">
-    <div class="logindata">
+      <div class="logindata">
     <p>
     			<li class="textlog" style="text-align:center;">
                
@@ -96,8 +95,8 @@
             </ul>
         </li>
     </ul>
-                <a href="<?php echo base_url();?>index.php/home/logout" class="logoutBt">ออกจากระบบ</a>
-                </p>
+       <a href="<?php echo base_url();?>index.php/home/logout" class="logoutBt">ออกจากระบบ</a>
+    </p>
         </li>
     </div>
 </div>
@@ -112,7 +111,7 @@
         	</li>
       		<li>
         		 <a class="mainMenu" href="" onClick="return false">
-                 <img class="iconAction" src="<?php echo base_url();?>img/icon/magChilldent.png?v=1001" height="30px" > จัดการข้อมูลเด็ก</a>
+  <img class="iconAction" src="<?php echo base_url();?>img/icon/magChilldent.png?v=1001" height="30px" > จัดการข้อมูลเด็ก</a>
         <ul>
           	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/childentInArea">- เด็กในเขตความรับผิดชอบ</a></li>
          	<li><a class="submenu" href="<?php echo base_url();?>index.php/boss/childentAll">- เด็กทั้งหมด</a></li>
@@ -121,7 +120,7 @@
       </li>  
       <li><a class="mainMenu" href="" onClick="return false"><img class="iconAction" src="<?php echo base_url();?>img/icon/grap.png?v=1001" height="30px" > รายงานข้อมูลสถิติ</a>
         <ul>
-          <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยรวมทั้งหมด</a></li>
+          <li><a class="policyPopup" href="<?php echo base_url();?>index.php/report/chartsPolicingsReport">- สถิติเด็กที่เข้ารับการตรวจ</a></li>
            <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพื้นที่</a></li>
            <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
            <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติเด็กในเขตของฉัน</a>
