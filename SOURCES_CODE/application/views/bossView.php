@@ -167,9 +167,6 @@
     <script src="<?php echo base_url();?>js/menu/tendina.min.js?v=1001"></script>
     <script>
       $('.dropdown').tendina({
-        // This is a setup made only
-        // to show which options you can use,
-        // it doesn't actually make sense!
         animate: true,
         speed: 500,
         onHover: false,

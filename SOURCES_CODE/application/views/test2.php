@@ -6,13 +6,37 @@
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.11.1.min.js"></script>
 <script>
 $(document).ready(function(e) {
-	 $('.next').click(function() {
-		 $('#page2').load("<?php echo base_url();?>index.php/home");
-		 $('body').css('margin-left','-900px');
-	 });
-  	 $('.back').click(function() {
-		 $('body').css('margin-left','0px');
-	 });
+				var num=0;
+			var check=0;
+	setInterval(function (){
+
+			$.get( '<?php echo base_url();?>index.php/home/ccc', function( data ) {
+			
+
+				if(check != data){
+
+					$( ".result thead" ).append(
+					"<tr>"+
+						"<td>"+data+"</td>"+
+					"</tr>");
+					
+					$.get( '<?php echo base_url();?>index.php/home/outPDF', function( dataf ) {
+
+					$( ".result thead" ).append(
+					"<tr>"+
+						"<td>"+dataf+"</td>"+
+					"</tr>");
+
+			});
+				}
+
+				check = data;
+
+			});
+			
+				
+	}, 1000);		
+		
 });
 </script>
 <style>
@@ -26,24 +50,20 @@ $(document).ready(function(e) {
 	-webkit-transition: all ease-in-out 1s; /* Safari 3.1 to 6.0 */
      transition: all ease-in-out 1s;
 }
-#page1{
-	width:900px;
-	height:550px;
-	background-color:#7C4041;
-	float:left;
-}
-#page2{
-	margin-top:-20px;
-	width:900px;
-	height:550px;
-	background-color:#406C7C;
-	float:left;
-}
+
 </style>
 </head>
 
 <body>
-<div id="page1"><input type="button" value="next" class="next"/></div>
-<div id="page2"><input type="button" value="back" class="back"/></div>
+
+<table class="result">			
+		<thead>
+			<tr>
+				<th>555555</th>
+			</tr>
+		</thead>
+	
+	</table>
+
 </body>
 </html>
