@@ -1157,8 +1157,8 @@ function addPolicingPhoto($behaviorId,$childentId){
 	echo "<script>parent.jQuery.fancybox.close();</script>";
 	
 }
-function policingPhotoDeleteValue($behaviorId,$childentId){
-	$this->session->unset_userdata($behaviorId.$childentId);
+function policingPhotoDeleteValue($behaviorId,$childrenId){
+	$this->session->unset_userdata($behaviorId.$childrenId);
 	$this->addPolicingPhoto($behaviorId,$childentId);
 }
 	
@@ -1184,8 +1184,7 @@ function addPolicing(){
 			$policingData[$i]['policingDetialValue'] = $policingValue[$i];
 		}
 
-	
-	$loginData = $this->session->userdata('loginData');
+		$loginData = $this->session->userdata('loginData');
 		$this->Policings->setDistanceId($distanceId);
 		$this->Policings->setChildrenId($childrenId);
 		$this->Policings->setMemberId($loginData['id']);
@@ -1197,22 +1196,20 @@ function addPolicing(){
 			$this->Policings->setChildrenId($childrenId);
 			$this->Policings->setMeetingsDate($meetingDate);
 			$this->Policings->addMeetings();
-
+		
 		for($i=0;$i<count($policingData);$i++){
 			$this->Policings->setPolicingId($returnPolicingsId);
 			$this->Policings->setBehaviorId($policingData[$i]['behaviorId']);
 			$this->Policings->setPolicingDetialValue($policingData[$i]['policingDetialValue']);
 			$this->Policings->addPolicingDetial();
 		}
-
+		
 		for($i=0;$i<count($policyPhotoData);$i++){
 			$this->Policings->setPolicingId($returnPolicingsId);
 			$this->Policings->setBehaviorId($policyPhotoData[$i]['behaviorId']);
 			$this->Policings->setPolicingDetialValue(3);
 			$returnPolicingDetialId = $this->Policings->addPolicingDetial();
-			if($this->session->userdata($policyPhotoData[$i]['behaviorId'],$childrenId)){
-				$this->policingPhotoDeleteValue($policyPhotoData[$i]['behaviorId'],$childrenId);
-			}
+			$this->policingPhotoDeleteValue($policyPhotoData[$i]['behaviorId'],$childrenId);
 				for($ii=1;$ii<=10;$ii++){
 	
 					if($policyPhotoData[$i]['policingDetialValue']['d'.$ii.'']!=0){
@@ -1235,14 +1232,10 @@ function addPolicing(){
 					}
 			
 				}
-				
 		}
 
-	echo "<script>alert('ลงตรวจข้อมูลการตรวจสำเร็จ');</script>";
-	
-	echo "<script>
-	window.location='/index.php/boss';
-	</script>";
+	echo "<script>alert('ลงตรวจข้อมูลการตรวจสำเร็จ');</script>";	
+	$this->police();
 		
 }
 

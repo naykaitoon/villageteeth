@@ -187,14 +187,14 @@
 		text-wrap:none;
 		white-space: nowrap;
 		position:fixed;
-		left:80%;
+		margin-left:80%;
 		min-width:300px;
 		max-width:300px;
-		
+		margin-right:0px;
 		margin-top:0px;
 		float:right;
 		height:70px;
-		width:20%;
+		width:450px;
 		
 		background: #58a4eb; /* Old browsers */
 background: -moz-linear-gradient(left,  #58a4eb 18%, #a9c2d8 100%); /* FF3.6+ */
@@ -243,42 +243,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 		transform:scale(1.2,1.2);
 		box-shadow:0px 0px 10px 2px #FFFFFF;
 	}
-	#alertLink{
-		text-decoration:none;
-		z-index:9000;
-		float:left;
-		left:65%;
+	.alert #alertCount
+	{
 	
-		margin-top:0;
-		-webkit-transition: all ease-in-out 0.2s;
-		transition: all ease-in-out 0.2s;
-		
+	margin-top:-20px;
 	}
-	.alert{
-
-		z-index:9001;
-		
-
-		top:20;
-		
+	#submenu{
+		 text-decoration: none;
 	}
-
-	
 	 @-moz-document url-prefix() {
                         .logindata{
                        margin-top:-15px;
                     }
-					 #alertLink{margin-top:-15px;}
 					#header .p{
 		
 		 margin-top:-16px;
 	
 	 }
-
+	 .alert{
+	 	margin-top:0px;
+	 }
       }
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
  .logindata{margin-top:-15px;} 
-
   ul.dropdownAcou li{margin-top:1px;}
   .textlog h2{
 

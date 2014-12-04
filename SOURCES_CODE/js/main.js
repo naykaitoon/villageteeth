@@ -60,7 +60,7 @@ $('.popupPrint').fancybox({
 	  	        openEffect	: 'elastic',
     	        closeEffect	: 'elastic',
 				height : 550,
-				width :	700,
+				width :	'100%',
 				scrolling : 'auto',
 				autoSize : false,
 				fitToView	: false,
