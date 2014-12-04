@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','Session','pagination','email','Gcharts');
+$autoload['libraries'] = array('database','Session','pagination','email','Gcharts','Gc_qrcode');
 
 
 /*
@@ -80,7 +80,7 @@ $autoload['helper'] = array('form', 'url');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('gc_qrcode');
 
 
 /*
