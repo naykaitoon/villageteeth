@@ -20,9 +20,15 @@
 <script>
 	$(document).ready(function() {
 		var check;
+			$('#alertLink').hide();
 		$.get( '<?php echo base_url();?>index.php/boss/countAlert', function(num){
-			check = num;
-				$('.alert').html(num);
+			if(num!=0){
+				check = num;
+				$('#alertLink').show('slow');
+				$('.alert').show('slow').html(num);	
+			}else{
+				
+			}
 		});
 $('.dropdown a').click(function(event) {
 				 event.preventDefault();
@@ -33,25 +39,46 @@ $('.dropdown a').click(function(event) {
 	setInterval(function (){
 			
 			$.get( '<?php echo base_url();?>index.php/boss/countAlert', function( data ) {
-
-				$('.alert').html(data);
-
-			$('body').remove('audio');
-
-				if(check != data){					
+	
+	if(data!=0){
+				if(check != data){	
+				$('#alertLink').show('slow');
+				$('.alert').show('slow').html(num);	
+				$('body').remove('audio');
 $('body').append('<audio controls autoplay preload="none"><source src="<?php echo base_url();?>sound/alert.MP3" type="audio/ogg"> </audio>');
 				}
+	}else{
+				$('#alertLink').hide('slow');
+				$('.alert').hide('slow');
+}
+	
 			check = data;
 			
 
 			});
 			
-				
 	},5000);		
   		
 	}); 
 
+	 $(".promo").fancybox({
+	  	        openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : 550,
+				width :	700,
+				scrolling : 'auto',
+				autoSize : false,
+				fitToView	: false,
+				type				: 'iframe'
+				
+				
+	
+});
+
+
+
 </script>
+
 </head>
 <body>	
 <script>
@@ -73,10 +100,10 @@ $('body').append('<audio controls autoplay preload="none"><source src="<?php ech
     <p class="p">
     		ระบบทันตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย<br>Dental Health System
     </p>
-	
-   <a id="submenu" class="submenu" href="<?php echo base_url()?>index.php/boss/listAllAlert" >
+<a id="alertLink" class="submenu" href="<?php echo base_url()?>index.php/boss/listAllAlert" >
    <p class="alert" style="text-decoration:none;text-align:left;"></p>
    </a>
+
       <div class="logindata">
     <p>
     			<li class="textlog" style="text-align:center;">
@@ -122,7 +149,7 @@ $('body').append('<audio controls autoplay preload="none"><source src="<?php ech
         <ul>
           <li><a class="submenu" href="<?php echo base_url();?>index.php/report/statisticPolicingsReport">- สถิติการข้ารับการตรวจ</a></li>
            <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพื้นที่</a></li>
-           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
+           <li><a class="submenu" href="<?php echo base_url();?>index.php/report/policingsBehaviorMagChart">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
            <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติเด็กในเขตของฉัน</a>
            		  <ul>
         		           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยรวมในเขตของฉัน</a></li>

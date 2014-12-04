@@ -164,7 +164,7 @@ class Behavior extends CI_Model {
 		
 	}
 	
-		function deleteBehaviorDataPk(){
+	function deleteBehaviorDataPk(){
 		
 		$this->db->where('behaviorId',$this->getBehaviorId());
 		$this->db->delete('behavior');
@@ -174,6 +174,18 @@ class Behavior extends CI_Model {
 	function getBehaviorPk(){
 		$this->db->join('behaviortype','behaviortype.behaviortypeId = behavior.behaviortypeId');
 		$this->db->where('behavior.behaviorId',$this->getBehaviorId());
+		$data = $this->db->get('behavior')->result_array();		
+		return $data;
+	}
+	
+	function getBehaviorReport(){
+		$this->db->select('behavior.behaviorId,policingdetial.policingDetialValue');
+		$this->db->join('behavior','behavior.behaviorId = policingdetial.behaviorId');
+		$data = $this->db->get('policingdetial')->result_array();		
+		return $data;
+	}
+	
+	function getBehavior(){
 		$data = $this->db->get('behavior')->result_array();		
 		return $data;
 	}

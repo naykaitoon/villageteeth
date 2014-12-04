@@ -330,6 +330,7 @@ function getPolicingData(){
 			'behaviorId'=> $this->getBehaviorId(),
 			'policingDetialValue'=> $this->getPolicingDetialValue()
 		);
+
 		$this->db->insert('policingdetial',$data);
 		return $this->db->insert_id();	
 	}
