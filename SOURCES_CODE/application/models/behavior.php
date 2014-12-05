@@ -12,6 +12,7 @@ class Behavior extends CI_Model {
     var $behaviorTypeId ; ######  รหัสข้อมูลหมวดหมู่พฤติกรรม  ######
     var $colorCode ; ######  สีของกราฟที่จะแสดง เก็บเป็น Code สี  ######
 	var $behaviorTypeName; ###########  ชื่อประเภท ###########
+	var $policingDate;
 ###### End Attribute  ###### 
 
  ###### SET : $behaviorId ######
@@ -96,6 +97,15 @@ class Behavior extends CI_Model {
      }
 ###### End SET : $colorCode ###### 
 
+
+	function setPolicingDate($policingDate){
+		 $this->policingDate = $policingDate; 
+	}
+###### GET : $behaviorTypeId ######
+    function getPolicingDate(){
+        return $this->policingDate; 
+     }
+###### End GET : $behaviorTypeId ###### 
 	function getAlldataBehavior(){
 		$this->db->join('behaviortype','behaviortype.behaviortypeId = behavior.behaviortypeId');
 		$data = $this->db->get('behavior')->result_array();		
@@ -181,7 +191,28 @@ class Behavior extends CI_Model {
 	function getBehaviorReport(){
 		$this->db->select('behavior.behaviorId,policingdetial.policingDetialValue');
 		$this->db->join('behavior','behavior.behaviorId = policingdetial.behaviorId');
+		$this->db->join('policings','policings.policingId = policingdetial.policingId');
 		$data = $this->db->get('policingdetial')->result_array();		
+		return $data;
+	}
+	
+	function getBehaviorReportYear(){
+		$this->db->select('behavior.behaviorId,policingdetial.policingDetialValue');
+		$this->db->join('behavior','behavior.behaviorId = policingdetial.behaviorId');
+		$this->db->join('policings','policings.policingId = policingdetial.policingId');
+
+		$this->db->like('policings.policingDate',$this->getPolicingDate());
+
+		$data = $this->db->get('policingdetial')->result_array();		
+		return $data;
+	}
+	
+	function getByYear(){
+		$this->db->select('policings.policingDate');
+		$this->db->join('behavior','behavior.behaviorId = policingdetial.behaviorId');
+		$this->db->join('policings','policings.policingId = policingdetial.policingId');
+        $this->db->group_by('YEAR(policings.policingDate)'); 
+        $data = $this->db->get('policingdetial')->result_array();		
 		return $data;
 	}
 	

@@ -2,8 +2,6 @@
 <head>
 <meta charset="utf-8">
 <title>print preview</title>
-   <link rel="stylesheet" href="<?php echo base_url();?>css/font.css?v=1001">
-
 <style>
 #chartResult_div{
 	width:100%;
@@ -23,21 +21,27 @@ iframe #chartResult_divColumn{
 	margin-left:-50px;
 }
 
+.popupPrint{
+	font-size:25px;
+	color:#414141;
+	font-weight:bold;
+}
 
 </style>
+<link rel="stylesheet" href="<?php echo base_url();?>css/font.css">
 </head>
 <body>
 <div id="headTitleContentbg">
  <h2 id="headTitleContent">สถิติเด็กที่เข้ารับการตรวจ</h2>
+</div><div id="print"><br><br>
+
+<a class="popupPrint" href="<?php echo base_url();?>index.php/report/chartsPolicingsReport?print=1" ><img src="<?php echo base_url();?>img/printpreview.png" width="50px;"/>ดู/พิมพ์</a>
+
+
 </div><br>
 <div class="table" align="center">
 <iframe src="<?php echo base_url();?>index.php/report/chartsPolicingsReport" scrolling="no"></iframe>
-<div id="print"><br><br>
 
-<a class="popupPrint" style="text-decoration:none;" href="<?php echo base_url();?>index.php/report/chartsPolicingsReport?print=1" ><img src="<?php echo base_url();?>img/printpreview.png" width="50px;"/>ดู/พิมพ์</a>
-
-
-</div>
 <br><br>
 
   <table width="50%" border="0" align="center" cellpadding="10" cellspacing="0">

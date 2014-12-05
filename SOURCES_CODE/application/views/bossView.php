@@ -44,8 +44,6 @@ $('.dropdown a').click(function(event) {
 				if(check != data){	
 				$('#alertLink').show('slow');
 				$('.alert').show('slow').html(num);	
-				$('body').remove('audio');
-$('body').append('<audio controls autoplay preload="none"><source src="<?php echo base_url();?>sound/alert.MP3" type="audio/ogg"> </audio>');
 				}
 	}else{
 				$('#alertLink').hide('slow');
@@ -147,9 +145,10 @@ $('body').append('<audio controls autoplay preload="none"><source src="<?php ech
       </li>  
       <li><a class="mainMenu" href="" onClick="return false"><img class="iconAction" src="<?php echo base_url();?>img/icon/grap.png?v=1001" height="30px" > รายงานข้อมูลสถิติ</a>
         <ul>
-          <li><a class="submenu" href="<?php echo base_url();?>index.php/report/statisticPolicingsReport">- สถิติการข้ารับการตรวจ</a></li>
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/report/statisticPolicingsReport">- สถิติการข้ารับการตรวจทั้งหมด</a></li>
+		 <li><a class="submenu" href="<?php echo base_url();?>index.php/report/statisticBehaviorReport">- สถิติการตรวจตามพฤติกรรม</a></li>
            <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพื้นที่</a></li>
-           <li><a class="submenu" href="<?php echo base_url();?>index.php/report/policingsBehaviorMagChart">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
+
            <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติเด็กในเขตของฉัน</a>
            		  <ul>
         		           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยรวมในเขตของฉัน</a></li>

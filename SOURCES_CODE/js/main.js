@@ -69,6 +69,19 @@ $('.popupPrint').fancybox({
 				
 	
 });
+$('.popupPrintBehavior').fancybox({
+	  	        openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : 550,
+				width :	'95%',
+				scrolling : 'auto',
+				autoSize : false,
+				fitToView	: false,
+				type				: 'iframe'
+				
+				
+	
+});
 
 	 $('.policingPhoto').fancybox({
 	  	        openEffect	: 'elastic',

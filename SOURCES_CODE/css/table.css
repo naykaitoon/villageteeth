@@ -49,6 +49,7 @@
 	text-align:center;
 }
 	.table table th{
+		padding:3px;
 		border-radius:3px;
 		color:#FFFFFF;
 		font-size:14px;
@@ -77,8 +78,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#258dc8', end
 		font-size:12px;
 		border-radius:5px;
 		border:1px dotted #CCC;
-		padding-top:8px;
-		padding-bottom:8px;
+		padding:8px;
 		
 	}
 	.table table td p{
