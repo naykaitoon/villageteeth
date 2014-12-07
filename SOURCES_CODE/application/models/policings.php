@@ -25,6 +25,7 @@ class Policings extends CI_Model {
     var $distanceMonth ; ######  ระยะเวลาการตรวจ หน่วยเป็น เดือน  ######
     var $meetingId ; ######  รหัสข้อมูลการนัด  ######
     var $meetingsDate ; ######  เวลานัด  ######
+	
 ###### End Attribute  ###### 
 
  ###### SET : $policingId ######
@@ -412,6 +413,16 @@ function getPolicingData(){
 		$this->db->where('policings.memberId',$data['loginData']['id']);
 		$this->db->where('meetings.meetingsDate',$this->getMeetingsDate());
 		return $this->db->get('meetings')->result_array();
+	}
+	
+	function getChratData(){
+				$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+				$this->db->group_by('childrens.childrenId');
+				$data['allRowPolicings'] = count($this->db->get('policings')->result_array());
+				
+				$data['allRowChildrens'] = count($this->db->get('childrens')->result_array());
+				
+				return $data;
 	}
 }
 ?>

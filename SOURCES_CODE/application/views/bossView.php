@@ -147,15 +147,14 @@ $('.dropdown a').click(function(event) {
         <ul>
           <li><a class="submenu" href="<?php echo base_url();?>index.php/report/statisticPolicingsReport">- สถิติการข้ารับการตรวจทั้งหมด</a></li>
 		 <li><a class="submenu" href="<?php echo base_url();?>index.php/report/statisticBehaviorReport">- สถิติการตรวจตามพฤติกรรม</a></li>
-           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพื้นที่</a></li>
 
-           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติเด็กในเขตของฉัน</a>
+           <li><a class="mainMenu" href="#" onClick="return false">- สถิติเด็กในเขตของฉัน</a>
            		  <ul>
         		           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยรวมในเขตของฉัน</a></li>
-                           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยแบ่งตามพฤติกรรม</a></li>
+                           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติแบ่งตามพฤติกรรม</a></li>
        			 </ul>
             <li>
-           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติเด็กการตรวจของฉัน</a>
+           <li><a class="mainMenu" href="#" onClick="return false">- สถิติเด็กการตรวจของฉัน</a>
           	  <ul>
         		        <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false" >- แบ่งตามพฤษติกรรม</a></li>
                         <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- แบ่งตามช่วงอายุ</a>                

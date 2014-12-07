@@ -59,26 +59,23 @@ $("#dropdown").on("click", function(e){
 $('.popupPrint').fancybox({
 	  	        openEffect	: 'elastic',
     	        closeEffect	: 'elastic',
-				height : 550,
-				width :	700,
-				scrolling : 'auto',
-				autoSize : false,
-				fitToView	: false,
+				height : '600',
+				width :	'700',
+				scrolling : 'on',
+
 				type				: 'iframe'
 				
 				
 	
 });
 $('.popupPrintBehavior').fancybox({
-	  	        openEffect	: 'elastic',
+	  	   openEffect	: 'elastic',
     	        closeEffect	: 'elastic',
-				height : 550,
+				height : '600',
 				width :	'95%',
-				scrolling : 'auto',
-				autoSize : false,
-				fitToView	: false,
+				scrolling : 'on',
+
 				type				: 'iframe'
-				
 				
 	
 });

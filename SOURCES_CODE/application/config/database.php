@@ -48,9 +48,15 @@
 $active_group = 'default';
 $active_record = TRUE;
 
+if($_SERVER['REMOTE_ADDR']!='::1'){
+	$pass = '0875788242';
+}else{
+	$pass = '';
+}
+
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '';
+$db['default']['password'] = '' ;
 $db['default']['database'] = 'dentalhealth';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

@@ -13,6 +13,9 @@ class Behavior extends CI_Model {
     var $colorCode ; ######  สีของกราฟที่จะแสดง เก็บเป็น Code สี  ######
 	var $behaviorTypeName; ###########  ชื่อประเภท ###########
 	var $policingDate;
+	var $provinceId ; ######  sssss  ######
+    var $districtId ; ######  s  ######
+    var $cantonId ; ######  s  ######
 ###### End Attribute  ###### 
 
  ###### SET : $behaviorId ######
@@ -106,6 +109,48 @@ class Behavior extends CI_Model {
         return $this->policingDate; 
      }
 ###### End GET : $behaviorTypeId ###### 
+ ###### SET : $provinceId ######
+    function setProvinceId($provinceId){
+        $this->provinceId = $provinceId; 
+     }
+###### End SET : $provinceId ###### 
+
+
+###### GET : $provinceId ######
+    function getProvinceId(){
+        return $this->provinceId; 
+     }
+###### End GET : $provinceId ###### 
+
+
+ ###### SET : $districtId ######
+    function setDistrictId($districtId){
+        $this->districtId = $districtId; 
+     }
+###### End SET : $districtId ###### 
+
+
+###### GET : $districtId ######
+    function getDistrictId(){
+        return $this->districtId; 
+     }
+###### End GET : $districtId ###### 
+
+
+ ###### SET : $cantonId ######
+    function setCantonId($cantonId){
+        $this->cantonId = $cantonId; 
+     }
+###### End SET : $cantonId ###### 
+
+
+###### GET : $cantonId ######
+    function getCantonId(){
+        return $this->cantonId; 
+     }
+###### End GET : $cantonId ###### 
+
+
 	function getAlldataBehavior(){
 		$this->db->join('behaviortype','behaviortype.behaviortypeId = behavior.behaviortypeId');
 		$data = $this->db->get('behavior')->result_array();		
@@ -220,5 +265,28 @@ class Behavior extends CI_Model {
 		$data = $this->db->get('behavior')->result_array();		
 		return $data;
 	}
+	
+	function getBehaviorReportArea(){
+		$this->db->select('behavior.behaviorId,policingdetial.policingDetialValue');
+
+	
+		$this->db->join('behavior','behavior.behaviorId = policingdetial.behaviorId');
+		$this->db->join('policings','policings.policingId = policingdetial.policingId');
+		$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+		$this->db->join('address','address.addressId = childrens.addressId');
+		$this->db->like('policings.policingDate',$this->getPolicingDate());
+		
+			if($this->getCantonId()){
+				$this->db->where('address.cantonId',$this->getCantonId());
+			}else if($this->getDistrictId()){
+				$this->db->where('address.districtId',$this->getDistrictId());
+			}else if($this->getProvinceId()){
+				$this->db->where('address.provinceId',$this->getProvinceId());
+			}
+
+		$data = $this->db->get('policingdetial')->result_array();		
+		return $data;
+	}
+	
 }
 ?>

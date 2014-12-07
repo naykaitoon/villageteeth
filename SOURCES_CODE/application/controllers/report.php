@@ -11,11 +11,10 @@ class Report extends CI_Controller {
 	
 	
 function statisticPolicingsReport(){
-					$this->db->join('childrens','childrens.childrenId = policings.childrenId');
-				$this->db->group_by('childrens.childrenId');
-				$allRowPolicings = count($this->db->get('policings')->result_array());
+				$policyings = $this->Policings->getChratData();
+				$allRowPolicings = $policyings['allRowPolicings'];
 				
-				$allRowChildrens = count($this->db->get('childrens')->result_array());
+				$allRowChildrens = $policyings['allRowChildrens'];
 				
 
 				$rowNotPolicings = $allRowPolicings-$allRowChildrens;
@@ -84,7 +83,7 @@ function statisticBehaviorReport(){
 
 
 		
-;
+
 		$sumAll['data']=$data;
 		$sumAll['poll']=$poll;
 
@@ -97,12 +96,10 @@ function statisticBehaviorReport(){
 
 function chartsPolicingsReport(){
         $this->gcharts->load('PieChart');
-
-				$this->db->join('childrens','childrens.childrenId = policings.childrenId');
-				$this->db->group_by('childrens.childrenId');
-				$allRowPolicings = count($this->db->get('policings')->result_array());
+				$policyings = $this->Policings->getChratData();
+				$allRowPolicings = $policyings['allRowPolicings'];
 				
-				$allRowChildrens = count($this->db->get('childrens')->result_array());
+				$allRowChildrens = $policyings['allRowChildrens'];
 				
 
 				$rowNotPolicings = $allRowPolicings-$allRowChildrens;
@@ -112,9 +109,9 @@ function chartsPolicingsReport(){
 					$rowNotPolicings = $rowNotPolicings * (-1);
 				
 				}
-				$percenNotPolicings = ($rowNotPolicings*100)/$allRowChildrens;
+				$html['NotPolicings'] = ($rowNotPolicings*100)/$allRowChildrens;
 				
-				$percenPolicings = ($allRowPolicings*100)/$allRowChildrens;
+				$html['Policings'] = ($allRowPolicings*100)/$allRowChildrens;
 				
 				$Amount[1] = $allRowPolicings;//number_format($percenNotPolicings,1,'.',',');
 
@@ -191,6 +188,8 @@ function chartsPolicingsReportPrint(){
 	
 	
 function chartsBehaviorReport($year=''){
+	
+	
 	
 	$this->Behavior->setPolicingDate($year);
 		$behavior = $this->Behavior->getBehavior();
@@ -307,13 +306,16 @@ for($i = 1; $i<=2; $i++)
 
   		$html['graph'].=$this->gcharts->div(980,450);
 		$html['year']=$year;
-
+		$html['data']=$data;
+		$html['poll']=$poll;
 		$this->load->view('chart/BehaviorChart',$html); 
 	
 		
 	}
 	
-	function policingsBehaviorMagChartPrint($year){
+	
+
+function policingsBehaviorMagChartPrint($year=''){
 	echo '<br>';
 	$this->chartsBehaviorReport($year);
 	echo '
@@ -322,5 +324,8 @@ for($i = 1; $i<=2; $i++)
 	
 	</script>';
 	}
+
+
+
 
 }?>
