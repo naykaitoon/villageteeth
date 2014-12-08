@@ -1,6 +1,5 @@
     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
         <link rel="stylesheet" href="<?php echo base_url();?>css/boxFormMain.css">
-      <script src="<?php echo base_url();?>js/jscolor.js" type="text/javascript"></script>
 
 <div class="table" align="center" >
 <form action="<?php echo base_url();?>index.php/boss/addBehaviorAction" method="post">
@@ -39,14 +38,6 @@
 
    
     </tr>
- <tr>    
-           <td width="61" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>สีกราฟใน Report</p></td>  
-       <td width="158" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><input type="text" name="colorCode" id="colorCode"  class="color" required ></p></td>
-
-   
-    </tr>
-
-
       <tr>    
            <td colspan="2" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>
              <input type="submit" name="save" id="save" value="บันทึก">

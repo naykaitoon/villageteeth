@@ -18,7 +18,11 @@ body{
 
 </head>
 <center>
-<?php if($_GET['print']==1){?>
+<?php
+if(!$_GET){
+$_GET['print']=0;
+}
+ if($_GET['print']==1){?>
 <a class="popupPrint" href="<?php echo base_url();?>index.php/report/chartsPolicingsReportPrint" ><img src="<?php echo base_url();?>img/printicon.png" width="50px;"/>พิมพ์</a>
 <?php }?>
 <?php echo '<br><br>'; echo $graph;?>

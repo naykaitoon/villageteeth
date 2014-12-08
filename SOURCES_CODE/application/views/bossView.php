@@ -150,15 +150,15 @@ $('.dropdown a').click(function(event) {
 
            <li><a class="mainMenu" href="#" onClick="return false">- สถิติเด็กในเขตของฉัน</a>
            		  <ul>
-        		           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติโดยรวมในเขตของฉัน</a></li>
-                           <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- สถิติแบ่งตามพฤติกรรม</a></li>
+        		           <li><a class="submenu" href="<?php echo base_url();?>index.php/report/myStatisticPolicingsReport" >- สถิติโดยรวมในเขตของฉัน</a></li>
+                           <li><a class="submenu" href="<?php echo base_url();?>index.php/report/myStatisticBehaviorReport" >- สถิติแบ่งตามพฤติกรรม</a></li>
        			 </ul>
             <li>
            <li><a class="mainMenu" href="#" onClick="return false">- สถิติเด็กการตรวจของฉัน</a>
           	  <ul>
-        		        <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false" >- แบ่งตามพฤษติกรรม</a></li>
-                        <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- แบ่งตามช่วงอายุ</a>                
-                        <li><a class="submenu" href="<?php echo base_url();?>index.php/home/fix" onClick="return false">- ข้อมูลการตรวจรายบุคคล</a>
+        		        <li><a class="submenu" href="<?php echo base_url();?>index.php/report/myPolicingsBehavior">- แบ่งตามพฤษติกรรม</a></li>
+                        <li><a class="submenu" href="<?php echo base_url();?>index.php/report/myPolicingsDistance" >- แบ่งตามช่วงอายุ</a>                
+                        <li><a class="submenu" href="<?php echo base_url();?>index.php/report/police">- ข้อมูลการตรวจรายบุคคล</a>
        			 </ul>
             <li>
         </ul>

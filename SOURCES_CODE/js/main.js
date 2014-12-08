@@ -68,6 +68,31 @@ $('.popupPrint').fancybox({
 				
 	
 });
+$('.viewstatisticBehavior').fancybox({
+	  	        openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : '650',
+				width :	'700',
+				scrolling : 'on',
+
+				type				: 'iframe'
+				
+				
+	
+});
+
+$('.viewstatisticPolo').fancybox({
+	  	        openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : '90%',
+				width :	'90%',
+				scrolling : 'on',
+
+				type				: 'iframe'
+				
+				
+	
+});
 $('.popupPrintBehavior').fancybox({
 	  	   openEffect	: 'elastic',
     	        closeEffect	: 'elastic',

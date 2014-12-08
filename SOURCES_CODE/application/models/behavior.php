@@ -10,7 +10,6 @@ class Behavior extends CI_Model {
     var $behaviorName ; ######  ชื่อข้อมูลพฤติกรรม  ######
     var $behaviorType ; ######  ประเภทข้อมูลพฤติกรรม เป็นการตรวจฟัน หรือตรวจทัวไป  ######
     var $behaviorTypeId ; ######  รหัสข้อมูลหมวดหมู่พฤติกรรม  ######
-    var $colorCode ; ######  สีของกราฟที่จะแสดง เก็บเป็น Code สี  ######
 	var $behaviorTypeName; ###########  ชื่อประเภท ###########
 	var $policingDate;
 	var $provinceId ; ######  sssss  ######
@@ -73,19 +72,6 @@ class Behavior extends CI_Model {
      }
 ###### End GET : $behaviorTypeId ###### 
 
-
- ###### SET : $colorCode ######
-    function setColorCode($colorCode){
-        $this->colorCode = $colorCode; 
-     }
-###### End SET : $colorCode ###### 
-
-
-###### GET : $colorCode ######
-    function getColorCode(){
-        return $this->colorCode; 
-     }
-###### End GET : $colorCode ###### 
 
 ###### GET : $behaviorTypeId ######
     function getBehaviorTypeName(){
@@ -166,8 +152,7 @@ class Behavior extends CI_Model {
 		$data = array(
 			'behaviorName' => $this->getBehaviorName(),
 			'behaviorType' => $this->getBehaviorType(),
-			'behaviorTypeId' => $this->getBehaviorTypeId(),
-			'colorCode' => $this->getColorCode()
+			'behaviorTypeId' => $this->getBehaviorTypeId()
 		);
 		
 		$this->db->insert('behavior',$data);
@@ -203,8 +188,7 @@ class Behavior extends CI_Model {
 		$data = array(
 			'behaviorName' => $this->getBehaviorName(),
 			'behaviorType' => $this->getBehaviorType(),
-			'behaviorTypeId' => $this->getBehaviorTypeId(),
-			'colorCode' => $this->getColorCode()
+			'behaviorTypeId' => $this->getBehaviorTypeId()
 		);
 		
 		$this->db->where('behaviorId',$this->getBehaviorId());
@@ -241,6 +225,18 @@ class Behavior extends CI_Model {
 		return $data;
 	}
 	
+	function getMyBehaviorReport(){
+		$data['loginData'] = $this->session->userdata('loginData');
+		$this->db->select('behavior.behaviorId,policingdetial.policingDetialValue');
+		$this->db->join('behavior','behavior.behaviorId = policingdetial.behaviorId');
+		$this->db->join('policings','policings.policingId = policingdetial.policingId');
+		$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+		$this->db->join('address','address.addressId = childrens.addressId');
+		$this->db->where('address.cantonId',$data['loginData']['cantonId']);
+		$data = $this->db->get('policingdetial')->result_array();		
+		return $data;
+	}
+	
 	function getBehaviorReportYear(){
 		$this->db->select('behavior.behaviorId,policingdetial.policingDetialValue');
 		$this->db->join('behavior','behavior.behaviorId = policingdetial.behaviorId');
@@ -251,7 +247,18 @@ class Behavior extends CI_Model {
 		$data = $this->db->get('policingdetial')->result_array();		
 		return $data;
 	}
-	
+	function getMyBehaviorReportYear(){
+		$data['loginData'] = $this->session->userdata('loginData');
+		$this->db->select('behavior.behaviorId,policingdetial.policingDetialValue');
+		$this->db->join('behavior','behavior.behaviorId = policingdetial.behaviorId');
+		$this->db->join('policings','policings.policingId = policingdetial.policingId');
+		$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+		$this->db->join('address','address.addressId = childrens.addressId');
+		$this->db->like('policings.policingDate',$this->getPolicingDate());
+		$this->db->where('address.cantonId',$data['loginData']['cantonId']);
+		$data = $this->db->get('policingdetial')->result_array();		
+		return $data;
+	}
 	function getByYear(){
 		$this->db->select('policings.policingDate');
 		$this->db->join('behavior','behavior.behaviorId = policingdetial.behaviorId');
@@ -260,7 +267,20 @@ class Behavior extends CI_Model {
         $data = $this->db->get('policingdetial')->result_array();		
 		return $data;
 	}
-	
+	function getMyByYear(){
+		$data['loginData'] = $this->session->userdata('loginData');
+		
+		$this->db->select('policings.policingDate');
+		$this->db->join('policings','policings.policingId = policingdetial.policingId');
+		$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+		$this->db->join('address','address.addressId = childrens.addressId');
+		$this->db->join('behavior','behavior.behaviorId = policingdetial.behaviorId');
+		$this->db->where('address.cantonId',$data['loginData']['cantonId']);
+        $this->db->group_by('YEAR(policings.policingDate)'); 
+        $data = $this->db->get('policingdetial')->result_array();		
+		return $data;
+
+	}
 	function getBehavior(){
 		$data = $this->db->get('behavior')->result_array();		
 		return $data;
@@ -275,18 +295,11 @@ class Behavior extends CI_Model {
 		$this->db->join('childrens','childrens.childrenId = policings.childrenId');
 		$this->db->join('address','address.addressId = childrens.addressId');
 		$this->db->like('policings.policingDate',$this->getPolicingDate());
-		
-			if($this->getCantonId()){
-				$this->db->where('address.cantonId',$this->getCantonId());
-			}else if($this->getDistrictId()){
-				$this->db->where('address.districtId',$this->getDistrictId());
-			}else if($this->getProvinceId()){
-				$this->db->where('address.provinceId',$this->getProvinceId());
-			}
 
 		$data = $this->db->get('policingdetial')->result_array();		
 		return $data;
 	}
+	
 	
 }
 ?>

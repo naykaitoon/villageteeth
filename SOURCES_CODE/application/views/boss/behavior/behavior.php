@@ -20,7 +20,6 @@
     	<th width="62" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>ชื่อพฤติกรรม</p></th>
                 <th width="102" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>ประเภทพฤติกรรม</p></th>
         <th width="91" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>หมวดหมู่พฤติกรรม</p></th>
-        <th width="94" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>สีกราฟใน Report</p></th>
       <th width="35" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">แก้ไข</th>
       <th width="39" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">ลบ</th>
     </tr>
@@ -33,7 +32,6 @@ $i=1;
  <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>
  <?php if($c['behaviorType']=='normal'){ echo 'แบบข้อความ';}else{echo 'ใช้รูปฟัน';}?></p></td>
   <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['behaviorTypeName'];?></p></td>
-   <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px" ><p style="background-color:#<?php echo $c['colorCode'];?>;width:50px;padding:2;" class="colorsCode"><?php echo $c['colorCode'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="editBehavior" href="<?php echo base_url();?>index.php/boss/editBehavior/<?php echo $c['behaviorId'];?>"> <img class="iconAction" src="<?php echo base_url();?>img/editIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;"></a></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="fancyboxDeleteBehavior" href="<?php echo base_url();?>index.php/boss/deleteBehavior/<?php echo $c['behaviorId'];?>" > <img class="iconAction" src="<?php echo base_url();?>img/deleteIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;"></a></td>
     </tr>

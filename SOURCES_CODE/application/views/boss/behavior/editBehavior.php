@@ -1,6 +1,5 @@
     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
         <link rel="stylesheet" href="<?php echo base_url();?>css/boxFormMain.css">
-      <script src="<?php echo base_url();?>js/jscolor.js" type="text/javascript"></script>
 
 <div class="table" align="center" >
 <?php foreach($behavior as $d){?>
@@ -38,12 +37,6 @@
            <?php }?>
          </select>
        </p></td>
-
-   
-    </tr>
- <tr>    
-           <td width="61" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>สีกราฟใน Report</p></td>  
-       <td width="158" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><input type="text" name="colorCode" id="colorCode"  class="color" value="<?php echo $d['colorCode'];?>"  required ></p></td>
 
    
     </tr>

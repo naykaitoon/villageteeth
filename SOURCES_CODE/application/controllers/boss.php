@@ -855,7 +855,9 @@ function switchMembers($status,$memberId){
 				);
 	
 				$this->session->set_userdata('loginData',$sesData);
-			echo "<script>parent.jQuery.fancybox.close();</script>";
+			echo "<center><br><br><br>แก้ไขข้อมูลสำเร็จ<br>
+	<a onClick='parent.jQuery.fancybox.close();'><input onClick='parent.jQuery.fancybox.close();' type='button' name='button2' id='button2' value='ปิด'></a>
+	</center>";
 		
 	}
 	function chooseNewPassword(){
@@ -1019,12 +1021,10 @@ function switchMembers($status,$memberId){
 		$behaviorName = $this->input->post('behaviorName');
 		$behaviorType = $this->input->post('behaviorType');
 		$behaviorTypeId = $this->input->post('behaviorTypeId');
-		$colorCode = $this->input->post('colorCode');
 		
 		$this->Behavior->setBehaviorName($behaviorName);
 		$this->Behavior->setBehaviorType($behaviorType);
 		$this->Behavior->setBehaviorTypeId($behaviorTypeId);
-		$this->Behavior->setColorCode($colorCode);
 		
 		$this->Behavior->addBehavior();
 		
@@ -1044,13 +1044,11 @@ function switchMembers($status,$memberId){
 		$behaviorName = $this->input->post('behaviorName');
 		$behaviorType = $this->input->post('behaviorType');
 		$behaviorTypeId = $this->input->post('behaviorTypeId');
-		$colorCode = $this->input->post('colorCode');
 		
 		$this->Behavior->setBehaviorId($behaviorId);
 		$this->Behavior->setBehaviorName($behaviorName);
 		$this->Behavior->setBehaviorType($behaviorType);
 		$this->Behavior->setBehaviorTypeId($behaviorTypeId);
-		$this->Behavior->setColorCode($colorCode);
 		
 		$this->Behavior->updateBehavior();
 		
@@ -1240,8 +1238,7 @@ function addPolicing(){
 
 	echo "<script>alert('ลงตรวจข้อมูลการตรวจสำเร็จ');</script>";
 	
-	echo "<script>
-	window.location='/index.php/boss';
+	echo "<script>	window.location='/index.php/boss';
 	</script>";
 		
 }

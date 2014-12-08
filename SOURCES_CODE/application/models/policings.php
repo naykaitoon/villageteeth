@@ -424,5 +424,91 @@ function getPolicingData(){
 				
 				return $data;
 	}
+	
+		function getMyChratData(){
+				$loginData = $this->session->userdata('loginData');
+				$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+				$this->db->join('address','address.addressId = childrens.addressId');
+				
+				$this->db->where('address.cantonId',$loginData['cantonId']);
+				$this->db->group_by('childrens.childrenId');
+				$data['allRowPolicings'] = count($this->db->get('policings')->result_array());
+				
+				$this->db->join('address','address.addressId = childrens.addressId');
+				$this->db->where('address.cantonId',$loginData['cantonId']);
+				$data['allRowChildrens'] = count($this->db->get('childrens')->result_array());
+				
+				return $data;
+	}
+	
+	function getMyChratDataPk(){
+				$loginData = $this->session->userdata('loginData');
+				$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+
+				$this->db->join('policingdetial','policingdetial.policingId = policings.policingId');
+
+				$this->db->where('policingdetial.behaviorId',$this->getBehaviorId());
+				$this->db->where('policings.memberId',$loginData['id']);
+				$this->db->group_by('childrens.childrenId');
+				$data1 = $this->db->get('policings')->result_array();
+				
+				
+				return $data1;
+	}
+	
+	function getBehaviorPKData(){
+		$this->db->where('behavior.behaviorId',$this->getBehaviorId());
+		$data = $this->db->get('behavior')->result_array();
+		return $data;
+	}
+	
+	function getDistancePKData(){
+		$this->db->where('distance.distanceId',$this->getDistanceId());
+		$data = $this->db->get('distance')->result_array();
+		return $data;
+	}
+	
+	function getMyChratDataPkByDistance(){
+				$loginData = $this->session->userdata('loginData');
+				$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+
+				$this->db->join('policingdetial','policingdetial.policingId = policings.policingId');
+
+				$this->db->where('policings.distanceId',$this->getDistanceId());
+				$this->db->where('policings.memberId',$loginData['id']);
+				$this->db->group_by('childrens.childrenId');
+				$data1 = $this->db->get('policings')->result_array();
+				
+				
+				return $data1;
+	}
+	
+	function getPoliAllChil(){
+		$this->db->join('distance','distance.distanceId = policings.distanceId');
+		$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+		$this->db->where('childrens.childrenId',$this->getChildrenId());
+		
+		$data1 = $this->db->get('policings')->result_array();
+		return $data1;
+		
+	}
+	function getPoliDetialAllChil(){
+		
+		$this->db->join('policings','policings.policingId = policingdetial.policingId');
+		$this->db->join('distance','distance.distanceId = policings.distanceId');
+		$this->db->join('behavior','behavior.behaviorId = policingdetial.behaviorId');
+		$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+		$this->db->where('childrens.childrenId',$this->getChildrenId());
+		
+		$data1 = $this->db->get('policingdetial')->result_array();
+		return $data1;
+		
+	}
+	
+	function brokentoothget(){
+		$this->db->join('policingdetial','policingdetial.policingDetialId = brokentooth.policingDetialId');
+		$data1 = $this->db->get('brokentooth')->result_array();
+		return $data1;
+	}
 }
 ?>
