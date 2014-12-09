@@ -4,19 +4,19 @@
 <title>ระบบทันตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย</title>
 <meta name="keywords" content="สมเด็จพระยุพราชเด่นชัย,โรงพยาบาลสมเด็จพระยุพราชเด่นชัย,ทันตสุขภาพเด็ก,villageteeth,ระบบทันตสุขภาพเด็ก,ทันตสุขภาพเด่นชัย" />
 <meta name="description" content="ระบบจัดการ ทัตสุขภาพเด็ก เด่นชัย โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ จัดการข้อมูลสถิติ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่" />
-<link rel="stylesheet" href="<?php echo base_url();?>css/menu.css?v=1001">
-<link rel="stylesheet" href="<?php echo base_url();?>css/main.css?v=1001">
-<link rel="stylesheet" href="<?php echo base_url();?>css/header.css?v=1001">
-<link rel="stylesheet" href="<?php echo base_url();?>css/table.css?v=1001">
-<link rel="stylesheet" href="<?php echo base_url();?>css/font.css?v=1001">
-<script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js?v=1001"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>css/menu.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/main.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/header.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/font.css">
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>js/jqueryui/jquery-ui.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>js/jquery.fancybox.js?v=1001&?v=2.1.5"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery.fancybox.js?v=2.1.5"></script>
 <script type="text/javascript" src="<?php echo base_url()?>js/jquery.mousewheel-3.0.6.pack.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.js?v=2.1.5"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.css?v=1001&?v=2.1.5" media="screen" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.css?v=2.1.5" media="screen" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/jquery.fancybox.css?v=2.1.5" media="screen" />
-<script type="text/javascript" src="<?php echo base_url()?>js/mainuser.js?v=1001"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/mainuser.js"></script>
 <script>
 	$(document).ready(function() {
 		var check;
@@ -83,7 +83,7 @@ $('.dropdown a').click(function(event) {
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js?v=1001','ga');
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-55870926-1', 'auto');
   ga('send', 'pageview');
 	ga('set', '&uid', {{"<?php echo MD5($loginData['id'].date('Y-m-d H:m:s'));?>"}}); // ตั้งค่ารหัสผู้ใช้โดยใช้ user_id ที่ลงชื่อเข้าใช้
@@ -91,7 +91,7 @@ $('.dropdown a').click(function(event) {
 
 <div id="header" >
 	<div id="logo1">
-    	<img src="<?php echo base_url();?>img/logo.png?v=1001?v=1001" width="150px">
+    	<img src="<?php echo base_url();?>img/logo.png" width="150px">
     </div>
     <div class="img">
     
@@ -132,18 +132,18 @@ $('.dropdown a').click(function(event) {
 		<ul class="dropdown">
  			<li id="headMenubg">
        			 <a class="mainMenu"  id="headMenu" onClick="return false" style="font-size:25px;">
-                 <img class="iconAction" src="<?php echo base_url();?>img/icon/menu.png?v=1001?v=1001" height="30px">&nbsp;&nbsp;เมนู
+                 <img class="iconAction" src="<?php echo base_url();?>img/icon/menu.png" height="30px">&nbsp;&nbsp;เมนู
                  </a>
         	</li>
       		<li>
         		 <a class="mainMenu" href="" onClick="return false">
-  <img class="iconAction" src="<?php echo base_url();?>img/icon/magChilldent.png?v=1001" height="30px" > จัดการข้อมูลเด็ก</a>
+  <img class="iconAction" src="<?php echo base_url();?>img/icon/magChilldent.png" height="30px" > จัดการข้อมูลเด็ก</a>
         <ul>
           	<li><a class="submenu" href="<?php echo base_url();?>index.php/officials/childentInArea">- เด็กในเขตความรับผิดชอบ</a></li>
            	<li><a class="submenu" href="<?php echo base_url();?>index.php/officials/childentAllProfile">- ข้อมูลประวัติเด็ก</a></li>
         </ul>
       </li>  
-      <li><a class="mainMenu" href="" onClick="return false"><img class="iconAction" src="<?php echo base_url();?>img/icon/grap.png?v=1001" height="30px" > รายงานข้อมูลสถิติ</a>
+      <li><a class="mainMenu" href="" onClick="return false"><img class="iconAction" src="<?php echo base_url();?>img/icon/grap.png" height="30px" > รายงานข้อมูลสถิติ</a>
         <ul>
 
            <li><a class="mainMenu" href="#" onClick="return false">- สถิติเด็กในเขตของฉัน</a>
@@ -160,14 +160,22 @@ $('.dropdown a').click(function(event) {
        	    </ul>           
         </ul>
       </li>
-     <li> <a class="mainMenu" href="" onClick="return false;" ><img class="iconAction" src="<?php echo base_url();?>img/polincy.png?v=1001" height="30px" > ลงข้อมูลการตรวจ</a>
+       <li>
+        <a class="mainMenu" href="" onClick="return false"><img class="iconAction" src="<?php echo base_url();?>img/icon/policy.png" height="30px" > จัดการข้อมูลการตรวจของฉัน</a>
+        <ul>
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/officials/policingFind">- ค้นหาประวัติการตรวจ</a></li>   
+          <li><a class="submenu" href="<?php echo base_url();?>index.php/officials/calendaAlert">- ตารางการนัดเด็กของฉัน</a></li>      
+
+        </ul>
+      </li>
+     <li> <a class="mainMenu" href="" onClick="return false;" ><img class="iconAction" src="<?php echo base_url();?>img/polincy.png" height="30px" > ลงข้อมูลการตรวจ</a>
      	 <ul>
           <li><a class="submenu" href="<?php echo base_url();?>index.php/officials/police">- ตามเขตรับผิดชอบ</a></li>
         </ul>
       </li>
     </ul>
     
-    <script src="<?php echo base_url();?>js/menu/tendina.min.js?v=1001"></script>
+    <script src="<?php echo base_url();?>js/menu/tendina.min.js"></script>
     <script>
       $('.dropdown').tendina({
         animate: true,

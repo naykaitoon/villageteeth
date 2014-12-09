@@ -3,6 +3,16 @@
 <head>
 <meta charset="utf-8">
 <title>My Project DB</title>
+<script src=" http://code.jquery.com/jquery-latest.js " type="text/javascript"></script>
+<script>
+function hideer(a){
+
+	$('input').click(function(){
+		$('.'+a).hide();
+	});
+
+}
+</script>
 <style>
 table td { padding:5px;
 border:1px dotted #CCC;
@@ -29,14 +39,16 @@ $str2 = array('', '<font class="pk">คีย์หลัก</font>', '<font cla
 
 $result =$mysqli->query("SHOW TABLES");
 $mysqli->query("SET NAMES UTF8");
+$iiiii=0;
 while($row = mysqli_fetch_array($result, MYSQLI_NUM)){
 		$results = $mysqli->query("SHOW FULL columns FROM ".$row["0"]);
 		if (!$results) {
   		  printf("Error: %s\n", mysqli_error($mysqli));
    		 exit();
-		}			
+		}	
+echo '<input type="button" class="'.$iiiii.'" onClick="hideer('.$iiiii.');" value="ซ่อน">';		
 echo '
-<table border="0" align="center" cellpadding="5" cellspacing="0">
+<table border="0" align="center" cellpadding="5" cellspacing="0" class="'.$iiiii.'">
     <tbody>
       <tr>
         <th colspan="3" align="center" nowrap bgcolor="#6F6F6F" style="color: #FFFFFF">ตารางชื่อ&nbsp;'.$row["0"].'</th>
@@ -75,6 +87,7 @@ echo '
 		echo '<br>';
 		echo '<hr>';
 		echo '<br>';
+		$iiiii++;
 }
 ?>
 

@@ -19,10 +19,10 @@ $("#dropdown").on("click", function(e){
   
   if($(this).hasClass("open")) {
     $(this).removeClass("open");
-    $(this).children("ul").slideUp("fast");
+    $(this).childent("ul").slideUp("fast");
   } else {
     $(this).addClass("open");
-    $(this).children("ul").slideDown("fast");
+    $(this).childent("ul").slideDown("fast");
   }
 });
          
@@ -57,6 +57,18 @@ $("#dropdown").on("click", function(e){
 	
 });
 $('.popupPrint').fancybox({
+	  	        openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : '600',
+				width :	'700',
+				scrolling : 'on',
+
+				type				: 'iframe'
+				
+				
+	
+});
+$('.policingreportpopup').fancybox({
 	  	        openEffect	: 'elastic',
     	        closeEffect	: 'elastic',
 				height : '600',

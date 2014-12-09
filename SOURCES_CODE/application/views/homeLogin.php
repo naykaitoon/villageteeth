@@ -10,36 +10,12 @@
   	<link rel="stylesheet" href="<?php echo base_url();?>css/main.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/header.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
-     <link rel="stylesheet" href="<?php echo base_url();?>css/font.css?v=1001">
+     <link rel="stylesheet" href="<?php echo base_url();?>css/font.css">
      <script src="<?php echo base_url();?>js/jquery-1.11.1.min.js"></script>
-       <script src="<?php echo base_url()?>js/pace.min.js"></script>
   <link href="<?php echo base_url()?>css/pace-theme-barber-shop.css" rel="stylesheet" />
      <script>
 	 $(document).ready(function(){
 		    $('.load').load( '<?php echo base_url();?>index.php/home/loginForm' ); 
-										load(20);
-										load(100);
-										load(500);
-										load(2000);
-										load(3000);
-									
-										setTimeout(function(){
-										  Pace.ignore(function(){
-											load(3100);
-										  });
-										}, 4000);
-									
-										Pace.on('hide', function(){
-										  console.log('done');
-										});
-				   
-                
-				 	function load(time){
-										  var x = new XMLHttpRequest()
-										  x.open('GET', time, true);
-										  x.send(); 
-										
-										};   
  });
  
 	 </script>

@@ -25,6 +25,7 @@ class Policings extends CI_Model {
     var $distanceMonth ; ######  ระยะเวลาการตรวจ หน่วยเป็น เดือน  ######
     var $meetingId ; ######  รหัสข้อมูลการนัด  ######
     var $meetingsDate ; ######  เวลานัด  ######
+	var $textSearch;
 	
 ###### End Attribute  ###### 
 
@@ -293,6 +294,13 @@ class Policings extends CI_Model {
      }
 ###### End GET : $meetingsDate ###### 
 
+function setTextSearch($textSearch){
+	  $this->textSearch = $textSearch; 
+}
+function getTextSearch(){
+	 return $this->textSearch; 
+}
+
 function getPolicingData(){
 		
 		$this->db->join('behaviortype','behaviortype.behaviortypeId = behavior.behaviortypeId');
@@ -369,6 +377,19 @@ function getPolicingData(){
 		$this->db->join('members','members.memberId = policings.memberId');		
 		$this->db->join('distance','distance.distanceId = policings.distanceId');
 		
+		return $this->db->get('policings')->result_array();
+	}
+	
+		function finddingSearch(){
+		
+	
+		$this->db->join('childrens','childrens.childrenId = policings.childrenId');
+		$this->db->join('members','members.memberId = policings.memberId');		
+		$this->db->join('distance','distance.distanceId = policings.distanceId');
+	$this->db->like('childrens.childrenName',$this->getTextSearch());
+	$this->db->or_like('childrens.childrenName',$this->getTextSearch());
+	$this->db->or_like('childrens.childrenLastName',$this->getTextSearch());
+	$this->db->or_like('childrens.childrenIDCard',$this->getTextSearch());
 		return $this->db->get('policings')->result_array();
 	}
 	

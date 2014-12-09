@@ -1253,6 +1253,17 @@ function policingFind(){
 	$this->load->view('boss/policing/findPolicingChildents',$data);
 }
 
+function policingFindSearch(){
+	$textSearch=$this->input->post('key');
+	$this->Policings->setTextSearch($textSearch);
+	$data['policings'] = $this->Policings->finddingSearch();
+	for($i=0;$i<count($data['policings']);$i++){
+			$childrenBirthday = strtotime($data['policings'][$i]['childrenBirthday']);
+			$data['policings'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
+		}
+	$this->load->view('boss/policing/findPolicingChildentsTable',$data);
+}
+
 	function calendaAlert($now='',$searchDate=NULL){
 		
 		if(!$now){
@@ -1499,8 +1510,4 @@ function listAllAlertSearch($page=0){
 
 	$this->load->view('boss/policing/listAlertSearchResult',$data);
 }
-
-   
-	
-
 }?>

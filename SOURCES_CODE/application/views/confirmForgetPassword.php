@@ -1,26 +1,17 @@
-<!-- 
-	type : view
-	file_name : homeLogin.php
-    file_type : php
-    author : Jedsadakorn Sirikunpan
-    details : loginpage
-	start_date : 18/10/2557
-    end_Date : -
--->
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>ลืมรหัสผ่าน</title>
+<title>ระบบทันตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย Dental Health System</title>
 <meta name="keywords" content="สมเด็จพระยุพราชเด่นชัย,โรงพยาบาลสมเด็จพระยุพราชเด่นชัย,ทันตสุขภาพเด็ก,villageteeth,ระบบทันตสุขภาพเด็ก" />
-<meta name="description" content="ระบบจัดการ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ จัดการข้อมูลสถิติ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ Dental Health System villageteeth" />
+<meta name="description" content="ระบบจัดการ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ จัดการข้อมูลสถิติ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ Dental Health System villageteeth"/>
       <link rel="stylesheet" href="<?php echo base_url();?>css/loginForm.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>css/menu.css">
-  	<link rel="stylesheet" href="<?php echo base_url();?>css/main.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>css/header.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
-  
+<link rel="stylesheet" href="<?php echo base_url();?>css/main.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/header.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/font.css">
      <script src="<?php echo base_url();?>js/jquery-1.11.1.min.js"></script>
+  <link href="<?php echo base_url()?>css/pace-theme-barber-shop.css" rel="stylesheet" />
      <script>
 			function checkPassword(){
 				var pass1 = $('#password1').val();
@@ -48,9 +39,19 @@
 
 			}
 	 </script>
+     <style>
+	 #footerLoagin{
+	 	position:fixed;
+	 }
+	 #formLoginPost{
+	 	position:fixed;
+		
+		margin-left:30%;
+	 }
+	 </style>
 </head>
 
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">	
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" id="homeLoginBody">	
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -63,7 +64,7 @@
 </script>
 
 <div id="header" ><div id="logo1"><img src="<?php echo base_url();?>img/logo.png" width="150px"></div><div class="img"></div><p class="p">ระบบทันตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย<br>Dental Health System</p></div>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
    <div class="loginForm" align="center">
 <form id="formLoginPost" action="<?php echo base_url();?>index.php/login/changePassword" method="post">
      <table width="450" border="0" align="center" cellpadding="5" cellspacing="0" class="load">
@@ -92,9 +93,9 @@
      </table>
 </form>
 </div>
-<br>
-<br>
-<div id="footerLoagin" title="ที่อยู่ที่ติดต่อ" align="center"><p id="footerText">โครงการลูกรักฟันดีเริ่มที่ซี้แรก ร่วมกับ โรงพยาบาลสมเด็จพระยุพราชเด่นชัย<br>
+
+<div id="footerLoagin" title="ที่อยู่ที่ติดต่อ" align="center"><p id="footerText">โครงการลูกรักฟันดีเริ่มที่ซี้แรก ร่วมกับ โรงพยาบาลสมเด็จพระยุพราชเด่นชัย&nbsp;:&nbsp;&nbsp;http://www.villageteeth.com<br>
 545 หมู่ 9 ตำบลเด่นชัย อำเภอเด่นชัย จังหวัดแพร่54110 โทรศัพท์ 054-613134 Fax. 054-613195 WebSite : <a href="http://www.denchaihosp.com/">http://www.denchaihosp.com/</a><br>Copyright © 2014 All rights Reserved. </p></div>
+
 </body>
 </html>
