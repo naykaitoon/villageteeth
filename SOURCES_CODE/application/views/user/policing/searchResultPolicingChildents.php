@@ -26,7 +26,7 @@ body {
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p ><?php idFormat($c['childrenIDCard']);?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenAge'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['cantonName'];?>&nbsp;อ.<?php echo $c['districtName'];?>&nbsp;จ.<?php echo $c['provinceName'];?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a  class="policing" href="<?php echo base_url();?>index.php/boss/policing/<?php echo $c['childrenId'];?>">
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a class="policing" href="<?php echo base_url();?>index.php/officials/policing/<?php echo $c['childrenId'];?>" >
       <img class="iconAction" src="<?php echo base_url();?>img/checkIcon.png" width="30px" height="30px"  style="margin-bottom:-5px;margin-top:-5px;">
       </a></td>
     </tr>

@@ -1,0 +1,429 @@
+$(document).ready(function(){
+			var whi = $(document).width();
+			$('html body').css('max-width',whi);
+			$('html body').css('min-width',whi);
+                $('.content').fadeOut().hide().load( '/index.php/officials/childentInArea' ).fadeIn();
+				 $(".submenu , .submenusub").click(function(event) {
+	 				 event.preventDefault();
+                var href = $(this).attr('href');
+
+                $('.content').load( href );
+
+            });
+
+			$('.mainMenu').click(function(event) {
+				 event.preventDefault();
+				 });
+$("#dropdown").on("click", function(e){
+  e.preventDefault();
+  
+  if($(this).hasClass("open")) {
+    $(this).removeClass("open");
+    $(this).children("ul").slideUp("fast");
+  } else {
+    $(this).addClass("open");
+    $(this).children("ul").slideDown("fast");
+  }
+});
+         
+ });
+ 
+  $('.fancybox').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+	  
+				height :	550,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe'
+	
+});
+  $('.AddMember').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+				height :	580,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+					afterClose : function() {
+					
+       		$('.content').load('/index.php/officials/memberAll');
+
+    }
+	
+});
+$('.popupPrint').fancybox({
+	  	        openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : '600',
+				width :	'700',
+				scrolling : 'on',
+
+				type				: 'iframe'
+				
+				
+	
+});
+$('.viewstatisticBehavior').fancybox({
+	  	        openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : '650',
+				width :	'700',
+				scrolling : 'on',
+
+				type				: 'iframe'
+				
+				
+	
+});
+
+$('.viewstatisticPolo').fancybox({
+	  	        openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : '90%',
+				width :	'90%',
+				scrolling : 'on',
+
+				type				: 'iframe'
+				
+				
+	
+});
+$('.popupPrintBehavior').fancybox({
+	  	   openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : '600',
+				width :	'95%',
+				scrolling : 'on',
+
+				type				: 'iframe'
+				
+	
+});
+
+	 $('.policingPhoto').fancybox({
+	  	        openEffect	: 'elastic',
+    	        closeEffect	: 'elastic',
+				height : 600,
+				width :	900,
+				scrolling : 'auto',
+				autoSize : false,
+				fitToView	: false,
+				type				: 'iframe'
+				,
+					afterClose : function() {
+					$('.content').load($('#linkPopupclick').val());
+					}
+				
+				
+	
+});
+$('.fancyboxMagChildent').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+				height :	580,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load('/index.php/officials/childentInArea');
+
+    }
+	
+});
+$('.fancyboxMagChildentPolincy').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+				height :	580,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load('/index.php/officials/polince');
+
+    }
+	
+	
+});
+
+$('.addBehavior').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+				height :	320,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load('/index.php/officials/behaviorMag');
+
+    }
+	
+	
+});
+$('.editBehavior').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+			height :	320,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load('/index.php/officials/behaviorMag');
+
+    }
+	
+});
+$('.fancyboxMagChildentAll').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+				height :	550,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load('/index.php/officials/childentAll');
+
+    }
+	
+});
+$('.editProfile').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+				height :	580,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				overlay : {
+            				css : {
+               				 'background' : 'rgba(58, 42, 45, 0.95)',
+           				 }
+				},
+					afterClose : function() {
+					
+       		window.location='/index.php/officials';
+
+    }
+	
+});
+$('.chooseNewPassword').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+				height :	300,
+				width :	'50%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+					afterClose : function() {
+					
+       		window.location='/index.php/officials';
+
+    }
+	
+});
+$('.fancyboxMagMemberAll').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+				height :	580,
+				width :	'80%',
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+					afterClose : function() {
+					
+       		$('.content').load('/index.php/officials/memberAll');
+
+    }
+	
+});
+$('.deleteMemberAll').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+					  			height :	150,
+				width :	300,
+				scrolling : 'no',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/officials/memberAll");
+
+    }
+});
+  $('.fancyboxMini').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+	  			height :	230,
+				width :	400,
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load($('#linkPopupclick').val());
+
+    }
+	
+});
+  $('.fancyboxMiniBehaviorType').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+	  			height :	200,
+				width :	500,
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load($('#linkPopupclick').val());
+
+    }
+	
+});
+  $('.fancyboxDeleteBehavior').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+	  			height :	150,
+				width :	350,
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/officials/behaviorMag");
+
+    }
+	
+});
+  $('.fancyboxdistanceDataList').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+	  			height :	150,
+				width :	250,
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/officials/distanceDataList");
+
+    }
+	
+});
+  $('.behaviorTypeEdit').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+	  			height :	200,
+				width :	500,
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize: false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/officials/behaviorMagType");
+
+    }
+	
+});
+  $('.behaviorTypeDelete').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+	  			height :	200,
+				width :	550,
+				fitToView	: false,
+				scrolling : 'auto',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/officials/behaviorMagType");
+
+    }
+	
+});
+  $('.fancyboxDeleteMagAll').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+	  			height :	'350',
+				width :	'300',
+				fitToView	: false,
+				scrolling : 'auto',
+				
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/officials/behaviorMag");
+
+    }
+	
+});
+
+  $('.deletechildentAll').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+	  			height :	150,
+				width :	300,
+				scrolling : 'no',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/officials/childentAll");
+
+    }
+	
+});
+
+  $('.deletechildentInArea').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+	  			height :	150,
+				width :	300,
+				scrolling : 'no',
+				autoSize : false,
+				type				: 'iframe',
+				afterClose : function() {
+					
+       		$('.content').load("/index.php/officials/childentInArea");
+
+    }
+	
+});
+
+  $('.fancyboxAuto').fancybox({
+	  	               openEffect	: 'elastic',
+    	               closeEffect	: 'elastic',
+				autoSize : true,
+				scrolling : 'auto',
+				fitToView	: false,
+				type				: 'iframe'
+				
+	
+});
