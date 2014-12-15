@@ -330,7 +330,7 @@ function forgetPasswordMemberByCode()
 		$this -> db -> join('liablearea', 'liablearea.memberId = members.memberId');
 		$this->db->where('members.memberStatus','officials');
 		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
-	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
+	$config['base_url'] = "".base_url()."/index.php/".$url;
 	$this->db->select('*');
 	$this->db->from('members');
 	$this->db->join('address','address.addressId = members.addressId');
@@ -356,28 +356,28 @@ function forgetPasswordMemberByCode()
 	 $this->db->or_like('members.memberIdIDCard',$this->getTextSearch());
 	 $this->db->or_like('members.memberName',$this->getTextSearch());
 	 $this->db->or_like('members.memberLastName',$this->getTextSearch());
-	 $this->db->or_like('members.memberPosition',$this->getTextSearch());
+	 $this->db->where('members.memberStatus','officials');
 	$this->db->join('address','address.addressId = members.addressId');
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 	$this->db->join('liablearea', 'liablearea.memberId = members.memberId');
-	$this->db->where('members.memberStatus','officials');
+	
 		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
-	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
+	$config['base_url'] = "".base_url()."/index.php/".$url;
 
 	$this->db->from('members');
 	 $this->db->like('members.memberUsername',$this->getTextSearch());
 	 $this->db->or_like('members.memberIdIDCard',$this->getTextSearch());
 	 $this->db->or_like('members.memberName',$this->getTextSearch());
 	 $this->db->or_like('members.memberLastName',$this->getTextSearch());
-	 $this->db->or_like('members.memberPosition',$this->getTextSearch());
+	 $this->db->where('members.memberStatus','officials');
 	$this->db->join('address','address.addressId = members.addressId');
 	$this->db->join('canton','canton.cantonId = address.cantonId');
 	$this->db->join('district','district.districtId = address.districtId');
 	$this->db->join('province','province.provinceId = address.provinceId');
 	$this->db->join('liablearea', 'liablearea.memberId = members.memberId');
-	$this->db->where('members.memberStatus','officials');
+	
  		 $config['total_rows'] = $this->db->count_all_results(); // ส
   		 $config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
 		 $this->pagination->create_links();

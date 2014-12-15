@@ -188,6 +188,7 @@ function getmemberAear(){
 	
 	$this->db->join('district','district.districtId = canton.districtId');
 	$this->db->join('province','province.provinceId = canton.provinceId');
+	$this->db->join('zipcodes','canton.cantonId = zipcodes.cantonId');
 
 		$this->db->where('canton.cantonId',$this->getCantonId());
 
@@ -218,7 +219,7 @@ function getMemberByAddress($page,$url){
 	}
 	$this->db->where('members.memberStatus','officials');
 		$data = $this->db->get('members',$pageValue,$page)->result_array(); /// ดึงข้อมูลในตาราง members ทั้งหมด และนำมาเก็บในตัวแปร array ชื่อ $data['member']
-	$config['base_url'] = "".base_url()."/index.php/boss/".$url;
+	$config['base_url'] = "".base_url()."/index.php/".$url;
 	
 	$this->db->from('members');
 		$this->db->join('address','address.addressId = members.addressId');

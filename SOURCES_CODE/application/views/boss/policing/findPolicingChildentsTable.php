@@ -20,7 +20,7 @@
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenAge'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['memberName'].'  '.$c['memberLastName'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['policingDate'];?></p></td>
-           <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/report/policing/<?php echo $c['childrenId'];?>" class="viewstatisticBehavior">
+           <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/report/policing/<?php echo $c['childrenId'];?>" class="policingreport fancybox.iframe">
            <img class="iconAction" src="<?php echo base_url();?>img/viewIcon.png" width="30px" height="30px"  style="margin-bottom:-5px;margin-top:-5px;">
         </a></td>
     </tr>

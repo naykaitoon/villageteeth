@@ -205,7 +205,7 @@ function getChildentInArea($page,$url){
 
 
 	$data = $this->db->get('childrens',$pageValue,$page)->result_array();
-	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
+	$config['base_url'] = "".base_url()."/index.php/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
    		
 	$this->db->from('childrens');
 	$this->db->join('address','address.addressId = childrens.addressId');
@@ -242,7 +242,7 @@ function getChildentInArea($page,$url){
 		$this->db->join('diseases','diseases.childrenId = childrens.childrenId');
 	$data = $this->db->get('childrens',$pageValue,$page)->result_array();
 	$loginData2 = $this->session->userdata('loginData');
-	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
+	$config['base_url'] = "".base_url()."/index.php/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
 	$config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
 	$this->db->select('*');
 	$this->db->from('childrens');
@@ -275,7 +275,7 @@ function getChildentInArea($page,$url){
 	$this->db->or_like('childrens.childrenIDCard',$this->getTextSearch());
 	$data = $this->db->get('childrens',$pageValue,$page)->result_array();
 	$loginData2 = $this->session->userdata('loginData');
-	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
+	$config['base_url'] = "".base_url()."/index.php/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
 	$config['per_page'] = $pageValue; // ให้แสดงหน้าละจำนวนเท่าไหร่
 	$this->db->select('*');
 	$this->db->from('childrens');
@@ -379,17 +379,14 @@ function getChildentInAreaAlerting($page,$url){
 	$this->db->join('diseases','diseases.childrenId = childrens.childrenId');
 	$this->db->join('meetings','meetings.childrenId = childrens.childrenId');
 	$this->db->join('policings','policings.policingId = meetings.policingId');
-		$this->db->where('address.cantonId',$datass['cantonId']);
+	$this->db->join('distance','distance.distanceId = policings.distanceId');
 
-		$this->db->where('address.districtId',$datass['districtId']);
-
-		$this->db->where('address.provinceId',$datass['provinceId']);
 
 		$this->db->where('meetings.meetingsDate >=',date('Y-m-d'));
 		$this->db->where('meetings.meetingsDate <=',date('Y-m-d',$dates));
 		$this->db->where('policings.memberId',$datass['id']);
 	$data = $this->db->get('childrens',$pageValue,$page)->result_array();
-	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
+	$config['base_url'] = "".base_url()."/index.php/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
    		
 	$this->db->from('childrens');
 	$this->db->join('address','address.addressId = childrens.addressId');
@@ -437,7 +434,7 @@ function getChildentInAreaAlerting($page,$url){
 		$this->db->where('meetings.meetingsDate <=',date('Y-m-d',$dates));
 		$this->db->where('policings.memberId',$datass['id']);
 		
-	$config['base_url'] = "".base_url()."/index.php/boss/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
+	$config['base_url'] = "".base_url()."/index.php/".$url; // ส่วนนี้ จะเป็น link ว่า จะให้ไปที่หน้าไหน ซึ่งเราจะให้ไปที่ method page ด้านล่าง
    		
 	$this->db->from('childrens');
 	$this->db->join('meetings','meetings.childrenId = childrens.childrenId');

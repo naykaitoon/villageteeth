@@ -1,6 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
-		$(document).ready(function() {
 		 $( "#province" ).click(function() {
 				var str = "";
 					$( "select#province option:selected" ).each(function() {
@@ -91,7 +89,6 @@
 						  });
 				});
 	
-		});
 	</script>
 <div id="headTitleContentbg">
  <h2 id="headTitleContent">รายชื่อผู้ใช้งานตามเขตรับผิดชอบ</h2>
@@ -116,10 +113,9 @@
     <option value="0" >กรุณาเลือกอำเภอ</option>
 
   </select>
-   <a href="<?php echo base_url();?>index.php/boss/addMember" class="AddMember" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addMember.png" width="40px" height="40px"/>เพิ่มข้อมูลผู้ใช้งาน</a></p>
+   <a href="<?php echo base_url();?>index.php/boss/memberByAreaPrint" class="printMemberByArea fancybox.iframe" id="addButtonForAll" style="font-size:12px"><img src="<?php echo base_url();?>img/printpreview.png" width="40px" height="40px"/>ค้นหาและพิมพ์</a>&nbsp;&nbsp;<a href="<?php echo base_url();?>index.php/boss/addMember" class="AddMemberByArea fancybox.iframe" id="addButtonForAll" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addMember.png" width="40px" height="40px"/>เพิ่มข้อมูลผู้ใช้งาน</a></p>
   <div id="listDataMember">
   </div>
-  
   <p>&nbsp;</p>
 </div>
 

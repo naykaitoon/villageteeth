@@ -12,7 +12,7 @@
     </tr>
     <?php
 if($member){
-	 foreach($member as $c){?>
+	 foreach($member as $c){ if($c['memberStatus']!='boss'){?>
     <tr>    
            <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['memberId'];?></p></td>  
        <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['memberName'];?>&nbsp;&nbsp;<?php echo $c['memberLastName'];?></p></td>
@@ -52,7 +52,7 @@ if($member){
   <img class="iconAction" src="<?php echo base_url();?>img/deleteIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
   </a></td>
     </tr>
-    <?php  }?>
+    <?php } }?>
  	<tr>
   	<td colspan="8" align="center"><div class="ajax_paging"><?php echo $this->pagination->create_links(); ?></div></td>
   </tr>

@@ -1,4 +1,6 @@
-    <style>
+<link rel="stylesheet" href="<?php echo base_url();?>css/tableBox.css">    
+<link rel="stylesheet" href="<?php echo base_url();?>css/font.css">    
+	<style>
 	  .sunday{color: white;background-color:#FF8D8D;}
      .saturday{color: white;background-color:#FF8D8D;}
      .default{color: black;background-color:white;}
@@ -45,10 +47,10 @@
  <h2 id="headTitleContent">ตารางการนัดเด็กของฉัน</h2>
 </div>
 <div class="table">
-<table width="100%;" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#BFE4FF" id="bodycalenda" >
+<table width="100%;" align="center" cellpadding="0" cellspacing="1" bgcolor="#BFE4FF" id="bodycalenda" >
     <tr>
-        <td width="50%" align="center" valign="middle" bgcolor="#BFE4FF" class="calenda"><?php echo $html;?></td>
-        <td width="50%" align="center" valign="middle" bgcolor="#BFE4FF">
+        <td width="50%" align="center" valign="middle" bgcolor="#BFE4FF" bordercolor="#BFE4FF"><?php echo $html;?></td>
+        <td width="50%" align="center" valign="middle"  bgcolor="#BFE4FF" bordercolor="#BFE4FF">
         <div class="listmeettingAlert">
         </div>
         </td>

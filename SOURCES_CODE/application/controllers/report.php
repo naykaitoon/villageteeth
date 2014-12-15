@@ -875,7 +875,9 @@ function myChartsPolicingsReportByDistanceId($DistanceId){
 	
 	
 function police($page=0){
-	$data['childent'] = $this->Childents->getChildentInArea($page,'police');
+	$dataLogin = $this->session->userdata('loginData');
+
+	$data['childent'] = $this->Childents->getChildentInArea($page,$dataLogin['status'].'/police');
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
 			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
@@ -884,9 +886,11 @@ function police($page=0){
 	
 }
 function policeSearch($page=0){
+		$dataLogin = $this->session->userdata('loginData');
+
 		$text = $this->input->post('key');
 		$this->Childents->setTextSearch($text);
-		$data['childent'] = $this->Childents->getChildentAllSearch($page,'policeSearch');
+		$data['childent'] = $this->Childents->getChildentAllSearch($page,$dataLogin['status'].'/policeSearch');
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
 			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);

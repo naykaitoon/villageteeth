@@ -1,10 +1,4 @@
-@font-face *{
- 	  font-family: thaisanslite_r1 Vera Serif Bold; 
-		
-	 src: url(/css/font/WDB_Bangna.ttf) format("truetype");  
-	    src: url('font/WDB_Bangna.ttf?#iefix') format('embedded-opentype'); /* IE6-IE8 */
-    }
-    #header{ 
+  #header{ 
 	    
 		z-index:5000;
 		font-family: thaisanslite_r1 Vera Serif Bold,Serif;
@@ -13,10 +7,9 @@
 		font-weight:bold;
 		text-shadow:1px 1px 1px #8F8F8F;
 		position:fixed;
-
 		height:70px;
 		width:100.5%;
-		min-width:1100px;
+		min-width:1000px;
 		background-color:#58A4EB;
 		box-shadow:0px 0px 2px 2px #868686;
 		display: inline;
@@ -124,7 +117,7 @@
 	 ul.dropdownAcou .headicon{
 		 margin-left:-40px;
 		 width:100px;
-		 margin-top:10px;
+		 margin-top:8px;
 		 text-align:left;
 	 	background:none;
 		-webkit-transition: all ease-in-out 0.2s;
@@ -192,7 +185,7 @@
 		max-width:300px;
 		
 		margin-top:0px;
-		float:right;
+		float:left;
 		height:70px;
 		width:20%;
 		

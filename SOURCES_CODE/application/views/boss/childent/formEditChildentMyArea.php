@@ -1,10 +1,9 @@
 <script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.min.css">
-  <script src="<?php echo base_url()?>js/jqueryui/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.structure.min.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.theme.min.css">
-     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
-         <link rel="stylesheet" href="<?php echo base_url();?>css/boxFormMain.css">    
+<link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.structure.min.css">
+<link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.theme.min.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/font.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/tableBox.css">
 <script type="text/javascript">
 		$(document).ready(function() {
 		 $( "#canton" )
@@ -73,13 +72,12 @@ return false; return true;}
     });
   });
   </script>
-  <style>
-	*{
-		font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
-
-	}
-	
-	</style>
+<style>
+	body{
+		margin:0;
+		margin-top:-18px;
+		}
+</style>
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"><div class="table"align="center" >
 <form id="form1" name="form1" method="post"action="<?php echo base_url();?>index.php/boss/editActionChildent" onsubmit="return checkFormSubmit();">

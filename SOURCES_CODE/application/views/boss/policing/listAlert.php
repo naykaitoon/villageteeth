@@ -50,13 +50,14 @@ function idFormat($idCard){
 <table width="100%" border="0" align="center" cellpadding="7" cellspacing="3">
 
     <tr>   
-    <th align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>รหัสเด็ก</p></th>
-    	<th align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>ชื่อ - สกุล</p></th>
-      <th align="center" valign="middle" nowrap="nowrap" style="text-align: center; font-size: 12px;"><p>รหัสประจำตัวประชาชน</p></th>
+    <th width="8%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>รหัสเด็ก</p></th>
+    	<th width="21%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>ชื่อ - สกุล</p></th>
+      <th width="26%" align="center" valign="middle" nowrap="nowrap" style="text-align: center; font-size: 12px;"><p>รหัสประจำตัวประชาชน</p></th>
  
-      <th align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">อายุ</th>
-      <th align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">นัดวันที่</th>
-      <th align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">ลงข้อมูล</th>
+      <th width="13%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">อายุ</th>
+      <th width="14%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">ระยะที่เข้ารับการตรวจคั้งที่แล้ว</th>
+      <th width="12%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">นัดวันที่</th>
+      <th width="6%" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">ลงข้อมูล</th>
     </tr>
     <?php
 	$i = 1;
@@ -66,14 +67,15 @@ function idFormat($idCard){
        <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenName'];?>&nbsp;&nbsp;<?php echo $c['childrenLastName'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p ><?php idFormat($c['childrenIDCard']);?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenAge'];?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><?php echo $c['meetingsDate']?></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['distanceMonth'];?> เดือน</p></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['meetingsDate']?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/policing/<?php echo $c['childrenId'];?>" class="policing">
       <img class="iconAction" src="<?php echo base_url();?>img/checkIcon.png" width="30px" height="30px"  style="margin-bottom:-5px;margin-top:-5px;">
       </a></td>
     </tr>
     <?php $i++; }?>
  	<tr>
-  	<td colspan="8" align="center"><div class="ajax_paging"><?php echo $this->pagination->create_links(); ?></div></td>
+  	<td colspan="9" align="center"><div class="ajax_paging"><?php echo $this->pagination->create_links(); ?></div></td>
   </tr>
 </table>
 

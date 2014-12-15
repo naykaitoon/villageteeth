@@ -1,10 +1,10 @@
+<link rel="stylesheet" href="<?php echo base_url();?>css/tableBox.css">    
+<link rel="stylesheet" href="<?php echo base_url();?>css/font.css">
 <script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.min.css">
-  <script src="<?php echo base_url()?>js/jqueryui/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.structure.min.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.theme.min.css">
-     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
-         <link rel="stylesheet" href="<?php echo base_url();?>css/boxFormMain.css">    
+<script src="<?php echo base_url()?>js/jqueryui/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.structure.min.css">
+<link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.theme.min.css">
 <script type="text/javascript">
 		$(document).ready(function() {
 			$( "#province" ).focus(function() {
@@ -220,6 +220,21 @@ if(value!=""){
 }
 	}
 	});
+	
+	$("#addRow").click(function(){
+		if($(".firstTr").size()<=3){
+		$("#myTbl tbody:last").append($("#myTbl tbody tr:last").clone());
+		}else{
+			alert("ขออภัยเพิ่มเบอร์โทรได้สูงสุด 4 เบอร์");
+		}
+	});
+	$("#removeRow").click(function(){
+		if($(".firstTr").size()>1){
+			$("#myTbl tbody tr:last").remove();
+		}else{
+			alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
+		}
+	});			
 		});
 	</script>
   <script language="javascript">
@@ -271,11 +286,11 @@ return false; return true;}
 		
  </script>
   <script>
-var d = new Date();
+  $(function() {
+	  var d = new Date();
 var year = d.getFullYear()-22; 
 var mount = d.getMonth(); 
 var day = d.getDate();
-  $(function() {
     $( "#memberBirthday" ).datepicker({
       changeMonth: true,
       changeYear: true,
@@ -289,31 +304,16 @@ var day = d.getDate();
     });
   });
   </script>
- <script src="j.js"></script>
-  <script type="text/javascript">
-$(function(){
-	$("#addRow").click(function(){
-		if($(".firstTr").size()<=3){
-		$("#myTbl tbody:last").append($("#myTbl tbody tr:last").clone());
-		}else{
-			alert("ขออภัยเพิ่มเบอร์โทรได้สูงสุด 4 เบอร์");
+<style>
+	body{
+		font-family: thaisanslite_r1 Vera Serif Bold;
+		margin:0;
+		margin-top:-18px;
 		}
-	});
-	$("#removeRow").click(function(){
-		if($(".firstTr").size()>1){
-			$("#myTbl tbody tr:last").remove();
-		}else{
-			alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
-		}
-	});			
-});
-</script>
-</head>
-
-<body>
+</style>
 <div class="table"align="center" >
 <form id="form1" action="<?php echo base_url();?>index.php/boss/addActionMember" name="form1" method="post" onsubmit="return checkFormSubmit();" >
-  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
       <tr>
         <th colspan="5" align="center" valign="middle" nowrap="nowrap">เพิ่มผู้ใช้งาน</th>
       </tr>

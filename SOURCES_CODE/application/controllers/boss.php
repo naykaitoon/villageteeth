@@ -1,11 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Boss extends CI_Controller {
 	
+	
+	
 	function __construct(){ /// เป็นฟังชั่นที่จะทำงานก่อน index จะทำงานเมื่อมีการเรียกใช้คราส Login นี้
             parent::__construct();
             $this->redirects();
 			$this->load->library('pagination');
-
+			
 			include_once('login.php');
   			$login = new login(); 
 			$result = $login->checkingLogin();
@@ -13,8 +15,6 @@ class Boss extends CI_Controller {
 				$this->session->unset_userdata('loginData'); 
 				echo"<script langquage='javascript'>window.location='".base_url()."index.php/home';</script>";
 			}
-
-
 			
     }
 	   
@@ -35,7 +35,7 @@ class Boss extends CI_Controller {
    
  	}
 	function childentInArea($page=0){
-		$data['childent'] = $this->Childents->getChildentInArea($page,'childentInArea');
+		$data['childent'] = $this->Childents->getChildentInArea($page,'boss/childentInArea');
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
 			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
@@ -46,7 +46,7 @@ class Boss extends CI_Controller {
 	function childentInAreaSearch($page=0){
 		$text = $this->input->post('key');
 		$this->Childents->setTextSearch($text);
-		$data['childent'] = $this->Childents->getChildentAllSearch($page,'childentInAreaSearch');
+		$data['childent'] = $this->Childents->getChildentAllSearch($page,'boss/childentInAreaSearch');
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
 			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
@@ -56,7 +56,7 @@ class Boss extends CI_Controller {
 	
 	
 	function childentAll($page=0){
-		$data['childent'] = $this->Childents->getChildentAll($page,'childentAll');
+		$data['childent'] = $this->Childents->getChildentAll($page,'boss/childentAll');
 		
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
@@ -67,7 +67,7 @@ class Boss extends CI_Controller {
 	function childentAllSearch($page=0){
 		$text = $this->input->post('key');
 		$this->Childents->setTextSearch($text);
-		$data['childent'] = $this->Childents->getChildentAllSearch($page,'childentAllSearch');
+		$data['childent'] = $this->Childents->getChildentAllSearch($page,'boss/childentAllSearch');
 		
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
@@ -94,7 +94,7 @@ class Boss extends CI_Controller {
 
 
 	function childentAllProfile($page=0){
-			$data['childent'] = $this->Childents->getChildentAll($page,'childentAllProfile');
+			$data['childent'] = $this->Childents->getChildentAll($page,'boss/childentAllProfile');
 		
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
@@ -106,7 +106,7 @@ class Boss extends CI_Controller {
 	function childentAllProfileSearch($page=0){
 		$text = $this->input->post('key');
 		$this->Childents->setTextSearch($text);
-		$data['childent'] = $this->Childents->getChildentAllSearch($page,'childentAllSearch');
+		$data['childent'] = $this->Childents->getChildentAllSearch($page,'boss/childentAllSearch');
 		
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
@@ -252,6 +252,7 @@ class Boss extends CI_Controller {
 	}
 ##########################END function  editActionChildent เพิ่มข้อมูลเด็ก ############################	
 function deleteChildentData($id,$addressId){
+		echo $this->style();
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
 				  <a href='".base_url()."index.php/boss/deleteChildentAction/".$id."/".$addressId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
@@ -265,7 +266,12 @@ function deleteChildentAction($childrenId,$addressId){
 	$this->Childents->deleteChildent();
 	$this->Address->setAddressId($addressId);
 	$this->Address->deleteAddress();
-	echo "<center><br><br><br>ลบข้อมูลสำเร็จ  </center>";
+	echo $this->style();
+	echo "
+	<body style='text-align: center'>
+	<center><br>ลบข้อมูลสำเร็จ  </center><br>
+	  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
+	</body>";
 }
  ##########################Start function  addChillent ตึงข้อมูลแบบฟรอมการเพิ่มข้อมูลเด็ก ############################	
 	function addChillent(){
@@ -402,12 +408,16 @@ function deleteChildentAction($childrenId,$addressId){
 	#################### strat function addDistanceAction เพิ่มข้อมูลระยะเวลาการตรวจลง db ##################
 	function addDistanceAction(){
 		$distanceMonth = $this->input->post('distanceMonth');
-
+		echo $this->style();
 		if($distanceMonth!=FALSE&&$distanceMonth!=""){
 			$this->Distance->setDistanceMonth($distanceMonth);
 			$resultId = $this->Distance->addDistanceData();
 			if($resultId!=FALSE&&$resultId!=""){
-				echo "<center><br><br><br>การเพิ่มข้อมูลสำเร็จ</center>";
+				echo "
+				<body style='text-align: center'>
+	<center>การเพิ่มข้อมูลสำเร็จ  </center>
+	  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
+	</body>";
 			}
 			
 		}else{
@@ -435,7 +445,9 @@ function deleteChildentAction($childrenId,$addressId){
 			$this->Distance->setDistanceId($distanceId);
 			$this->Distance->setDistanceMonth($distanceMonth);
 			$this->Distance->updateDistanceData();
+			echo $this->style();
 			if($distanceMonth!=FALSE&&$distanceMonth!=""){
+				
 				echo "
 				<body>
 				<center>การแก้ไขข้อมูลสำเร็จ<br>
@@ -459,6 +471,7 @@ function deleteChildentAction($childrenId,$addressId){
 	
 #################### end function editDistanceAction แก้ไข##################
 	function deleteDistanceData($id){
+		echo $this->style();
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
 				  <a href='".base_url()."index.php/boss/deleteDistanceAction/".$id."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
@@ -499,6 +512,7 @@ function deleteChildentAction($childrenId,$addressId){
 		$behaviorTypeName = $this->input->post('behaviorTypeName');
 		$this->Behavior->setBehaviorTypeName($behaviorTypeName);
 		$this->Behavior->addBehaviorType();
+		echo $this->style();
 		echo "<body><center><br><br><br>การเพิ่มข้อมูลสำเร็จ<br>						<a  style='font-size:12px' onClick='parent.jQuery.fancybox.close();'>
 						<button onClick='parent.jQuery.fancybox.close();'>คลิกที่นี้เพื่อปิด</button></a></center></body>";
 	}
@@ -524,7 +538,7 @@ function deleteChildentAction($childrenId,$addressId){
 		$this->Behavior->setBehaviorType($behaviorTypeId);
 		$row = $this->Behavior->checkBehaviorInType();
 		$num = count($row);
-
+		echo $this->style();
 		if($num==0){
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
@@ -565,19 +579,19 @@ function deleteChildentAction($childrenId,$addressId){
 		$this->Address->setDistrictId($districtId);
 		$this->Address->setCantonId($cantonId);
 		$data['province']=$this->Address->getProvinceAll();
-		$data['member'] = $this->Address->getMemberByAddress($page,'memberByAreaSearch');
+		$data['member'] = $this->Address->getMemberByAddress($page,'boss/memberByAreaSearch');
 		$this->load->view('boss/member/magMemberListByArea',$data);
 	}
 #################### strat function memberAll แสดง ผุ็ใช้งานทั้งหมด ##################
 	function memberAll($page=0){
-		$data['member'] = $this->Member->getAllDataMember($page,'memberAll');
+		$data['member'] = $this->Member->getAllDataMember($page,'boss/memberAll');
 		$this->load->view('boss/member/magMemberList',$data);
 	}
 ####################end	function memberAll กแสดง ผุ็ใช้งานทั้งหมด ##################
 	function memberAllSearch($page=0){
 		$text = $this->input->post('key');
 		$this->Member->setTextSearch($text);
-		$data['member'] = $this->Member->getSearchDataMember($page,'memberAllSearch');
+		$data['member'] = $this->Member->getSearchDataMember($page,'boss/memberAllSearch');
 		$this->load->view('boss/member/magMemberListSearchResult',$data);
 	}
 
@@ -659,7 +673,7 @@ function deleteChildentAction($childrenId,$addressId){
 			$this->Address->setAddressId($addressIdTel);
 			$this->Address->addTel();
 		}
-		
+		echo $this->style();
 		echo "<center> เพิ่มข้อมูลผู้ใช้งานสำเร็จ<br>
 <a onClick='<script>parent.jQuery.fancybox.close();</script>'><input type='button' name='button2' id='button2' value='ปิด'></a></center>";
 		
@@ -855,6 +869,7 @@ function switchMembers($status,$memberId){
 				);
 	
 				$this->session->set_userdata('loginData',$sesData);
+				echo $this->style();
 			echo "<center><br><br><br>แก้ไขข้อมูลสำเร็จ<br>
 	<a onClick='parent.jQuery.fancybox.close();'><input onClick='parent.jQuery.fancybox.close();' type='button' name='button2' id='button2' value='ปิด'></a>
 	</center>";
@@ -874,7 +889,7 @@ function switchMembers($status,$memberId){
 		$this->Member->setMemberId($memberId);
 		$this->Member->setMemberPassword($memberPasswordOld);
 		$result = $this->Member->checkPassword();
-	
+		echo $this->style();
 		if($result){
 			if($memberPassword==$memberPasswordCon){
 					$this->Member->setMemberId($memberId);
@@ -960,7 +975,7 @@ function switchMembers($status,$memberId){
 			$this->Address->setTel($tel[$i]);
 			$this->Address->updateTel();
 		}
-		
+		echo $this->style();
 		echo "<body>
 				<p align='center'>แก้ไขข้อมูลสำเร็จ</p>
 				<p align='center'>
@@ -971,6 +986,7 @@ function switchMembers($status,$memberId){
 	}
 	
 	function deleteMembers($memberId){
+		echo $this->style();
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
 					<a href='".base_url()."index.php/boss/deleteMembersAction/".$memberId."'><input onClick='parent.jQuery.fancybox.close();' type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
@@ -990,14 +1006,11 @@ function switchMembers($status,$memberId){
 		
 		$this->Member->setMemberId($data['memberId']);
 		$this->Member->deleteMember();
-				echo "
-				<body>
-				<p align='center'>ลบข้อมูลสำเร็จ</p>
-				<p align='center'>
-					<a onClick='parent.jQuery.fancybox.close();'><input type='button' onClick='parent.jQuery.fancybox.close();' name='button2' id='button2' value='ปิด'></a>
-					</p>
-					</body>
-		";
+	echo "
+	<body style='text-align: center'>
+	<center><br>ลบข้อมูลสำเร็จ  </center><br>
+	  <a onClick='parent.jQuery.fancybox.close();'><input type='button' name='button2' id='button2' value='ปิด'></a>
+	</body>";
 	}
 
 	function childentAddress($childentId){
@@ -1027,7 +1040,7 @@ function switchMembers($status,$memberId){
 		$this->Behavior->setBehaviorTypeId($behaviorTypeId);
 		
 		$this->Behavior->addBehavior();
-		
+		echo $this->style();
 		echo "<center><br><br><br>การเพิ่มข้อมูลสำเร็จ<br>	<a onClick='parent.jQuery.fancybox.close();'><input type='button' onClick='parent.jQuery.fancybox.close();' name='button2' id='button2' value='ปิด'></a></center>";
 	}
 	
@@ -1056,6 +1069,7 @@ function switchMembers($status,$memberId){
 	}
 	
 	function deleteBehavior($behaviorId){
+		echo $this->style();
 		echo "<body style='text-align: center'><p>คุณต้องการลบข้อมูล หรือไม่</p>
 				<p>
 				  <a href='".base_url()."index.php/boss/deleteBehaviorAction/".$behaviorId."'><input type='button' name='button' id='button' value='ยืนยันการลบ'></a>  &nbsp;&nbsp;&nbsp;
@@ -1079,7 +1093,7 @@ function formatDate($date) {
 	}
 	
 function police($page=0){
-	$data['childent'] = $this->Childents->getChildentInArea($page,'police');
+	$data['childent'] = $this->Childents->getChildentInArea($page,'boss/police');
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
 			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
@@ -1090,7 +1104,7 @@ function police($page=0){
 function policeSearch($page=0){
 		$text = $this->input->post('key');
 		$this->Childents->setTextSearch($text);
-		$data['childent'] = $this->Childents->getChildentAllSearch($page,'policeSearch');
+		$data['childent'] = $this->Childents->getChildentAllSearch($page,'boss/policeSearch');
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
 			$data['childent'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
@@ -1157,7 +1171,6 @@ function addPolicingPhoto($behaviorId,$childentId){
 }
 function policingPhotoDeleteValue($behaviorId,$childentId){
 	$this->session->unset_userdata($behaviorId.$childentId);
-	$this->addPolicingPhoto($behaviorId,$childentId);
 }
 	
 function addPolicing(){
@@ -1183,7 +1196,7 @@ function addPolicing(){
 		}
 
 	
-	$loginData = $this->session->userdata('loginData');
+		$loginData = $this->session->userdata('loginData');
 		$this->Policings->setDistanceId($distanceId);
 		$this->Policings->setChildrenId($childrenId);
 		$this->Policings->setMemberId($loginData['id']);
@@ -1208,9 +1221,8 @@ function addPolicing(){
 			$this->Policings->setBehaviorId($policyPhotoData[$i]['behaviorId']);
 			$this->Policings->setPolicingDetialValue(3);
 			$returnPolicingDetialId = $this->Policings->addPolicingDetial();
-			if($this->session->userdata($policyPhotoData[$i]['behaviorId'],$childrenId)){
-				$this->policingPhotoDeleteValue($policyPhotoData[$i]['behaviorId'],$childrenId);
-			}
+	
+			$this->policingPhotoDeleteValue($policyPhotoData[$i]['behaviorId'],$childrenId);
 				for($ii=1;$ii<=10;$ii++){
 	
 					if($policyPhotoData[$i]['policingDetialValue']['d'.$ii.'']!=0){
@@ -1235,7 +1247,6 @@ function addPolicing(){
 				}
 				
 		}
-
 	echo "<script>alert('ลงตรวจข้อมูลการตรวจสำเร็จ');</script>";
 	
 	echo "<script>	window.location='/index.php/boss';
@@ -1250,6 +1261,7 @@ function policingFind(){
 			$childrenBirthday = strtotime($data['policings'][$i]['childrenBirthday']);
 			$data['policings'][$i]['childrenAge'] =  $this->timespan($childrenBirthday);
 		}
+		
 	$this->load->view('boss/policing/findPolicingChildents',$data);
 }
 
@@ -1318,7 +1330,7 @@ function policingFindSearch(){
 		$TH_Day = array("อา.","จ.","อ.","พ.","พฤ.","ศ.","ส.");
 		$TH_Month = array(1 => "มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน",
 		"กรกฏาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
-		$TH_Year = $year+543;
+		$TH_Year = $year;
 		
 		$class = "default";
 		
@@ -1345,10 +1357,10 @@ function policingFindSearch(){
 		$('.listmeettingAlert').load(href);
 	});
 	</script>
-	<table id='calenda' border=0 cellspacing=1 cellpadding=7 align='center'>
+	<table id='calenda' border=0 cellspacing=0 cellpadding=7 align='center'>
 		<tr>
 		 <th>$url_lastMonth</th>
-		 <th colspan=5>พุทธศักราช  $TH_Year<p>$TH_Month[$month]</th>
+		 <th colspan=5>ปี  $TH_Year<p>$TH_Month[$month]</th>
 		 <th>$url_nextMonth</th>
 		</tr>
 		<tr bgcolor=#FFFACD><th>" . implode("</th><th>",$TH_Day) . "</th></tr>");
@@ -1488,7 +1500,7 @@ function countAlert(){
 
 function listAllAlert($page=0){
 	
-	$data['childent'] = $this->Childents->getChildentInAreaAlerting($page,'listAllAlert');
+	$data['childent'] = $this->Childents->getChildentInAreaAlerting($page,'boss/listAllAlert');
 	
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
@@ -1501,7 +1513,7 @@ function listAllAlert($page=0){
 function listAllAlertSearch($page=0){
 	$text=$this->input->post('key');
 	$this->Childents->setTextSearch($text);
-	$data['childent'] = $this->Childents->getChildentInAreaAlertingSearch($page,'listAllAlertSearch');
+	$data['childent'] = $this->Childents->getChildentInAreaAlertingSearch($page,'boss/listAllAlertSearch');
 
 		for($i=0;$i<count($data['childent']);$i++){
 			$childrenBirthday = strtotime($data['childent'][$i]['childrenBirthday']);
@@ -1509,5 +1521,55 @@ function listAllAlertSearch($page=0){
 		}
 
 	$this->load->view('boss/policing/listAlertSearchResult',$data);
+}
+
+function memberByAreaPrint(){
+		$data['province']=$this->Address->getProvinceAll();
+		$this->load->view('boss/member/magMemberSearchAreaPrint',$data);	
+}
+
+function memberByAreaSearchPrint($page=0){
+		$provinceId = $this->input->post('provinceId');
+		$districtId = $this->input->post('districtId');
+		$cantonId = $this->input->post('cantonId');
+
+		$this->Address->setProvinceId($provinceId);
+		$this->Address->setDistrictId($districtId);
+		$this->Address->setCantonId($cantonId);
+		$data['province']=$this->Address->getProvinceAll();
+		$data['member'] = $this->Address->getMemberByAddress($page,'boss/memberByAreaSearch');
+		$this->load->view('boss/member/magMemberListByAreaPrint',$data);
+	}
+function style(){
+			$style = "	<style>
+		@font-face {
+	 	font-family: thaisanslite_r1 Vera Serif Bold; 
+	  src: url(/css/font/thaisanslite_r1.otf) format('truetype');  
+	    src: url('/css/font/thaisanslite_r1.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('/css/font/thaisanslite_r1.woff') format('woff'), /* Modern Browsers */
+         url('/css/font/thaisanslite_r1.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('/css/font/thaisanslite_r1.svg#svgFontName') format('svg'); /* Legacy iOS */
+		 
+}
+*{
+	 font-family: thaisanslite_r1 Vera Serif Bold;
+}
+		*{
+			font-size:20px;
+			padding:5px;
+		}
+		input{
+			color: #FFF;
+			font-size:20px;
+			padding:5px;
+			border-radius:5px;
+			background-image: linear-gradient(to bottom, #3498db, #2980b9);
+		}
+		a{
+			 font-family: thaisanslite_r1 Vera Serif Bold; 
+			 text-decoration:none;
+		}
+		</style>";
+			return $style;
 }
 }?>

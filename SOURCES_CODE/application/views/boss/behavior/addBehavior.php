@@ -1,22 +1,28 @@
-    <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>css/boxFormMain.css">
-
+<link rel="stylesheet" href="<?php echo base_url();?>css/tableBox.css">    
+<link rel="stylesheet" href="<?php echo base_url();?>css/font.css">
+        <style>
+	body{
+		font-family: thaisanslite_r1 Vera Serif Bold;
+		margin:0;
+		margin-top:-18px;
+		}
+</style>
 <div class="table" align="center" >
 <form action="<?php echo base_url();?>index.php/boss/addBehaviorAction" method="post">
   <table width="100%" border="0" align="center" cellpadding="7" cellspacing="3">    
  <tr>   
-    <th colspan="2" align="center" valign="baseline" nowrap="nowrap" style="font-size: 12px"><p>เพิ่มข้อมูลพฤติกรรมทัตสุขภาพ</p></th>
+    <th colspan="2" align="center" valign="baseline" nowrap="nowrap" ><p>เพิ่มข้อมูลพฤติกรรมทัตสุขภาพ</p></th>
    	</tr>
 
     <tr>    
-           <td width="61" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>ชื่อพฤติกรรม</p></td>  
-       <td width="158" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><input  type="text" name="behaviorName" id="behaviorName"  required ></p></td>
+           <td width="61" align="center" valign="middle" nowrap="nowrap" ><p>ชื่อพฤติกรรม</p></td>  
+       <td width="158" align="center" valign="middle" nowrap="nowrap" ><p><input  type="text" name="behaviorName" id="behaviorName"  required ></p></td>
 
    
     </tr>
  <tr>    
-           <td width="61" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>ประเภทพฤติกรรม</p></td>  
-       <td width="158" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>
+           <td width="61" align="center" valign="middle" nowrap="nowrap" ><p>ประเภทพฤติกรรม</p></td>  
+       <td width="158" align="center" valign="middle" nowrap="nowrap" ><p>
          <select name="behaviorType" id="behaviorType">  
            <option value="normal">ข้อความ</option>
            <option value="photo">การตรวจฟัน(รูปภาพ)</option>
@@ -27,8 +33,8 @@
     </tr>
 
  <tr>    
-           <td width="61" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>หมวดหมู่พฤติกรรม</p></td>  
-       <td width="158" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>
+           <td width="61" align="center" valign="middle" nowrap="nowrap" ><p>หมวดหมู่พฤติกรรม</p></td>  
+       <td width="158" align="center" valign="middle" nowrap="nowrap" ><p>
          <select name="behaviorTypeId" id="behaviorTypeId">
         <?php foreach($behaviortype as $b){?>
            <option value="<?php echo $b['behaviorTypeId'];?>"><?php echo $b['behaviorTypeName'];?></option>
@@ -39,7 +45,7 @@
    
     </tr>
       <tr>    
-           <td colspan="2" align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>
+           <td colspan="2" align="center" valign="middle" nowrap="nowrap" ><p>
              <input type="submit" name="save" id="save" value="บันทึก">
              &nbsp;&nbsp;
              <input type="button" name="cancle" id="cancle" onClick="parent.jQuery.fancybox.close();" value="ยกเลิก">

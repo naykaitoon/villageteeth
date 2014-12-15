@@ -42,7 +42,7 @@ function idFormat($idCard){
   <p>
     <label for="textfield">ค้นหา:</label>
     <input type="text" name="searchBox" id="searchBox" class="searchBox" placeholder="ชื่อ หรือ รหัสประจำตัวประชาชน">
-  <a href="<?php echo base_url();?>index.php/boss/addChillent" class="fancyboxMagChildentAll" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px" class="iconAction"/>เพิ่มข้อมูลเด็ก</a>
+  <a href="<?php echo base_url();?>index.php/boss/addChillent" class="addChildentAll fancybox.iframe" id="addButtonForAll" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" class="iconAction"/>เพิ่มข้อมูลเด็ก</a>
  
 </p>
   <br>
@@ -74,10 +74,10 @@ function idFormat($idCard){
 echo $date->format('d-m-Y');
 	  ?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['cantonName'];?>&nbsp;อ.<?php echo $c['districtName'];?>&nbsp;จ.<?php echo $c['provinceName'];?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/editChildent/<?php echo $c['childrenId'];?>" class="fancyboxMagChildentAll">
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/editChildent/<?php echo $c['childrenId'];?>" class="editChildentAll fancybox.iframe">
       <img class="iconAction" src="<?php echo base_url();?>img/editIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
       </a></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/deleteChildentData/<?php echo $c['childrenId'];?>/<?php echo $c['addressId'];?>" class="deletechildentAll">
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/deleteChildentData/<?php echo $c['childrenId'];?>/<?php echo $c['addressId'];?>" class="deleteChildentAll fancybox.iframe">
       <img class="iconAction" src="<?php echo base_url();?>img/deleteIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
       </a></td>
     </tr>

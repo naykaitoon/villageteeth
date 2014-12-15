@@ -1,13 +1,3 @@
-@font-face {
- 	  font-family: thaisanslite_r1 Vera Serif Bold; 
-		
-	 	src: url(/css/font/WDB_Bangna.ttf) format("truetype");  
-	    src: url('font/WDB_Bangna.ttf?#iefix') format('embedded-opentype'); /* IE6-IE8 */
-       
-    }
-*{
-	font-family: thaisanslite_r1 Vera Serif Bold,Serif;
-}
 body{
 	background-image:url(../img/bgVillageteeth.png);
 	background-size:100% 70%;
@@ -17,7 +7,9 @@ body{
 	 -moz-margin-start:0px; 
 	 -webkit-margin-start:0px;
 	 -moz-margin-end:10px;
-	 padding-bottom:80px;
+	 padding-bottom:30px;
+	 width:100%;
+	 min-width:1000px;
 	
 }
 strong{
@@ -27,27 +19,27 @@ strong{
 	z-index:90;
 	position:relative;
 	top:80px;
-	margin-left:330px;
-	width:70%;
+	bottom:20px;
+	margin-left:22%;
+	width:76%;
 	height:*;
-	margin-top:0px;
+	margin-top:-13px;
 	background-color:#BFE4FF;
 	opacity:1.0;
-	min-height:500px;
+	min-height:580px;
 	border-radius:5px;
 	box-shadow:0px 0px 1px 1px #4A4A4A;
 	text-align:center;
-	min-width:900px;
+	min-width:1000px;
 	max-width:1100px;
-	width:980px;
+
 }
 .allContent{
-		
-	float:none;
-	width:98%;
-	margin-left:1%;
+	float:inherit;
+	width:100%;
+	margin-left:5px;
 	margin-right:1%;
-	min-width:1100px;
+	min-width:1000px;
 	height:*;
 	z-index:49;
 }
@@ -80,14 +72,17 @@ strong{
 #footerLoaginLoginHome{
 
 	background-color:#FFFFFF;
-	position:fixed;
-	margin-top:100%;
-	bottom:0;
+	position:static;
+	margin-top:80px;
 	padding:15px;
-	width:60%;
+		
+
 	min-width:700px;
+	width:60%;
 	margin-left:20%;
-	margin-right:20%;
+	margin-right:40%;
+
+	bottom: -10px;
 	border-radius:5px;
 	box-shadow:0px 0px 1px 1px #5C5C5C;
 	
@@ -134,7 +129,7 @@ select{
 	border-radius:5px;
 	border:none;
 	box-shadow:0px 0px 0px 1px #323232;
-	  transition: box-shadow  1s;
+	transition: box-shadow  1s;
     -webkit-transition: box-shadow 1s; /* Safari 3.1 to 6.0 */
 
 }
@@ -144,7 +139,7 @@ select option{
 	font-size:14px;
 	padding:1px;
 	background-color:#FFFFFF;
-	  transition: background-color 0.5s;
+	transition: background-color 0.5s;
     -webkit-transition: background-color 0.5s; /* Safari 3.1 to 6.0 */
 
 }

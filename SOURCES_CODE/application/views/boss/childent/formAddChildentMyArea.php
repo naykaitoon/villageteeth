@@ -1,14 +1,12 @@
-<script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.min.css">
-  <script src="<?php echo base_url()?>js/jqueryui/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.structure.min.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.theme.min.css">
-     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
-         <link rel="stylesheet" href="<?php echo base_url();?>css/boxFormMain.css">    
+<script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>js/jqueryui/jquery-ui.min.css">
+  <script src="<?php echo base_url();?>js/jqueryui/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="<?php echo base_url();?>js/jqueryui/jquery-ui.structure.min.css">
+   <link rel="stylesheet" href="<?php echo base_url();?>css/font.css">
+     <link rel="stylesheet" href="<?php echo base_url();?>css/tableBox.css">
 <script type="text/javascript">
 		$(document).ready(function() {
-		 $( "#canton" )
-			.change(function() {
+		 $( "#canton" ).change(function() {
 				var str = "";
 					$( "select#canton option:selected" ).each(function() {
 						str += $( this ).val() + " ";
@@ -25,8 +23,9 @@
 		.trigger( "change" );
 	
 		});
+			});
 	</script>
-   <script language="javascript">
+   <script>
 function checkForm() 
 { if(!checkID(document.form1.childrenIDCard.value)) 
  $('#childrenIDCardResult').html('<font color="red">รหัสประชาชนไม่ถูกต้อง</font>');
@@ -39,7 +38,7 @@ sum += parseFloat(id.charAt(i))*(13-i); if((11-sum%11)%10!=parseFloat(id.charAt(
 return false; return true;}
 		
  </script>
-    <script language="javascript">
+    <script>
 function checkFormSubmit() 
 { 
 	var result = false;
@@ -73,7 +72,6 @@ return false; return true;}
     });
   });
   </script>
- <script src="j.js"></script>
   <script type="text/javascript">
 $(function(){
 	$("#addRow").click(function(){
@@ -92,16 +90,13 @@ $(function(){
 	});			
 });
 </script>
-  <style>
-	*{
-		font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
-
-	}
-	
-	</style>
-</head>
-
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<style>
+	body{
+		font-family: thaisanslite_r1 Vera Serif Bold;
+		margin:0;
+		margin-top:-18px;
+		}
+</style>
 <div class="table"align="center" >
 <form id="form1" name="form1" method="post" action="<?php echo base_url();?>index.php/boss/addActionChildent" onsubmit="return checkFormSubmit();" >
   <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
@@ -129,38 +124,24 @@ $(function(){
           ซอย
           <input name="addressDetialSubStreet" type="text" required id="addressDetialSubStreet" size="20" maxlength="50"></td>
       </tr>
-             <tr>
+      <tr>
+        <td width="28%" align="right" valign="middle">ที่อยู่</td>
+        <td width="72%" align="left" valign="middle">
+         <?php foreach($area as $p){?>
+         จังหวัด <?php echo $p['provinceName']?>
+          อำเภอ <?php echo $p['districtName']?>
+          ตำบล <?php echo $p['cantonName']?>
+      รหัสไปรษณีย์ <?php echo $p['zipcode']?>
+        <input name="canton" type="hidden" id="canton" value="<?php echo $p['cantonId']?>"  readonly> 
+      <input name="district" type="hidden" id="district" value="<?php echo $p['districtId']?>"  readonly> 
+       <input name="province" type="hidden" id="province" value="<?php echo $p['provinceId']?>"  readonly>
+      <input name="zipcode" type="hidden"  id="zipcode" value="<?php echo $p['zipcodesId']?>"  readonly>
+        <?php }?>
+  </td>
+      </tr>
+                   <tr>
         <td align="right" valign="middle">ถนน</td>
         <td align="left" valign="middle"><input type="text" name="street" id="street"  required></td>
-      </tr>
-      <tr>
-        <td width="28%" align="right" valign="middle">จังหวัด</td>
-        <td width="72%" align="left" valign="middle"><select name="province" id="province">
-  <?php foreach($area as $p){?>
-  <option value="<?php echo $p['provinceId']?>"><?php echo $p['provinceName']?></option>
-  <?php }?>
-  </select></td>
-      </tr>
-      <tr>
-        <td align="right" valign="middle">อำเภอ</td>
-        <td align="left" valign="middle">
-  <select name="district"  id="district" >
-   <?php foreach($area as $p){?>
-  <option value="<?php echo $p['districtId']?>"><?php echo $p['districtName']?></option>
-  <?php }?>
-  </select></td>
-      </tr>
-      <tr>
-        <td align="right" valign="middle">ตำบล</td>
-        <td align="left" valign="middle"> <select name="canton"  id="canton" >
-  <?php foreach($area as $p){?>
-  <option value="<?php echo $p['cantonId']?>"><?php echo $p['cantonName']?></option>
-  <?php }?>
-   </select></td>
-      </tr>
-      <tr>
-        <td align="right" valign="middle">รหัสไปรษณีย์:</td>
-        <td align="left" valign="middle"><input name="zipcode" type="text"  id="zipcode" size="5" maxlength="5" disabled  readonly></td>
       </tr>
              <tr>
         <td align="right" valign="middle">โรคประจำตัว:</td>
@@ -197,4 +178,3 @@ $(function(){
   </table>
 </form>
 </div>
-</body>

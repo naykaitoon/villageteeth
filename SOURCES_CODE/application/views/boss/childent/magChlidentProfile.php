@@ -23,6 +23,20 @@
 		
 </script>
 <script src="<?php echo base_url();?>js/pageSection.js" type="text/javascript"></script>
+  <style>
+	*{
+		font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+
+	}
+	
+	body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+  </style>
+           <link rel="stylesheet" href="<?php echo base_url();?>css/font.css">
 <?php 
 function idFormat($idCard){
 	 $id1 = substr($idCard, 0, 1);
@@ -41,7 +55,7 @@ function idFormat($idCard){
   <p>
     <label for="title">ค้นหา:</label>
     <input type="text" name="searchBox" id="searchBox" class="searchBox" placeholder="ชื่อ หรือ รหัสประจำตัวประชาชน">
-  <a href="<?php echo base_url();?>index.php/boss/addChillent" class="fancybox" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px" class="iconAction"/>
+  <a href="<?php echo base_url();?>index.php/boss/addChillent" class="addChildentProfile fancybox.iframe" id="addButtonForAll" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addChilldent.png" width="40px" height="40px" class="iconAction"/>
   เพิ่มข้อมูลเด็ก</a>
  
 </p>
@@ -71,7 +85,7 @@ function idFormat($idCard){
 	  $date = new DateTime($c['childrenBirthday']);
 echo $date->format('d-m-Y');
 	  ?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/childentAddress/<?php echo $c['childrenId'];?>" class="fancybox">
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/childentAddress/<?php echo $c['childrenId'];?>" class="viewDetialProfile fancybox.iframe">
          <img class="iconAction" src="<?php echo base_url();?>img/viewIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
       </a></td>
     </tr>

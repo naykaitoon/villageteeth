@@ -2,9 +2,9 @@
 <link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.min.css">
   <script src="<?php echo base_url()?>js/jqueryui/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.structure.min.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.theme.min.css">
-     <link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
-         <link rel="stylesheet" href="<?php echo base_url();?>css/boxFormMain.css">    
+    <link type="text/javascript" rel="stylesheet" href="<?php echo base_url()?>js/jqueryui/jquery-ui.theme.min.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/tableBox.css">    
+<link rel="stylesheet" href="<?php echo base_url();?>css/font.css"> 
 <script type="text/javascript">
 		$(document).ready(function() {
 			$( "#province" ).focus(function() {
@@ -270,7 +270,6 @@ var day = d.getDate();
       changeMonth: true,
       changeYear: true,
 	  dateFormat: 'dd-mm-yy',
-	  maxDate : day+'-'+mount+'-'+year,
 	  yearRange: '1920:'+year,
 	  showOn: "button",
 		buttonImage: "<?php echo base_url()?>img/calendar.png",
@@ -279,7 +278,6 @@ var day = d.getDate();
     });
   });
   </script>
- <script src="j.js"></script>
   <script type="text/javascript">
 $(function(){
 	$("#addRow").click(function(){
@@ -298,12 +296,17 @@ $(function(){
 	});			
 });
 </script>
-</head>
-
-<body>
+<style>
+	body{
+		font-family: thaisanslite_r1 Vera Serif Bold;
+		margin:0;
+		margin-top:-18px;
+		}
+</style>
+<link rel="stylesheet" href="<?php echo base_url();?>css/font.css">
 <div class="table"align="center" >
 <form id="form1" action="<?php echo base_url();?>index.php/boss/editActionMember" name="form1" method="post" onsubmit="return checkFormSubmit();" >
-  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
+  <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" id="myTbl">
       <tr>
         <th colspan="5" align="center" valign="middle" nowrap="nowrap">แก้ไขข้อมูลผู้ใช้งาน</th>
       </tr>
@@ -414,4 +417,3 @@ $(function(){
   </table>
 </form>
 </div>
-</body>

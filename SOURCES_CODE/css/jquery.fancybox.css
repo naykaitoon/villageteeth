@@ -34,10 +34,9 @@ a.fancybox-nav span,
     bottom: 0;
     z-index: 8020;
     overflow-y: scroll;
-    overflow-y: auto;
     overflow-x: auto;
 
-    -webkit-transition : -webkit-transform 0.5s;
+    -webkit-transition : -webkit-transform 1.0s;
     -webkit-transform  : translateX(0px);
 }
 

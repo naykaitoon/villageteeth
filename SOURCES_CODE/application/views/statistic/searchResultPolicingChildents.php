@@ -1,13 +1,3 @@
-<?php 
-function idFormat($idCard){
-	 $id1 = substr($idCard, 0, 1);
-	 $id2= substr($idCard, 1, 4);
-	 $id3= substr($idCard, 5, 5);
-	 $id4= substr($idCard, 10, 2);
-	 $id5= substr($idCard, 12, 1);
-	 echo $id1.'-'.$id2.'-'.$id3.'-'.$id4.'-'.$id5;
-}
-?>
 <table width="100%" border="0" align="center" cellpadding="7" cellspacing="3">
 
     <tr>   
@@ -17,7 +7,7 @@ function idFormat($idCard){
  
       <th align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">อายุ</th>
       <th align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p>อยู่ในเขต</p></th>
-      <th align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">ลงข้อมูล</th>
+      <th align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">ดูข้อมูล</th>
     </tr>
     <?php
 	$i = 1;
@@ -28,12 +18,23 @@ function idFormat($idCard){
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p ><?php idFormat($c['childrenIDCard']);?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['childrenAge'];?></p></td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><p><?php echo $c['cantonName'];?>&nbsp;อ.<?php echo $c['districtName'];?>&nbsp;จ.<?php echo $c['provinceName'];?></p></td>
-      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/boss/policing/<?php echo $c['childrenId'];?>" class="policing">
-      <img class="iconAction" src="<?php echo base_url();?>img/checkIcon.png" width="30px" height="30px"  style="margin-bottom:-5px;margin-top:-5px;">
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><a href="<?php echo base_url();?>index.php/report/policing/<?php echo $c['childrenId'];?>" class="viewstatisticPolo">
+      <img class="iconAction" src="<?php echo base_url();?>img/viewIcon.png" width="30px" height="30px"  style="margin-bottom:-5px;margin-top:-5px;">
       </a></td>
     </tr>
+		
     <?php $i++; }?>
  	<tr>
   	<td colspan="8" align="center"><div class="ajax_paging"><?php echo $this->pagination->create_links(); ?></div></td>
   </tr>
 </table>
+<?php 
+function idFormat($idCard){
+	 $id1 = substr($idCard, 0, 1);
+	 $id2= substr($idCard, 1, 4);
+	 $id3= substr($idCard, 5, 5);
+	 $id4= substr($idCard, 10, 2);
+	 $id5= substr($idCard, 12, 1);
+	 echo $id1.'-'.$id2.'-'.$id3.'-'.$id4.'-'.$id5;
+}
+?>

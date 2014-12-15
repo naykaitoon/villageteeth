@@ -138,8 +138,8 @@ $roop = 0;
        </td>
    <td align="center" class="reload" >
    <?php 
-   $polincyPhoto = $this->session->userdata($b['behaviorId'].$childent[0]['childrenId']);
-   if(!$polincyPhoto){?>
+   $polincyPhototext = $this->session->userdata($b['behaviorId'].$childent[0]['childrenId']);
+   if(!$polincyPhototext){?>
   <img src="<?php echo base_url();?>img/icon/null.png" width="50px"/>
    <?php }else{ ?>
   <img src="<?php echo base_url();?>img/icon/notnull.png"  width="50px"/>
@@ -164,6 +164,7 @@ $roop = 0;
    <input type="hidden" name="policingPhoto[]" value="<?php echo $b['behaviorId']; ?>">
    <?php
       $polincyPhoto = $this->session->userdata($b['behaviorId'].$childent[0]['childrenId']);
+
    if(!$polincyPhoto){
 	   		$text = 'ตรวจ';
 	   }else{ 
@@ -174,6 +175,7 @@ $roop = 0;
    <td align="center" class="reload">
     <?php 
    $polincyPhoto = $this->session->userdata($b['behaviorId'].$childent[0]['childrenId']);
+
    if(!$polincyPhoto){?>
   <img src="<?php echo base_url();?>img/icon/null.png" width="50px"/>
    <?php }else{ ?>

@@ -47,7 +47,7 @@ function idFormat($idCard){
   <p>
     <label for="textfield">ค้นหา:</label>
     <input type="text" name="searchBox" id="searchBox" class="searchBox">
-  <a href="<?php echo base_url();?>index.php/boss/addMember" class="AddMember" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addMember.png" width="40px" height="40px"/>เพิ่มข้อมูลผู้ใช้งาน</a>
+  <a href="<?php echo base_url();?>index.php/boss/addMember" class="AddMember fancybox.iframe" id="addButtonForAll" style="font-size:12px"><img src="<?php echo base_url();?>img/icon/addMember.png" width="40px" height="40px"/>เพิ่มข้อมูลผู้ใช้งาน</a>
  
 </p>
   <br>
@@ -101,12 +101,12 @@ function idFormat($idCard){
 	  ?>
       </td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">
-    <a href="<?php echo base_url();?>index.php/boss/editMembers/<?php echo $c['memberId'];?>" class="fancyboxMagMemberAll">
+    <a href="<?php echo base_url();?>index.php/boss/editMembers/<?php echo $c['memberId'];?>" class="editMember fancybox.iframe">
   <img class="iconAction" src="<?php echo base_url();?>img/editIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
     </a>
       </td>
       <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px">
-  <a href="<?php echo base_url();?>index.php/boss/deleteMembers/<?php echo $c['memberId'];?>" class="deleteMemberAll">
+  <a href="<?php echo base_url();?>index.php/boss/deleteMembers/<?php echo $c['memberId'];?>" class="delMember fancybox.iframe">
   <img class="iconAction" src="<?php echo base_url();?>img/deleteIcon.png" width="25px" height="25px"  style="margin-bottom:-8px;">
   </a></td>
     </tr>

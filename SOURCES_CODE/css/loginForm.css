@@ -1,21 +1,11 @@
-@font-face {
- 	  font-family: thaisanslite_r1 Vera Serif Bold; 
-		
-	  src: url(/css/font/WDB_Bangna.ttf) format("truetype");  
-	    src: url('/css/font/WDB_Bangna.ttf?#iefix') format('embedded-opentype'); /* IE6-IE8 */
-       
-    }
-*{
-	font-family: thaisanslite_r1 Vera Serif Bold,Serif;
-}
 div.loginForm{
 	font-family: thaisanslite_r1 Vera Serif Bold,Serif;
 	list-style-type:none;
 	float:none;
-	width:inherit;
+	width:100%;
 	margin: 10px auto;
 	z-index:3;
-	margin-top:70px;
+	margin-top:5%;
 	
 	
 }
@@ -27,7 +17,7 @@ div.loginForm{
 	padding:10px;
 	font-size:30px;
 	color:#FFFFFF;
-	text-shadow:2px 2px 2px #7A7A7A;
+	text-shadow:2px 2px 2px 0px #7A7A7A;
 	background-color:#4587B1;
 	border-top-left-radius:5px;
 	border-top-right-radius:5px;
@@ -92,7 +82,7 @@ padding:3px 3px 3px 3px;
   -webkit-border-radius: 18;
   -moz-border-radius: 18;
   border-radius: 18px;
-  text-shadow: 1px 1px 3px #666666;
+  text-shadow: 1px 1px 1px 2px #666666;
   -webkit-box-shadow: 0px 1px 3px #666666;
   -moz-box-shadow: 0px 1px 3px #666666;
   box-shadow: 0px 1px 3px #666666;
@@ -101,11 +91,11 @@ padding:3px 3px 3px 3px;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
   border: solid #8baec4 2px;
-  text-decoration: none;
+  
 }
 .loginFormButtom:hover {
 	background: #3cb0fd;
-	  -webkit-border-radius: 18;
+	-webkit-border-radius: 18;
   -moz-border-radius: 18;
   border-radius: 18px;
   background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);

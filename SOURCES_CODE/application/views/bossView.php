@@ -4,19 +4,20 @@
 <title>ระบบทันตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย</title>
 <meta name="keywords" content="สมเด็จพระยุพราชเด่นชัย,โรงพยาบาลสมเด็จพระยุพราชเด่นชัย,ทันตสุขภาพเด็ก,villageteeth,ระบบทันตสุขภาพเด็ก,ทันตสุขภาพเด่นชัย" />
 <meta name="description" content="ระบบจัดการ ทัตสุขภาพเด็ก เด่นชัย โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่ จัดการข้อมูลสถิติ ทัตสุขภาพเด็ก โรงพยาบาลสมเด็จพระยุพราชเด่นชัย จังหวัดแพร่" />
-<link rel="stylesheet" href="<?php echo base_url();?>css/menu.css">
-<link rel="stylesheet" href="<?php echo base_url();?>css/main.css">
-<link rel="stylesheet" href="<?php echo base_url();?>css/header.css">
-<link rel="stylesheet" href="<?php echo base_url();?>css/table.css">
-<link rel="stylesheet" href="<?php echo base_url();?>css/font.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/menu.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/main.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/header.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/table.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/font.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.css?v=2.1.5"  />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/jquery.fancybox.css?v=2.1.5"/>
 <script type="text/javascript" src="<?php echo base_url()?>js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>js/jqueryui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>js/jquery.fancybox.js?v=2.1.5"></script>
 <script type="text/javascript" src="<?php echo base_url()?>js/jquery.mousewheel-3.0.6.pack.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.js?v=2.1.5"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/helpers/jquery.fancybox-thumbs.css?v=2.1.5" media="screen" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>js/fancy/jquery.fancybox.css?v=2.1.5" media="screen" />
 <script type="text/javascript" src="<?php echo base_url()?>js/main.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/poup.js"></script>
 <script>
 	$(document).ready(function() {
 		var check;
@@ -76,7 +77,6 @@ $('.dropdown a').click(function(event) {
 
 
 </script>
-
 </head>
 <body>	
 <script>
@@ -176,7 +176,7 @@ $('.dropdown a').click(function(event) {
         </ul>
       </li>
       <li>
-        <a class="mainMenu" href="" onClick="return false"><img src="<?php echo base_url();?>img/icon/magMember.png" height="30px" > จัดการมูลผู้ใช้งาน</a>
+        <a class="mainMenu" href="" onClick="return false"><img src="<?php echo base_url();?>img/icon/magMember.png" height="30px" > จัดการข้อมูลผู้ใช้งาน</a>
         <ul>
           <li><a class="submenu"  href="<?php echo base_url();?>index.php/boss/memberByArea">- ตามเขตรับผิดชอบ</a></li>
           <li><a class="submenu"  href="<?php echo base_url();?>index.php/boss/memberAll">- ผู้ใช้งานทั้งหมด</a></li>
